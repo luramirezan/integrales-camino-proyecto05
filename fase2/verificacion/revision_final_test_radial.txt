@@ -1,0 +1,93 @@
+[1] Coulomb delta=0, R=60
+  E0                                 = -0.4999999939   ref -0.5000000000   |dif| = 6.1e-09  (tol 1e-08)
+  E1                                 = -0.1249999999   ref -0.1250000000   |dif| = 9.5e-11  (tol 1e-08)
+  <r>                                = +1.4999999939   ref +1.5000000000   |dif| = 6.1e-09  (tol 1e-07)
+  <r^2>                              = +3.0000000000   ref +3.0000000000   |dif| = 7.2e-13  (tol 1e-07)
+  norma int u^2 dr (malla fina)      = +1.0000000000   ref +1.0000000000   |dif| = 4.4e-16  (tol 1e-12)
+  orden aparente E0 (h=1/20..1/160): 1.9986, 1.9997, 1.9999
+  E0 Yukawa(delta=0) - Coulomb       = +0.0000000000   ref +0.0000000000   |dif| = 0.0e+00  (tol 1e-14)
+  -> PASA (0.0 s)
+
+[2] Tabla 5.1 de la Fase 1 (misma receta de caja y de malla)
+  delta=0.0 R=60 N=2400: E0=-0.499999994 (tabla -0.499999994) <r>=1.50000 (tabla 1.50000) |E_h-E_h/2|=5.9e-05 (tabla 5.9e-05)
+  delta=0.2 R=60 N=2400: E0=-0.326808505 (tabla -0.326808505) <r>=1.54972 (tabla 1.54972) |E_h-E_h/2|=5.7e-05 (tabla 5.7e-05)
+  delta=0.4 R=60 N=2400: E0=-0.198376077 (tabla -0.198376077) <r>=1.69137 (tabla 1.69137) |E_h-E_h/2|=5.1e-05 (tabla 5.1e-05)
+  delta=0.6 R=60 N=2400: E0=-0.106135901 (tabla -0.106135901) <r>=1.96686 (tabla 1.96686) |E_h-E_h/2|=4.3e-05 (tabla 4.3e-05)
+  delta=0.8 R=84 N=3344: E0=-0.044704298 (tabla -0.044704298) <r>=2.54916 (tabla 2.54916) |E_h-E_h/2|=3.2e-05 (tabla 3.2e-05)
+  delta=1.0 R=174 N=6972: E0=-0.010285784 (tabla -0.010285784) <r>=4.36670 (tabla 4.36670) |E_h-E_h/2|=1.8e-05 (tabla 1.8e-05)
+  delta=1.1 R=370 N=14795: E0=-0.002287239 (tabla -0.002287239) <r>=8.27764 (tabla 8.27764) |E_h-E_h/2|=8.8e-06 (tabla 8.8e-06)
+  -> PASA (0.2 s)
+
+[3] Punto fuertemente ligado delta=0.2, R=60 (seccion 9.2 de la Fase 1)
+  E0                                 = -0.3268085052   ref -0.3268085100   |dif| = 4.8e-09  (tol 5e-09)
+  E0 (h=1/80,1/160) frente al exacto = -0.3268085110   ref -0.3268085114   |dif| = 3.9e-10  (tol 1e-09)
+  E1 (R=60, como en 9.2)             = -0.0121078621   ref -0.0121080000   |dif| = 1.4e-07  (tol 5e-07)
+  <r>                                = +1.5497218981   ref +1.5497000000   |dif| = 2.2e-05  (tol 5e-05)
+  <r^2>^1/2                          = +1.7960900429   ref +1.7961000000   |dif| = 1.0e-05  (tol 5e-05)
+  brecha E1-E0                       = +0.3147006431   ref +0.3147000000   |dif| = 6.4e-07  (tol 5e-05)
+  -> PASA (0.0 s)
+
+[4] Umbral de Yukawa por la condicion de energia cero
+  delta_c (R=200)                    = +1.1906124211   ref +1.1906124211   |dif| = 3.9e-11  (tol 1e-08)
+  delta_c (R=400)                    = +1.1906124211   ref +1.1906124211   |dif| = 3.9e-11  (tol 1e-08)
+  delta_c(2s) (R=400; Fase 1: 0.310209) = +0.3102092827   ref +0.3102090000   |dif| = 2.8e-07  (tol 5e-07)
+  -> PASA (0.2 s)
+
+[5] Hulthen V=-delta/(e^{delta r}-1): E_n=-(1/2)(1/n-n delta/2)^2, <r> analitico (sympy)
+  delta=0.2 (R=60); <r> exacto = (delta**2 - 12)/(2*(delta**2 - 4))
+  E0 delta=0.2                       = -0.4049999939   ref -0.4050000000   |dif| = 6.1e-09  (tol 1e-08)
+  <r> delta=0.2                      = +1.5101010042   ref +1.5101010101   |dif| = 5.9e-09  (tol 3e-07)
+  <r^2> delta=0.2                    = +3.0456586062   ref +3.0456586063   |dif| = 2.1e-11  (tol 6e-07)
+    error(h=1/40)/error(h=1/80) tras Richardson: <r> 16.0, <r^2> 54.6 (O(h^4) -> 16)
+  delta=1.0 (R=60); <r> exacto = (delta**2 - 12)/(2*(delta**2 - 4))
+  E0 delta=1.0                       = -0.1249999936   ref -0.1250000000   |dif| = 6.4e-09  (tol 1e-08)
+  <r> delta=1.0                      = +1.8333333280   ref +1.8333333333   |dif| = 5.3e-09  (tol 4e-07)
+  <r^2> delta=1.0                    = +4.7222221795   ref +4.7222222222   |dif| = 4.3e-08  (tol 9e-07)
+    error(h=1/40)/error(h=1/80) tras Richardson: <r> 15.9, <r^2> 16.0 (O(h^4) -> 16)
+  delta=1.5 (R=100); <r> exacto = (delta**2 - 12)/(2*(delta**2 - 4))
+  E0 delta=1.5                       = -0.0312499936   ref -0.0312500000   |dif| = 6.4e-09  (tol 1e-08)
+  <r> delta=1.5                      = +2.7857141688   ref +2.7857142857   |dif| = 1.2e-07  (tol 6e-07)
+  <r^2> delta=1.5                    = +12.0918347332   ref +12.0918367347   |dif| = 2.0e-06  (tol 2e-06)
+    error(h=1/40)/error(h=1/80) tras Richardson: <r> 16.0, <r^2> 16.0 (O(h^4) -> 16)
+  E1 (2s) delta=0.2 (R=83)           = -0.0449999999   ref -0.0450000000   |dif| = 9.9e-11  (tol 1e-08)
+  umbral 1s (exacto 2)               = +2.0000000000   ref +2.0000000000   |dif| = 3.4e-14  (tol 1e-08)
+  umbral 2s (exacto 0.5)             = +0.5000000000   ref +0.5000000000   |dif| = 5.1e-15  (tol 1e-08)
+  -> PASA (1.9 s)
+
+[6] Pozo esferico cuadrado a=1: k cot(ka) = -kappa (brentq); umbral V0 a^2 = pi^2/8
+  umbral V0 (energia cero, R=50)     = +1.2337005501   ref +1.2337005501   |dif| = 1.8e-14  (tol 1e-08)
+  V0=2.0 (R=60) E exacta=-0.203550741821
+    orden aparente, V(a)=0      : 0.974, 0.987, 0.994, 0.997
+    orden aparente, V(a)=-V0/2  : 2.000, 2.000, 2.000, 2.000
+  E0 V0=2.0 (borde medio, Rich p=2)  = -0.2035507435   ref -0.2035507418   |dif| = 1.7e-09  (tol 1e-08)
+  <r> V0=2.0 (borde medio, Rich p=2) = +1.2836437153   ref +1.2836437276   |dif| = 1.2e-08  (tol 1e-05)
+    V(a)=0 con Richardson p=1: |E-E_ex| = 1.5e-04; con p=2: 5.8e-03
+  V0=1.3 (R=385) E exacta=-0.002114699148
+    orden aparente, V(a)=0      : 0.468, 0.798, 0.910, 0.957
+    orden aparente, V(a)=-V0/2  : 2.005, 2.001, 2.000, 2.000
+  E0 V0=1.3 (borde medio, Rich p=2)  = -0.0021146965   ref -0.0021146991   |dif| = 2.6e-09  (tol 2e-08)
+  <r> V0=1.3 (borde medio, Rich p=2) = +8.1882959235   ref +8.1883069057   |dif| = 1.1e-05  (tol 1e-04)
+    V(a)=0 con Richardson p=1: |E-E_ex| = 2.3e-04; con p=2: 6.6e-04
+  -> PASA (1.4 s)
+
+[7] Tabla 9.6 de la Fase 1 (cajas cerca del umbral)
+  delta=1.15 R=50: E0=-3.308e-04 (tabla -3.31e-04)  <r>/R(h=1/80)=0.239 (tabla 0.239)  F(h=1/80)=0.895 (tabla 0.895)
+  delta=1.15 R=100: E0=-4.512e-04 (tabla -4.51e-04)  <r>/R(h=1/80)=0.164 (tabla 0.164)  F(h=1/80)=0.962 (tabla 0.962)
+  delta=1.15 R=200: E0=-4.559e-04 (tabla -4.56e-04)  <r>/R(h=1/80)=0.087 (tabla 0.087)  F(h=1/80)=0.998 (tabla 0.998)
+  delta=1.15 R=400: E0=-4.559e-04 (tabla -4.56e-04)  <r>/R(h=1/80)=0.044 (tabla 0.044)  F(h=1/80)=1.000 (tabla 1.000)
+  delta=1.15 R=800: E0=-4.559e-04 (tabla -4.56e-04)  <r>/R(h=1/80)=0.022 (tabla 0.022)  F(h=1/80)=1.000 (tabla 1.000)
+  delta=1.18 R=50: E0=+3.380e-04 (tabla +3.38e-04)  <r>/R(h=1/80)=0.293 (tabla 0.293)  F(h=1/80)=0.832 (tabla 0.832)
+  delta=1.18 R=100: E0=+3.213e-05 (tabla +3.21e-05)  <r>/R(h=1/80)=0.268 (tabla 0.268)  F(h=1/80)=0.859 (tabla 0.859)
+  delta=1.18 R=200: E0=-2.406e-05 (tabla -2.41e-05)  <r>/R(h=1/80)=0.225 (tabla 0.225)  F(h=1/80)=0.904 (tabla 0.904)
+  AVISO errata 9.6: delta=1.18 R=400: la tabla dice -3.08e-05; se compara con -3.07e-05
+  delta=1.18 R=400: E0=-3.075e-05 (tabla -3.07e-05)  <r>/R(h=1/80)=0.153 (tabla 0.153)  F(h=1/80)=0.967 (tabla 0.967)
+  delta=1.18 R=800: E0=-3.098e-05 (tabla -3.10e-05)  <r>/R(h=1/80)=0.081 (tabla 0.081)  F(h=1/80)=0.998 (tabla 0.998)
+  delta=1.2 R=50: E0=+6.437e-04 (tabla +6.44e-04)  <r>/R(h=1/80)=0.324 (tabla 0.324)  F(h=1/80)=0.790 (tabla 0.790)
+  delta=1.2 R=100: E0=+1.869e-04 (tabla +1.87e-04)  <r>/R(h=1/80)=0.331 (tabla 0.331)  F(h=1/80)=0.776 (tabla 0.776)
+  delta=1.2 R=200: E0=+5.798e-05 (tabla +5.80e-05)  <r>/R(h=1/80)=0.352 (tabla 0.352)  F(h=1/80)=0.746 (tabla 0.746)
+  delta=1.2 R=400: E0=+1.844e-05 (tabla +1.84e-05)  <r>/R(h=1/80)=0.386 (tabla 0.386)  F(h=1/80)=0.695 (tabla 0.695)
+  delta=1.2 R=800: E0=+5.669e-06 (tabla +5.67e-06)  <r>/R(h=1/80)=0.426 (tabla 0.426)  F(h=1/80)=0.633 (tabla 0.633)
+  -> PASA (0.4 s)
+
+Resumen: 7/7 pruebas pasan (4.2 s en total)
+EXIT 0 TIEMPO 5 s

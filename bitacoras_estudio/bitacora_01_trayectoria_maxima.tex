@@ -1,0 +1,949 @@
+% Bitácora 1: Longitud máxima de la trayectoria de un proyectil
+% Se incluye desde main.tex con \input; no compilar este archivo solo.
+
+\part{Bitácora 1: Longitud máxima de la trayectoria de un proyectil}
+\setcounter{section}{0}
+\begin{center}\normalsize Problema 02: Harvard Problem 71 --- \textit{Maximum Trajectory Length}. 7 de septiembre de 2026.\end{center}
+
+
+\section{Datos de la sesión}
+
+\begin{itemize}
+    \item \textbf{Roles:} Encargada de los prompts y de la línea principal: Valentina. Cuestionador: Sebastián. Revisor/verificador: Luis.
+
+    \item \textbf{IA principal:} ChatGPT (GPT-5.6 Sol).
+
+    \item \textbf{IA auditora:} Claude (Opus 5).
+\end{itemize}
+
+
+\section{Objetivos}
+
+\subsection{Objetivo general}
+
+Comprender y resolver de manera crítica el problema 71 de \textit{Harvard Problems}, \textit{Maximum trajectory length}, utilizando herramientas de inteligencia artificial como apoyo, pero sometiendo sus resultados a verificación, comparación y análisis independiente.
+
+\subsection{Objetivos específicos}
+
+\begin{itemize}
+    \item Analizar inicialmente el enunciado del problema, identificar con claridad qué se pide, las variables relevantes y una posible estrategia de solución antes de consultar la respuesta oficial.
+    
+    \item Utilizar una IA principal para desarrollar la solución del problema, identificando las hipótesis, aproximaciones y procedimientos matemáticos empleados.
+    
+    \item Revisar y cuestionar la solución obtenida mediante nuestro propio análisis y mediante una segunda IA auditora, buscando posibles errores conceptuales, matemáticos o de rigor.
+    
+    \item Verificar el resultado mediante cálculos independientes, comprobaciones físicas, análisis numérico y comparación con la solución oficial suministrada.
+    
+    \item Identificar posibles caminos para extender o generalizar el problema más allá de las condiciones planteadas originalmente.
+\end{itemize}
+
+
+
+\section{Comprensión inicial del problema y trabajo previo del grupo}
+
+El problema planteado es el siguiente:
+
+\begin{quote}
+\textit{A ball is thrown at speed $v$ from zero height on level ground. At what angle should it be thrown so that the distance traveled through the air is maximum. (You will have to solve something numerically.)}
+\end{quote}
+
+Al leer el enunciado por primera vez, es natural pensar que la respuesta es \(\theta=45^\circ\), ya que este es el ángulo que maximiza el alcance horizontal de un proyectil en ausencia de resistencia del aire. Sin embargo, una lectura más cuidadosa muestra que el problema no pide maximizar el alcance horizontal, sino \textbf{la distancia total recorrida por la pelota a lo largo de su trayectoria}. Por tanto, es necesario determinar la longitud de la trayectoria en función del ángulo de lanzamiento y encontrar el valor de \(\theta\) para el cual dicha longitud es máxima.
+
+Teniendo en cuenta esto, antes de utilizar las herramientas de inteligencia artificial y de consultar la solución oficial, el grupo planteó una primera estrategia de solución. La idea consistió en escribir la trayectoria como una función \(y(x)\) y utilizar la expresión para la longitud de arco de una curva.
+
+Partiendo de las ecuaciones del movimiento,
+
+\[
+x(t)=v\cos\theta\,t,
+\qquad
+y(t)=v\sin\theta\,t-\frac{1}{2}gt^2,
+\]
+
+se despejó el tiempo de la primera ecuación,
+
+\[
+t=\frac{x}{v\cos\theta} \qquad \Longrightarrow \qquad y(x)=x\tan\theta-\frac{gx^2}{2v^2\cos^2\theta}.
+\]
+
+
+De esta manera, la distancia total recorrida por la pelota puede expresarse mediante 
+
+\[
+L=\int_{0}^{R}\sqrt{1+\left(\frac{dy}{dx}\right)^2}\,dx, \qquad R=\frac{v^2}{g}\sin(2\theta).
+\]
+
+
+Al resolver esta integral se obtuvo una expresión para la longitud de la trayectoria en función del ángulo de lanzamiento:
+
+\[
+L(\theta)=
+\frac{v^2}{g}
+\left[
+\sin\theta+
+\cos^2\theta
+\ln\left(
+\frac{1+\sin\theta}{\cos\theta}
+\right)
+\right].
+\]
+
+Posteriormente, se derivó esta expresión con respecto a \(\theta\) y se impuso la condición $dL/d\theta=0$, llegando a la siguiente ecuación
+
+\[
+{
+\sin\theta
+\ln\left(
+\frac{1+\sin\theta}{\cos\theta}
+\right)=1
+}.
+\]
+
+Como no puede resolverse de forma elemental, se utilizó GeoGebra para encontrar numéricamente la raíz correspondiente, obteniendo
+
+\[
+\theta_{\max}\approx56.5^\circ.
+\]
+
+Este desarrollo se tomó posteriormente como un método independiente para verificar los resultados obtenidos con las IA.
+
+\section{Hipótesis y simplificaciones del modelo}
+
+Durante la resolución del problema fue necesario establecer un conjunto de hipótesis y simplificaciones para definir el modelo de movimiento utilizado. Estas condiciones no aparecen todas de manera explícita en el enunciado, por lo que se hicieron visibles durante la interacción con la IA y posteriormente fueron revisadas por el grupo:
+
+\begin{enumerate}[label=H\arabic*.]
+    \item Se desprecia la resistencia del aire.
+    
+    \item El movimiento ocurre bajo la acción de un campo gravitacional uniforme,
+    \[
+    \vec g=-g\,\hat y.
+    \]
+    
+    \item La pelota se modela como una partícula puntual.
+    
+    \item El punto de lanzamiento y el punto de llegada se encuentran a la misma altura.
+    
+    \item La magnitud de la velocidad inicial \(v\) se mantiene fija, y el único parámetro que se varía es el ángulo de lanzamiento \(\theta\).
+    
+    \item Se considera el intervalo físico
+    \[
+    0\leq\theta\leq\frac{\pi}{2}.
+    \]
+    
+    \item Se desprecian efectos asociados a la rotación de la pelota, como el efecto Magnus.
+\end{enumerate}
+
+Estas hipótesis delimitan el régimen de validez de la solución obtenida. En particular, resultados como la independencia del ángulo óptimo respecto de \(v\) y \(g\) corresponden al modelo ideal considerado y no deben generalizarse automáticamente a situaciones en las que intervengan otros efectos físicos.
+
+
+
+\section{Registro de prompts e interacción con las IA}
+
+\subsection*{Prompt 1 --- Solución inicial con la IA principal}
+
+\begin{quote}
+Te envío el problema. Quiero que actúes inicialmente como IA principal y lo resuelvas paso a paso. Explicita las hipótesis y aproximaciones que utilices, no des por válido un resultado solamente porque coincide con una respuesta conocida e identifica posibles checkpoints. Si durante el proceso detectamos un error, conserva registro de qué se afirmó, por qué estaba mal y cómo se corrigió.
+\end{quote}
+
+\textbf{Resultado relevante.} La IA principal parametrizó la trayectoria mediante el tiempo y escribió
+
+\[
+L(\theta)
+=
+\int_0^T
+\sqrt{
+(v\cos\theta)^2+
+(v\sin\theta-gt)^2
+}\,dt,
+\]
+
+con
+
+\[
+T=\frac{2v\sin\theta}{g}.
+\]
+
+Usando el cambio de variable
+
+\[
+u=v\sin\theta-gt,
+\]
+
+obtuvo
+
+\[
+L(\theta)
+=
+\frac{v^2}{g}
+\left[
+\sin\theta+
+\cos^2\theta\,
+\operatorname{arsinh}(\tan\theta)
+\right].
+\]
+
+Al derivar, se llegó a
+
+\[
+f'(\theta)
+=
+2\cos\theta
+\left[
+1-\sin\theta\,\operatorname{arsinh}(\tan\theta)
+\right],
+\]
+
+y, para puntos críticos interiores,
+
+\[
+\sin\theta\,\operatorname{arsinh}(\tan\theta)=1.
+\]
+
+La solución numérica obtenida fue
+
+\[
+\theta^*\approx 56.47^\circ.
+\]
+
+\subsection*{Prompt 2 --- Auditoría con una segunda IA}
+
+El siguiente prompt se envió a Claude:
+
+\begin{quote}
+Revisa críticamente la siguiente solución de un problema de mecánica. No asumas que es correcta. Verifica paso a paso:
+
+\begin{itemize}
+    \item planteamiento físico;
+    \item hipótesis;
+    \item derivación de la longitud de trayectoria;
+    \item cambio de variable;
+    \item integral;
+    \item derivación respecto al ángulo;
+    \item ecuación trascendental obtenida;
+    \item solución numérica;
+    \item si el punto hallado es realmente un máximo global;
+    \item dimensiones y casos límite.
+\end{itemize}
+
+Señala cualquier error conceptual, algebraico o de interpretación. Si encuentras un error, explica exactamente dónde está y propón la corrección. Si no encuentras errores, indica qué partes verificaste de manera independiente y no solo por consistencia interna.
+\end{quote}
+
+\textbf{Resultado relevante de la auditoría.} Claude no encontró errores algebraicos en la derivación principal y confirmó el valor del ángulo, pero señaló varios puntos de rigor:
+
+\begin{enumerate}
+    \item La expresión cerrada para \(L(\theta)\) no debe evaluarse en \(\theta=\pi/2\) por sustitución directa, porque aparece una forma indeterminada del tipo \(0\cdot\infty\).
+    \item El tratamiento inicial de \(\cos\theta=0\) en la ecuación factorizada para \(f'(\theta)\) era insuficiente.
+    \item El checkpoint \(L(0)=0\) era correcto, pero demasiado débil.
+    \item Faltaba demostrar explícitamente que la raíz encontrada correspondía al máximo global.
+\end{enumerate}
+
+Claude también verificó de manera independiente la raíz numérica y obtuvo aproximadamente
+
+\[
+\theta^*=0.985514\ \text{rad}
+=56.4658^\circ.
+\]
+
+\subsection*{Prompt 3 --- Cálculo numérico}
+
+\begin{quote}
+Escribe el código en Python que usarías para hacer ese cálculo numérico y explícame cómo obtiene el ángulo.
+\end{quote}
+
+Se propuso resolver directamente
+
+\[
+F(\theta)
+=
+\sin\theta\,\operatorname{arsinh}(\tan\theta)-1=0
+\]
+
+mediante un método de búsqueda de raíces.
+
+\subsection*{Prompt 4 --- Revisión del caso \(\theta=\pi/2\)}
+
+Primero se preguntó:
+
+\begin{quote}
+¿Qué pasa con el ángulo \(\pi/2\)? ¿También produce una distancia máxima?
+\end{quote}
+
+Después de revisar la respuesta, se formuló una objeción más específica:
+
+\begin{quote}
+El problema está aquí: ¿por qué simplemente descartas \(\pi/2\) sin una explicación clara, si aparentemente también aparece al imponer \(f'(\theta)=0\)? No quiero que se descarte solo porque corresponde al extremo del intervalo; quiero que se explique correctamente qué pasa con ese valor.
+\end{quote}
+
+Este segundo prompt permitió identificar y corregir una debilidad real de la primera solución.
+
+\subsection*{Prompt 5 --- Comparación con la solución oficial}
+
+\begin{quote}
+Esta es la solución oficial del problema. Compárala con lo que hiciste.
+\end{quote}
+
+La comparación mostró que ambas soluciones son equivalentes y conducen al mismo resultado, aunque utilizan cambios de variable diferentes.
+
+\subsection*{Prompt 6 --- Comparación con el método del grupo}
+
+\begin{quote}
+Nosotros intentamos resolverlo escribiendo \(y\) en función de \(x\) y calculando la integral de camino. Compara ese método con el que usaste y explica si son equivalentes.
+\end{quote}
+
+Se comprobó que ambos métodos calculan exactamente la misma longitud geométrica usando parametrizaciones diferentes.
+
+\section{Modificaciones de los prompts y motivo}
+
+\begin{center}
+\begin{tabular}{p{1.2cm}p{5.7cm}p{7cm}}
+\toprule
+\textbf{Paso} & \textbf{Cambio realizado} & \textbf{Motivo}\\
+\midrule
+1 & Se pidió una solución paso a paso con hipótesis y checkpoints. & Evitar recibir únicamente un resultado final sin poder auditar el razonamiento.\\
+2 & Se entregó la solución completa a una segunda IA para una auditoría explícita. & Buscar errores conceptuales, algebraicos o de rigor de manera independiente.\\
+3 & Se pidió el procedimiento numérico en Python. & Verificar que el valor \(56.47^\circ\) no dependiera únicamente de una afirmación de la IA.\\
+4 & Se cuestionó específicamente el tratamiento de \(\theta=\pi/2\). & La primera explicación descartaba ese valor sin justificar correctamente la indeterminación presente.\\
+5 & Se comparó con la solución oficial. & Verificar el resultado mediante una fuente independiente del desarrollo de las IA.\\
+6 & Se retomó el método \(y(x)\) planteado por el grupo. & Comprobar si el enfoque propio era válido y cómo se relacionaba con los otros procedimientos.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Verificación matemática y física}
+
+\subsection{Análisis dimensional}
+
+La expresión obtenida tiene la forma
+
+\[
+L(\theta)=\frac{v^2}{g}\,f(\theta),
+\]
+
+donde \(f\) es adimensional. Como
+
+\[
+\left[\frac{v^2}{g}\right]
+=
+\frac{L^2/T^2}{L/T^2}
+=
+L,
+\]
+
+las dimensiones son correctas.
+
+Además, esto muestra que, bajo las hipótesis del problema, el ángulo óptimo no depende de \(v\) ni de \(g\).
+
+\subsection{Caso de lanzamiento vertical}
+
+La primera solución trató inicialmente \(\theta=\pi/2\) de forma poco rigurosa. En
+
+\[
+L(\theta)
+=
+\frac{v^2}{g}
+\left[
+\sin\theta+
+\cos^2\theta\,
+\operatorname{arsinh}(\tan\theta)
+\right],
+\]
+
+la sustitución directa \(\theta=\pi/2\) produce formalmente
+
+\[
+0\cdot\infty.
+\]
+
+Por tanto, el valor debe obtenerse por límite o directamente desde la integral original.
+
+Para un lanzamiento vertical,
+
+\[
+L\left(\frac{\pi}{2}\right)
+=
+2\int_0^{v/g}(v-gt)\,dt
+=
+\frac{v^2}{g}.
+\]
+
+En cambio,
+
+\[
+L(\theta^*)
+\approx
+1.19968\,\frac{v^2}{g},
+\]
+
+por lo cual \(\theta=\pi/2\) no produce la longitud máxima.
+
+\subsection{Corrección del tratamiento de \(\cos\theta=0\)}
+
+En la respuesta inicial se escribió, después de factorizar,
+
+\[
+f'(\theta)
+=
+2\cos\theta
+\left[
+1-\sin\theta\operatorname{arsinh}(\tan\theta)
+\right],
+\]
+
+y se descartó rápidamente la posibilidad \(\cos\theta=0\).
+
+Esto no era suficientemente riguroso porque la expresión factorizada no puede evaluarse directamente en \(\theta=\pi/2\): el segundo factor diverge.
+
+La formulación correcta es:
+
+\begin{quote}
+Para encontrar los puntos críticos interiores se considera
+\[
+0<\theta<\frac{\pi}{2},
+\]
+donde \(\cos\theta>0\). En ese intervalo, \(f'(\theta)=0\) equivale a
+\[
+\sin\theta\,\operatorname{arsinh}(\tan\theta)=1.
+\]
+Los extremos \(\theta=0\) y \(\theta=\pi/2\) se estudian por separado.
+\end{quote}
+
+Esta corrección debe conservarse como uno de los errores detectados durante la auditoría.
+
+\subsection{Checkpoint de ángulo pequeño}
+
+El chequeo inicial \(L(0)=0\) es correcto, pero poco discriminante. Un control más fuerte consiste en estudiar el comportamiento para \(\theta\ll1\).
+
+La expansión da
+
+\[
+L(\theta)
+\approx
+\frac{2v^2}{g}\theta.
+\]
+
+Por otra parte, el alcance horizontal es
+
+\[
+R=\frac{v^2}{g}\sin 2\theta
+\approx
+\frac{2v^2}{g}\theta.
+\]
+
+Para ángulos muy pequeños la trayectoria es casi horizontal, por lo que su longitud debe aproximarse al alcance. Ambos resultados coinciden.
+
+\subsection{Demostración de que el máximo es global}
+
+Definimos
+
+\[
+\phi(\theta)
+=
+\sin\theta\,\operatorname{arsinh}(\tan\theta).
+\]
+
+Para \(0<\theta<\pi/2\),
+
+\[
+\phi'(\theta)
+=
+\cos\theta\,\operatorname{arsinh}(\tan\theta)
++
+\sin\theta\,\sec\theta
+>0.
+\]
+
+Por tanto, \(\phi\) es estrictamente creciente. Además,
+
+\[
+\phi(0^+)=0,
+\qquad
+\phi(\theta)\to\infty
+\quad\text{cuando}\quad
+\theta\to\frac{\pi}{2}^{-}.
+\]
+
+Luego la ecuación
+
+\[
+\phi(\theta)=1
+\]
+
+tiene una única solución interior. Como
+
+\[
+f'(\theta)
+=
+2\cos\theta\,[1-\phi(\theta)],
+\]
+
+la derivada cambia de signo positivo a negativo al atravesar esa raíz. Por tanto, el punto
+
+\[
+\boxed{\theta^*\approx56.47^\circ}
+\]
+
+es el máximo global de la longitud en el dominio físico.
+
+\section{Comprobación numérica}
+
+El cálculo numérico se realizó resolviendo la ecuación trascendental
+
+\[
+\sin\theta\,\operatorname{arsinh}(\tan\theta)=1.
+\]
+
+Se utilizó el siguiente código:
+
+\begin{lstlisting}
+import numpy as np
+from scipy.optimize import brentq
+
+def ecuacion(theta):
+    return np.sin(theta) * np.arcsinh(np.tan(theta)) - 1
+
+theta_min = np.deg2rad(1)
+theta_max = np.deg2rad(89)
+
+theta_opt = brentq(ecuacion, theta_min, theta_max)
+
+print("Angulo optimo en radianes:", theta_opt)
+print("Angulo optimo en grados:", np.rad2deg(theta_opt))
+\end{lstlisting}
+
+El resultado es
+
+\[
+\theta^*
+\approx
+0.985515\ \text{rad}
+\approx
+56.4658^\circ.
+\]
+
+También se evaluó
+
+\[
+f(\theta)
+=
+\sin\theta+
+\cos^2\theta\operatorname{arsinh}(\tan\theta),
+\]
+
+obteniéndose
+
+\[
+f(\theta^*)\approx1.19968.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+L_{\max}
+\approx
+1.19968\,\frac{v^2}{g}
+}.
+\]
+
+Como verificación adicional, se propuso un barrido numérico de muchos valores de \(\theta\), observando que el máximo de \(f(\theta)\) aparece nuevamente alrededor de \(56.47^\circ\).
+
+\section{Comparación con la solución oficial}
+
+Después de completar la solución independiente y la auditoría, se revisó el documento oficial \textit{Solution -- Week 71 (1/19/04), Maximum trajectory length}.
+
+La solución oficial parte de las mismas ecuaciones de movimiento, pero aprovecha desde el inicio la simetría entre el ascenso y el descenso:
+
+\[
+L
+=
+2\int_0^{v\sin\theta/g}
+\sqrt{
+(v\cos\theta)^2+
+(v\sin\theta-gt)^2
+}\,dt.
+\]
+
+Luego define
+
+\[
+z=\tan\theta-\frac{gt}{v\cos\theta},
+\]
+
+y después \(z=\tan\alpha\). La integral se transforma en una integral de \(\sec^3\alpha\), obteniéndose
+
+\[
+L
+=
+\frac{v^2}{g}
+\left[
+\sin\theta+
+\cos^2\theta
+\ln\left(
+\frac{1+\sin\theta}{\cos\theta}
+\right)
+\right].
+\]
+
+Nuestra expresión era
+
+\[
+L
+=
+\frac{v^2}{g}
+\left[
+\sin\theta+
+\cos^2\theta
+\operatorname{arsinh}(\tan\theta)
+\right].
+\]
+
+Ambas son idénticas porque
+
+\[
+\operatorname{arsinh}(\tan\theta)
+=
+\ln\left(\tan\theta+\sec\theta\right)
+=
+\ln\left(
+\frac{1+\sin\theta}{\cos\theta}
+\right).
+\]
+
+La condición de máximo de la solución oficial,
+
+\[
+1
+=
+\sin\theta
+\ln\left(
+\frac{1+\sin\theta}{\cos\theta}
+\right),
+\]
+
+es por tanto equivalente a
+
+\[
+1
+=
+\sin\theta\,
+\operatorname{arsinh}(\tan\theta).
+\]
+
+La solución oficial reporta
+
+\[
+\theta_0\approx56.5^\circ,
+\]
+
+en acuerdo con el cálculo independiente.
+
+\subsection*{Observaciones críticas sobre la solución oficial}
+
+\begin{enumerate}
+    \item La solución oficial verifica que \(L=v^2/g\) para \(\theta=90^\circ\), pero no desarrolla explícitamente la indeterminación que aparece al intentar sustituir \(\theta=\pi/2\) directamente en la expresión cerrada. La auditoría permitió hacer este punto más riguroso.
+    \item La solución oficial encuentra la condición de máximo y la resuelve numéricamente, pero no desarrolla una demostración explícita de unicidad y máximo global. La verificación mediante la monotonía de \(\phi(\theta)\) completa ese argumento.
+    \item En la primera expresión de longitud del PDF aparece escrito dos veces \(dx/dt\) dentro de la raíz. La línea siguiente utiliza correctamente las componentes horizontal y vertical, por lo que se interpretó como un error tipográfico y no como un error físico.
+\end{enumerate}
+
+\section{Comparación con el método \(y(x)\) propuesto por el grupo}
+
+El método del grupo parte de
+
+\[
+y(x)
+=
+x\tan\theta
+-
+\frac{gx^2}{2v^2\cos^2\theta},
+\]
+
+por lo que
+
+\[
+\frac{dy}{dx}
+=
+\tan\theta
+-
+\frac{gx}{v^2\cos^2\theta}.
+\]
+
+La longitud es
+
+\[
+L
+=
+\int_0^R
+\sqrt{
+1+
+\left(
+\tan\theta
+-
+\frac{gx}{v^2\cos^2\theta}
+\right)^2
+}\,dx.
+\]
+
+Definiendo
+
+\[
+z=
+\tan\theta
+-
+\frac{gx}{v^2\cos^2\theta},
+\]
+
+se obtiene
+
+\[
+L
+=
+\frac{v^2\cos^2\theta}{g}
+\int_{-\tan\theta}^{\tan\theta}
+\sqrt{1+z^2}\,dz,
+\]
+
+que conduce a la misma expresión para \(L(\theta)\).
+
+Esto muestra que el método del grupo y el de la IA principal son equivalentes:
+
+\[
+\int
+\sqrt{1+\left(\frac{dy}{dx}\right)^2}\,dx
+=
+\int
+\sqrt{
+\left(\frac{dx}{dt}\right)^2+
+\left(\frac{dy}{dt}\right)^2
+}\,dt.
+\]
+
+Además,
+
+\[
+z=\frac{dy}{dx}
+=
+\frac{v_y}{v_x}.
+\]
+
+La variable usada por la solución oficial es precisamente la pendiente de la trayectoria.
+
+El método \(y(x)\) tiene una limitación importante: para \(\theta=\pi/2\),
+
+\[
+v\cos\theta=0,
+\]
+
+por lo que no se puede despejar \(t=x/(v\cos\theta)\) ni representar la trayectoria vertical como una función ordinaria \(y(x)\). Este extremo debe tratarse por separado. La parametrización temporal sí permite describirlo directamente.
+
+\section{Errores o debilidades encontradas y correcciones}
+
+\begin{center}
+\begin{tabular}{p{4.2cm}p{5.2cm}p{5.2cm}}
+\toprule
+\textbf{Problema detectado} & \textbf{Por qué era insuficiente} & \textbf{Corrección}\\
+\midrule
+Se descartó rápidamente \(\cos\theta=0\). &
+La expresión factorizada contiene una indeterminación en \(\theta=\pi/2\). &
+Buscar las raíces únicamente en el intervalo abierto y estudiar los extremos por separado.\\
+\addlinespace
+Se escribió \(L(90^\circ)=v^2/g\) sin explicar el límite. &
+La fórmula cerrada produce formalmente \(0\cdot\infty\). &
+Calcular el caso vertical desde la integral original o mediante un límite.\\
+\addlinespace
+Se usó \(L(0)=0\) como checkpoint principal. &
+Es correcto, pero poco restrictivo. &
+Comparar el desarrollo para \(\theta\ll1\) con el alcance horizontal.\\
+\addlinespace
+La primera solución no demostraba que la raíz fuera el máximo global. &
+Una raíz de \(f'(\theta)=0\) no basta por sí sola. &
+Demostrar que \(\phi(\theta)\) es estrictamente creciente y que \(f'\) cambia de \(+\) a \(-\).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Checkpoints finales}
+
+Los checkpoints utilizados al finalizar la sesión fueron:
+
+\begin{enumerate}
+    \item \textbf{Dimensiones:}
+    \[
+    [v^2/g]=L.
+    \]
+    \item \textbf{Lanzamiento vertical:}
+    \[
+    L(\pi/2)=v^2/g.
+    \]
+    \item \textbf{Ángulo pequeño:}
+    \[
+    L(\theta)\approx R(\theta)\approx\frac{2v^2}{g}\theta.
+    \]
+    \item \textbf{Verificación numérica:}
+    \[
+    \theta^*\approx56.4658^\circ.
+    \]
+    \item \textbf{Comparación con la solución oficial:} el resultado oficial es aproximadamente \(56.5^\circ\).
+    \item \textbf{Método alternativo del grupo:} el planteamiento mediante \(y(x)\) conduce a la misma integral y al mismo resultado.
+\end{enumerate}
+
+\section{Referencias consultadas y verificadas}
+
+\begin{enumerate}
+    \item \textbf{Solution -- Week 71 (1/19/04), Maximum trajectory length.}\\
+    Archivo suministrado para el problema: \texttt{sol71.pdf}.\\
+    \textbf{Uso en la bitácora:} comparar la solución independiente con la solución oficial, verificar la expresión de la longitud y confirmar el valor numérico del ángulo óptimo.
+\end{enumerate}
+
+Para resolver el problema original no se utilizaron referencias bibliográficas externas sugeridas por las IA. Las fuentes localizadas durante la búsqueda de anterioridad de la propuesta de extensión, junto con su estado de verificación, se listan en la sección \ref{sec:refs-ext}.
+
+\section{Resultado final de la sesión}
+
+La solución obtenida de manera independiente, auditada por una segunda IA, comprobada numéricamente y comparada con la solución oficial conduce a
+
+\[
+\boxed{
+\theta_{\max}
+\approx
+56.47^\circ
+}.
+\]
+
+La longitud máxima correspondiente es
+
+\[
+\boxed{
+L_{\max}
+\approx
+1.19968\,\frac{v^2}{g}
+}.
+\]
+
+El resultado central de la IA principal fue correcto, pero la auditoría permitió detectar una debilidad importante en el tratamiento de \(\theta=\pi/2\), mejorar los checkpoints y completar la demostración de que el punto encontrado es el máximo global.
+
+También se comprobó que el método inicialmente planteado por el grupo, basado en escribir \(y(x)\) y calcular la longitud de arco, es completamente válido y equivalente al método parametrizado por el tiempo.
+
+\section{Propuesta de extensión}
+
+\subsection{Motivación: el resultado original es degenerado}
+
+El resultado obtenido,
+
+\[
+L(\theta)=\frac{v^2}{g}\left[\sin\theta+\cos^2\theta\,\operatorname{arsinh}(\tan\theta)\right],
+\qquad
+\theta^*=56.4658^\circ,
+\]
+
+no contiene \textbf{ningún parámetro adimensional}: las únicas constantes del problema, \(v\) y \(g\), solo pueden combinarse como \(v^2/g\), que es una longitud y fija la escala del problema, pero no puede afectar a un ángulo. Por construcción, entonces, \(\theta^*\) no depende de nada. Esa aparente universalidad es una \emph{degeneración del modelo} más que un hecho físico profundo.
+
+La extensión propuesta conserva exactamente el mismo funcional que se optimiza ---la longitud de arco recorrida---, pero sustituye el campo uniforme sin atmósfera por un sistema con disipación y curvatura planetaria: la \textbf{entrada atmosférica de un vehículo hipersónico}, en el contexto de la aerocaptura. El ángulo de lanzamiento \(\theta\) pasa a ser el \textbf{ángulo de entrada} \(\gamma_0\) respecto de la horizontal local, y el problema adquiere varios parámetros adimensionales genuinos.
+
+\subsection{Formulación}
+
+\textbf{Pregunta.} Un vehículo de masa \(m\), área transversal \(A\) y coeficiente de arrastre \(C_D\) entra en la atmósfera de un planeta de radio \(R_p\) a una altitud \(z_0\), con rapidez \(v_0\) y ángulo de trayectoria \(\gamma_0\) bajo la horizontal local. ¿Qué ángulo de entrada maximiza la longitud del camino recorrido dentro de la atmósfera, y cómo depende esa respuesta del planeta y del vehículo?
+
+Con densidad exponencial \(\rho(z)=\rho_0e^{-z/H}\), coeficiente balístico \(\beta=m/(C_DA)\) y \(g(z)=g_0R_p^2/(R_p+z)^2\), las ecuaciones de movimiento en el plano son
+
+\[
+\dot v=-\frac{\rho(z)v^2}{2\beta}-g(z)\sin\gamma,
+\qquad
+\dot\gamma=\left(\frac{v}{R_p+z}-\frac{g(z)}{v}\right)\cos\gamma,
+\]
+\[
+\dot z=-v\sin\gamma,
+\qquad
+\dot x=v\cos\gamma\,\frac{R_p}{R_p+z},
+\]
+
+y la magnitud a maximizar es la misma de siempre,
+
+\[
+\boxed{\;
+S(\gamma_0)=\int_0^{T}\sqrt{\dot x^2+\dot z^2}\,dt=\int_0^{T}v(t)\,dt
+\;}
+\]
+
+con \(T\) el instante de salida de la capa \(z\leq z_0\). Los parámetros adimensionales del problema son
+
+\[
+\Lambda=\frac{\rho_0H}{2\beta}
+\quad\text{(disipación)},
+\qquad
+\varepsilon=\frac{H}{R_p}
+\quad\text{(curvatura)},
+\qquad
+\mathcal{V}=\frac{v_0^2}{g_0R_p}
+\quad\text{(rapidez de entrada)}.
+\]
+
+A diferencia del problema original, la optimización está \textbf{sujeta a restricciones}: captura sin rebote ni impacto, \(v_{\text{circ}}\leq v(T)<v_{\text{esc}}\); límite estructural, \(\rho v^2/2\beta\leq a_{\max}\); y límite térmico, \(\dot q\propto\sqrt{\rho}\,v^3\leq\dot q_{\max}\).
+
+\subsection{Punto crítico: el máximo deja de ser interior}
+
+Esta es la diferencia estructural que hace interesante la extensión y conviene enunciarla desde el principio, no descubrirla al final.
+
+En la aproximación clásica de Allen--Eggers (trayectoria rectilínea, \(\gamma\approx\gamma_0\) constante, gravedad despreciable frente al arrastre) la longitud recorrida es simplemente \(S\approx(z_0-z_f)/\sin\gamma_0\), que \textbf{crece monótonamente} al hacer la entrada más rasante. No hay punto crítico interior: el óptimo se desplaza hacia \(\gamma_0\to0\) hasta chocar con la frontera del corredor de entrada, donde el vehículo ya no disipa suficiente energía y vuelve a salir al espacio.
+
+Es decir, mientras que en el problema original el máximo es un cero de \(dL/d\theta\) en el interior del dominio, aquí se espera que el máximo esté \textbf{en la frontera del conjunto admisible}, fijado por la condición de captura y no por una condición de estacionariedad. La pregunta de investigación se reformula entonces así:
+
+\begin{quote}
+¿Cuál es el ángulo rasante mínimo \(\gamma_{\min}(\Lambda,\varepsilon,\mathcal{V})\) que todavía garantiza la captura, cuánto vale la longitud de arco máxima asociada, y bajo qué condiciones reaparece un máximo interior al retener la curvatura de la trayectoria y las restricciones térmicas?
+\end{quote}
+
+Determinar si el óptimo es de frontera o interior, y en qué región del espacio de parámetros ocurre cada caso, es el resultado central que se buscaría.
+
+\subsection{Comprobaciones obligatorias}
+
+\begin{enumerate}
+    \item \textbf{Límite plano sin atmósfera.} Con \(\rho_0\to0\) y \(\varepsilon\to0\) el sistema debe devolver el tiro parabólico y, para el problema suelo-a-suelo equivalente, \(\theta^*=56.4658^\circ\) y \(L_{\max}=1.19968\,v^2/g\).
+    \item \textbf{Límite de atmósfera homogénea.} Con \(H\to\infty\) y planeta plano, el sistema se reduce al proyectil con resistencia cuadrática, cuyo ángulo de longitud máxima ya está tabulado en la literatura y se desplaza desde \(56.46^\circ\). Es el puente natural con el trabajo publicado y el mejor control intermedio disponible.
+    \item \textbf{Deceleración máxima de Allen--Eggers.} Para entrada balística, \(a_{\max}=v_0^2\sin\gamma_0/(2eH)\), independiente de \(\beta\). El integrador debe reproducir este valor y la altitud a la que ocurre.
+    \item \textbf{Análisis dimensional.} Verificar que \(S\) escala como \(H/\sin\gamma_0\) en el régimen rasante y que ningún resultado angular dependa de \(m\), \(A\) o \(C_D\) salvo a través de \(\Lambda\).
+    \item \textbf{Naturaleza del óptimo.} No suponer que hay un único máximo ni que es interior: caracterizar explícitamente si es de frontera, y con qué restricción se activa. Es el mismo tipo de rigor que faltaba en la primera solución de la IA para \(\theta=\pi/2\).
+\end{enumerate}
+
+\subsection{Metodología y rol de la IA}
+
+\begin{enumerate}
+    \item \textbf{Fase analítica.} Adimensionalizar el sistema en \((\Lambda,\varepsilon,\mathcal{V})\) y obtener la solución de Allen--Eggers como punto de partida; estimar analíticamente la frontera de rebote.
+    \item \textbf{Fase numérica.} Integrador Runge--Kutta adaptativo para \(z(t),v(t),\gamma(t)\); barrido sobre \((\gamma_0,\Lambda)\) para construir el mapa \(S(\gamma_0)\) y localizar la frontera del corredor. \textbf{Doble implementación obligatoria}: contrastar la longitud obtenida por \(\int v\,dt\) contra la suma directa de segmentos de la trayectoria integrada.
+    \item \textbf{Fase comparativa.} Evaluar el mismo problema para atmósferas distintas ---Marte (\(H\approx11\) km, tenue), Titán (\(H\approx40\) km, densa y extendida), Venus--- para ver cómo se desplaza el corredor.
+    \item \textbf{Rol de la IA.} Verificación simbólica de la adimensionalización y de las derivadas; generación y revisión del código del integrador; y, como en esta sesión, auditoría cruzada con una segunda IA de cada resultado antes de darlo por bueno. El grupo conserva la verificación independiente mediante los checkpoints anteriores.
+\end{enumerate}
+
+\subsection{Alcance y verificación de anterioridad}
+
+El mínimo viable es el caso de un solo planeta con restricción de captura, sin límites térmicos; el objetivo es el mapa completo en el espacio de parámetros y la comparación entre atmósferas.
+
+\textbf{Estado de la búsqueda.} La búsqueda de anterioridad realizada hasta ahora (14 de septiembre de 2026) cubrió el problema base y otras dos extensiones que finalmente se descartaron. De ella se conserva lo relevante: el ángulo de longitud máxima \(56.46^\circ\) y su deformación por resistencia cuadrática ya están publicados (Chudinov y colaboradores), de modo que \textbf{el caso de atmósfera homogénea y planeta plano no es novedoso} y debe tratarse como límite de control, no como aportación.
+
+Para el problema de entrada atmosférica propiamente dicho, \textbf{la búsqueda está pendiente}. La mecánica de vuelo de reentrada es un campo maduro y muy publicado, pero está formulado casi siempre optimizando disipación de energía, carga térmica o precisión de aterrizaje, no longitud de arco. Antes de invertir tiempo hay que verificarlo con cadenas del tipo \textit{arc length} + \textit{atmospheric entry}, \textit{path length} + \textit{aerocapture corridor}, \textit{entry flight path angle} + \textit{maximum trajectory length}, y revisar quién cita a Allen--Eggers y a Vinh filtrando por longitud de trayectoria. El umbral que cambiaría el veredicto es cualquier trabajo que optimice explícitamente \(\int v\,dt\) sobre \(\gamma_0\).
+
+\subsection{Referencias de la propuesta}
+\label{sec:refs-ext}
+
+\textbf{Sobre el problema base (\(\theta^*\approx56.47^\circ\)):}
+
+\begin{enumerate}[label=(\arabic*)]
+    \item J. Cooper, A. Swifton, \textit{Throwing a Ball as Far as Possible, Revisited}, \textit{Amer. Math. Monthly} \textbf{124} (2017) 955--959; arXiv:1611.02376.
+    \item M. Karadag, \textit{A study for determining the launch angle that maximises the total distance travelled by the projectile during its flight}, \textit{Phys. Educ.} \textbf{55} (2020) 033011.
+    \item H. Sarafian, \textit{On projectile motion}, \textit{Phys. Teach.} \textbf{37} (1999) 86.
+\end{enumerate}
+
+\textbf{Puente con la extensión (longitud de arco con arrastre):}
+
+\begin{enumerate}[label=(\arabic*),start=4]
+    \item P. Chudinov, V. Eltyshev, Y. Barykin, \textit{Some problems of the projectile motion with a square-law resistance}, \textit{Rev. Mex. Fís. E} \textbf{19} (2023) 010201; arXiv:2108.03469. Tabula el ángulo de longitud máxima y estudia su desplazamiento con la resistencia cuadrática. Es el límite de atmósfera homogénea de la propuesta.
+    \item H. Sarafian, \textit{What Projective Angle Makes the Arc-Length of the Trajectory in a Resistive Media Maximum?}, SCIRP (2021).
+\end{enumerate}
+
+\textbf{Mecánica de vuelo de entrada atmosférica:}
+
+\begin{enumerate}[label=(\arabic*),start=6]
+    \item H. J. Allen, A. J. Eggers, \textit{A Study of the Motion and Aerodynamic Heating of Ballistic Missiles Entering the Earth's Atmosphere at High Supersonic Speeds}, NACA Report 1381 (1958). Solución analítica de referencia y origen del resultado \(a_{\max}=v_0^2\sin\gamma_0/(2eH)\).
+    \item N. X. Vinh, A. Busemann, R. D. Culp, \textit{Hypersonic and Planetary Entry Flight Mechanics}, University of Michigan Press (1980). Tratamiento general de las ecuaciones de entrada y de su adimensionalización.
+    \item F. J. Regan, S. M. Anandakrishnan, \textit{Dynamics of Atmospheric Re-Entry}, AIAA (1993). Formulación con curvatura planetaria y corredores de entrada.
+    \item K. Sutton, R. A. Graves, \textit{A General Stagnation-Point Convective-Heating Equation for Arbitrary Gas Mixtures}, NASA TR R-376 (1971). Correlación \(\dot q\propto\sqrt{\rho}\,v^3\) usada en la restricción térmica.
+    \item R. R. Bate, D. D. Mueller, J. E. White, \textit{Fundamentals of Astrodynamics}, Dover (1971), cap. 6. Parámetro \(\mathcal{V}=v^2/(g_0R_p)\) y condiciones de captura frente a escape.
+\end{enumerate}
+
+Ninguna de las referencias (6)--(10) se ha consultado todavía sobre la fuente original: se citan aquí como base bibliográfica identificada y deben verificarse antes de usarse en el documento final.

@@ -1,0 +1,838 @@
+{
+ "filas": [
+  {
+   "bloque": "9.7",
+   "control": "Coulomb delta=0, transferencia (L02)",
+   "criterio": "|E+0.5|<1e-6 tras Richardson en h_tab; |<r>-1.5|<1e-4 (eps 0.2/0.1/0.05)",
+   "valor": "5.44e-08 (Rich en E: 5.49e-08; sin Rich: 2.60e-05, 6.55e-06); 1.71e-07; 1.09e-07 (Rich en E: 1.10e-07; sin Rich: 2.88e-05, 7.29e-06); 3.34e-07; 2.18e-07 (Rich en E: 2.19e-07; sin Rich: 3.12e-05, 7.97e-06); 6.60e-07",
+   "pasa": true,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (criterios)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Coulomb delta=0, PIGS, 1 cadena (plan)",
+   "criterio": "E_L = -0.5; <r>, <r^2> a < 2 sigma de 1.5 y 3",
+   "valor": "E_L: var=0.0e+00, max|E_L+0.5|=0.0e+00 (tautologico: W=0); 1.49277 +- 0.01626 (-0.44 sigma); 2.97503 +- 0.07873 (-0.32 sigma)",
+   "pasa": true,
+   "script": "12_pigs_produccion.py",
+   "json": "12_pigs.json (criterios)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Coulomb delta=0, PIGS, 8 cadenas + histograma (V3)",
+   "criterio": "<r>, <r^2> a < 2 sigma; histograma de r_{M/2} p > 1e-3",
+   "valor": "1.49027 +- 0.00720 (-1.35 sigma de 1.5); cociente (cadenas/bloques)^2 = 0.45; 2.96787 +- 0.03430 (-0.94 sigma de 3.0); cociente (cadenas/bloques)^2 = 0.59; chi2 = 57.7 con 32 intervalos, p = 0.004",
+   "pasa": true,
+   "script": "12c_pigs_coulomb_tau5.py",
+   "json": "12c_pigs_coulomb_tau5.json (A_coulomb)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "delta=0.2 transferencia, h=0.02",
+   "criterio": "|E-E_rad|<1e-6, |<r>-<r>_rad|<1e-3",
+   "valor": "4.00e-07; 5.41e-05; 1.05e-08; 1.39e-05; 1.78e-07; 4.11e-06",
+   "pasa": true,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (criterios)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "delta=0.2 transferencia, h=0.04 (control)",
+   "criterio": "idem",
+   "valor": "3.58e-07; 5.68e-05; 1.51e-06; 1.92e-05; 3.22e-06; 1.46e-05",
+   "pasa": false,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (criterios)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "delta=0.2 PIGS (tau=20, 8 cadenas)",
+   "criterio": "E, <r>, <r^2> a < 2 sigma del radial; sigma = mayor de bloques y cadenas",
+   "valor": "-0.326725 +- 0.000068 frente a -0.32680851 (+1.22 sigma); 1.55374 +- 0.00711 frente a 1.54972 (+0.56 sigma); 3.24260 +- 0.03894 frente a 3.22594 (+0.43 sigma)",
+   "pasa": true,
+   "script": "12_pigs_produccion.py",
+   "json": "12_pigs.json (criterios)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Ley eps^2, delta=0.2, h=0.02 sin Richardson en h (L18)",
+   "criterio": "orden en [1.8, 2.2]; extrapolado < 1e-6 del radial",
+   "valor": "1.046",
+   "pasa": false,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (trotter)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Ley eps^2, delta=0.2, Richardson h^4 (L18)",
+   "criterio": "orden en [1.8, 2.2]; extrapolado < 1e-6 del radial",
+   "valor": "1.958",
+   "pasa": true,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (trotter)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Extrapolado eps->0, delta=0.2 (L18)",
+   "criterio": "orden en [1.8, 2.2]; extrapolado < 1e-6 del radial",
+   "valor": "4.41e-09",
+   "pasa": true,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (trotter)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Ley eps^2, delta=1.0, R=174, h=0.02 (L18)",
+   "criterio": "orden en [1.8, 2.2]; extrapolado < 1e-6 del radial",
+   "valor": "1.978",
+   "pasa": true,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (trotter)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Ley eps^2, delta=1.0, Richardson h^4 (L18)",
+   "criterio": "orden en [1.8, 2.2]; extrapolado < 1e-6 del radial",
+   "valor": "1.983",
+   "pasa": true,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (trotter)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Extrapolado eps->0, delta=1.0 (L18)",
+   "criterio": "orden en [1.8, 2.2]; extrapolado < 1e-6 del radial",
+   "valor": "1.21e-08",
+   "pasa": true,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (trotter)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Tabulacion: estabilidad Nystrom 0.02 -> 0.04 (9 casos)",
+   "criterio": "|E(0.04)-E(0.02)| < 1e-6",
+   "valor": "8.00e-07  (eps*dif=1.60e-07); 1.60e-06  (eps*dif=1.60e-07); 3.20e-06  (eps*dif=1.60e-07); 7.58e-07  (eps*dif=1.52e-07); 1.52e-06  (eps*dif=1.52e-07); 3.04e-06  (eps*dif=1.52e-07); 1.72e-07  (eps*dif=3.45e-08); 3.59e-07  (eps*dif=3.59e-08); 7.31e-07  (eps*dif=3.66e-08)",
+   "pasa": false,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (estabilidad_nystrom)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Tabulacion: orden de la malla Nystrom (propuesta: Richardson h^4)",
+   "criterio": "medido",
+   "valor": "delta=0.0,eps=0.2: 4.00, delta=0.0,eps=0.1: 4.00, delta=0.0,eps=0.05: 4.00, delta=0.2,eps=0.2: 4.00, delta=0.2,eps=0.1: 4.00, delta=0.2,eps=0.05: 4.00",
+   "pasa": null,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (orden_nystrom)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Proyeccion (L15), transferencia delta=0.2, eps=0.1",
+   "criterio": "variacion < 1e-6 de tau=20 a 30; limite del mixto - E0(T) < 1e-6",
+   "valor": "2.52e-07; 1.05e-07; con Richardson en h: -1.3e-09",
+   "pasa": true,
+   "script": "11_transferencia_controles.py",
+   "json": "11_transferencia.json (proyeccion)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Proyeccion con PIGS frente a la transferencia (tau = 2, 5, 10, 20)",
+   "criterio": "PIGS a menos de 2 sigma de la transferencia en cada tau",
+   "valor": "tau=2: -0.7/+0.6/+0.6 sigma; tau=5: -3.2/+1.6/+1.6 sigma; tau=10: +0.2/-1.0/-0.9 sigma; tau=20: +1.2/+0.7/+0.6 sigma",
+   "pasa": false,
+   "script": "12_pigs_produccion.py",
+   "json": "12_pigs.json (criterios)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Anomalia tau=5: replica 1 (16 cadenas)",
+   "criterio": "< 2 sigma de la transferencia",
+   "valor": "E +0.03 sigma; <r> -0.76 sigma",
+   "pasa": true,
+   "script": "12b_pigs_replica_tau5.py",
+   "json": "12b_pigs_replica.json (replica)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Anomalia tau=5: replica 2 (16 cadenas, V3)",
+   "criterio": "< 2 sigma de la transferencia",
+   "valor": "-0.326718 +- 0.000045 (+0.99 sigma; transferencia -0.326762633); 1.529878 +- 0.005000 (-0.45 sigma; transferencia 1.532136474); 3.123609 +- 0.024123 (-0.60 sigma; transferencia 3.138107461)",
+   "pasa": true,
+   "script": "12c_pigs_coulomb_tau5.py",
+   "json": "12c_pigs_coulomb_tau5.json (B_replica2_tau5)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Anomalia tau=5: las 40 cadenas (informativo, V3)",
+   "criterio": "se reporta",
+   "valor": "ponderada -0.83 sigma, pesos iguales -0.61 sigma; chi2 de las 3 corridas 11.13/3 (p=0.011); chi2 por cadena 50.2/39 (p=0.109)",
+   "pasa": null,
+   "script": "12c_pigs_coulomb_tau5.py",
+   "json": "12c_pigs_coulomb_tau5.json (C_tau5_combinado)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Malla espacial h en cada caja (a')",
+   "criterio": "|E0(h)-E0(h/2)| < 0.1|E0|",
+   "valor": "transferencia (0.02 vs 0.04): max 2.8e-03; radial (1/40 vs 1/80): max 0.057",
+   "pasa": true,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (celdas/*/malla_rel; 10_radial.json cajas_9_6)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Caja: E0(R) decreciente (L12)",
+   "criterio": "decreciente en R (Dirichlet)",
+   "valor": "cajas 9.6 (15 celdas, transferencia): 3/3 delta decrecientes; delta=1.0: E_ext(R) = -5.964265e-03, -1.010965e-02, -1.028526e-02, -1.028580e-02, -1.028580e-02; decreciente True",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L12; 14_cajas.json celdas)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Hellmann-Feynman (L05) delta=0.2",
+   "criterio": "|dE/ddelta - <e^{-delta r}>| < 1e-4",
+   "valor": "0.74485846 frente a 0.74485290 (dif +5.6e-06)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L05)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Hellmann-Feynman (L05) delta=0.5",
+   "criterio": "|dE/ddelta - <e^{-delta r}>| < 1e-4",
+   "valor": "0.46009830 frente a 0.46009558 (dif +2.7e-06)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L05)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Hellmann-Feynman (L05) delta=1.0",
+   "criterio": "|dE/ddelta - <e^{-delta r}>| < 1e-4",
+   "valor": "0.10963014 frente a 0.10962884 (dif +1.3e-06)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L05)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Virial (L06) delta=0.2",
+   "criterio": "|residuo extrapolado en h y eps| < 1e-5",
+   "valor": "h=0.02, eps=0.05: -1.33e-04; h=0.01: -3.80e-05 (orden en h 2.00); extrapolado -5.91e-07",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L06)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Cotas (L04)",
+   "criterio": "-1/2 <= E0 <= -1/2 + delta",
+   "valor": "0 violaciones en 5 delta; margen minimo 1.816e-03",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L04)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Sin ligado en delta >= 2 (L19)",
+   "criterio": "E > 0 y a < 5 % de pi^2/(2(R-a_s)^2)",
+   "valor": "E(R=200) = +1.2190e-04; desviacion de la ley de caja -1.02e-03 (radial +4.00e-06)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L19)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Umbral (Fase 4; avance de la Fase 2)",
+   "criterio": "intervalo compatible con 1.1906124211 y dentro de [1.19055, 1.24305]",
+   "valor": "cajas: 1.15 ligado, 1.18 ligado, 1.2 no ligado => delta_c en [1.18, 1.20]; el intervalo final es de la Fase 4",
+   "pasa": null,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (veredictos)"
+  },
+  {
+   "bloque": "9.7",
+   "control": "Errores por bloques: regla del cociente",
+   "criterio": "si (err cadenas/err bloques)^2 > 2 se usa el de cadenas (siempre se usa el mayor)",
+   "valor": "cocientes en E: 1.75, 1.17, 1.01, 0.43 (prod, tau 2, 5, 10); se reporta siempre el mayor",
+   "pasa": true,
+   "script": "12_pigs_produccion.py",
+   "json": "12_pigs.json (pigs/*/EL/cociente)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A0 W_H delta=0.2",
+   "criterio": "W_H en [0, delta/2] y decreciente en r in [1e-8, 400] (tolerancia 1e-14)",
+   "valor": "min 2.500e-03, max 0.099999999966667 (delta/2=0.1), max incremento 0.0e+00",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A0 W_H delta=1.0",
+   "criterio": "W_H en [0, delta/2] y decreciente en r in [1e-8, 400] (tolerancia 1e-14)",
+   "valor": "min 2.500e-03, max 0.499999999166667 (delta/2=0.5), max incremento 0.0e+00",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A0 W_H delta=1.5",
+   "criterio": "W_H en [0, delta/2] y decreciente en r in [1e-8, 400] (tolerancia 1e-14)",
+   "valor": "min 2.500e-03, max 0.749999998125000 (delta/2=0.75), max incremento 0.0e+00",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A0 W_H delta=2.0",
+   "criterio": "W_H en [0, delta/2] y decreciente en r in [1e-8, 400] (tolerancia 1e-14)",
+   "valor": "min 2.500e-03, max 0.999999996666667 (delta/2=1.0), max incremento 0.0e+00",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A1 radial Hulthen delta=0.2",
+   "criterio": "radial frente a exacto: |E0-E| < 1e-8 y |<r>-<r>_ex|/<r>_ex < 2e-7",
+   "valor": "dE=+3.77e-10, d<r>/<r>=-2.46e-10",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A1 radial Hulthen delta=1.0",
+   "criterio": "radial frente a exacto: |E0-E| < 1e-8 y |<r>-<r>_ex|/<r>_ex < 2e-7",
+   "valor": "dE=+4.06e-10, d<r>/<r>=-1.81e-10",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A1 radial Hulthen delta=1.5",
+   "criterio": "radial frente a exacto: |E0-E| < 1e-8 y |<r>-<r>_ex|/<r>_ex < 2e-7",
+   "valor": "dE=+4.02e-10, d<r>/<r>=-2.62e-09",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A2 Hulthen delta=0.2 E extrapolada",
+   "criterio": "transferencia (Richardson h^4 con h=0.02,0.04), extrapolada eps->0 con eps^2 desde eps 0.2/0.1/0.05: |E_ext - E_exacta| < 1e-6",
+   "valor": "+5.09e-09 (Rich h 0.01/0.02: +5.00e-09)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A3 Hulthen delta=0.2 orden de Trotter",
+   "criterio": "orden de Trotter aparente (eps 0.2/0.1/0.05, Richardson en h) en [1.8, 2.2] para delta=1.0 y 1.5 (en delta=0.2 el sesgo de Trotter es del tamano del residuo de Nystrom: informativo)",
+   "valor": "1.382 (eps .1/.05/.025: 0.065)",
+   "pasa": null,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A4 Hulthen delta=0.2 <r> extrapolado",
+   "criterio": "<r> de la transferencia, h->0 y eps->0: |<r>_ext - <r>_ex| < 1e-4",
+   "valor": "+1.69e-08 (exacto 1.51010101)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A2 Hulthen delta=1.0 E extrapolada",
+   "criterio": "transferencia (Richardson h^4 con h=0.02,0.04), extrapolada eps->0 con eps^2 desde eps 0.2/0.1/0.05: |E_ext - E_exacta| < 1e-6",
+   "valor": "+2.50e-09 (Rich h 0.01/0.02: +2.43e-09)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A3 Hulthen delta=1.0 orden de Trotter",
+   "criterio": "orden de Trotter aparente (eps 0.2/0.1/0.05, Richardson en h) en [1.8, 2.2] para delta=1.0 y 1.5 (en delta=0.2 el sesgo de Trotter es del tamano del residuo de Nystrom: informativo)",
+   "valor": "1.990 (eps .1/.05/.025: 1.986)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A4 Hulthen delta=1.0 <r> extrapolado",
+   "criterio": "<r> de la transferencia, h->0 y eps->0: |<r>_ext - <r>_ex| < 1e-4",
+   "valor": "+4.90e-08 (exacto 1.83333333)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A2 Hulthen delta=1.5 E extrapolada",
+   "criterio": "transferencia (Richardson h^4 con h=0.02,0.04), extrapolada eps->0 con eps^2 desde eps 0.2/0.1/0.05: |E_ext - E_exacta| < 1e-6",
+   "valor": "-1.78e-09 (Rich h 0.01/0.02: -1.82e-09)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A3 Hulthen delta=1.5 orden de Trotter",
+   "criterio": "orden de Trotter aparente (eps 0.2/0.1/0.05, Richardson en h) en [1.8, 2.2] para delta=1.0 y 1.5 (en delta=0.2 el sesgo de Trotter es del tamano del residuo de Nystrom: informativo)",
+   "valor": "1.991 (eps .1/.05/.025: 1.994)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "A4 Hulthen delta=1.5 <r> extrapolado",
+   "criterio": "<r> de la transferencia, h->0 y eps->0: |<r>_ext - <r>_ex| < 1e-4",
+   "valor": "-3.36e-08 (exacto 2.78571429)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B1 radial pozo V0=2.0",
+   "criterio": "radial (borde medio, r=1 en un nodo) frente a brentq: |E0-E| < 1e-8 (V0=2) y < 2e-8 (V0=1.3)",
+   "valor": "-1.04e-10 (convencion estricta: +2.92e-03)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B1 radial pozo V0=1.3",
+   "criterio": "radial (borde medio, r=1 en un nodo) frente a brentq: |E0-E| < 1e-8 (V0=2) y < 2e-8 (V0=1.3)",
+   "valor": "+1.66e-10 (convencion estricta: +3.30e-04)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B4 desplazamiento-inversion V0=2.0 h=0.02 eps=0.1",
+   "criterio": "desplazamiento-inversion frente a tr.resolver (Lanczos): |dE| < 1e-10",
+   "valor": "+8.7e-15",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B4 desplazamiento-inversion V0=1.3 h=0.04 eps=0.05",
+   "criterio": "desplazamiento-inversion frente a tr.resolver (Lanczos): |dE| < 1e-10",
+   "valor": "+2.3e-12",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B2 pozo V0=2.0 media orden de Trotter aparente",
+   "criterio": "orden de Trotter aparente del pozo: MEDIDO y declarado (sin criterio de aceptacion)",
+   "valor": "1.497, 1.499, 1.502",
+   "pasa": null,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B3 pozo V0=2.0 E extrapolada (orden medido)",
+   "criterio": "pozo, transferencia h->0 (V3: mallas 0.02/0.01/0.005) y eps->0 con el orden medido: |E_ext - E_brentq| < 1e-5",
+   "valor": "+3.55e-06 (con ley eps^2: -1.22e-04; ajuste eps^1.5 a 5 puntos: +9.70e-07; antes, mallas .04/.02/.01: +6.17e-06)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B3b pozo V0=2.0 ajuste eps^1.5 a 5 puntos (V3)",
+   "criterio": "|E0_ajuste - E_brentq| < 1e-5 (control de robustez de B3, V3)",
+   "valor": "+9.70e-07",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B2 pozo V0=2.0 estricta orden de Trotter aparente",
+   "criterio": "orden de Trotter aparente del pozo: MEDIDO y declarado (sin criterio de aceptacion)",
+   "valor": "1.497, 1.498, 1.500",
+   "pasa": null,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B2 pozo V0=1.3 media orden de Trotter aparente",
+   "criterio": "orden de Trotter aparente del pozo: MEDIDO y declarado (sin criterio de aceptacion)",
+   "valor": "1.672, 1.567, 1.523",
+   "pasa": null,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B3 pozo V0=1.3 E extrapolada (orden medido)",
+   "criterio": "pozo, transferencia h->0 (V3: mallas 0.02/0.01/0.005) y eps->0 con el orden medido: |E_ext - E_brentq| < 1e-5",
+   "valor": "-4.20e-07 (con ley eps^2: -9.27e-06; ajuste eps^1.5 a 5 puntos: +2.16e-05; antes, mallas .04/.02/.01: -2.64e-07)",
+   "pasa": true,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B3b pozo V0=1.3 ajuste eps^1.5 a 5 puntos (V3)",
+   "criterio": "|E0_ajuste - E_brentq| < 1e-5 (control de robustez de B3, V3)",
+   "valor": "+2.16e-05",
+   "pasa": false,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "Hulthen/pozo",
+   "control": "B2 pozo V0=1.3 estricta orden de Trotter aparente",
+   "criterio": "orden de Trotter aparente del pozo: MEDIDO y declarado (sin criterio de aceptacion)",
+   "valor": "1.684, 1.575, 1.529",
+   "pasa": null,
+   "script": "13_controles_hulthen_pozo.py",
+   "json": "13_controles.json (criterios)"
+  },
+  {
+   "bloque": "cajas",
+   "control": "Condicion (c) en las 9 ternas",
+   "criterio": "mismo signo, misma tendencia, E0 compatibles",
+   "valor": "9/9",
+   "pasa": true,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (veredictos)"
+  },
+  {
+   "bloque": "cajas",
+   "control": "E0 transferencia frente al radial, celda a celda",
+   "criterio": "|dif| <= 2(err_tr + err_rad)",
+   "valor": "15/15",
+   "pasa": true,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (celdas)"
+  },
+  {
+   "bloque": "cajas",
+   "control": "Idem con solo el error de la transferencia (V3, con sesgo de pared)",
+   "criterio": "|dif| <= err_tr",
+   "valor": "15/15 con el termino de pared; 6/15 sin el (fallan sin el: 1.15_R50, 1.18_R50, 1.18_R100, 1.18_R200, 1.2_R50, 1.2_R100, 1.2_R200, 1.2_R400, 1.2_R800)",
+   "pasa": true,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (V3_criterio_estricto)"
+  },
+  {
+   "bloque": "cajas",
+   "control": "Orden de Trotter tras Richardson en h",
+   "criterio": "[1.8, 2.2]",
+   "valor": "12/15; fuera: 1.18 R50: 1.65, 1.2 R50: 1.49, 1.2 R100: 1.79",
+   "pasa": false,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (celdas/*/orden_trotter)"
+  },
+  {
+   "bloque": "cajas",
+   "control": "Orden de la malla Nystrom cerca del umbral (delta=1.18, eps=0.1)",
+   "criterio": "4, como en 11.4",
+   "valor": "R=50: 1.361; R=100: 2.287",
+   "pasa": false,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (orden_nystrom)"
+  },
+  {
+   "bloque": "cajas",
+   "control": "Veredicto 9.6 delta=1.15",
+   "criterio": "criterio completo (a), (a'), (b), (c) o no ligado con ley de caja",
+   "valor": "ligado, terna [50, 100, 200]",
+   "pasa": true,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (veredictos)"
+  },
+  {
+   "bloque": "cajas",
+   "control": "Veredicto 9.6 delta=1.18",
+   "criterio": "criterio completo (a), (a'), (b), (c) o no ligado con ley de caja",
+   "valor": "ligado, terna [200, 400, 800]",
+   "pasa": true,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (veredictos)"
+  },
+  {
+   "bloque": "cajas",
+   "control": "Veredicto 9.6 delta=1.2",
+   "criterio": "criterio completo (a), (a'), (b), (c) o no ligado con ley de caja",
+   "valor": "no ligado, terna [200, 400, 800]; desviacion de la ley [0.382, 0.101, 0.021]",
+   "pasa": true,
+   "script": "14_criterio_cajas.py",
+   "json": "14_cajas.json (veredictos)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L03 serie perturbativa",
+   "criterio": "orden en [4.5, 5.5] y |res_tr - res_rad| < 1e-8",
+   "valor": "orden aparente 4.844 (radial 4.862); cociente res(0.1)/res(0.05) = 28.71; max |res_tr - res_rad| = 4.7e-09",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L03)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L04 cotas -1/2 <= E0 <= -1/2 + delta",
+   "criterio": "0 violaciones",
+   "valor": "0 violaciones en 5 delta; margen minimo 1.816e-03",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L04)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L05 Hellmann-Feynman delta=0.2",
+   "criterio": "|dE/ddelta - <e^{-delta r}>| < 1e-4",
+   "valor": "0.74485846 frente a 0.74485290 (dif +5.6e-06)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L05)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L05 Hellmann-Feynman delta=0.5",
+   "criterio": "|dE/ddelta - <e^{-delta r}>| < 1e-4",
+   "valor": "0.46009830 frente a 0.46009558 (dif +2.7e-06)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L05)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L05 Hellmann-Feynman delta=1.0",
+   "criterio": "|dE/ddelta - <e^{-delta r}>| < 1e-4",
+   "valor": "0.10963014 frente a 0.10962884 (dif +1.3e-06)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L05)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L06 virial delta=0.2",
+   "criterio": "|residuo extrapolado en h y eps| < 1e-5",
+   "valor": "h=0.02, eps=0.05: -1.33e-04; h=0.01: -3.80e-05 (orden en h 2.00); extrapolado -5.91e-07",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L06)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L07 cuspide delta=0.0",
+   "criterio": "|a2/a1 + 1| < 0.02",
+   "valor": "a2/a1 = -0.99987",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L07)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L09 sin nodos delta=0.0",
+   "criterio": "min(v)/max(v) >= -1e-10",
+   "valor": "min/max = -1.2e-15",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L09)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L07 cuspide delta=0.2",
+   "criterio": "|a2/a1 + 1| < 0.02",
+   "valor": "a2/a1 = -0.99937",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L07)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L09 sin nodos delta=0.2",
+   "criterio": "min(v)/max(v) >= -1e-10",
+   "valor": "min/max = +1.6e-14",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L09)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L09 sin nodos delta=0.5",
+   "criterio": "min(v)/max(v) >= -1e-10",
+   "valor": "min/max = +1.9e-10",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L09)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L07 cuspide delta=1.0",
+   "criterio": "|a2/a1 + 1| < 0.02",
+   "valor": "a2/a1 = -0.98740",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L07)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L09 sin nodos delta=1.0",
+   "criterio": "min(v)/max(v) >= -1e-10",
+   "valor": "min/max = +9.5e-13",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L09)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L08 cola Coulomb",
+   "criterio": "a 2e-2 de 1/kappa en r = 20",
+   "valor": "r(dlnu/dr+kappa) en r=10, 20: 1.0000, 1.0000 (1/kappa = 1.0000)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L08)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L08 cola delta=0.5 (sin factor r^{1/kappa})",
+   "criterio": "|.| < 1e-2 en r = 20",
+   "valor": "0.0080, 0.0001",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L08)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L12 caja delta=1.0",
+   "criterio": "decreciente en R y >= E(R=174)",
+   "valor": "E_ext(R) = -5.964265e-03, -1.010965e-02, -1.028526e-02, -1.028580e-02, -1.028580e-02; decreciente True",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L12)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L14 2s ligado delta=0.2",
+   "criterio": "E1 < 0 y |dif| < 1e-6",
+   "valor": "E1 = -0.012107865 (radial -0.012107865, dif +2.1e-10)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L14)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L14 2s no ligado delta=0.35",
+   "criterio": "E1 > 0, igual que el radial",
+   "valor": "E1 = +1.637e-04 (radial +1.639e-04)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L14)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L16 propagador libre",
+   "criterio": "a 1e-10; K_D >= 0; K_D(0, r') = 0",
+   "valor": "max |h sum_j K_D - erf| = 8.1e-05, 1.6e-04, 3.2e-04",
+   "pasa": false,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L16)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L16 propagador libre: orden del error de la suma (informativo)",
+   "criterio": "medido (error de extremo del trapecio)",
+   "valor": "orden en h 2.00, 2.00, 2.00; h=0.01: 2.0e-05, 4.0e-05, 8.1e-05",
+   "pasa": null,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L16)"
+  },
+  {
+   "bloque": "limites",
+   "control": "L19 delta=2 sin ligado",
+   "criterio": "E > 0 y a < 5 % de pi^2/(2(R-a_s)^2)",
+   "valor": "E(R=200) = +1.2190e-04; desviacion de la ley de caja -1.02e-03 (radial +4.00e-06)",
+   "pasa": true,
+   "script": "15_limites.py",
+   "json": "15_limites.json (L19)"
+  },
+  {
+   "bloque": "radial",
+   "control": "delta=0.2 E0 radial (h=1/40, 1/80) frente al exacto",
+   "criterio": "< 5e-9",
+   "valor": "+6.23e-09",
+   "pasa": false,
+   "script": "10_radial_controles.py / test_radial.py",
+   "json": "10_radial.json (yukawa_0.2/V3_referencia_fina)"
+  },
+  {
+   "bloque": "radial",
+   "control": "delta=0.2 E0 radial (h=1/80, 1/160) frente al exacto",
+   "criterio": "< 5e-9 (test: 1e-9)",
+   "valor": "+4.02e-10",
+   "pasa": true,
+   "script": "10_radial_controles.py / test_radial.py",
+   "json": "10_radial.json (yukawa_0.2/V3_referencia_fina)"
+  }
+ ],
+ "figuras": [
+  {
+   "figura": "10_radial_convergencia.png",
+   "sha256": "491ff66a7544f6085ba9bfac584a36258d37c4ed2a60899319325230add2d6e5",
+   "script": "10_radial_controles.py / test_radial.py"
+  },
+  {
+   "figura": "11_proyeccion.png",
+   "sha256": "b809c40644529191a435f26b19401219a8ec0dfd48879a47335ebb8a8e5e2b76",
+   "script": "11_transferencia_controles.py"
+  },
+  {
+   "figura": "11_trotter.png",
+   "sha256": "476702c17f0e58371fcdabe7c84db8519ef4822c2a9a84304784525abcec30b9",
+   "script": "11_transferencia_controles.py"
+  },
+  {
+   "figura": "12_pigs_delta02.png",
+   "sha256": "e3d5f2cca7fff770d501da0198e668f97ffd51b980fe41fe6036b367f4765f30",
+   "script": "12_pigs_produccion.py"
+  },
+  {
+   "figura": "12_pigs_tau.png",
+   "sha256": "7399461fe6fa5c709b431dcdaeaaa0f005f0d6f10d18fb7906d05eefd8a73f16",
+   "script": "12_pigs_produccion.py"
+  },
+  {
+   "figura": "13_controles.png",
+   "sha256": "75701285ebfd3c6a1319b71b7f6156a9f3bc54cc2d39125dc80e9572d5e6ee1a",
+   "script": "13_controles_hulthen_pozo.py"
+  },
+  {
+   "figura": "14_cajas.png",
+   "sha256": "034fa76e59c81b8b4d958cf8d330b3734f61193ef2f0a8871b2c463255144475",
+   "script": "14_criterio_cajas.py"
+  },
+  {
+   "figura": "15_limites.png",
+   "sha256": "9fb3fa2123810162a6d3e6a40345e5d4f9140882377fdf347ebdf192af23f105",
+   "script": "15_limites.py"
+  }
+ ]
+}

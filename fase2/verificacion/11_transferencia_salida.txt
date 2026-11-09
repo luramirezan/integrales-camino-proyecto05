@@ -1,0 +1,133 @@
+Carga (loadavg): (0.6767578125, 0.51220703125, 1.3974609375)
+=== Tablas U_C (h_tab = 0.01 y 0.005, R_B = 14, R_TAB = 10, banda 7 sqrt(eps)) ===
+eps=0.2: banda=3.1300  E0 Coulomb red h=0.01: -0.4999875001  h=0.005: -0.4999968745  rho<=0 en banda: (0, 0)  tiempos (0.0, 0.0) (0 = cache)  0.1 s
+    max|U(h_tab=0.01)-U(h_tab=0.005)| en |r-r'|<=1: 4.370e-05
+eps=0.1: banda=2.2100  E0 Coulomb red h=0.01: -0.4999875001  h=0.005: -0.4999968745  rho<=0 en banda: (0, 0)  tiempos (0.0, 0.0) (0 = cache)  0.0 s
+    max|U(h_tab=0.01)-U(h_tab=0.005)| en |r-r'|<=1: 5.247e-05
+eps=0.05: banda=1.5600  E0 Coulomb red h=0.01: -0.4999875001  h=0.005: -0.4999968745  rho<=0 en banda: (0, 0)  tiempos (0.0, 0.0) (0 = cache)  0.0 s
+    max|U(h_tab=0.01)-U(h_tab=0.005)| en |r-r'|<=1: 9.977e-05
+
+=== 0. Declaracion del peso: U_C cerca del origen (tabla Richardson) ===
+eps=0.2: U(0.01,0.01)=-1.132354 U(0.02,0.02)=-1.112839 U(0.1,0.1)=-0.967488 U(0.01,0.5)=-0.792800  min/max U tabla = -1.132354/-0.020007  (primitiva: -eps V(0.01) = 20, e^{20})  T: min>0 2.97e-13, negativos 0, max suma de fila 1.191277
+eps=0.1: U(0.01,0.01)=-0.788269 U(0.02,0.02)=-0.768975 U(0.1,0.1)=-0.629703 U(0.01,0.5)=-0.491808  min/max U tabla = -0.788269/-0.010002  (primitiva: -eps V(0.01) = 10, e^{10})  T: min>0 5.59e-13, negativos 0, max suma de fila 1.122763
+eps=0.05: U(0.01,0.01)=-0.548446 U(0.02,0.02)=-0.529460 U(0.1,0.1)=-0.398042 U(0.01,0.5)=-0.297280  min/max U tabla = -0.548446/-0.005000  (primitiva: -eps V(0.01) = 5, e^{5})  T: min>0 7.92e-13, negativos 0, max suma de fila 1.080801
+
+=== Referencias radiales (radial.resolver_rich) ===
+delta=0.2, R=40.0: E0=-0.32680851098 (h=1/80,1/160)  E0(h=1/40,1/80)=-0.32680850515  dif=5.8e-09  <r>=1.5497219  <r^2>=3.2259394
+delta=1.0, R=174.0: E0=-0.01028578963 (h=1/80,1/160)  E0(h=1/40,1/80)=-0.01028578422  dif=5.4e-09  <r>=4.3667048  <r^2>=31.6935262
+
+=== 1-2. Transferencia: delta in {0, 0.2, 1.0}, eps in {0.2, 0.1, 0.05}, h in {0.02, 0.04} ===
+delta=0.0 R=40 h=0.02 eps=0.2: E=-0.4999999456 (h_tab 0.01: -0.4999739727, 0.005: -0.4999934520, Rich en E: -0.4999999451)  E-ref=+5.44e-08  <r>=1.500000 (dif +1.7e-07)  F_1/2=1.000000  0.3 s
+delta=0.0 R=40 h=0.02 eps=0.1: E=-0.4999998912 (h_tab 0.01: -0.4999711592, 0.005: -0.4999927076, Rich en E: -0.4999998904)  E-ref=+1.09e-07  <r>=1.500000 (dif +3.3e-07)  F_1/2=1.000000  0.2 s
+delta=0.0 R=40 h=0.02 eps=0.05: E=-0.4999997824 (h_tab 0.01: -0.4999687845, 0.005: -0.4999920320, Rich en E: -0.4999997811)  E-ref=+2.18e-07  <r>=1.500001 (dif +6.6e-07)  F_1/2=1.000000  0.2 s
+delta=0.0 R=40 h=0.04 eps=0.2: E=-0.4999991460 (h_tab 0.01: -0.4999731733, 0.005: -0.4999926525, Rich en E: -0.4999991455)  E-ref=+8.54e-07  <r>=1.500003 (dif +2.7e-06)  F_1/2=1.000000  0.1 s
+delta=0.0 R=40 h=0.04 eps=0.1: E=-0.4999982921 (h_tab 0.01: -0.4999695605, 0.005: -0.4999911086, Rich en E: -0.4999982912)  E-ref=+1.71e-06  <r>=1.500005 (dif +5.2e-06)  F_1/2=1.000000  0.1 s
+delta=0.0 R=40 h=0.04 eps=0.05: E=-0.4999965842 (h_tab 0.01: -0.4999655875, 0.005: -0.4999888341, Rich en E: -0.4999965829)  E-ref=+3.42e-06  <r>=1.500010 (dif +1.0e-05)  F_1/2=1.000000  0.1 s
+delta=0.2 R=40 h=0.02 eps=0.2: E=-0.3268089106 (h_tab 0.01: -0.3267841876, 0.005: -0.3268027295, Rich en E: -0.3268089101)  E-ref=-4.00e-07  <r>=1.549776 (dif +5.4e-05)  F_1/2=1.000000  0.3 s
+delta=0.2 R=40 h=0.02 eps=0.1: E=-0.3268085215 (h_tab 0.01: -0.3267811908, 0.005: -0.3268016882, Rich en E: -0.3268085206)  E-ref=-1.05e-08  <r>=1.549736 (dif +1.4e-05)  F_1/2=1.000000  0.2 s
+delta=0.2 R=40 h=0.02 eps=0.05: E=-0.3268083330 (h_tab 0.01: -0.3267788558, 0.005: -0.3268009628, Rich en E: -0.3268083318)  E-ref=+1.78e-07  <r>=1.549726 (dif +4.1e-06)  F_1/2=1.000000  0.2 s
+delta=0.2 R=40 h=0.04 eps=0.2: E=-0.3268081527 (h_tab 0.01: -0.3267834299, 0.005: -0.3268019716, Rich en E: -0.3268081522)  E-ref=+3.58e-07  <r>=1.549779 (dif +5.7e-05)  F_1/2=1.000000  0.1 s
+delta=0.2 R=40 h=0.04 eps=0.1: E=-0.3268070031 (h_tab 0.01: -0.3267796729, 0.005: -0.3268001699, Rich en E: -0.3268070023)  E-ref=+1.51e-06  <r>=1.549741 (dif +1.9e-05)  F_1/2=1.000000  0.1 s
+delta=0.2 R=40 h=0.04 eps=0.05: E=-0.3268052940 (h_tab 0.01: -0.3267758180, 0.005: -0.3267979241, Rich en E: -0.3268052928)  E-ref=+3.22e-06  <r>=1.549736 (dif +1.5e-05)  F_1/2=1.000000  0.1 s
+delta=1.0 R=174 h=0.02 eps=0.2: E=-0.0103194084 (h_tab 0.01: -0.0103132393, 0.005: -0.0103178659, Rich en E: -0.0103194081)  E-ref=-3.36e-05  <r>=4.361359 (dif -5.3e-03)  F_1/2=1.000000  3.7 s
+delta=1.0 R=174 h=0.02 eps=0.1: E=-0.0102942585 (h_tab 0.01: -0.0102875261, 0.005: -0.0102925750, Rich en E: -0.0102942580)  E-ref=-8.47e-06  <r>=4.365355 (dif -1.4e-03)  F_1/2=1.000000  4.0 s
+delta=1.0 R=174 h=0.02 eps=0.05: E=-0.0102878731 (h_tab 0.01: -0.0102806532, 0.005: -0.0102860677, Rich en E: -0.0102878726)  E-ref=-2.08e-06  <r>=4.366373 (dif -3.3e-04)  F_1/2=1.000000  5.4 s
+delta=1.0 R=174 h=0.04 eps=0.2: E=-0.0103192361 (h_tab 0.01: -0.0103130671, 0.005: -0.0103176936, Rich en E: -0.0103192358)  E-ref=-3.34e-05  <r>=4.361390 (dif -5.3e-03)  F_1/2=1.000000  1.0 s
+delta=1.0 R=174 h=0.04 eps=0.1: E=-0.0102938995 (h_tab 0.01: -0.0102871674, 0.005: -0.0102922162, Rich en E: -0.0102938991)  E-ref=-8.11e-06  <r>=4.365420 (dif -1.3e-03)  F_1/2=1.000000  1.2 s
+delta=1.0 R=174 h=0.04 eps=0.05: E=-0.0102871421 (h_tab 0.01: -0.0102799227, 0.005: -0.0102853368, Rich en E: -0.0102871415)  E-ref=-1.35e-06  <r>=4.366506 (dif -2.0e-04)  F_1/2=1.000000  1.8 s
+
+--- Control 1: Coulomb delta=0, R=40, h=0.02 ---
+  [PASA] Coulomb eps=0.2 |E+0.5|: 5.44e-08 (Rich en E: 5.49e-08; sin Rich: 2.60e-05, 6.55e-06)  (criterio: <1e-6 tras Richardson en h_tab)
+  [PASA] Coulomb eps=0.2 |<r>-1.5|: 1.71e-07  (criterio: <1e-4)
+  [PASA] Coulomb eps=0.1 |E+0.5|: 1.09e-07 (Rich en E: 1.10e-07; sin Rich: 2.88e-05, 7.29e-06)  (criterio: <1e-6 tras Richardson en h_tab)
+  [PASA] Coulomb eps=0.1 |<r>-1.5|: 3.34e-07  (criterio: <1e-4)
+  [PASA] Coulomb eps=0.05 |E+0.5|: 2.18e-07 (Rich en E: 2.19e-07; sin Rich: 3.12e-05, 7.97e-06)  (criterio: <1e-6 tras Richardson en h_tab)
+  [PASA] Coulomb eps=0.05 |<r>-1.5|: 6.60e-07  (criterio: <1e-4)
+
+--- Control 2: delta=0.2, R=40 frente al radial ---
+  [PASA] delta=0.2 h=0.02 eps=0.2 |E-E_rad|: 4.00e-07  (criterio: <1e-6)
+  [PASA] delta=0.2 h=0.02 eps=0.2 |<r>-<r>_rad|: 5.41e-05  (criterio: <1e-3)
+  [PASA] delta=0.2 h=0.02 eps=0.1 |E-E_rad|: 1.05e-08  (criterio: <1e-6)
+  [PASA] delta=0.2 h=0.02 eps=0.1 |<r>-<r>_rad|: 1.39e-05  (criterio: <1e-3)
+  [PASA] delta=0.2 h=0.02 eps=0.05 |E-E_rad|: 1.78e-07  (criterio: <1e-6)
+  [PASA] delta=0.2 h=0.02 eps=0.05 |<r>-<r>_rad|: 4.11e-06  (criterio: <1e-3)
+  [PASA] delta=0.2 h=0.04 eps=0.2 |E-E_rad|: 3.58e-07  (criterio: <1e-6)
+  [PASA] delta=0.2 h=0.04 eps=0.2 |<r>-<r>_rad|: 5.68e-05  (criterio: <1e-3)
+  [NO PASA] delta=0.2 h=0.04 eps=0.1 |E-E_rad|: 1.51e-06  (criterio: <1e-6)
+  [PASA] delta=0.2 h=0.04 eps=0.1 |<r>-<r>_rad|: 1.92e-05  (criterio: <1e-3)
+  [NO PASA] delta=0.2 h=0.04 eps=0.05 |E-E_rad|: 3.22e-06  (criterio: <1e-6)
+  [PASA] delta=0.2 h=0.04 eps=0.05 |<r>-<r>_rad|: 1.46e-05  (criterio: <1e-3)
+
+--- Ley eps^2 (L18) ---
+delta=0.2 h=0.02: E-ref = -3.996e-07, -1.048e-08, +1.780e-07  orden aparente=1.046  extrapolado eps->0=-0.3268082702 (dif +2.41e-07)
+delta=0.2 h=0.04: E-ref = +3.583e-07, +1.508e-06, +3.217e-06  orden aparente=-0.572  extrapolado eps->0=-0.3268047243 (dif +3.79e-06)
+delta=0.2 Richardson h^4 (0.02,0.04): E-ref = -4.501e-07, -1.117e-07, -2.462e-08  orden aparente=1.958  extrapolado eps->0=-0.3268085066 (dif +4.41e-09)
+  [NO PASA] Trotter delta=0.2 orden aparente (h=0.02, sin Richardson en h): 1.046  (criterio: [1.8, 2.2])
+  [PASA] Trotter delta=0.2 orden aparente (Richardson en h): 1.958  (criterio: [1.8, 2.2])
+  [PASA] Trotter delta=0.2 |extrapolado-radial| (Richardson en h): 4.41e-09  (criterio: <1e-6)
+delta=1.0 h=0.02: E-ref = -3.362e-05, -8.469e-06, -2.084e-06  orden aparente=1.978  extrapolado eps->0=-0.0102857447 (dif +4.49e-08)
+delta=1.0 h=0.04: E-ref = -3.345e-05, -8.110e-06, -1.352e-06  orden aparente=1.907  extrapolado eps->0=-0.0102848896 (dif +9.00e-07)
+delta=1.0 Richardson h^4 (0.02,0.04): E-ref = -3.363e-05, -8.493e-06, -2.132e-06  orden aparente=1.983  extrapolado eps->0=-0.0102858017 (dif -1.21e-08)
+  [PASA] Trotter delta=1.0 orden aparente (h=0.02, sin Richardson en h): 1.978  (criterio: [1.8, 2.2])
+  [PASA] Trotter delta=1.0 orden aparente (Richardson en h): 1.983  (criterio: [1.8, 2.2])
+  [PASA] Trotter delta=1.0 |extrapolado-radial| (Richardson en h): 1.21e-08  (criterio: <1e-6)
+
+--- Control 3: estabilidad Nystrom 0.02 -> 0.04 ---
+  [PASA] Nystrom delta=0.0 eps=0.2 |E(0.04)-E(0.02)|: 8.00e-07  (eps*dif=1.60e-07)  (criterio: <1e-6)
+  [NO PASA] Nystrom delta=0.0 eps=0.1 |E(0.04)-E(0.02)|: 1.60e-06  (eps*dif=1.60e-07)  (criterio: <1e-6)
+  [NO PASA] Nystrom delta=0.0 eps=0.05 |E(0.04)-E(0.02)|: 3.20e-06  (eps*dif=1.60e-07)  (criterio: <1e-6)
+  [PASA] Nystrom delta=0.2 eps=0.2 |E(0.04)-E(0.02)|: 7.58e-07  (eps*dif=1.52e-07)  (criterio: <1e-6)
+  [NO PASA] Nystrom delta=0.2 eps=0.1 |E(0.04)-E(0.02)|: 1.52e-06  (eps*dif=1.52e-07)  (criterio: <1e-6)
+  [NO PASA] Nystrom delta=0.2 eps=0.05 |E(0.04)-E(0.02)|: 3.04e-06  (eps*dif=1.52e-07)  (criterio: <1e-6)
+  [PASA] Nystrom delta=1.0 eps=0.2 |E(0.04)-E(0.02)|: 1.72e-07  (eps*dif=3.45e-08)  (criterio: <1e-6)
+  [PASA] Nystrom delta=1.0 eps=0.1 |E(0.04)-E(0.02)|: 3.59e-07  (eps*dif=3.59e-08)  (criterio: <1e-6)
+  [PASA] Nystrom delta=1.0 eps=0.05 |E(0.04)-E(0.02)|: 7.31e-07  (eps*dif=3.66e-08)  (criterio: <1e-6)
+  delta=0.0 eps=0.2: E(h)-ref para h=0.04,0.02,0.01: +8.540e-07, +5.439e-08, +4.398e-09; orden aparente en h = 4.00
+  delta=0.0 eps=0.1: E(h)-ref para h=0.04,0.02,0.01: +1.708e-06, +1.088e-07, +8.792e-09; orden aparente en h = 4.00
+  delta=0.0 eps=0.05: E(h)-ref para h=0.04,0.02,0.01: +3.416e-06, +2.176e-07, +1.765e-08; orden aparente en h = 4.00
+  delta=0.2 eps=0.2: E(h)-ref para h=0.04,0.02,0.01: +3.583e-07, -3.996e-07, -4.470e-07; orden aparente en h = 4.00
+  delta=0.2 eps=0.1: E(h)-ref para h=0.04,0.02,0.01: +1.508e-06, -1.048e-08, -1.054e-07; orden aparente en h = 4.00
+  delta=0.2 eps=0.05: E(h)-ref para h=0.04,0.02,0.01: +3.217e-06, +1.780e-07, -1.203e-08; orden aparente en h = 4.00
+  delta=0.0: u'(0)^2 = 3.999922 (lim u/r, ajuste cubico; antes u_1/r_1: 3.9502); eps*[E(0.04)-E(0.02)] = 1.599e-07; cociente = 3.9979e-08
+  delta=0.2: u'(0)^2 = 3.803211 (lim u/r, ajuste cubico; antes u_1/r_1: 3.7560); eps*[E(0.04)-E(0.02)] = 1.518e-07; cociente = 3.9923e-08
+  delta=1.0: u'(0)^2 = 0.929043 (lim u/r, ajuste cubico; antes u_1/r_1: 0.9175); eps*[E(0.04)-E(0.02)] = 3.589e-08; cociente = 3.8632e-08
+  oscilador (sin U_C, sin cuspide en el origen), eps=0.1: E(h=0.08,0.04,0.02) = 1.4993757020820, 1.4993757020815, 1.4993757020818  (variacion 4.8e-13)
+
+=== 4. Proyeccion determinista desde u_T = r e^{-r} (delta=0.2, eps=0.1, h=0.02, R=40) ===
+E0(T)=-0.3268085215  E1(T)=-0.012106  brecha=0.31470  limite del mixto=-0.3268086269  limite-E0(T)=-1.05e-07  limite-radial=-1.16e-07
+  tau=  1: E_mixto=-0.3265813588  E_mixto-limite=+2.27e-04  E_mixto-radial=+2.27e-04
+  tau=  2: E_mixto=-0.3266602159  E_mixto-limite=+1.48e-04  E_mixto-radial=+1.48e-04
+  tau=  3: E_mixto=-0.3267095408  E_mixto-limite=+9.91e-05  E_mixto-radial=+9.90e-05
+  tau=  4: E_mixto=-0.3267414843  E_mixto-limite=+6.71e-05  E_mixto-radial=+6.70e-05
+  tau=  5: E_mixto=-0.3267626354  E_mixto-limite=+4.60e-05  E_mixto-radial=+4.59e-05
+  tau=  6: E_mixto=-0.3267768612  E_mixto-limite=+3.18e-05  E_mixto-radial=+3.16e-05
+  tau=  8: E_mixto=-0.3267931895  E_mixto-limite=+1.54e-05  E_mixto-radial=+1.53e-05
+  tau= 10: E_mixto=-0.3268009880  E_mixto-limite=+7.64e-06  E_mixto-radial=+7.52e-06
+  tau= 15: E_mixto=-0.3268072437  E_mixto-limite=+1.38e-06  E_mixto-radial=+1.27e-06
+  tau= 20: E_mixto=-0.3268083653  E_mixto-limite=+2.62e-07  E_mixto-radial=+1.46e-07
+  tau= 30: E_mixto=-0.3268086169  E_mixto-limite=+1.00e-08  E_mixto-radial=-1.06e-07
+variacion de tau=20 a 30: 2.52e-07; monotono decreciente: True
+  [PASA] Proyeccion delta=0.2 |E_mixto(30)-E_mixto(20)|: 2.52e-07  (criterio: <1e-6 (de tau a 1.5 tau))
+V3: limite-E0(T): h=0.02 -1.05e-07; h=0.04 -1.67e-06; Richardson h^4 -1.28e-09; E0(T,h=0.02)-E0(T,Rich) = +1.01e-07; limite(h=0.02)-limite(Rich) = -2.89e-09
+  [PASA] Proyeccion delta=0.2 |limite mixto - E0(T)|: 1.05e-07  (criterio: <1e-6 (tras Richardson en h_tab; Fase 1 sin tabla Richardson: 4.9e-5))
+
+=== 5. Interpolacion de U_C (para PIGS): error en los puntos medios de la malla 0.01 ===
+  r en [0.05,9], |r-r'|<=1: bilineal max 5.06e-05 (rms 5.3e-06);  bicubica max 9.23e-09 (rms 3.8e-10)
+  r en [0.01,0.1], |r-r'|<=0.1: bilineal max 5.75e-05 (rms 4.0e-05);  bicubica max 1.26e-08 (rms 2.7e-09)
+  r=r'=0.005 (bajo el primer nodo): bilineal - red0.005 = +1.74e-04
+  r=r'=0.005 (bajo el primer nodo): bicubica - red0.005 = +1.74e-04
+
+=== 6. Opcion sin U_C: pozo cuadrado V0=2, a=1, R=20 (informativo) ===
+  h=0.02: E(eps)=-0.22279726, -0.21014307, -0.20575596  orden=1.53  extrapolado=-0.20429359 (radial -0.20355074, dif -7.4e-04)
+  h=0.01: E(eps)=-0.22351198, -0.21051349, -0.20595771  orden=1.51  extrapolado=-0.20443912 (radial -0.20355074, dif -8.9e-04)
+
+Criterios: 28 de 35 pasan.
+  NO PASA: delta=0.2 h=0.04 eps=0.1 |E-E_rad| 1.51e-06
+  NO PASA: delta=0.2 h=0.04 eps=0.05 |E-E_rad| 3.22e-06
+  NO PASA: Trotter delta=0.2 orden aparente (h=0.02, sin Richardson en h) 1.046
+  NO PASA: Nystrom delta=0.0 eps=0.1 |E(0.04)-E(0.02)| 1.60e-06  (eps*dif=1.60e-07)
+  NO PASA: Nystrom delta=0.0 eps=0.05 |E(0.04)-E(0.02)| 3.20e-06  (eps*dif=1.60e-07)
+  NO PASA: Nystrom delta=0.2 eps=0.1 |E(0.04)-E(0.02)| 1.52e-06  (eps*dif=1.52e-07)
+  NO PASA: Nystrom delta=0.2 eps=0.05 |E(0.04)-E(0.02)| 3.04e-06  (eps*dif=1.52e-07)
+guardado /mnt/attach/project-files/fase2/resultados/11_transferencia.json
+figuras guardadas en /mnt/attach/project-files/fase2/figuras; tiempo total 23.7 s; carga (1.4765625, 0.71337890625, 1.44140625)

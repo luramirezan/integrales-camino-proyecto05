@@ -1,0 +1,9 @@
+pasa: test_tabla
+pasa: test_coulomb
+pasa: test_yukawa_02
+pasa: test_sin_UC_oscilador
+pasa: test_mixto
+pasa: test_extremos_wk
+pasa: test_aviso_pared
+todas las pruebas pasan
+EXIT 0 TIEMPO 1 s

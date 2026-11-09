@@ -1,0 +1,38 @@
+Referencia radial (R=40, h=1/80,1/160): E0 = -0.3268085110, <r> = 1.54972190, <r^2> = 3.22593944
+  transferencia eps=0.20 (Rich h^4): E = -0.3268089611  E-E_rad = -4.50e-07
+  transferencia eps=0.10 (Rich h^4): E = -0.3268086227  E-E_rad = -1.12e-07
+  transferencia eps=0.05 (Rich h^4): E = -0.3268085356  E-E_rad = -2.46e-08
+  transferencia extrapolada: E = -0.3268085066  E-E_rad = +4.41e-09  (orden de Trotter 1.958)
+  mixto determinista tau=20: E = -0.3268083624  E-E_rad = +1.49e-07
+PIGS tau=20: E = -0.326725 +- 0.000068  (+1.22 sigma del radial)
+            <r> = 1.55374 +- 0.00711  (+0.56 sigma del radial; +0.73 sigma del puro det.)
+            <r^2> = 3.24260 +- 0.03894  (+0.43 sigma del radial; +0.59 sigma del puro det.)
+  tau= 2.0  PIGS E = -0.326713 +- 0.000071  det = -0.3266602  (-0.74 sigma)
+  tau= 5.0  PIGS E = -0.326955 +- 0.000060  det = -0.3267626  (-3.19 sigma)
+  tau=10.0  PIGS E = -0.326789 +- 0.000064  det = -0.3268010  (+0.19 sigma)
+  tau=20.0  PIGS E = -0.326725 +- 0.000068  det = -0.3268084  (+1.22 sigma)
+  replica 1 tau=5: -0.326761 +- 0.000053 (+0.03 sigma); replica 2: -0.326718 +- 0.000045 (+0.99 sigma)
+
+Huellas sha256:
+  figuras/10_radial_convergencia.png 491ff66a7544f6085ba9bfac584a36258d37c4ed2a60899319325230add2d6e5
+  codigo/10_radial_controles.py      e22f54d7f5b70924d85cc0a6bbedab3a5aeaa4cdf6a2f0a2b42668e378f5d4a1
+  figuras/11_proyeccion.png          b809c40644529191a435f26b19401219a8ec0dfd48879a47335ebb8a8e5e2b76
+  codigo/11_transferencia_controles.py c400e03cd0d236a0432fab5e03136a68a25341379f6008c29e39b058f46784fa
+  figuras/11_trotter.png             476702c17f0e58371fcdabe7c84db8519ef4822c2a9a84304784525abcec30b9
+  codigo/11_transferencia_controles.py c400e03cd0d236a0432fab5e03136a68a25341379f6008c29e39b058f46784fa
+  figuras/12_pigs_delta02.png        e3d5f2cca7fff770d501da0198e668f97ffd51b980fe41fe6036b367f4765f30
+  codigo/12_pigs_produccion.py       f308e4987bec5ebbcb7bb5f2836e82eb38b9a762416cc6ef132c49e6e4edf4d2
+  figuras/12_pigs_tau.png            7399461fe6fa5c709b431dcdaeaaa0f005f0d6f10d18fb7906d05eefd8a73f16
+  codigo/12_pigs_produccion.py       f308e4987bec5ebbcb7bb5f2836e82eb38b9a762416cc6ef132c49e6e4edf4d2
+  figuras/13_controles.png           75701285ebfd3c6a1319b71b7f6156a9f3bc54cc2d39125dc80e9572d5e6ee1a
+  codigo/13_controles_hulthen_pozo.py 9c06120303a1780c55ea7c7e4feccb48c01d2e6932e89124ed6c33162272b94b
+  figuras/14_cajas.png               034fa76e59c81b8b4d958cf8d330b3734f61193ef2f0a8871b2c463255144475
+  codigo/14_criterio_cajas.py        6de67158fd52b0e71a9688c0509f6a054b88f7b90cdd80509d449742fe97ac70
+  figuras/15_limites.png             9fb3fa2123810162a6d3e6a40345e5d4f9140882377fdf347ebdf192af23f105
+  codigo/15_limites.py               6e7480e6a73ca589e94a22f81bc4af939268d93491d4dfa83c7990676292d662
+  figuras/16_primer_grafico.png      8c0a7ee69dba6a186a0afaf34c3df99800422ce031812967c4003a755c87b9f6
+  codigo/16_primer_grafico.py        001121a1dad167b3b772a70e35b338b587f5d62252bf1ba157e6608bd5854095
+  figuras/18_primer_grafico.png      593691614a22d9c37ff7806a8aa1d2f843fd064105acb4199d508f262bd219cd
+  codigo/18_figura_presentacion.py   d8867a87e60321aca936f7c2a9bc5bf66bab1d8747200ad58f5ecc752f31081e
+
+Guardado: figuras/16_primer_grafico.png y resultados/16_primer_grafico.json

@@ -1,0 +1,7 @@
+numpy
+scipy
+matplotlib
+sympy
+mpmath
+python-pptx
+requests

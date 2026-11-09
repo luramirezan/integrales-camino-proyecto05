@@ -1,0 +1,17 @@
+[OK] bilineal propia = TablaPares bilineal: max dif 2.2e-16
+[OK] bicubica en nodos = tabla: max dif 2.2e-16
+[OK] fuera de banda -> NaN: ok
+[OK] Coulomb E_L = -0.5 exacto: var 0.0e+00, M=20, 0.3 s
+[OK] aceptaciones razonables: puentes 0.79, extremos 0.76, escala 0.72
+[OK] reproducible (misma semilla -> misma serie): misma semilla -> misma serie
+[OK] caminos positivos: min r_final 0.316, min r_mid 0.283
+[OK] tau/eps no multiplo de L -> ValueError: tau/eps = 12.5 debe ser un entero multiplo de L = 10
+[OK] tau_ef guardado: tau_ef = 2.0
+[OK] histograma de r_{M/2} = [T^{M/2} u_T]^2: chi2 = 32.9 con 24 intervalos, p = 0.106, 31.9 s
+[OK] la prueba de histograma tiene potencia (rechaza la escala r*1.05): chi2 = 364.3 con 24, p = 1.5e-62
+[OK] tau_int Sokal en AR(1): 4.51 (exacto 4.5), ventana 28
+[OK] error por bloques en AR(1): 0.0060 frente a 0.0079
+[OK] combinar: iid: err 2.69e-03 (teorico 2.50e-03)
+
+14/14 pruebas pasan
+EXIT 0 TIEMPO 34 s

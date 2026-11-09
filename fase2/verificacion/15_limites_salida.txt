@@ -1,0 +1,72 @@
+Carga (loadavg): (2.58642578125, 1.38134765625, 1.51220703125)
+=== L03 (serie) y L04 (cotas) ===
+delta=0.05: E_ext=-0.45181642340 +- 2.5e-07  radial=-0.45181642814  dif=+4.74e-09  residuo serie: tr +3.735e-07, radial +3.687e-07
+delta=0.1: E_ext=-0.40705802554 +- 2.5e-07  radial=-0.40705803023  dif=+4.69e-09  residuo serie: tr +1.072e-05, radial +1.072e-05
+delta=0.2: E_ext=-0.32680850657 +- 2.4e-07  radial=-0.32680851098  dif=+4.41e-09  residuo serie: tr +2.915e-04, radial +2.915e-04
+delta=0.5: E_ext=-0.14811702088 +- 2.1e-07  radial=-0.14811702147  dif=+5.89e-10  residuo serie: tr +1.985e-02, radial +1.985e-02
+delta=1.0: E_ext=-0.01028580172 +- 1.6e-07  radial=-0.01028578962  dif=-1.21e-08  residuo serie: tr +4.272e-01, radial +4.272e-01
+  [PASA] L03 serie perturbativa: orden aparente 4.844 (radial 4.862); cociente res(0.1)/res(0.05) = 28.71; max |res_tr - res_rad| = 4.7e-09  (criterio: orden en [4.5, 5.5] y |res_tr - res_rad| < 1e-8)
+  [PASA] L04 cotas -1/2 <= E0 <= -1/2 + delta: 0 violaciones en 5 delta; margen minimo 1.816e-03  (criterio: 0 violaciones)
+
+=== L05 Hellmann-Feynman (eps = 0.1, h = 0.02, R = 40/80) ===
+delta=0.2: dE/ddelta=0.744858463 (paso mitad 0.744854293)  <e^(-delta r)>=0.744852903  dif=+5.56e-06 (+1.39e-06)
+  [PASA] L05 Hellmann-Feynman delta=0.2: 0.74485846 frente a 0.74485290 (dif +5.6e-06)  (criterio: |dE/ddelta - <e^{-delta r}>| < 1e-4)
+delta=0.5: dE/ddelta=0.460098296 (paso mitad 0.460096257)  <e^(-delta r)>=0.460095578  dif=+2.72e-06 (+6.80e-07)
+  [PASA] L05 Hellmann-Feynman delta=0.5: 0.46009830 frente a 0.46009558 (dif +2.7e-06)  (criterio: |dE/ddelta - <e^{-delta r}>| < 1e-4)
+delta=1.0: dE/ddelta=0.109630138 (paso mitad 0.109629161)  <e^(-delta r)>=0.109628836  dif=+1.30e-06 (+3.26e-07)
+  [PASA] L05 Hellmann-Feynman delta=1.0: 0.10963014 frente a 0.10962884 (dif +1.3e-06)  (criterio: |dE/ddelta - <e^{-delta r}>| < 1e-4)
+
+=== L06 virial, delta = 0.2, R = 40: residuo 2E - <V> - delta <e^{-delta r}> ===
+  eps=0.1 h=0.04: E=-0.3268070031 <V>=-0.80205341 residuo=-5.310e-04
+  eps=0.1 h=0.02: E=-0.3268085215 <V>=-0.80243695 residuo=-1.507e-04
+  eps=0.1 h=0.01: E=-0.3268086164 <V>=-0.80253220 residuo=-5.562e-05
+  eps=0.05 h=0.04: E=-0.3268052940 <V>=-0.80206649 residuo=-5.147e-04
+  eps=0.05 h=0.02: E=-0.3268083330 <V>=-0.80245435 residuo=-1.332e-04
+  eps=0.05 h=0.01: E=-0.3268085230 <V>=-0.80254990 residuo=-3.804e-05
+  orden en h: eps=0.1 2.000, eps=0.05 2.003; extrapolado h->0, eps->0: -5.91e-07; radial: {'h=1/40': -0.00015098214156522571, 'h=1/80': -3.776417199663484e-05}
+  [PASA] L06 virial delta=0.2: h=0.02, eps=0.05: -1.33e-04; h=0.01: -3.80e-05 (orden en h 2.00); extrapolado -5.91e-07  (criterio: |residuo extrapolado en h y eps| < 1e-5)
+
+=== L07 cuspide, L08 cola, L09 nodos (eps = 0.05, h = 0.02) ===
+delta=0.0: cuspide a2/a1=-0.99987; cola r(dlnu/dr+kappa): {'r=10': 1.0000014023690573, 'r=20': 0.9999995324477862} (1/kappa=1.0000); min/max v = -1.2e-15
+  [PASA] L07 cuspide delta=0.0: a2/a1 = -0.99987  (criterio: |a2/a1 + 1| < 0.02)
+  [PASA] L09 sin nodos delta=0.0: min/max = -1.2e-15  (criterio: min(v)/max(v) >= -1e-10)
+delta=0.2: cuspide a2/a1=-0.99937; cola r(dlnu/dr+kappa): {'r=10': 0.14247275081767374, 'r=20': 0.01964310842824668} (1/kappa=1.2369); min/max v = +1.6e-14
+  [PASA] L07 cuspide delta=0.2: a2/a1 = -0.99937  (criterio: |a2/a1 + 1| < 0.02)
+  [PASA] L09 sin nodos delta=0.2: min/max = +1.6e-14  (criterio: min(v)/max(v) >= -1e-10)
+delta=0.5: cuspide a2/a1=-0.99675; cola r(dlnu/dr+kappa): {'r=10': 0.0080066329666173, 'r=20': 5.480115914391348e-05} (1/kappa=1.8373); min/max v = +1.9e-10
+  [PASA] L09 sin nodos delta=0.5: min/max = +1.9e-10  (criterio: min(v)/max(v) >= -1e-10)
+delta=1.0: cuspide a2/a1=-0.98740; cola r(dlnu/dr+kappa): {'r=10': 6.449764259480739e-05, 'r=20': -2.3058681353216315e-07} (1/kappa=6.9714); min/max v = +9.5e-13
+  [PASA] L07 cuspide delta=1.0: a2/a1 = -0.98740  (criterio: |a2/a1 + 1| < 0.02)
+  [PASA] L09 sin nodos delta=1.0: min/max = +9.5e-13  (criterio: min(v)/max(v) >= -1e-10)
+  [PASA] L08 cola Coulomb: r(dlnu/dr+kappa) en r=10, 20: 1.0000, 1.0000 (1/kappa = 1.0000)  (criterio: a 2e-2 de 1/kappa en r = 20)
+  [PASA] L08 cola delta=0.5 (sin factor r^{1/kappa}): 0.0080, 0.0001  (criterio: |.| < 1e-2 en r = 20)
+
+=== L12 caja: delta = 1.0, R = 10, 20, 40, 80 (y R = 174 como referencia) ===
+R=10: E_ext=-5.9642649263e-03 +- 7.5e-05  radial=-5.7953582934e-03  dif=-1.69e-04  sesgo pared (eps=0.05) -2.1e-04
+R=20: E_ext=-1.0109653726e-02 +- 2.6e-06  radial=-1.0104167934e-02  dif=-5.49e-06  sesgo pared (eps=0.05) -6.8e-06
+R=40: E_ext=-1.0285255129e-02 +- 1.7e-07  radial=-1.0285221178e-02  dif=-3.40e-08  sesgo pared (eps=0.05) -2.1e-08
+R=80: E_ext=-1.0285801715e-02 +- 1.6e-07  radial=-1.0285784210e-02  dif=-1.75e-08  sesgo pared (eps=0.05) -2.1e-13
+R=174: E_ext=-1.0285801721e-02 +- 1.6e-07  radial=-1.0285784215e-02  dif=-1.75e-08  sesgo pared (eps=0.05) -4.1e-25
+  [PASA] L12 caja delta=1.0: E_ext(R) = -5.964265e-03, -1.010965e-02, -1.028526e-02, -1.028580e-02, -1.028580e-02; decreciente True  (criterio: decreciente en R y >= E(R=174))
+
+=== L14 estado 2s ===
+delta=0.2 R=161: E1_ext=-0.0121078649 +- 1.5e-08  radial=-0.0121078651  dif=+2.11e-10
+delta=0.35 R=161: E1_ext=+0.0001637256 +- 9.0e-08  radial=+0.0001639218  dif=-1.96e-07
+  [PASA] L14 2s ligado delta=0.2: E1 = -0.012107865 (radial -0.012107865, dif +2.1e-10)  (criterio: E1 < 0 y |dif| < 1e-6)
+  [PASA] L14 2s no ligado delta=0.35: E1 = +1.637e-04 (radial +1.639e-04)  (criterio: E1 > 0, igual que el radial)
+
+=== L16 propagador libre con imagen ===
+eps=0.2: max|h sum K - erf| = 8.1e-05 (h=0.02), 2.0e-05 (h=0.01), orden 2.00; min K = 0.0e+00; K(1e-12, 1) = 7.3e-13
+eps=0.1: max|h sum K - erf| = 1.6e-04 (h=0.02), 4.0e-05 (h=0.01), orden 2.00; min K = 0.0e+00; K(1e-12, 1) = 1.7e-13
+eps=0.05: max|h sum K - erf| = 3.2e-04 (h=0.02), 8.1e-05 (h=0.01), orden 2.00; min K = 0.0e+00; K(1e-12, 1) = 3.2e-15
+  [NO PASA] L16 propagador libre: max |h sum_j K_D - erf| = 8.1e-05, 1.6e-04, 3.2e-04  (criterio: a 1e-10; K_D >= 0; K_D(0, r') = 0)
+  [MEDIDO] L16 propagador libre: orden del error de la suma (informativo): orden en h 2.00, 2.00, 2.00; h=0.01: 2.0e-05, 4.0e-05, 8.1e-05  (criterio: medido (error de extremo del trapecio))
+
+=== L19 delta = 2 (sin ligado) ===
+R=100: E_ext=+4.817990e-04 radial=+4.827823e-04 ley=+4.827672e-04; desviacion tr -2.005e-03, radial +3.138e-05  (a_s = -1.1035)
+R=200: E_ext=+1.218954e-04 radial=+1.220204e-04 ley=+1.220199e-04; desviacion tr -1.020e-03, radial +4.004e-06  (a_s = -1.1035)
+  [PASA] L19 delta=2 sin ligado: E(R=200) = +1.2190e-04; desviacion de la ley de caja -1.02e-03 (radial +4.00e-06)  (criterio: E > 0 y a < 5 % de pi^2/(2(R-a_s)^2))
+
+Criterios: 19 pasan, 1 no pasan, de 21.
+  NO PASA: L16 propagador libre max |h sum_j K_D - erf| = 8.1e-05, 1.6e-04, 3.2e-04
+guardado; tiempo total 34.6 s; carga (3.6103515625, 1.78076171875, 1.64306640625)

@@ -1,0 +1,10 @@
+Figura: /mnt/attach/project-files/fase2/figuras/18_primer_grafico.png
+E_radial = -0.326808510981   <r>_radial = 1.5497219029
+transferencia eps=0.1, h=0.02: E = -0.326808521462 (dif -1.048e-08); <r> = 1.54973582
+transferencia extrapolada eps->0: E = -0.326808506567 (dif +4.414e-09)
+PIGS tau=20: E = -0.326725 +- 0.000068 (+1.22 sigma frente al radial fino)
+PIGS tau=20: <r> = 1.55374 +- 0.00711 (+0.56 sigma)
+tau=5 produccion: -0.326955 +- 0.000060 (-3.19 sigma frente a la transferencia)
+tau=5 replica1: -0.326761 +- 0.000053 (+0.03 sigma frente a la transferencia)
+tau=5 replica2: -0.326718 +- 0.000045 (+0.99 sigma frente a la transferencia)
+tau=5 las 40 cadenas: -0.83 sigma (ponderada)

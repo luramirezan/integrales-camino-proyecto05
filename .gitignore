@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# Cache de la acción de Coulomb (se regenera sola, ~31 MB)
+fase2/resultados/tablas/
+# Series del Monte Carlo (4.5 MB, se regeneran con 12_pigs_produccion.py)
+fase2/resultados/12_pigs_series.npz
+# Nunca subir claves
+.env
+*.key

@@ -1,0 +1,132 @@
+Carga (loadavg): (0.431640625, 0.6796875, 1.32080078125)
+=== A.0 Resto W_H = V_H + 1/r acotado ===
+sympy: lim r->0 W_H = delta/2;  lim r->inf W_H = 0;  serie: delta*(delta**3*r**3 - 60*delta*r + 360)/720
+  [PASA] A0 W_H delta=0.2: min 2.500e-03, max 0.099999999966667 (delta/2=0.1), max incremento 0.0e+00  (criterio: W_H en [0, delta/2] y decreciente en r in [1e-8, 400] (tolerancia 1e-14))
+  [PASA] A0 W_H delta=1.0: min 2.500e-03, max 0.499999999166667 (delta/2=0.5), max incremento 0.0e+00  (criterio: W_H en [0, delta/2] y decreciente en r in [1e-8, 400] (tolerancia 1e-14))
+  [PASA] A0 W_H delta=1.5: min 2.500e-03, max 0.749999998125000 (delta/2=0.75), max incremento 0.0e+00  (criterio: W_H en [0, delta/2] y decreciente en r in [1e-8, 400] (tolerancia 1e-14))
+  [PASA] A0 W_H delta=2.0: min 2.500e-03, max 0.999999996666667 (delta/2=1.0), max incremento 0.0e+00  (criterio: W_H en [0, delta/2] y decreciente en r in [1e-8, 400] (tolerancia 1e-14))
+
+=== A.1 Radial frente a exacto ===
+delta=0.2: R=60.0  E exacta=-0.405000000000  radial=-0.404999999623 (+3.8e-10)  <r> exacto=1.5101010101 radial=1.5101010097
+  [PASA] A1 radial Hulthen delta=0.2: dE=+3.77e-10, d<r>/<r>=-2.46e-10  (criterio: radial frente a exacto: |E0-E| < 1e-8 y |<r>-<r>_ex|/<r>_ex < 2e-7)
+delta=1.0: R=60.0  E exacta=-0.125000000000  radial=-0.124999999594 (+4.1e-10)  <r> exacto=1.8333333333 radial=1.8333333330
+  [PASA] A1 radial Hulthen delta=1.0: dE=+4.06e-10, d<r>/<r>=-1.81e-10  (criterio: radial frente a exacto: |E0-E| < 1e-8 y |<r>-<r>_ex|/<r>_ex < 2e-7)
+delta=1.5: R=100.0  E exacta=-0.031250000000  radial=-0.031249999598 (+4.0e-10)  <r> exacto=2.7857142857 radial=2.7857142784
+  [PASA] A1 radial Hulthen delta=1.5: dE=+4.02e-10, d<r>/<r>=-2.62e-09  (criterio: radial frente a exacto: |E0-E| < 1e-8 y |<r>-<r>_ex|/<r>_ex < 2e-7)
+
+=== A.2 Transferencia con la accion de pares de Coulomb + W_H ===
+tabla eps=0.2: 0.0 s (cache (True, True))
+tabla eps=0.1: 0.0 s (cache (True, True))
+tabla eps=0.05: 0.0 s (cache (True, True))
+tabla eps=0.025: 0.0 s (cache (True, True))
+delta=0.2 R=60 eps=0.2: E(h=.04,.02,.01)-ex = +8.268e-07, +3.566e-08, -1.380e-08  orden h=4.00  Rich h^4 (0.02,0.04): -1.708e-08  (0.01,0.02): -1.710e-08  <r>(h)-ex = +1.37e-05, +1.11e-05, +1.10e-05 (orden h 4.00, ext +1.10e-05)  min T 3.0e-13
+delta=0.2 R=60 eps=0.1: E(h=.04,.02,.01)-ex = +1.686e-06, +1.031e-07, +4.144e-09  orden h=4.00  Rich h^4 (0.02,0.04): -2.410e-09  (0.01,0.02): -2.454e-09  <r>(h)-ex = +8.08e-06, +3.09e-06, +2.78e-06 (orden h 4.00, ext +2.76e-06)  min T 5.6e-13
+delta=0.2 R=60 eps=0.05: E(h=.04,.02,.01)-ex = +3.380e-06, +2.143e-07, +1.633e-08  orden h=4.00  Rich h^4 (0.02,0.04): +3.218e-09  (0.01,0.02): +3.134e-09  <r>(h)-ex = +1.12e-05, +1.36e-06, +7.43e-07 (orden h 4.00, ext +7.02e-07)  min T 8.0e-13
+delta=0.2 R=60 eps=0.025: E(h=.04,.02,.01)-ex = +6.763e-06, +4.307e-07, +3.482e-08  orden h=4.00  Rich h^4 (0.02,0.04): +8.598e-09  (0.01,0.02): +8.430e-09  <r>(h)-ex = +2.11e-05, +1.51e-06, +2.81e-07 (orden h 4.00, ext +1.99e-07)  min T 1.4e-12
+  delta=0.2: Trotter (Rich h^4 0.02/0.04, eps .2/.1/.05) orden 1.382, ext -0.404999994906 (dif +5.09e-09);  Rich 0.01/0.02: orden 1.390, dif +5.00e-09;  h=0.02 sin Rich: orden -0.721, dif +2.51e-07;  eps .1/.05/.025: orden 0.065, dif +1.04e-08;  <r> ext 1.51010103 (dif +1.69e-08, orden eps 2.00)
+  [PASA] A2 Hulthen delta=0.2 E extrapolada: +5.09e-09 (Rich h 0.01/0.02: +5.00e-09)  (criterio: transferencia (Richardson h^4 con h=0.02,0.04), extrapolada eps->0 con eps^2 desde eps 0.2/0.1/0.05: |E_ext - E_exacta| < 1e-6)
+  [MEDIDO] A3 Hulthen delta=0.2 orden de Trotter: 1.382 (eps .1/.05/.025: 0.065)  (criterio: orden de Trotter aparente (eps 0.2/0.1/0.05, Richardson en h) en [1.8, 2.2] para delta=1.0 y 1.5 (en delta=0.2 el sesgo de Trotter es del tamano del residuo de Nystrom: informativo))
+  [PASA] A4 Hulthen delta=0.2 <r> extrapolado: +1.69e-08 (exacto 1.51010101)  (criterio: <r> de la transferencia, h->0 y eps->0: |<r>_ext - <r>_ex| < 1e-4)
+delta=1.0 R=60 eps=0.2: E(h=.04,.02,.01)-ex = -7.681e-06, -8.273e-06, -8.310e-06  orden h=4.00  Rich h^4 (0.02,0.04): -8.313e-06  (0.01,0.02): -8.313e-06  <r>(h)-ex = +2.12e-04, +2.08e-04, +2.08e-04 (orden h 4.00, ext +2.08e-04)  min T 2.8e-13
+delta=1.0 R=60 eps=0.1: E(h=.04,.02,.01)-ex = -8.148e-07, -2.007e-06, -2.082e-06  orden h=4.00  Rich h^4 (0.02,0.04): -2.087e-06  (0.01,0.02): -2.087e-06  <r>(h)-ex = +6.10e-05, +5.27e-05, +5.22e-05 (orden h 4.00, ext +5.22e-05)  min T 5.5e-13
+delta=1.0 R=60 eps=0.05: E(h=.04,.02,.01)-ex = +2.032e-06, -3.603e-07, -5.099e-07  orden h=4.00  Rich h^4 (0.02,0.04): -5.198e-07  (0.01,0.02): -5.198e-07  <r>(h)-ex = +3.07e-05, +1.42e-05, +1.32e-05 (orden h 4.00, ext +1.31e-05)  min T 7.8e-13
+delta=1.0 R=60 eps=0.025: E(h=.04,.02,.01)-ex = +4.986e-06, +1.953e-07, -1.043e-07  orden h=4.00  Rich h^4 (0.02,0.04): -1.241e-07  (0.01,0.02): -1.242e-07  <r>(h)-ex = +3.85e-05, +5.51e-06, +3.45e-06 (orden h 4.00, ext +3.31e-06)  min T 1.4e-12
+  delta=1.0: Trotter (Rich h^4 0.02/0.04, eps .2/.1/.05) orden 1.990, ext -0.124999997496 (dif +2.50e-09);  Rich 0.01/0.02: orden 1.991, dif +2.43e-09;  h=0.02 sin Rich: orden 1.928, dif +1.89e-07;  eps .1/.05/.025: orden 1.986, dif +7.77e-09;  <r> ext 1.83333338 (dif +4.90e-08, orden eps 1.99)
+  [PASA] A2 Hulthen delta=1.0 E extrapolada: +2.50e-09 (Rich h 0.01/0.02: +2.43e-09)  (criterio: transferencia (Richardson h^4 con h=0.02,0.04), extrapolada eps->0 con eps^2 desde eps 0.2/0.1/0.05: |E_ext - E_exacta| < 1e-6)
+  [PASA] A3 Hulthen delta=1.0 orden de Trotter: 1.990 (eps .1/.05/.025: 1.986)  (criterio: orden de Trotter aparente (eps 0.2/0.1/0.05, Richardson en h) en [1.8, 2.2] para delta=1.0 y 1.5 (en delta=0.2 el sesgo de Trotter es del tamano del residuo de Nystrom: informativo))
+  [PASA] A4 Hulthen delta=1.0 <r> extrapolado: +4.90e-08 (exacto 1.83333333)  (criterio: <r> de la transferencia, h->0 y eps->0: |<r>_ext - <r>_ex| < 1e-4)
+delta=1.5 R=100 eps=0.2: E(h=.04,.02,.01)-ex = -2.383e-05, -2.417e-05, -2.419e-05  orden h=4.00  Rich h^4 (0.02,0.04): -2.420e-05  (0.01,0.02): -2.420e-05  <r>(h)-ex = -3.23e-04, -3.36e-04, -3.36e-04 (orden h 4.00, ext -3.36e-04)  min T 2.8e-13
+delta=1.5 R=100 eps=0.1: E(h=.04,.02,.01)-ex = -5.341e-06, -6.031e-06, -6.074e-06  orden h=4.00  Rich h^4 (0.02,0.04): -6.077e-06  (0.01,0.02): -6.077e-06  <r>(h)-ex = -5.77e-05, -8.32e-05, -8.48e-05 (orden h 4.00, ext -8.49e-05)  min T 5.4e-13
+delta=1.5 R=100 eps=0.05: E(h=.04,.02,.01)-ex = -3.723e-08, -1.428e-06, -1.515e-06  orden h=4.00  Rich h^4 (0.02,0.04): -1.521e-06  (0.01,0.02): -1.521e-06  <r>(h)-ex = +3.35e-05, -1.78e-05, -2.10e-05 (orden h 4.00, ext -2.13e-05)  min T 7.8e-13
+delta=1.5 R=100 eps=0.025: E(h=.04,.02,.01)-ex = +2.599e-06, -1.909e-07, -3.654e-07  orden h=4.00  Rich h^4 (0.02,0.04): -3.770e-07  (0.01,0.02): -3.770e-07  <r>(h)-ex = +1.05e-04, +1.66e-06, -4.77e-06 (orden h 4.00, ext -5.20e-06)  min T 1.4e-12
+  delta=1.5: Trotter (Rich h^4 0.02/0.04, eps .2/.1/.05) orden 1.991, ext -0.031250001778 (dif -1.78e-09);  Rich 0.01/0.02: orden 1.991, dif -1.82e-09;  h=0.02 sin Rich: orden 1.979, dif +1.06e-07;  eps .1/.05/.025: orden 1.994, dif +4.25e-09;  <r> ext 2.78571425 (dif -3.36e-08, orden eps 1.98)
+  [PASA] A2 Hulthen delta=1.5 E extrapolada: -1.78e-09 (Rich h 0.01/0.02: -1.82e-09)  (criterio: transferencia (Richardson h^4 con h=0.02,0.04), extrapolada eps->0 con eps^2 desde eps 0.2/0.1/0.05: |E_ext - E_exacta| < 1e-6)
+  [PASA] A3 Hulthen delta=1.5 orden de Trotter: 1.991 (eps .1/.05/.025: 1.994)  (criterio: orden de Trotter aparente (eps 0.2/0.1/0.05, Richardson en h) en [1.8, 2.2] para delta=1.0 y 1.5 (en delta=0.2 el sesgo de Trotter es del tamano del residuo de Nystrom: informativo))
+  [PASA] A4 Hulthen delta=1.5 <r> extrapolado: -3.36e-08 (exacto 2.78571429)  (criterio: <r> de la transferencia, h->0 y eps->0: |<r>_ext - <r>_ex| < 1e-4)
+
+=== B. Pozo cuadrado, transferencia sin U_C ===
+V0=2.0: R=60.0  E brentq=-0.203550741821  kappa=0.638045  <r>=1.28364373  radial media=-0.203550741924 (-1.0e-10); estricta +2.9e-03
+  [PASA] B1 radial pozo V0=2.0: -1.04e-10 (convencion estricta: +2.92e-03)  (criterio: radial (borde medio, r=1 en un nodo) frente a brentq: |E0-E| < 1e-8 (V0=2) y < 2e-8 (V0=1.3))
+V0=1.3: R=385.0  E brentq=-0.002114699148  kappa=0.065034  <r>=8.18830691  radial media=-0.002114698981 (+1.7e-10); estricta +3.3e-04
+  [PASA] B1 radial pozo V0=1.3: +1.66e-10 (convencion estricta: +3.30e-04)  (criterio: radial (borde medio, r=1 en un nodo) frente a brentq: |E0-E| < 1e-8 (V0=2) y < 2e-8 (V0=1.3))
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 885 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 1253 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 1253 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 627 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 443 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 627 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 443 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 313 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 313 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 885 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 1253 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 627 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+/usr/local/lib/python3.13/dist-packages/scipy/sparse/_base.py:1389: SparseEfficiencyWarning: Constructing a DIA matrix with 443 diagonals is inefficient
+  return self.tocoo(copy=copy).todia(copy=False)
+80 autovalores del pozo en 108.3 s (3 procesos)
+  comprobacion: sigma por encima de lambda0 y autovector sin cambio de signo en todos: True []
+  [PASA] B4 desplazamiento-inversion V0=2.0 h=0.02 eps=0.1: +8.7e-15  (criterio: desplazamiento-inversion frente a tr.resolver (Lanczos): |dE| < 1e-10)
+  [PASA] B4 desplazamiento-inversion V0=1.3 h=0.04 eps=0.05: +2.3e-12  (criterio: desplazamiento-inversion frente a tr.resolver (Lanczos): |dE| < 1e-10)
+V0=2.0 media    eps=0.2    : E(h=.04,.02,.01,.005)-ex = -1.7799e-02, -1.9247e-02, -1.9961e-02, -2.0316e-02  orden h (.02,.01,.005)=1.009  E(h->0)-ex=-2.0667e-02  [antes, con .04/.02/.01: orden 1.018, -2.0658e-02]
+V0=2.0 media    eps=0.1    : E(h=.04,.02,.01,.005)-ex = -5.8132e-03, -6.5923e-03, -6.9628e-03, -7.1432e-03  orden h (.02,.01,.005)=1.038  E(h->0)-ex=-7.3144e-03  [antes, con .04/.02/.01: orden 1.073, -7.2985e-03]
+V0=2.0 media    eps=0.05   : E(h=.04,.02,.01,.005)-ex = -1.7488e-03, -2.2052e-03, -2.4070e-03, -2.5012e-03  orden h (.02,.01,.005)=1.098  E(h->0)-ex=-2.5838e-03  [antes, con .04/.02/.01: orden 1.178, -2.5668e-03]
+V0=2.0 media    eps=0.025  : E(h=.04,.02,.01,.005)-ex = -3.9723e-04, -6.9929e-04, -8.1860e-04, -8.7031e-04  orden h (.02,.01,.005)=1.206  E(h->0)-ex=-9.0987e-04  [antes, con .04/.02/.01: orden 1.340, -8.9651e-04]
+V0=2.0 media    eps=0.0125 : E(h=.04,.02,.01,.005)-ex = +4.0020e-05, -1.8938e-04, -2.6866e-04, -2.9942e-04  orden h (.02,.01,.005)=1.366  E(h->0)-ex=-3.1892e-04  [antes, con .04/.02/.01: orden 1.533, -3.1052e-04]
+  V0=2.0 media: ordenes locales de Trotter (h->0): 1.497, 1.499, 1.502  (con h=0.01 fijo: 1.513, 1.520, 1.530)
+     E_ext (orden medido 1.502) - ex = +3.55e-06;  con eps^2: -1.22e-04;  con eps^1.5: +4.29e-06;  ajuste eps^1.5 a 5 puntos: +9.70e-07;  plan (eps .2/.1/.05, ley eps^2): orden 1.497, dif -1.01e-03
+  [MEDIDO] B2 pozo V0=2.0 media orden de Trotter aparente: 1.497, 1.499, 1.502  (criterio: orden de Trotter aparente del pozo: MEDIDO y declarado (sin criterio de aceptacion))
+     [antes, E_h0 con .04/.02/.01: E_ext - ex = +6.17e-06; ajuste eps^1.5 a 5 puntos +1.47e-05]
+  [PASA] B3 pozo V0=2.0 E extrapolada (orden medido): +3.55e-06 (con ley eps^2: -1.22e-04; ajuste eps^1.5 a 5 puntos: +9.70e-07; antes, mallas .04/.02/.01: +6.17e-06)  (criterio: pozo, transferencia h->0 (V3: mallas 0.02/0.01/0.005) y eps->0 con el orden medido: |E_ext - E_brentq| < 1e-5)
+  [PASA] B3b pozo V0=2.0 ajuste eps^1.5 a 5 puntos (V3): +9.70e-07  (criterio: |E0_ajuste - E_brentq| < 1e-5 (control de robustez de B3, V3))
+V0=2.0 estricta eps=0.2    : E(h=.04,.02,.01,.005)-ex = +7.4068e-03, -6.5687e-03, -1.3605e-02, -1.7134e-02  orden h (.02,.01,.005)=0.995  E(h->0)-ex=-2.0685e-02  [antes, con .04/.02/.01: orden 0.990, -2.0738e-02]
+V0=2.0 estricta eps=0.1    : E(h=.04,.02,.01,.005)-ex = +2.0487e-02, +6.6641e-03, -3.0908e-04, -3.8101e-03  orden h (.02,.01,.005)=0.994  E(h->0)-ex=-7.3402e-03  [antes, con .04/.02/.01: orden 0.987, -7.4077e-03]
+V0=2.0 estricta eps=0.05   : E(h=.04,.02,.01,.005)-ex = +2.5100e-02, +1.1344e-02, +4.3977e-03, +9.0852e-04  orden h (.02,.01,.005)=0.993  E(h->0)-ex=-2.6131e-03  [antes, con .04/.02/.01: orden 0.986, -2.6879e-03]
+V0=2.0 estricta eps=0.025  : E(h=.04,.02,.01,.005)-ex = +2.6724e-02, +1.2998e-02, +6.0632e-03, +2.5787e-03  orden h (.02,.01,.005)=0.993  E(h->0)-ex=-9.4006e-04  [antes, con .04/.02/.01: orden 0.985, -1.0188e-03]
+V0=2.0 estricta eps=0.0125 : E(h=.04,.02,.01,.005)-ex = +2.7294e-02, +1.3582e-02, +6.6522e-03, +3.1697e-03  orden h (.02,.01,.005)=0.993  E(h->0)-ex=-3.4836e-04  [antes, con .04/.02/.01: orden 0.984, -4.2951e-04]
+  V0=2.0 estricta: ordenes locales de Trotter (h->0): 1.497, 1.498, 1.500  (con h=0.01 fijo: 1.498, 1.499, 1.500)
+     E_ext (orden medido 1.500) - ex = -2.46e-05;  con eps^2: -1.51e-04;  con eps^1.5: -2.47e-05;  ajuste eps^1.5 a 5 puntos: -2.93e-05;  plan (eps .2/.1/.05, ley eps^2): orden 1.497, dif -1.04e-03
+  [MEDIDO] B2 pozo V0=2.0 estricta orden de Trotter aparente: 1.497, 1.498, 1.500  (criterio: orden de Trotter aparente del pozo: MEDIDO y declarado (sin criterio de aceptacion))
+     [antes, E_h0 con .04/.02/.01: E_ext - ex = -1.08e-04; ajuste eps^1.5 a 5 puntos -1.09e-04]
+  V0=2.0: E_h0(media) - E_h0(estricta) por eps: +1.83e-05, +2.57e-05, +2.93e-05, +3.02e-05, +2.94e-05
+  V0=2.0: <r> transferencia (media, h=0.01, eps=0.0125) = 1.283223, exacto 1.283644 (dif -4.20e-04)
+  V0=2.0: <r> media: ordenes en h 1.05, 1.11, 1.20, 1.35, 1.53; <r>(h->0)-ex = -3.41e-02, -1.22e-02, -4.28e-03, -1.49e-03, -5.15e-04; ordenes en eps 1.46, 1.51, 1.52; extrapolado - exacto = +3.93e-06
+V0=1.3 media    eps=0.2    : E(h=.04,.02,.01,.005)-ex = -1.5148e-03, -1.6373e-03, -1.7019e-03, -1.7351e-03  orden h (.02,.01,.005)=0.962  E(h->0)-ex=-1.7701e-03  [antes, con .04/.02/.01: orden 0.923, -1.7741e-03]
+V0=1.3 media    eps=0.1    : E(h=.04,.02,.01,.005)-ex = -4.6461e-04, -5.1543e-04, -5.4252e-04, -5.5648e-04  orden h (.02,.01,.005)=0.956  E(h->0)-ex=-5.7134e-04  [antes, con .04/.02/.01: orden 0.908, -5.7340e-04]
+V0=1.3 media    eps=0.05   : E(h=.04,.02,.01,.005)-ex = -1.4591e-04, -1.6917e-04, -1.8169e-04, -1.8818e-04  orden h (.02,.01,.005)=0.949  E(h->0)-ex=-1.9514e-04  [antes, con .04/.02/.01: orden 0.893, -1.9630e-04]
+V0=1.3 media    eps=0.025  : E(h=.04,.02,.01,.005)-ex = -4.4265e-05, -5.5535e-05, -6.1622e-05, -6.4778e-05  orden h (.02,.01,.005)=0.948  E(h->0)-ex=-6.8175e-05  [antes, con .04/.02/.01: orden 0.889, -6.8771e-05]
+V0=1.3 media    eps=0.0125 : E(h=.04,.02,.01,.005)-ex = -1.1855e-05, -1.7676e-05, -2.0754e-05, -2.2332e-05  orden h (.02,.01,.005)=0.963  E(h->0)-ex=-2.3996e-05  [antes, con .04/.02/.01: orden 0.920, -2.4205e-05]
+  V0=1.3 media: ordenes locales de Trotter (h->0): 1.672, 1.567, 1.523  (con h=0.01 fijo: 1.684, 1.587, 1.555)
+     E_ext (orden medido 1.523) - ex = -4.20e-07;  con eps^2: -9.27e-06;  con eps^1.5: +1.67e-07;  ajuste eps^1.5 a 5 puntos: +2.16e-05;  plan (eps .2/.1/.05, ley eps^2): orden 1.672, dif -6.97e-05
+  [MEDIDO] B2 pozo V0=1.3 media orden de Trotter aparente: 1.672, 1.567, 1.523  (criterio: orden de Trotter aparente del pozo: MEDIDO y declarado (sin criterio de aceptacion))
+     [antes, E_h0 con .04/.02/.01: E_ext - ex = -2.64e-07; ajuste eps^1.5 a 5 puntos +2.11e-05]
+  [PASA] B3 pozo V0=1.3 E extrapolada (orden medido): -4.20e-07 (con ley eps^2: -9.27e-06; ajuste eps^1.5 a 5 puntos: +2.16e-05; antes, mallas .04/.02/.01: -2.64e-07)  (criterio: pozo, transferencia h->0 (V3: mallas 0.02/0.01/0.005) y eps->0 con el orden medido: |E_ext - E_brentq| < 1e-5)
+  [NO PASA] B3b pozo V0=1.3 ajuste eps^1.5 a 5 puntos (V3): +2.16e-05  (criterio: |E0_ajuste - E_brentq| < 1e-5 (control de robustez de B3, V3))
+V0=1.3 estricta eps=0.2    : E(h=.04,.02,.01,.005)-ex = +1.3453e-03, +6.6105e-05, -7.8474e-04, -1.2605e-03  orden h (.02,.01,.005)=0.839  E(h->0)-ex=-1.8638e-03  [antes, con .04/.02/.01: orden 0.588, -2.4748e-03]
+V0=1.3 estricta eps=0.1    : E(h=.04,.02,.01,.005)-ex = +1.8349e-03, +9.2398e-04, +2.4669e-04, -1.4485e-04  orden h (.02,.01,.005)=0.791  E(h->0)-ex=-6.8134e-04  [antes, con .04/.02/.01: orden 0.428, -1.7168e-03]
+V0=1.3 estricta eps=0.05   : E(h=.04,.02,.01,.005)-ex = +1.9512e-03, +1.1751e-03, +5.6148e-04, +2.0081e-04  orden h (.02,.01,.005)=0.767  E(h->0)-ex=-3.1336e-04  [antes, con .04/.02/.01: orden 0.339, -1.7569e-03]
+V0=1.3 estricta eps=0.025  : E(h=.04,.02,.01,.005)-ex = +1.9849e-03, +1.2572e-03, +6.6636e-04, +3.1678e-04  orden h (.02,.01,.005)=0.757  E(h->0)-ex=-1.8986e-04  [antes, con .04/.02/.01: orden 0.301, -1.8821e-03]
+V0=1.3 estricta eps=0.0125 : E(h=.04,.02,.01,.005)-ex = +1.9958e-03, +1.2853e-03, +7.0262e-04, +3.5699e-04  orden h (.02,.01,.005)=0.753  E(h->0)-ex=-1.4705e-04  [antes, con .04/.02/.01: orden 0.286, -1.9510e-03]
+  V0=1.3 estricta: ordenes locales de Trotter (h->0): 1.684, 1.575, 1.529  (con h=0.01 fijo: 1.712, 1.586, 1.532)
+     E_ext (orden medido 1.529) - ex = -1.24e-04;  con eps^2: -1.33e-04;  con eps^1.5: -1.24e-04;  ajuste eps^1.5 a 5 puntos: -1.01e-04;  plan (eps .2/.1/.05, ley eps^2): orden 1.684, dif -1.91e-04
+  [MEDIDO] B2 pozo V0=1.3 estricta orden de Trotter aparente: 1.684, 1.575, 1.529  (criterio: orden de Trotter aparente del pozo: MEDIDO y declarado (sin criterio de aceptacion))
+     [antes, E_h0 con .04/.02/.01: E_ext - ex = -2.03e-03; ajuste eps^1.5 a 5 puntos -1.77e-03]
+  V0=1.3: E_h0(media) - E_h0(estricta) por eps: +9.37e-05, +1.10e-04, +1.18e-04, +1.22e-04, +1.23e-04
+  V0=1.3: <r> transferencia (media, h=0.01, eps=0.0125) = 8.150939, exacto 8.188307 (dif -3.74e-02)
+  V0=1.3: <r> media: ordenes en h 0.99, 0.97, 0.96, 0.96, 0.97; <r>(h->0)-ex = -2.01e+00, -8.65e-01, -3.31e-01, -1.21e-01, -4.31e-02; ordenes en eps 1.10, 1.34, 1.44; extrapolado - exacto = +2.18e-03
+
+Criterios: 22 pasan, 1 no pasan, 5 solo medidos.
+  NO PASA: B3b pozo V0=1.3 ajuste eps^1.5 a 5 puntos (V3) +2.16e-05
+guardado /mnt/attach/project-files/fase2/resultados/13_controles.json
+figura guardada; tiempo total 132.5 s; carga (3.6103515625, 1.78076171875, 1.64306640625)

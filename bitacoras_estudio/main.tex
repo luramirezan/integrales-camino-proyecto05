@@ -1,0 +1,81 @@
+\documentclass[11pt]{article}
+
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{pgfplots}
+\usepackage{microtype}
+% Índice: columna de número más ancha para secciones de dos cifras
+\makeatletter
+\renewcommand*\l@section[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \addvspace{1.0em \@plus\p@}%
+    \setlength\@tempdima{2.2em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil
+      \nobreak\hb@xt@\@pnumwidth{\hss #2\kern-\p@\kern\p@}\par
+    \endgroup
+  \fi}
+\renewcommand*\l@subsection{\@dottedtocline{2}{2.2em}{2.8em}}
+\makeatother
+\usepackage{hyperref}
+\pgfplotsset{compat=1.18}
+
+\geometry{margin=2.4cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    columns=fullflexible
+}
+
+% --- Macros de la Bitácora 2 ---
+\newcommand{\F}[1]{\textbf{[F#1]}}          % cita de una fuente del cuaderno
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\sesion}[2]{\subsection*{Sesión #1 \hfill #2}}
+\newcommand{\campo}[1]{\par\smallskip\textbf{#1}\par}
+\newenvironment{prompt}{\begin{quote}\itshape}{\end{quote}}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{3cm}
+{\LARGE\bfseries Bitácora de trabajo con inteligencia artificial\par}
+\vspace{0.5cm}
+{\large\bfseries Introducción a la Investigación Teórica 2026-II\par}
+\vspace{1.5cm}
+{\normalsize Grupo SLV\par}
+{\normalsize Valentina Isabel Burbano \quad Juan Sebastián Calixto \quad Luis Felipe Ramirez\par}
+\vfill
+{\normalsize Universidad Nacional de Colombia\par}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+% Cada bitácora está en su propio archivo para editarla por separado.
+\input{bitacora_01_trayectoria_maxima}
+\clearpage
+\input{bitacora_02_integrales_camino}
+
+\end{document}

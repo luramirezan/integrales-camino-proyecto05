@@ -1,0 +1,5 @@
+transferencia tau=5 (Richardson h^4): E_mixto=-0.326762633  <r>_puro=1.5321365
+tanda_A: E=-0.326780 +- 0.000093 (-0.18 sigma)   <r>=1.5275 +- 0.0076 (-0.61 sigma)
+tanda_B: E=-0.326742 +- 0.000061 (+0.34 sigma)   <r>=1.5295 +- 0.0064 (-0.41 sigma)
+las_16: E=-0.326761 +- 0.000053 (+0.03 sigma)   <r>=1.5285 +- 0.0048 (-0.76 sigma)
+tiempo 135.8 s
