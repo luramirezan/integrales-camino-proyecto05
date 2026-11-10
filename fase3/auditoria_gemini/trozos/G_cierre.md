@@ -1,0 +1,1 @@
+Cierra la auditoría. Entrega la tabla final de TODOS tus hallazgos con estas columnas: ID, hallazgo, gravedad, estado (resuelto por la respuesta / sigue en pie / pendiente de cálculo) y una línea de motivo. Después, lista lo que comprobaste y quedó bien. Indica qué números calculaste a mano.

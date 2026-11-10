@@ -1,0 +1,13 @@
+h=0.02 eps=0.2: E0=-4.08324390e-07 it=44 res=1.9e-11 perron=+1.8e-06 r/R=0.08652 F12=0.99701 t=28s
+h=0.02 eps=0.1: E0=-1.60560455e-07 it=23 res=6.3e-12 perron=+7.0e-06 r/R=0.13408 F12=0.97827 t=15s
+h=0.02 eps=0.05: E0=-1.15206564e-07 it=12 res=3.2e-12 perron=+7.4e-06 r/R=0.15307 F12=0.96599 t=9s
+h=0.04 eps=0.2: E0=-4.07236770e-07 it=44 res=1.9e-11 perron=+1.9e-06 r/R=0.08663 F12=0.99699 t=7s
+h=0.04 eps=0.1: E0=-1.59102357e-07 it=23 res=6.4e-12 perron=+7.3e-06 r/R=0.13460 F12=0.97796 t=4s
+h=0.04 eps=0.05: E0=-1.12644822e-07 it=12 res=2.9e-12 perron=+8.0e-06 r/R=0.15435 F12=0.96508 t=2s
+h=0.02 eps=0.2: E0=-4.08339861e-07 it=51 res=2.1e-11 perron=+9.3e-09 r/R=0.04330 F12=0.99999 t=63s
+h=0.02 eps=0.1: E0=-1.61015451e-07 it=32 res=9.5e-12 perron=+1.9e-07 r/R=0.06893 F12=0.99929 t=38s
+h=0.02 eps=0.05: E0=-1.16197656e-07 it=20 res=2.8e-12 perron=+3.4e-07 r/R=0.08108 F12=0.99794 t=23s
+h=0.04 eps=0.2: E0=-4.07252435e-07 it=50 res=2.5e-11 perron=+1.0e-08 r/R=0.04336 F12=0.99999 t=17s
+h=0.04 eps=0.1: E0=-1.59568428e-07 it=34 res=7.1e-12 perron=+2.0e-07 r/R=0.06923 F12=0.99927 t=9s
+h=0.04 eps=0.05: E0=-1.13683174e-07 it=18 res=3.9e-12 perron=+3.8e-07 r/R=0.08199 F12=0.99779 t=5s
+terna (3200, 6400, 12800): radial ligado=True transferencia ligado=True (c)={'mismo_signo': True, 'misma_tendencia': True, 'E_compatibles': True, 'c': True} -> ligado

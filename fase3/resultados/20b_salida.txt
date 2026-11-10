@@ -1,0 +1,12 @@
+radial R=1600: E0=+1.544358e-07 +- 3.6e-08  r/R=0.26404 F12=0.85921
+radial R=3200: E0=-6.987871e-08 +- 2.2e-08  r/R=0.22750 F12=0.89998
+radial R=6400: E0=-9.817510e-08 +- 1.7e-08  r/R=0.15849 F12=0.96391
+radial R=12800: E0=-9.886962e-08 +- 1.6e-08  r/R=0.08092 F12=1.00152
+radial R=25600: E0=-9.883403e-08 +- 1.6e-08  r/R=0.03981 F12=1.00028
+radial R=51200: E0=-9.883491e-08 +- 1.6e-08  r/R=0.01990 F12=1.00000
+terna (1600, 3200, 6400): (a,a',b)=(False,False,True) ligado=False no_ligado=False
+terna (3200, 6400, 12800): (a,a',b)=(True,False,True) ligado=False no_ligado=False
+terna (6400, 12800, 25600): (a,a',b)=(True,False,False) ligado=False no_ligado=False
+terna (12800, 25600, 51200): (a,a',b)=(True,False,False) ligado=False no_ligado=False
+transferencia R=1600: +1.5300e-07 +- 1.3e-08 (radial +1.5444e-07), compatible True
+transferencia R=3200: -7.1475e-08 +- 1.8e-08 (radial -6.9879e-08), compatible True

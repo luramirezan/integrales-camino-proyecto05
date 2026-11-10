@@ -1,0 +1,8 @@
+delta=0.2 R=40: radial -3.2680850515e-01; ext -3.2680850158e-01 (dif +3.6e-09, 1.1e-08 de |E0|); orden malla [4.0, 4.0, 4.0, 4.0]; orden Trotter [1.959, 1.767]
+   presupuesto/|E0|: trotter_eps01=3.7e-07, trotter_eps005=1.0e-07, malla_h002_eps005=6.2e-07, pared_eps01=1.4e-11, pared_extrapolada=3.3e-11, extrapolacion_eps=1.6e-08, final_menos_radial=1.1e-08, radial_malla=1.8e-08
+delta=0.8 R=100: radial -4.4704297970e-02; ext -4.4704300857e-02 (dif -2.9e-09, 6.5e-08 de |E0|); orden malla [4.0, 4.0, 4.0, 4.0]; orden Trotter [1.983, 1.991]
+   presupuesto/|E0|: trotter_eps01=1.7e-04, trotter_eps005=4.4e-05, malla_h002_eps005=2.2e-06, pared_eps01=3.5e-11, pared_extrapolada=7.2e-11, extrapolacion_eps=2.8e-07, final_menos_radial=6.5e-08, radial_malla=1.4e-07
+delta=1.0 R=174: radial -1.0285784215e-02; ext -1.0285788887e-02 (dif -4.7e-09, 4.5e-07 de |E0|); orden malla [4.0, 4.0, 4.0, 4.0]; orden Trotter [1.983, 1.991]
+   presupuesto/|E0|: trotter_eps01=8.3e-04, trotter_eps005=2.1e-04, malla_h002_eps005=4.7e-06, pared_eps01=8.8e-11, pared_extrapolada=3.6e-11, extrapolacion_eps=1.2e-06, final_menos_radial=4.5e-07, radial_malla=5.3e-07
+delta=1.15 R=600: radial -4.5588440793e-04; ext -4.5588883325e-04 (dif -4.4e-09, 9.7e-06 de |E0|); orden malla [4.02, 4.0, 4.0, 4.0]; orden Trotter [1.989, 1.993]
+   presupuesto/|E0|: trotter_eps01=6.6e-03, trotter_eps005=1.7e-03, malla_h002_eps005=2.3e-05, pared_eps01=2.4e-09, pared_extrapolada=3.9e-09, extrapolacion_eps=8.1e-06, final_menos_radial=9.7e-06, radial_malla=9.5e-06

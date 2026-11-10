@@ -1,0 +1,25 @@
+G1 orden malla radial (1.19, R=3200): ['1.8446', '1.9613', '2.1084'] E: ['+1.903336e-08', '-4.765029e-08', '-6.621739e-08', '-7.098534e-08', '-7.209101e-08']
+G1/G3 energia cero delta=1.18: nodos en (0, 4000) = 1, a_s = +127.9
+G1/G3 energia cero delta=1.19: nodos en (0, 4000) = 1, a_s = +2203.8
+G1/G3 energia cero delta=1.1906: nodos en (0, 4000) = 0, a_s = +108621.0
+G1/G3 energia cero delta=1.1907: nodos en (0, 4000) = 0, a_s = -15404.5
+G1/G3 energia cero delta=1.2: nodos en (0, 4000) = 0, a_s = -142.9
+G1 disparo sin malla (caja infinita) delta=1.18: E0 = -3.09859109e-05
+G1 disparo sin malla (caja infinita) delta=1.19: E0 = -1.03031961e-07
+G4 cruce E0(R)=0 con h=1/40: R_c = 3692.3
+G4 cruce E0(R)=0 con h=1/80: R_c = 2450.9
+G4 cruce E0(R)=0 con h=1/160: R_c = 2260.8
+G4 cruce E0(R)=0 con h=1/320: R_c = 2217.7
+G3 delta=1.20 R=3200: E0=+4.4182e-07 ley=4.4158e-07 dev=5.32e-04 F12=0.5422
+G3 delta=1.20 R=6400: E0=+1.1528e-07 ley=1.1527e-07 dev=6.78e-05 F12=0.5218
+G3 delta=1.20 R=12800: E0=+2.9458e-08 ley=2.9458e-08 dev=1.03e-06 F12=0.5110
+G3 delta=1.20 R=25600: E0=+7.4473e-09 ley=7.4465e-09 dev=1.09e-04 F12=0.5056
+G3 delta=1.20 R=51200: E0=+1.8728e-09 ley=1.8720e-09 dev=4.38e-04 F12=0.5028
+G2 1.25 R50: p_obs=1.144  E(p=2)=+1.110208e-03  E(p_obs)=+1.111645e-03  radial=+1.114049e-03  err=5.9e-06
+G2 1.18 R50: p_obs=1.647  E(p=2)=+3.361989e-04  E(p_obs)=+3.365929e-04  radial=+3.380133e-04  err=2.8e-06
+G2 1.2 R100: p_obs=1.787  E(p=2)=+1.865300e-04  E(p_obs)=+1.865934e-04  radial=+1.868654e-04  err=5.2e-07
+G5 1.19 R1600: ajuste 2D E0=+1.6104e-07 +- 4.4e-09 (rms 5.2e-09); receta +1.5300e-07 +- 1.3e-08; radial +1.5444e-07
+G5 1.19 R3200: ajuste 2D E0=-6.0317e-08 +- 6.1e-09 (rms 7.2e-09); receta -7.1475e-08 +- 1.8e-08; radial -6.9879e-08
+G6 umbral F12 > 0.75: {'1.18': 'ligado [200, 400, 800]', '1.19': 'no ligado o indeterminado (sin terna ligada)', '1.2': 'no ligado o indeterminado (sin terna ligada)', '1.25': 'no ligado o indeterminado (sin terna ligada)'}
+G6 umbral F12 > 0.85: {'1.18': 'ligado [200, 400, 800]', '1.19': 'no ligado o indeterminado (sin terna ligada)', '1.2': 'no ligado o indeterminado (sin terna ligada)', '1.25': 'no ligado o indeterminado (sin terna ligada)'}
+G6 umbral F12 > 0.95: {'1.18': 'ligado [200, 400, 800]', '1.19': 'no ligado o indeterminado (sin terna ligada)', '1.2': 'no ligado o indeterminado (sin terna ligada)', '1.25': 'no ligado o indeterminado (sin terna ligada)'}
