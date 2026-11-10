@@ -5,7 +5,7 @@ Grupo SLV: Juan Sebastián Calixto y Luis Felipe Ramírez.
 
 Este repositorio reúne los códigos, las explicaciones, las figuras y las bitácoras del proyecto. La pregunta es:
 
-> ¿Para qué valor del apantallamiento $\mu$ deja de existir el estado ligado $1s$ del potencial $V(r) = -g\,e^{-\mu r}/r$, y cómo se comportan su energía $E_0$ y su tamaño $\langle r\rangle$ al acercarse a ese valor?
+> ¿Para qué valor del apantallamiento $\mu$ deja de existir el estado ligado $1s$ del potencial $V(r) = -g e^{-\mu r}/r$, y cómo se comportan su energía $E_0$ y su tamaño $\langle r\rangle$ al acercarse a ese valor?
 
 Todo depende de un solo número sin unidades, $\delta = \mu\hbar^2/(mg)$. En unidades $\hbar = m = g = 1$ el potencial es $V = -e^{-\delta r}/r$ y el umbral de referencia (Fase 1) es $\delta_c = 1.1906124211$.
 
