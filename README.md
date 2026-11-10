@@ -182,7 +182,7 @@ Si los dos métodos coinciden con la referencia en casos con respuesta exacta (C
 - En $\delta = 0.2$: referencia $E_0 = -0.3268085110$; transferencia extrapolada a $4\times10^{-9}$ de ella; PIGS $E = -0.326725 \pm 0.000068$ (a $1.2\sigma$).
 - Controles exactos: Coulomb a $2\times10^{-7}$, Hulthén a $5\times10^{-9}$.
 - Cerca del umbral: $\delta = 1.18$ ligado y $\delta = 1.20$ no ligado por los dos métodos, así que $\delta_c \in [1.18, 1.20]$, de acuerdo con la referencia.
-- Pendiente: la anomalía de $\tau = 5$ en el PIGS y las 10 decisiones del equipo en [`decisiones_fase2.md`](fase2/decisiones_fase2.md).
+- Pendiente: la anomalía de $\tau = 5$ en el PIGS. Las 10 decisiones del equipo en [`decisiones_fase2.md`](fase2/decisiones_fase2.md) quedaron aprobadas el 10-11-2026.
 
 ---
 

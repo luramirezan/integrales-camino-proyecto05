@@ -1,4 +1,6 @@
-# Decisiones pendientes del equipo (Fase 2, proyecto 05)
+# Decisiones del equipo (Fase 2, proyecto 05)
+
+> **Estado (10-11-2026): APROBADAS.** Luis Felipe Ramírez y Juan Sebastián Calixto aceptaron las 10 decisiones con la opción propuesta en cada una (Lucho lo confirmó en el chat del proyecto el 10-11-2026 a las 17:13, hora de Bogotá). Eso incluye la decisión 7: la tabla de controles de la Fase 2 queda firmada. La bitácora de la Fase 2 no se modificó; la aprobación consta en esta hoja.
 
 Para Luis Felipe Ramírez (Lucho) y Juan Sebastián Calixto · 27 de octubre de 2026.
 
@@ -75,4 +77,4 @@ Regla de la Fase 2 (9.12 de la Fase 1, aprobada el 21-10-2026): verifica Juan Se
 - **Opción propuesta:** (a) aprobar tras el ensayo; (b) aceptar la tabla de fuentes con sus estados tal como están y bajar con la biblioteca los PDF de pago, empezando por H1 (Cai, Cai e Inomata 1986).
 - [ ] Sí  [ ] No  Comentario: ____________________
 
-Firmas y fecha: Luis Felipe Ramírez ____________ · Juan Sebastián Calixto ____________ · Fecha: ____________
+Firmas y fecha: Luis Felipe Ramírez: aprueba todas · Juan Sebastián Calixto: aprueba todas · Fecha: 10-11-2026 (aprobación comunicada por mensaje; firma manuscrita opcional)

@@ -2,7 +2,7 @@
 
 Juan Sebastián Calixto y Luis Felipe Ramírez · 27 de octubre de 2026 · Unidades $\hbar=m=g=1$, $V=-e^{-\delta r}/r$, $\delta_c=1.1906124211$ (Fase 1).
 
-Todo lo de esta carpeta lo hizo la IA (Claude) en un flujo de agentes el 27-10-2026. Ningún integrante lo ha revisado todavía. Las decisiones están **pendientes de confirmar por el equipo** (`decisiones_fase2.md`) y la tabla de controles está **sin firmar**.
+Todo lo de esta carpeta lo hizo la IA (Claude) en un flujo de agentes el 27-10-2026. Ningún integrante lo ha revisado todavía. **Actualización 10-11-2026:** el equipo aprobó las 10 decisiones de `decisiones_fase2.md` con la opción propuesta, incluida la firma de la tabla de controles (decisión 7).
 
 ## Resumen de resultados (10 líneas)
 
@@ -18,7 +18,7 @@ Todo lo de esta carpeta lo hizo la IA (Claude) en un flujo de agentes el 27-10-2
    - pared en $R$ sin imagen (la caja efectiva es $R+0.5826\sqrt\epsilon$);
    - aproximación de extremos de $U_C$ más allá de $r=10$, ya corregida con Wigner-Kirkwood.
 9. **Tabla de controles:** 88 filas, de las que 70 pasan, 9 no pasan (cada una con su causa medida) y 9 son medidas.
-10. **Pruebas:** `test_radial` 7/7, `test_transferencia` 7/7 y `test_pigs` 14/14 (vueltas a ejecutar en la revisión final). **Pendiente:** la firma de Juan Sebastián, las 10 decisiones y el ensayo y aprobación de la presentación.
+10. **Pruebas:** `test_radial` 7/7, `test_transferencia` 7/7 y `test_pigs` 14/14 (vueltas a ejecutar en la revisión final). Las 10 decisiones quedaron aprobadas el 10-11-2026.
 
 ## Índice de archivos
 
@@ -35,7 +35,7 @@ Todo lo de esta carpeta lo hizo la IA (Claude) en un flujo de agentes el 27-10-2
 | `secciones/12_pigs.md` | PIGS: algoritmo, producción, dependencia con $\tau$, sesgo de interpolación y anomalía de $\tau=5$. |
 | `secciones/13_controles_hulthen_pozo.md` | Controles exactos de Hulthén y del pozo cuadrado con la misma transferencia. |
 | `secciones/14_criterio_cajas.md` | Criterio de cajas 9.6 con la condición (c), pared sin imagen y veredictos. |
-| `secciones/15_tabla_controles.md` | Tabla de controles consolidada (la genera `codigo/16_tabla_controles.py`), **sin firmar**. |
+| `secciones/15_tabla_controles.md` | Tabla de controles consolidada (la genera `codigo/16_tabla_controles.py`), firmada con la decisión 7 (10-11-2026). |
 | `secciones/17_registro_ia.md` | Registro de IA: fichas F2-01 a F2-14, correcciones C1–C22, supuestos, anomalías y pendientes. |
 | `presentacion/diapositivas_fase2.pptx` / `.pdf` | Primera presentación: 11 láminas y 5 de respaldo, con las notas del orador. |
 | `presentacion/guion_fase2.md` | Guion con el reparto (JS láminas 1–6; LF láminas 7–11), el texto de cada lámina y 8 preguntas probables. Son unos 7 min 52 s estimados a 150 palabras por minuto (`tiempos_guion.json`); no se ensayó con cronómetro. |
@@ -113,9 +113,9 @@ PDF de la bitácora (como se hizo en la revisión final):
 2. Convertir con `pandoc copia.md -t html5 -s --mathml --embed-resources --resource-path=fase2 --css estilo.css -o bit.html`.
 3. Imprimir `bit.html` a A4 con Chromium (Playwright, `page.pdf`).
 
-## Qué falta (lo humano)
+## Lo humano (cerrado el 10-11-2026)
 
-- Firma de Juan Sebastián en `secciones/15_tabla_controles.md` y las 10 decisiones de `decisiones_fase2.md`:
+- **Hecho el 10-11-2026:** firma de la tabla `secciones/15_tabla_controles.md` y aprobación de las 10 decisiones de `decisiones_fase2.md`:
   1. redefinir el control de tabulación (Richardson $h^4$);
   2. anomalía de $\tau=5$;
   3. umbral 0.1 de la ley de caja;

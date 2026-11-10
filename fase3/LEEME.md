@@ -1,6 +1,6 @@
 # Fase 3 del proyecto 05: barrido en el apantallamiento, prueba de cajas y convergencia
 
-Juan Sebastián Calixto y Luis Felipe Ramírez · 10 de noviembre de 2026 · cálculo y redacción: Claude (IA), con las decisiones del equipo del 10-11-2026 (todas las recomendaciones de `fase2/decisiones_fase2.md`, sujetas a la firma de Juan Sebastián).
+Juan Sebastián Calixto y Luis Felipe Ramírez · 10 de noviembre de 2026 · cálculo y redacción: Claude (IA), con las decisiones del equipo del 10-11-2026 (las 10 recomendaciones de `fase2/decisiones_fase2.md`, aprobadas por los dos el 10-11-2026).
 
 ## Lo que pide la guía y dónde está
 
@@ -45,7 +45,7 @@ Las salidas impresas están en `resultados/*_salida.txt`. Todo es determinista (
 
 | ID | Fecha | Consulta | Respuesta utilizada | Decisión humana | Comprobación | Corrección posterior |
 |---|---|---|---|---|---|---|
-| F3-01 | 10-11-2026 | Lucho: "necesito que hagas la fase 3 y dejes todo listo para la presentación de mañana" (acepta todas las recomendaciones si Juan Sebastián también) | Scripts 20 a 24, figuras, tabla, borrador y diapositivas | Decisiones 1, 3 y 5 de la Fase 2 aprobadas por Lucho; falta la firma de Juan Sebastián | Reproduce bit a bit una celda de la Fase 2 (δ = 1.18, R = 200: −2.4076630903×10⁻⁵); controles de la sección 24 | — |
+| F3-01 | 10-11-2026 | Lucho: "necesito que hagas la fase 3 y dejes todo listo para la presentación de mañana" (acepta todas las recomendaciones si Juan Sebastián también) | Scripts 20 a 24, figuras, tabla, borrador y diapositivas | Decisiones 1 a 10 de la Fase 2 aprobadas por los dos (10-11-2026) | Reproduce bit a bit una celda de la Fase 2 (δ = 1.18, R = 200: −2.4076630903×10⁻⁵); controles de la sección 24 | — |
 | F3-02 | 10-11-2026 | (IA) δ = 1.19 indeterminado con R ≤ 3200 | Extender el radial a R = 51200 | Pendiente de confirmar por el equipo | Con h = 1/40 la condición (a') falla por la malla (error de 16 % de \|E0\|); con h = 1/160 baja a 3.7 % y sale ligado | 20c sustituye a 20b para el veredicto |
 | F3-03 | 10-11-2026 | (IA) orden de Trotter bajo en cajas que tocan la pared | Diagnóstico 20d | Pared solo en el error (decisión 5) | 9/9 celdas vuelven a 1.98–1.99 comparando con el radial en R + 0.5826√ε | — |
 | F3-04 | 10-11-2026 | Auditoría adversarial de autovalores cercanos a cero con Gemini 3.1 Pro (app, selector "Detailed research · 3.1 Pro"), chat nuevo; material en `auditoria_gemini/trozos/`, prompts y respuestas literales en `auditoria_gemini/conversaciones/G.md` | 7 hallazgos (G1 a G7, abajo). Gemini declara que no ejecuta código | Ninguno se acepta sin calcular. Se responde con `respuestas/G_r2.md` y se pide la tabla de cierre (`trozos/G_cierre.md`) | Scripts 25 y 26 (tabla de controles, filas B4, B5 y E1 a E4) | G7 era válido y cambió el trabajo: se añadió la transferencia en R = 6400 y 12800 |
