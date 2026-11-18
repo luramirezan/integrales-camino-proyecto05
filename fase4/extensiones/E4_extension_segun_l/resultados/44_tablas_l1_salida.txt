@@ -1,0 +1,42 @@
+T1 ln K_0 frente a pares.logKD: {'0.2': 3.2862601528904634e-14, '0.05': 2.842170943040401e-14} pasa = True
+
+eps = 0.2: nt = 1000, nb = 313, tiempo 4 s (cache (False, False))
+  T2 error de red del nucleo libre l=1: h=0.01 7.97e-04, h=0.005 1.94e-04, cociente 4.10, Richardson 6.44e-06  pasa = True
+  T3 |U_R - U_0.005| max 8.20e-05  pasa = True
+  T4 continuidad en R_TAB: max |U_tabla - U_extremos| (r en [9, 9.9]) = 4.19e-08  pasa = True
+  T5 elementos no positivos: (0, 0)  pasa = True
+     r = r' =  0.01: U_1 = -0.74427522  U_0 = -1.13235445  extremos = -6686.66666667
+     r = r' =  0.05: U_1 = -0.70592483  U_0 = -1.05615494  extremos = -57.33333333
+     r = r' =   0.1: U_1 = -0.66085464  U_0 = -0.96748755  extremos = -8.66666667
+     r = r' =   0.5: U_1 = -0.38577126  U_0 = -0.45442735  extremos = -0.45333333
+     r = r' =     1: U_1 = -0.20587541  U_0 = -0.20821839  extremos = -0.20666667
+     r = r' =     3: U_1 = -0.06691544  U_0 = -0.06692121  extremos = -0.06691358
+     r = r' =     9: U_1 = -0.02223141  U_0 = -0.02223143  extremos = -0.02223137
+
+eps = 0.1: nt = 1000, nb = 221, tiempo 4 s (cache (False, False))
+  T2 error de red del nucleo libre l=1: h=0.01 1.36e-03, h=0.005 3.31e-04, cociente 4.12, Richardson 1.31e-05  pasa = False
+  T3 |U_R - U_0.005| max 1.04e-04  pasa = False
+  T4 continuidad en R_TAB: max |U_tabla - U_extremos| (r en [9, 9.9]) = 5.23e-09  pasa = True
+  T5 elementos no positivos: (0, 0)  pasa = True
+     r = r' =  0.01: U_1 = -0.52196005  U_0 = -0.78826912  extremos = -1676.66666667
+     r = r' =  0.05: U_1 = -0.48428991  U_0 = -0.71374936  extremos = -15.33333333
+     r = r' =   0.1: U_1 = -0.44111797  U_0 = -0.62970270  extremos = -2.66666667
+     r = r' =   0.5: U_1 = -0.20549695  U_0 = -0.21828596  extremos = -0.21333333
+     r = r' =     1: U_1 = -0.10161574  U_0 = -0.10182873  extremos = -0.10166667
+     r = r' =     3: U_1 = -0.03339530  U_0 = -0.03339600  extremos = -0.03339506
+     r = r' =     9: U_1 = -0.01111340  U_0 = -0.01111341  extremos = -0.01111340
+
+eps = 0.05: nt = 1000, nb = 156, tiempo 5 s (cache (False, False))
+  T2 error de red del nucleo libre l=1: h=0.01 2.47e-03, h=0.005 6.19e-04, cociente 3.99, Richardson 2.69e-05  pasa = False
+  T3 |U_R - U_0.005| max 1.32e-04  pasa = False
+  T4 continuidad en R_TAB: max |U_tabla - U_extremos| (r en [9, 9.9]) = 6.58e-10  pasa = True
+  T5 elementos no positivos: (0, 0)  pasa = True
+     r = r' =  0.01: U_1 = -0.36550944  U_0 = -0.54844636  extremos = -421.66666667
+     r = r' =  0.05: U_1 = -0.32876475  U_0 = -0.47619541  extremos = -4.33333333
+     r = r' =   0.1: U_1 = -0.28805519  U_0 = -0.39804227  extremos = -0.91666667
+     r = r' =   0.5: U_1 = -0.10282911  U_0 = -0.10398336  extremos = -0.10333333
+     r = r' =     1: U_1 = -0.05041214  U_0 = -0.05043552  extremos = -0.05041667
+     r = r' =     3: U_1 = -0.01668213  U_0 = -0.01668222  extremos = -0.01668210
+     r = r' =     9: U_1 = -0.00555613  U_0 = -0.00555613  extremos = -0.00555613
+
+Tiempo total 13 s

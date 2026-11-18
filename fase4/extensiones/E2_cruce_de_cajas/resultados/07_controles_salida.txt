@@ -1,0 +1,33 @@
+K1: PASA | mínimo +1.2e-09 en 161 celdas x 6 (h, eps); residuo máximo 8.7e-16
+K2: NO PASA | 75.2 % (p entre 1.523 y 2.385); fuera: [(1.185, 50, 1.609), (1.187, 50, 1.593), (1.189, 50, 1.578), (1.19, 50, 1.57), (1.1903, 50, 1.568), (1.1905, 50, 1.566)] ...
+K3: PASA | 161/161 compatibles
+K4: PASA | 161/161; máximo |dif|/err = 0.818; máximo |dif|/|E| = 2.5e-02
+K5a: PASA | 161/161; máximo |dif|/err = 0.126
+K5b: PASA | 161/161; máximo |dif|/err = 0.276
+K6-disparo: PASA | y* = 0.26390, 0.25681, 0.25337, 0.25168, 0.25084, 0.25042; cocientes = 1.040, 1.020, 1.010, 1.005, 1.003, 1.001
+K6-radial_h160: PASA | y* = 0.26390, 0.25681, 0.25337, 0.25168, 0.25084, 0.25037; cocientes = 1.040, 1.020, 1.010, 1.006, 1.003, 0.887
+K6-transferencia: PASA | y* = 0.26222, 0.25601, 0.25297, 0.25144, 0.25055, 0.24956; cocientes = 0.915, 0.899, 0.888, 0.860, 0.656, -1.044
+K7-disparo: NO PASA | peor caso: rho par 50: 4.6e-07 (46.06 veces el límite)
+K7-radial_h160: PASA | peor caso: rho par 50: 4.6e-07 (0.19 veces el límite)
+K7-radial_h40: PASA | peor caso: rho par 50: 4.6e-07 (0.01 veces el límite)
+K7-transferencia: PASA | peor caso: rho par 50: 2.1e-07 (0.00 veces el límite)
+K7-disparo-inicial: NO PASA | pares que no cumplen: [('y', 50, 1.4e-07), ('y', 1600, 1.9e-08), ('rho', 50, 3.1e-07), ('rho', 100, 5.8e-07), ('rho', 1600, 2.6e-08)]
+K8a: PASA | 2.05e-06 frente a barra 6.66e-05 (h = 0.04 sola: 1.05e-05)
+K8b-y: PASA | 7.33e-06 frente a 1.52e-05
+K8b-rho: PASA | 4.21e-06 frente a 1.52e-05
+K9-disparo-y: PASA | [1.1906124198, 1.1906124229]; centro - ref = +2.6e-10
+K9-disparo-rho: PASA | [1.1906124182, 1.1906124222]; centro - ref = -8.3e-10
+K9-radial_h160-y: PASA | [1.1905971026, 1.1906275626]; centro - ref = -8.8e-08
+K9-radial_h160-rho: PASA | [1.1905972223, 1.1906276130]; centro - ref = -3.4e-09
+K9-transferencia-y: PASA | [1.1905440986, 1.1906772338]; centro - ref = -1.8e-06
+K9-transferencia-rho: PASA | [1.1905414135, 1.1906800341]; centro - ref = -1.7e-06
+K9-B-y: PASA | [1.1906085878, 1.1906162112]; centro - ref = -2.2e-08
+K9-B-rho: PASA | [1.1905963810, 1.1906278089]; centro - ref = -3.3e-07
+K10-y: PASA | 4.125, 4.062, 4.031, 4.016
+K10-rho: PASA | 4.039, 4.021, 4.011, 4.005
+K11: NO PASA | max|y - F| = 50: 9.7e-03, 100: 5.0e-03, 200: 2.5e-03, 400: 2.0e-03, 800: 8.4e-03, 1600: 3.3e-02, 3200: 1.3e-01; cocientes 1.95, 1.97, 1.27, 0.24, 0.25, 0.25
+K11b: PASA | max|y - F| = 50: 1.0e-02 (n = 32), 100: 5.8e-03 (n = 29), 200: 3.2e-03 (n = 25), 400: 2.0e-03 (n = 23), 800: 6.3e-04 (n = 18), 1600: 7.9e-04 (n = 18), 3200: 1.6e-04 (n = 15); R max|y - F| = 0.51, 0.58, 0.65, 0.80, 0.50, 1.26, 0.50
+K12: PASA | repulsivo [0, 0, 0, 0, 0], no ligado [0, 0, 0, 0, 0], ligado profundo [0, 0, 0, 0, 0]
+K13: PASA | signo dice no ligado hasta 1600: True; primer E0 < 0 (disparo) en R = 3200; menor delta* = 1.1906083
+K14: PASA | máxima diferencia 0.0e+00 en 6 celdas
+pasan 27/31

@@ -1,0 +1,10 @@
+01_umbrales 66 s
+02_dispersion 14 s
+03_ligados_virtuales 118 s
+03b_curvas_E 381 s
+04_cajas_universalidad 340 s
+05_transferencia_ecsc 122 s
+07_verificacion 35 s
+06_figuras 3 s
+08_tabla_controles 0 s
+02_dispersion (re-ejecutado tras añadir el dato e-H) Tue Nov 17 21:48:45 UTC 2026

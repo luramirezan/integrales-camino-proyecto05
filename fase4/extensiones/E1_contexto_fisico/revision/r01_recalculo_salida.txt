@@ -1,0 +1,28 @@
+[umbral Pruefer] dc(1s) = 1.1906124210606 (R=100: 1.1906124210606); dc(2s) = 0.31020928271; dc(3s) = 0.13945029406
+[Cheb] Coulomb E+1/2 = 4.5e-13, <r>-1.5 = 2.2e-12, <r2>-3 = 9.0e-12
+[Cheb] Hulthen d=1: E+1/8 = 1.3e-13, <r>-11/6 = 1.3e-12
+[plasma] lambda_c = 0.8399039 a0 = 44.4458 pm; masa reducida 0.8403613 a0; coef. Debye = 743.3942 cm; n_e/T = 2.7975e+22 cm^-3/eV
+   T = 1 eV: n = 2.7975e+22, N_D = 1.0289e-02, Gamma = 7.047, T/E_F = 0.298, a_ws/lambda = 4.598
+   T = 13.6 eV: n = 3.8047e+23, N_D = 1.3993e-01, Gamma = 1.237, T/E_F = 0.710, a_ws/lambda = 1.926
+   T = 100 eV: n = 2.7975e+24, N_D = 1.0289e+00, Gamma = 0.327, T/E_F = 1.381, a_ws/lambda = 0.991
+   T = 1000 eV: n = 2.7975e+25, N_D = 1.0289e+01, Gamma = 0.070, T/E_F = 2.976, a_ws/lambda = 0.460
+   N_D = 1 en T = 97.19 eV
+   [Cheb] delta = 0.20: E = -0.326808511372 Ha (err espectral 5.8e-12), -8.89291 eV
+   [Cheb] delta = 0.40: E = -0.198376083361 Ha (err espectral 1.2e-12), -5.39809 eV
+   [Cheb] delta = 0.60: E = -0.106135907502 Ha (err espectral 3.2e-12), -2.88811 eV
+   [Cheb] delta = 0.80: E = -0.044704304498 Ha (err espectral 2.2e-14), -1.21647 eV
+   [Cheb] delta = 1.00: E = -0.010285789990 Ha (err espectral 1.6e-14), -0.27989 eV
+   [Cheb] delta = 1.10: E = -0.002287244234 Ha (err espectral 4.4e-14), -0.06224 eV
+   [Cheb] delta = 1.15: E = -0.000455889021 Ha (err espectral 1.5e-14), -0.01241 eV
+   [Cheb] delta = 1.18: E = -0.000030985911 Ha (err espectral 2.4e-16), -0.00084 eV
+[MO] b_c = 1.679808, 6.4473, 14.3420; xi_c = 0.839904; Hulthen 1.6: -4.751%, pi2/6: -2.076%
+[MO] a_s = 0 en delta = 0.4478572850 -> b = 4.46571; a_s(1.19) = 2203.8, a_s(1.20) = -142.93; ejemplo m_chi(alpha=0.01, m_phi=10 MeV) = 1.6798 GeV
+[d] m_p = 938.27208943, m_n = 939.56542194, m_d = 1875.612945, hbar c = 197.3269805; B = 2.22456637 MeV, mu = 469.45915515
+[d pi0     ] delta_d = 0.8249221354 (0.6929 dc), g/hc = 0.348537, <r> = 3.2165, rms = 3.9571, r_str = 1.9786, 1/kappa = 4.3177 fm, m_pi^c = 194.812 MeV, dlnB/dlnm_pi (HF) = -4.65808, B(m_pi->0) = 28.51 MeV
+[d pi+-    ] delta_d = 0.8331636441 (0.6998 dc), g/hc = 0.356833, <r> = 3.1920, rms = 3.9336, r_str = 1.9668, 1/kappa = 4.3177 fm, m_pi^c = 199.450 MeV, dlnB/dlnm_pi (HF) = -4.80912, B(m_pi->0) = 29.89 MeV
+[d promedio] delta_d = 0.8304583940 (0.6975 dc), g/hc = 0.354068, <r> = 3.2000, rms = 3.9413, r_str = 1.9706, 1/kappa = 4.3177 fm, m_pi^c = 197.904 MeV, dlnB/dlnm_pi (HF) = -4.75878, B(m_pi->0) = 29.43 MeV
+[d] r_str exp = 1.97573 fm, u (independientes) = 0.00068, u solo por r_n^2 = 0.00056; Darwin-Foldy = 0.03317 fm^2; modelo/exp = 0.9974; alcance cero = 1.5265
+[NPLQCD] delta_L = 0.921222 (0.8982 a 0.9488), g/hc = 1.0708, cociente = 3.0242; delta con g fisico = 2.7859 (2.340 dc); con g y mu fisicos = 4.8484
+[Berengut] K_d/K_pi = -1.7409; rango por K_d: -2.753 a -0.830; con K_pi tambien: -2.827 a -0.815; cociente modelo/Berengut = 2.734
+[d] aumento relativo de m_pi hasta desligar: 43.3681%
+tiempo 89.4 s

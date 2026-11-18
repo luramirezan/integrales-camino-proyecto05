@@ -1,0 +1,14 @@
+(a) delta=1.2 n_pan=300: max|dphi| = 1.43e-03 (rel 5.69e-06); a rel 4.3e-10
+(a) delta=1.2 n_pan=600: max|dphi| = 2.18e-04 (rel 1.04e-06); a rel 4.2e-11
+(a) delta=1.2 n_pan=1200: max|dphi| = 2.90e-05 (rel 1.39e-07); a rel 1.8e-11
+(a) delta=1.3 n_pan=300: max|dphi| = 3.88e-05 (rel 2.60e-06); a rel 2.9e-11
+(a) delta=1.3 n_pan=600: max|dphi| = 2.12e-05 (rel 9.63e-07); a rel 3.1e-12
+(a) delta=1.3 n_pan=1200: max|dphi| = 7.60e-06 (rel 3.45e-07); a rel 1.5e-12
+(b) covarianza de escala: max |X(2.7)/X(1) - 1| = 5.6e-15 en 2000 caminos
+(c) delta=4: E[W^2] MC = 2.2053 +- 0.0058 (bloques; W^2 tiene varianza infinita porque 4 > theta = 3.36) frente a EDO 2.2069; var_rel 0.2054 frente a 0.2071
+(d) MI delta=1.5 r0=0.5 (eta=0.1): max Y = 6.668289 <= phi_T(r0) = 6.693432; media 5.60619 +- 0.00271 frente a phi = 5.61188; var_rel 0.0234 <= cota 0.1927
+(e) delta=2, r0=1: E[Lambda] = 0.43211 +- 0.00053 frente a S(1) = 0.43233
+(f) subsolucion delta_T=1.8, eta=0.2: a = -3.81166 +- 0.01316 (dif_rel +3.91e-02); theta cola = 2.303 +- 0.073
+(f) subsolucion delta_T=1.8, eta=0.1: a = -3.69390 +- 0.01202 (dif_rel +7.00e-03); theta cola = 2.429 +- 0.077
+(f) subsolucion delta_T=1.8, eta=0.05: a = -3.71664 +- 0.02008 (dif_rel +1.32e-02); theta cola = 2.280 +- 0.114
+tiempo total 143.4 s

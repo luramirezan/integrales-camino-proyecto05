@@ -1,0 +1,37 @@
+A. Diferencias finitas (radial.py con V_ef), Coulomb, h = 1/40 + Richardson
+  1s: E = -0.499999993899 (exacto -0.500000000000), dif = +6.10e-09 [sin Richardson h/2: +1.95e-05]  orden = 1.999, 2.000, 2.000  <r> dif = -6.1e-09  <r^2> dif = -4.9e-13  pasa = True
+  2s: E = -0.124999999903 (exacto -0.125000000000), dif = +9.70e-11 [sin Richardson h/2: +1.22e-06]  orden = 2.000, 2.000, 2.000  pasa = True
+  2p: E = -0.124999999961 (exacto -0.125000000000), dif = +3.89e-11 [sin Richardson h/2: -4.07e-07]  orden = 2.000, 2.000, 2.000  <r> dif = +2.1e-09  <r^2> dif = +2.0e-08  pasa = True
+  3d: E = -0.055555555556 (exacto -0.055555555556), dif = -9.08e-13 [sin Richardson h/2: -1.61e-08]  orden = 2.000, 2.000, 2.004  <r> dif = -8.5e-11  <r^2> dif = -2.2e-09  pasa = True
+
+B. Disparo (Frobenius + Whittaker), Coulomb
+  1s: E dif = +3.66e-15  <r> dif = -3.00e-12  <r^2> dif = -5.99e-12  nodos = 0  pasa = True  (5.0 s)
+  2s: E dif = +7.22e-16  <r> dif = -1.49e-12  <r^2> dif = -1.02e-11  nodos = 1  pasa = True  (3.3 s)
+  2p: E dif = +3.33e-16  <r> dif = -6.39e-14  <r^2> dif = -9.70e-13  nodos = 0  pasa = True  (6.8 s)
+  3d: E dif = -5.55e-17  <r> dif = +8.35e-14  <r^2> dif = +1.98e-12  nodos = 0  pasa = True  (8.6 s)
+
+C. Umbrales por la solucion de energia cero
+  1s (l=0): delta_c = 1.1906124210606  encargo 1.1906124210606  dif = -5.8e-15  variaciones num.: rtol_1e-11 -3.6e-12, r_ext_55/delta -4.4e-16, r0_1e-4 +8.0e-15
+  2s (l=0): delta_c = 0.3102092827139  encargo 0.31020928  dif = +2.7e-09  variaciones num.: rtol_1e-11 -2.0e-13, r_ext_55/delta +1.1e-16, r0_1e-4 +1.3e-15
+  2p (l=1): delta_c = 0.2202168066066  encargo 0.22021681  dif = -3.4e-09  variaciones num.: rtol_1e-11 -3.0e-14, r_ext_55/delta +2.8e-17, r0_1e-4 -8.3e-17
+  3d (l=2): delta_c = 0.0913451207717  encargo 0.09134512  dif = +7.7e-10  variaciones num.: rtol_1e-11 -2.1e-15, r_ext_55/delta -2.8e-17, r0_1e-4 -4.2e-17
+
+  Estimacion independiente de delta_c con diferencias finitas (h = 1/40 + Richardson, R = 30/kappa)
+  1s: delta_c(FD) = 1.1905740056  dif con disparo = -3.8e-05  pasa C = False
+  2s: delta_c(FD) = 0.3102086460  dif con disparo = -6.4e-07  pasa C = True
+  2p: delta_c(FD) = 0.2202178183  dif con disparo = +1.0e-06  pasa C = False
+  3d: delta_c(FD) = 0.0913449623  dif con disparo = -1.6e-07  pasa C = True
+
+D. Diferencias finitas frente a disparo (Yukawa)
+  2p delta = 0.10000000 R = 98: E_disp = -4.6534390487e-02 E_FD = -4.6534390456e-02 rel = +6.6e-10  <r> 5.523283 / 5.523283 rel = +4.2e-10  pasa = True
+  2p delta = 0.20000000 R = 331: E_disp = -4.1016465308e-03 E_FD = -4.1016465164e-03 rel = +3.5e-09  <r> 8.734806 / 8.734806 rel = +4.6e-10  pasa = True
+  2p delta = 0.21999659 R = 3928: E_disp = -2.9159907960e-05 E_FD = -2.9159892877e-05 rel = +5.2e-07  <r> 20.133772 / 20.133752 rel = -9.9e-07  pasa = True
+  3d delta = 0.05000000 R = 163: E_disp = -1.6915570570e-02 E_FD = -1.6915570570e-02 rel = -3.0e-12  <r> 11.794824 / 11.794824 rel = +6.0e-12  pasa = True
+  3d delta = 0.08500000 R = 520: E_disp = -1.6618644202e-03 E_FD = -1.6618644184e-03 rel = +1.0e-09  <r> 16.507741 / 16.507741 rel = +5.8e-12  pasa = True
+  3d delta = 0.09125378 R = 4702: E_disp = -2.0353557610e-05 E_FD = -2.0353556563e-05 rel = +5.1e-08  <r> 21.234303 / 21.234303 rel = -2.1e-10  pasa = True
+  2s delta = 0.20000000 R = 193: E_disp = -1.2107865195e-02 E_FD = -1.2107865094e-02 rel = +8.4e-09  pasa = True
+  2s delta = 0.30989907 R = 20000: E_disp = -8.3483212182e-08 E_FD = -8.3418819320e-08 rel = +7.7e-04  pasa = False
+  1s delta = 0.80000000 R = 100: E_disp = -4.4704304497e-02 E_FD = -4.4704297969e-02 rel = +1.5e-07  <r> 2.549160 / 2.549160 rel = -9.7e-09  pasa = True
+  1s delta = 1.18942181 R = 20000: E_disp = -3.8944923117e-07 E_FD = -3.8524620736e-07 rel = +1.1e-02  <r> 567.428938 / 559.343829 rel = -1.4e-02  pasa = False
+
+Tiempo total 136 s

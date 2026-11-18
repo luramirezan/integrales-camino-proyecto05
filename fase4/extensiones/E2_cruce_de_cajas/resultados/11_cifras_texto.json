@@ -1,0 +1,183 @@
+{
+ "seccion_articulo.md": {
+  "n_cifras": 260,
+  "sin_json": [
+   {
+    "numero": "12800",
+    "contexto": "odos (tabla 3) y la Fase 3 necesit\u00f3 R = 12800 para concluir 1.19 < \u03b4_c"
+   },
+   {
+    "numero": "1.040",
+    "contexto": "e/(8R) (cocientes medido/predicho entre 1.040 y 1.001). Tercero, la in"
+   },
+   {
+    "numero": "12800",
+    "contexto": "de E\u2080 dio 1.19 < \u03b4_c < 1.20 con R hasta 12800 (Fase 3), y la longitud "
+   },
+   {
+    "numero": "165",
+    "contexto": "o mejor, aunque el error crudo llegue a 165 % (\u03b4 = 1.1906, R = 3200,"
+   },
+   {
+    "numero": "1.44",
+    "contexto": "e z = R/a, que cambia en c R s_\u03b5 (hasta 1.44 en R = 3200), es decir, "
+   },
+   {
+    "numero": "75.2",
+    "contexto": "s pasan. No pasan: el orden de Trotter (75.2 % de las celdas en [1.8,"
+   },
+   {
+    "numero": "1998",
+    "contexto": "ma\u00f1o de la base (Serra, Neirotti y Kais 1998) y, para pozos con \u2113 = 1"
+   },
+   {
+    "numero": "0708.1780",
+    "contexto": ". Phys. J. A* **34**, 185 (2007), arXiv:0708.1780. - T. Busch, B.-G. Engle"
+   },
+   {
+    "numero": "549",
+    "contexto": "ki y M. Wilkens, *Found. Phys.* **28**, 549 (1998). - R. R. dos Sant"
+   },
+   {
+    "numero": "1998",
+    "contexto": "M. Wilkens, *Found. Phys.* **28**, 549 (1998). - R. R. dos Santos y L"
+   },
+   {
+    "numero": "3541",
+    "contexto": "os y L. Sneddon, *Phys. Rev. B* **23**, 3541 (1981). - J. E. Drut y A"
+   },
+   {
+    "numero": "1981",
+    "contexto": ". Sneddon, *Phys. Rev. B* **23**, 3541 (1981). - J. E. Drut y A. N. N"
+   },
+   {
+    "numero": "1208.6556",
+    "contexto": ". - J. E. Drut y A. N. Nicholson, arXiv:1208.6556, DOI 10.1088/0954-3899/4"
+   },
+   {
+    "numero": "10.1088",
+    "contexto": "y A. N. Nicholson, arXiv:1208.6556, DOI 10.1088/0954-3899/40/4/043101. -"
+   },
+   {
+    "numero": "3899",
+    "contexto": "lson, arXiv:1208.6556, DOI 10.1088/0954-3899/40/4/043101. - S. K\u00f6nig,"
+   },
+   {
+    "numero": "043101",
+    "contexto": "v:1208.6556, DOI 10.1088/0954-3899/40/4/043101. - S. K\u00f6nig, D. Lee y H."
+   },
+   {
+    "numero": "112001",
+    "contexto": "-W. Hammer, *Phys. Rev. Lett.* **107**, 112001 (2011). - M. L\u00fcscher, *C"
+   },
+   {
+    "numero": "153",
+    "contexto": "L\u00fcscher, *Commun. Math. Phys.* **105**, 153 (1986); *Nucl. Phys. B* "
+   },
+   {
+    "numero": "1986",
+    "contexto": "er, *Commun. Math. Phys.* **105**, 153 (1986); *Nucl. Phys. B* **354*"
+   },
+   {
+    "numero": "531",
+    "contexto": "*, 153 (1986); *Nucl. Phys. B* **354**, 531 (1991). - M. P. Nighting"
+   },
+   {
+    "numero": "1991",
+    "contexto": "3 (1986); *Nucl. Phys. B* **354**, 531 (1991). - M. P. Nightingale, *"
+   },
+   {
+    "numero": "561",
+    "contexto": " M. P. Nightingale, *Physica A* **83**, 561 (1976). - P. Serra, J. P"
+   },
+   {
+    "numero": "1976",
+    "contexto": ". Nightingale, *Physica A* **83**, 561 (1976). - P. Serra, J. P. Neir"
+   },
+   {
+    "numero": "1998",
+    "contexto": " S. Kais, *Phys. Rev. A* **57**, R1481 (1998). - P. Serra, \"A spatial"
+   },
+   {
+    "numero": "303",
+    "contexto": "akly bound states\",   *Phys. Lett. A* **303**, 20 (2002) (seg\u00fan la l"
+   },
+   {
+    "numero": "1001.5071",
+    "contexto": "au, B. R. Barrett y U. van Kolck, arXiv:1001.5071. - H. A. Bethe, *Phys. R"
+   },
+   {
+    "numero": "1949",
+    "contexto": "- H. A. Bethe, *Phys. Rev.* **76**, 38 (1949) [no verificada en esta "
+   }
+  ]
+ },
+ "teoria.md": {
+  "n_cifras": 38,
+  "sin_json": []
+ },
+ "LEEME.md": {
+  "n_cifras": 83,
+  "sin_json": [
+   {
+    "numero": "1949",
+    "contexto": "scadores abiertos. - No se abri\u00f3 Bethe (1949). La revista del trabajo"
+   },
+   {
+    "numero": "303",
+    "contexto": "sta del trabajo de Serra (Phys. Lett. A 303, 20 (2002)) la encontr\u00f3 "
+   }
+  ]
+ },
+ "verificacion.md": {
+  "n_cifras": 78,
+  "sin_json": [
+   {
+    "numero": "640",
+    "contexto": "61\u00d710\u207b\u2079 y +8.56\u00d710\u207b\u00b9\u2070 para h = 1/40 a 1/640: orden 1.968, 1.992, 1.9"
+   },
+   {
+    "numero": "4000",
+    "contexto": "0\u207b\u2075 y 1.67\u00d710\u207b\u2075 con otras dos semillas (4000 r\u00e9plicas). La barra fina"
+   },
+   {
+    "numero": "0.505",
+    "contexto": "dencias casuales con   n\u00fameros al azar: 0.505 con 3 cifras, 0.1425 con"
+   },
+   {
+    "numero": "0.1425",
+    "contexto": "   n\u00fameros al azar: 0.505 con 3 cifras, 0.1425 con 4, 0.0325 con 5 y 0."
+   },
+   {
+    "numero": "0.0325",
+    "contexto": "azar: 0.505 con 3 cifras, 0.1425 con 4, 0.0325 con 5 y 0.0025 con 7. Es"
+   },
+   {
+    "numero": "12800",
+    "contexto": " a\u00f1os y n\u00fameros de las referencias; R = 12800 y el intervalo [1.19, 1."
+   },
+   {
+    "numero": "640",
+    "contexto": " Fase 2 (`transferencia.BETA_PARED`); 1/640 y 4000 r\u00e9plicas, que son"
+   },
+   {
+    "numero": "4000",
+    "contexto": "2 (`transferencia.BETA_PARED`); 1/640 y 4000 r\u00e9plicas, que son par\u00e1me"
+   },
+   {
+    "numero": "1.040",
+    "contexto": " de los scripts; y los cocientes de K6 (1.040 a 1.001) y el 75.2 % de "
+   },
+   {
+    "numero": "75.2",
+    "contexto": "os cocientes de K6 (1.040 a 1.001) y el 75.2 % de K2, que est\u00e1n en `0"
+   }
+  ]
+ },
+ "tasa_coincidencia_casual": {
+  "3": 0.505,
+  "4": 0.1425,
+  "5": 0.0325,
+  "7": 0.0025
+ }
+}

@@ -1,0 +1,9 @@
+{
+ "hulthen_residuo": "0",
+ "hulthen_re_umbral": "3/2",
+ "caja_2R2E_pi2_igual_x2_sobre_pi2": "ver siguiente",
+ "caja_x_sobre_pi_al_cuadrado": "3*r_e**2*t**2/16 + r_e*t/4 + 1/4",
+ "cruce_eps": "pi**2*r_e/(8*R1*R2*c)",
+ "ecsc_gprima": "1 - sqrt(2)*exp(-x)*sin(x + pi/4)",
+ "ecsc_hprima": "-2*exp(-x)*sin(x)"
+}

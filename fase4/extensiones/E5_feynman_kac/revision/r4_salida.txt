@@ -1,0 +1,6 @@
+eta=0.8 n_gl=12 delta=3.0: a = -0.330154 +- 0.000166; sesgo rel +3.81e-02  [25 s]
+eta=0.8 n_gl=12 delta=4.0: a = -0.165882 +- 0.000053; sesgo rel +1.85e-02  [25 s]
+eta=0.4 n_gl=12 delta=3.0: a = -0.341987 +- 0.000262; sesgo rel +3.65e-03  [120 s]
+eta=0.4 n_gl=12 delta=4.0: a = -0.168759 +- 0.000074; sesgo rel +1.53e-03  [120 s]
+delta=3.0: orden 0.8/0.4 con n_gl=12 = 3.38 +- 0.30
+delta=4.0: orden 0.8/0.4 con n_gl=12 = 3.60 +- 0.41

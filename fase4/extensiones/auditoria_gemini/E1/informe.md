@@ -1,0 +1,16 @@
+# Informe de la auditoría externa de E1 (Gemini, app web, modo "Pro", 17-11-2026)
+
+Chat "Auditoría de física"; tres rondas (transcripción en `conversaciones/E1.md`, respuestas en `respuestas/`). Gemini **no ejecutó código ni abrió fuentes** (lo declaró: cálculos "analíticos" y referencias "de memoria"). Sus cifras de la ronda 1 son las del texto, incluso las que exigen resolver la ecuación radial (δ_L = 0.9212), así que no cuentan como recálculo. Todas se comprobaron con scripts propios independientes del código de E1: `respuestas/chk_e1_claude.py` y `respuestas/chk_tf_claude.py`.
+
+| ID | Hallazgo de Gemini | Gravedad (Gemini) | Comprobación (con números) | Estado |
+|---|---|---|---|---|
+| E1-G1 | El criterio relativo 10⁻⁶ de C7 está mal planteado cuando E → 0; proponía cambiarlo a tolerancia absoluta | Baja | Ya declarado en `controles.md`: diferencia absoluta casi constante (4.3 a 6.7×10⁻⁹ hartree) que baja un factor 15.6 a 16.2 con h/2. Cambiar el criterio después de ver el dato viola la regla de criterios fijados antes | Diagnóstico coincidente; propuesta rechazada (sin cambios) |
+| E1-G2 | C9 compara un cero exacto con una etiqueta ilustrativa (b = 4.52) | Baja | Ya declarado en `controles.md` y en la sección (b = 4.4657; 4.502 a 4.518 a velocidad finita) | Coincide con lo ya escrito (sin cambios) |
+| E1-G3 | Con k_BT/E_F = 0.71, Debye clásico **sobreestima** λ (Thomas-Fermi), así que el 1s desaparecería a densidades menores | Baja | Falso en la dirección. Gas de Fermi a T finita: (λ/λ_De)² = F_{1/2}(η)/F_{−1/2}(η); con k_BT/E_F = 0.71, η = 0.666 y λ/λ_De = 1.196 (1.046 con 2; 1.004 con 10). Thomas-Fermi (0.969) solo vale con k_BT ≪ E_F. Gemini aceptó la corrección en la ronda 3 | Refutado. Deja una mejora opcional (ver abajo) |
+| E1-G4 | Factor 2 en b > 2/δ_c | Ninguna | δ = 2m_φ/(αm_χ) = 2/b; 2/δ_c = 1.679808 | Sin error |
+| E1-G5 | K^q_deut = sK^q_π + (1 − s)K^q_N | Ninguna | Derivado a mano; s = −4.759, K^q_deut del modelo = −2.074 (texto: −4.76 y −2.07) | Sin error |
+| E1-G6 | M_B/2 como masa reducida en el punto NPLQCD | Ninguna | Correcto en el punto SU(3) simétrico (bariones degenerados) | Sin error |
+| — | Números principales (Gemini no los recalculó) | — | 1/δ_c = 0.8399039 a₀ (44.446 pm); n_e(1 eV) = 2.7975×10²² cm⁻³; N_D(1 eV) = 0.010289 (= 1 en 97.2 eV); Γ(13.6 eV) = 1.2367, k_BT/E_F = 0.7103, a_ws/λ = 1.926; δ_d = 0.830458, g/ħc = 0.35407, m_π^c = 197.90 MeV; δ_L = 0.921222, g_L/ħc = 1.07077 (×3.024); límite quiral B = 29.43 MeV | Coinciden con la sección |
+| — | Referencias (Rogers et al. 1970, Tulin et al. 2013, NPLQCD 2013, Berengut et al. 2013) | — | Gemini "confirma" solo de memoria; no es verificación. Valen las de `E1_contexto_fisico/fuentes.md` | Sin cambios |
+
+**Resultado:** ningún error en E1; no se corrigió nada. **Mejora opcional para el equipo (pendiente, no aplicada):** la sección dice que a 13.6 eV los electrones están "parcialmente degenerados" sin decir el efecto; podría añadir que con estadística de Fermi la longitud de apantallamiento es 1.20 veces la de Debye clásica en ese punto, así que la frontera del modelo se mueve a densidades mayores. No se aplicó porque el texto lo genera `07_documentos.py` desde los JSON y la cifra debería salir de un script de E1.

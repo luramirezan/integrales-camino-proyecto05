@@ -1,0 +1,22 @@
+delta_c = 1.1906124210606
+lambda_D critica (nucleo infinito)   = 0.8399039 a0 = 44.4458 pm
+lambda_D critica (masa reducida)     = 0.8403613 a0
+Rogers, Graboske y Harwood 1970: D0(1s) = 0.83991 a0/Z ; nuestro 1/delta_c = 0.839904
+coeficiente de Debye recalculado = 743.3942 cm  (NRL: 743.0)
+T =       1 eV: n_e = 2.798e+22 cm^-3 (con iones 1.399e+22), N_D = 1.029e-02, Gamma = 7.047, T/E_F = 0.298, a_ws/lambda_D = 4.598
+T =    13.6 eV: n_e = 3.805e+23 cm^-3 (con iones 1.902e+23), N_D = 1.399e-01, Gamma = 1.237, T/E_F = 0.710, a_ws/lambda_D = 1.926
+T =     100 eV: n_e = 2.798e+24 cm^-3 (con iones 1.399e+24), N_D = 1.029e+00, Gamma = 0.327, T/E_F = 1.381, a_ws/lambda_D = 0.991
+T =    1000 eV: n_e = 2.798e+25 cm^-3 (con iones 1.399e+25), N_D = 1.029e+01, Gamma = 0.070, T/E_F = 2.976, a_ws/lambda_D = 0.460
+Sobre la curva N_D = 1.0289e-02 * (T/eV); N_D = 1 en T = 97.2 eV, N_D = 10 en T = 972 eV
+delta =  0.20 (lambda_D =  5.000 a0): E_A = -0.3268085114 Ha, E_B = -0.3268085052 Ha (R = 60), |dif|/|E| = 1.9e-08, E = -8.89291 eV
+delta =  0.40 (lambda_D =  2.500 a0): E_A = -0.1983760834 Ha, E_B = -0.1983760769 Ha (R = 60), |dif|/|E| = 3.3e-08, E = -5.39809 eV
+delta =  0.60 (lambda_D =  1.667 a0): E_A = -0.1061359075 Ha, E_B = -0.1061359008 Ha (R = 70), |dif|/|E| = 6.3e-08, E = -2.88811 eV
+delta =  0.80 (lambda_D =  1.250 a0): E_A = -0.0447043045 Ha, E_B = -0.0447042980 Ha (R = 110), |dif|/|E| = 1.5e-07, E = -1.21647 eV
+delta =  1.00 (lambda_D =  1.000 a0): E_A = -0.0102857900 Ha, E_B = -0.0102857842 Ha (R = 210), |dif|/|E| = 5.6e-07, E = -0.27989 eV
+delta =  1.10 (lambda_D =  0.909 a0): E_A = -0.0022872442 Ha, E_B = -0.0022872392 Ha (R = 450), |dif|/|E| = 2.2e-06, E = -0.06224 eV
+delta =  1.15 (lambda_D =  0.870 a0): E_A = -0.0004558890 Ha, E_B = -0.0004558844 Ha (R = 1000), |dif|/|E| = 1.0e-05, E = -0.01241 eV
+delta =  1.18 (lambda_D =  0.847 a0): E_A = -0.0000309859 Ha, E_B = -0.0000309816 Ha (R = 3820), |dif|/|E| = 1.4e-04, E = -0.00084 eV
+C5 Formula de Debye en SI frente al coeficiente del NRL Plasma Formulary | 743.394 cm (rel 5.3e-04) | pasa
+C6 Longitud critica frente a Rogers, Graboske y Harwood 1970 (D0 = 0.83991 a0) | 0.8399039 | NO PASA
+C7 Energia del 1s en 8 valores de delta: disparo (A) frente a caja (B) | 1.4e-04 | NO PASA
+tiempo 13.4 s

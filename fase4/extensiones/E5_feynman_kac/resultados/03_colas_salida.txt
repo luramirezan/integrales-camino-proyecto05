@@ -1,0 +1,24 @@
+(1) N=10000000, eta=0.2, 186.0 s; E[X] = 1.00004 +- 0.00036 (exacto 1)
+(1) tasa de la cola de X (1 % superior, u = 5.227, k = 100000): kappa = 0.84160 +- 0.00266; 1/delta_c = 0.83990 (+0.64 sigma); delta_c(MC) = 1.18821 +- 0.00376
+(1) sensibilidad al umbral: [(0.05, 0.8384, 0.0012), (0.02, 0.8384, 0.0019), (0.01, 0.8416, 0.0027), (0.005, 0.8388, 0.0038), (0.002, 0.841, 0.0059), (0.001, 0.8326, 0.0083)]
+(1) amplitud P(X>x) e^{x/delta_c} = [0.8032, 0.8035, 0.8046, 0.8038, 0.8049, 0.8074, 0.803, 0.8037, 0.8036, 0.8027, 0.801, 0.804, 0.8001] frente a wbar_1 = 0.80317
+(1) delta=1.2: theta_MC = 1.0099 +- 0.0032; delta/delta_c = 1.0079
+(1) delta=1.3: theta_MC = 1.0941 +- 0.0035; delta/delta_c = 1.0919
+(1) delta=1.5: theta_MC = 1.2624 +- 0.0040; delta/delta_c = 1.2599
+(1) delta=2.0: theta_MC = 1.6832 +- 0.0053; delta/delta_c = 1.6798
+(1) delta=2.5: theta_MC = 2.1040 +- 0.0067; delta/delta_c = 2.0998
+(1) delta=3.0: theta_MC = 2.5248 +- 0.0080; delta/delta_c = 2.5197
+(1) delta=4.0: theta_MC = 3.3664 +- 0.0106; delta/delta_c = 3.3596
+(2) KS para x >= 0.0211 (0.955 de la muestra): D = 3.52e-04, sqrt(N) D = 1.11 (en x = 0.6042)
+(4) delta=1.5 (theta=1.260): pendiente var = +0.784 (pred +0.587); pendiente dispersion media = -0.113 (pred -0.206); media acumulada final 5.1706 frente a 4.1268
+(4) delta=2.0 (theta=1.680): pendiente var = +0.343 (pred +0.191); pendiente dispersion media = -0.338 (pred -0.405); media acumulada final 2.2285 frente a 2.2069
+(4) delta=2.5 (theta=2.100): pendiente var = +0.155 (pred +0.000); pendiente dispersion media = -0.418 (pred -0.500); media acumulada final 1.7524 frente a 1.7500
+(4) delta=3.0 (theta=2.520): pendiente var = +0.081 (pred +0.000); pendiente dispersion media = -0.451 (pred -0.500); media acumulada final 1.5452 frente a 1.5446
+(4) delta=4.0 (theta=3.360): pendiente var = +0.031 (pred +0.000); pendiente dispersion media = -0.486 (pred -0.500); media acumulada final 1.3523 frente a 1.3521
+(5) partida r0=1, delta=1.5: theta_MC = 1.2557 +- 0.0089 frente a 1.2599 (-0.47 sigma); media de W = 3.9831 (phi(1) = 4.1274, varianza infinita)
+(6) delta=1.5: pendiente con la ley exacta a n finito = +0.616 +- 0.086 (min +0.516, max +0.725); MC +0.784 (z = +1.97)
+(6) delta=2: pendiente con la ley exacta a n finito = +0.262 +- 0.039 (min +0.221, max +0.319); MC +0.343 (z = +2.06)
+(6) delta=2.5: pendiente con la ley exacta a n finito = +0.114 +- 0.019 (min +0.093, max +0.146); MC +0.155 (z = +2.12)
+(6) delta=3: pendiente con la ley exacta a n finito = +0.056 +- 0.011 (min +0.043, max +0.075); MC +0.081 (z = +2.20)
+(6) delta=4: pendiente con la ley exacta a n finito = +0.021 +- 0.006 (min +0.012, max +0.030); MC +0.031 (z = +1.83)
+tiempo total 237.1 s

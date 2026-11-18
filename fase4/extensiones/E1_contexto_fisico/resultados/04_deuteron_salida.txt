@@ -1,0 +1,18 @@
+B (m_p + m_n - m_d, CODATA 2022) = 2.22456637 MeV ; E_B(d) de entrada CODATA = 2.22456640 MeV
+mu = 469.45915515 MeV ; m_pi: pi0 = 134.976800, pi+- = 139.570390, promedio = 138.039193
+[pi0     ] delta_d = 0.8249221354 (A) 0.8249221148 (B), delta_d/delta_c = 0.6929, g/hbar c = 0.348537, <r> = 3.2165 fm, <r^2>^1/2 = 3.9571 fm, r_str = 1.9786 fm, 1/kappa = 4.3177 fm, m_pi crit (g fijo) = 194.812 MeV
+[pi+-    ] delta_d = 0.8331636441 (A) 0.8331636228 (B), delta_d/delta_c = 0.6998, g/hbar c = 0.356833, <r> = 3.1920 fm, <r^2>^1/2 = 3.9336 fm, r_str = 1.9668 fm, 1/kappa = 4.3177 fm, m_pi crit (g fijo) = 199.450 MeV
+[promedio] delta_d = 0.8304583940 (A) 0.8304583730 (B), delta_d/delta_c = 0.6975, g/hbar c = 0.354068, <r> = 3.2000 fm, <r^2>^1/2 = 3.9413 fm, r_str = 1.9706 fm, 1/kappa = 4.3177 fm, m_pi crit (g fijo) = 197.904 MeV
+r_str experimental = sqrt(r_d^2 - r_p^2 - r_n^2 - 3/4m_p^2) = 1.9756 +- 0.0004 fm (Darwin-Foldy 0.03317 fm^2); Filin et al. (teoria) 1.9731 fm
+modelo / experimento = 0.9975; limite de alcance cero 1/(sqrt(8) kappa) = 1.5265 fm
+K_deut del modelo a g fijo: -2.074 con m_N variable (K_N = 0.048), -2.351 sin ella; Berengut -0.86
+d ln B/d ln m_pi (g y mu fijos) = -4.7588 (A), -4.7588 (B); Berengut et al. K_deut/K_pi = -1.741 (rango -2.75 a -0.83)
+NPLQCD [central] B = 19.50 MeV: delta_L = 0.921222 (A) 0.921222 (B), g/hbar c = 1.0708
+NPLQCD [B-1sigma] B = 14.75 MeV: delta_L = 0.948786 (A) 0.948786 (B), g/hbar c = 1.0397
+NPLQCD [B+1sigma] B = 24.25 MeV: delta_L = 0.898237 (A) 0.898237 (B), g/hbar c = 1.0982
+con g fisico (0.3541) en el punto de red: delta = 2.7859 = 2.340 delta_c (no ligado); para ligarlo con 19.5 MeV, g debe multiplicarse por 3.024
+prototipo (sus entradas): delta_d = 0.8304596701597; impreso por el prototipo 0.8304596701595315
+C10 Energia de enlace: m_p + m_n - m_d frente al dato E_B(d) de CODATA 2022 | -0.03 eV | pasa
+C11 Reproduccion del prototipo con sus mismas entradas | 1.9e-13 | pasa
+C12 Deuteron central: disparo (A) frente a caja (B); caja R frente a 2R | 2.5e-08; 1.5e-08, 8.1e-08; 1.5e-11 | pasa
+tiempo 135.8 s

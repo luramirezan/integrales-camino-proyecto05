@@ -21,6 +21,7 @@ Todo depende de un solo número sin unidades, $\delta = \mu\hbar^2/(mg)$. En uni
 | Leer la bitácora completa de la Fase 2 | [`fase2/bitacora_fase2.md`](fase2/bitacora_fase2.md) (o el PDF) |
 | Ver los resultados de la Fase 3 (barridos, cajas, umbral) | [`fase3/LEEME.md`](fase3/LEEME.md) y el [borrador del artículo](fase3/articulo/borrador_articulo.pdf) |
 | Ver la tabla de controles de la Fase 3 | [`fase3/secciones/24_tabla_controles.md`](fase3/secciones/24_tabla_controles.md) |
+| Ver las extensiones de la Fase 4 y el artículo final | [`fase4/extensiones/DECISIONES.md`](fase4/extensiones/DECISIONES.md) y el [borrador del artículo final](fase4/articulo_final/articulo_final.pdf) |
 | Ver la Fase 1 (planteamiento, cotas, plan) | [`fase1/bitacora_fase1_entrega.pdf`](fase1/bitacora_fase1_entrega.pdf) y [`fase1/secciones/`](fase1/secciones) |
 
 ---
@@ -62,6 +63,12 @@ Todo depende de un solo número sin unidades, $\delta = \mu\hbar^2/(mg)$. En uni
     ├── articulo/              borrador del artículo (md y PDF)
     ├── presentacion/          guion, PDF de las láminas y script que las genera (Fases 2 y 3)
     └── auditoria_gemini/      material enviado a Gemini, respuesta con los cálculos e instrucciones
+└── fase4/
+    ├── propuesta_originalidad/  revisión de literatura, propuestas y prototipos
+    ├── extensiones/           E1 contexto físico, E2 cruce de cajas, E3 otros perfiles, E4 según ℓ, E5 Feynman–Kac;
+    │                          cada una con LEEME, código, resultados, figuras, controles, fuentes y revisión;
+    │                          además bibliografia/, auditoria_gemini/, CONTEXTO_COMUN.md y DECISIONES.md
+    └── articulo_final/        borrador integrado (md y PDF), referencias, figuras y NOTAS.md
 ```
 
 ---

@@ -1,0 +1,21 @@
+referencias espectrales en caja: {0.0: np.float64(-0.12499999999994288), 0.2: np.float64(-0.004101646332926543)} (Coulomb exacto -0.125)
+(a) delta=0.0 h=0.03 eps=0.15: E = -1.249999988714e-01  perron_min +3.8e-11  min T 1.3e-13
+(a) delta=0.0 h=0.03 eps=0.075: E = -1.249999996768e-01  perron_min +2.8e-11  min T 4.5e-13
+(a) delta=0.0 h=0.01 eps=0.15: E = -1.249999988704e-01  perron_min +3.6e-11  min T 5.6e-15
+(a) delta=0.0 h=0.01 eps=0.075: E = -1.249999996835e-01  perron_min +2.7e-11  min T 1.6e-14
+(a) delta=0.0 h=0.03: E(eps->0, ley eps^2) = -1.249999999452e-01  ref -1.250000000000e-01  dif +5.5e-11; cociente de sesgos 3.491 (4 si es eps^2)
+(a) delta=0.0 h=0.01: E(eps->0, ley eps^2) = -1.249999999546e-01  ref -1.250000000000e-01  dif +4.5e-11; cociente de sesgos 3.569 (4 si es eps^2)
+(a) delta=0.2 h=0.03 eps=0.15: E = -4.101710244806e-03  perron_min +7.3e-06  min T 1.2e-13
+(a) delta=0.2 h=0.03 eps=0.075: E = -4.101662273690e-03  perron_min +5.3e-06  min T 4.4e-13
+(a) delta=0.2 h=0.01 eps=0.15: E = -4.101710244707e-03  perron_min +7.1e-06  min T 5.4e-15
+(a) delta=0.2 h=0.01 eps=0.075: E = -4.101662282939e-03  perron_min +5.1e-06  min T 1.6e-14
+(a) delta=0.2 h=0.03: E(eps->0, ley eps^2) = -4.101646283318e-03  ref -4.101646332927e-03  dif +5.0e-11; cociente de sesgos 4.009 (4 si es eps^2)
+(a) delta=0.2 h=0.01: E(eps->0, ley eps^2) = -4.101646295683e-03  ref -4.101646332927e-03  dif +3.7e-11; cociente de sesgos 4.007 (4 si es eps^2)
+(b) Coulomb 2p primitivo eps=0.1: E = -1.252296394951e-01  sesgo -2.296e-04
+(b) Coulomb 2p primitivo eps=0.05: E = -1.250886899078e-01  sesgo -8.869e-05
+(b) Coulomb 2p primitivo eps=0.025: E = -1.250337481680e-01  sesgo -3.375e-05
+(b) Coulomb 2p primitivo eps=0.0125: E = -1.250126662350e-01  sesgo -1.267e-05
+(b) orden local entre eps=0.1 y 0.05: 1.373
+(b) orden local entre eps=0.05 y 0.025: 1.394
+(b) orden local entre eps=0.025 y 0.0125: 1.414
+tiempo 44 s

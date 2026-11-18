@@ -1,0 +1,4 @@
+float64 arranque O(h^3) dc - ref para h = 1/100..1/800: ['+1.09e-09', '+6.00e-11', '-2.77e-11', '-1.35e-10']
+float64 arranque O(h^4) dc - ref para h = 1/100..1/800: ['+1.12e-09', '+6.11e-11', '-2.87e-11', '-1.36e-10']
+longdouble arranque O(h^3) dc - ref para h = 1/100..1/800: ['+1.09e-09', '+6.44e-11', '-6.03e-13', '-4.67e-12']
+longdouble arranque O(h^4) dc - ref para h = 1/100..1/800: ['+1.12e-09', '+6.54e-11', '-5.70e-13', '-4.66e-12']

@@ -1,0 +1,9 @@
+sesgo relativo de eta = 0.2 (maximo de 04/04b en delta <= 1.5): 4.68e-03; candidatos {'1.5': 0.004676003651446816, '1.3': 0.0036964313415865395, '1.25': 0.0033905882486353167, '1.2': 0.0034204352009845145}
+(1) delta=1.2: a_EDO=-142.93, delta_T=1.19813067 (a_T=-178.67); N=67751, 101 s, pasos/camino 21673; a_MI = -142.658 +- 0.296 (rel 2.07e-03; con sesgo 0.964: +0.29); var_rel = 0.291 (cota 0.546); peso max = 0.999997
+(1) delta=1.195: a_EDO=-306.71, delta_T=1.19412428 (a_T=-383.39); N=30583, 98 s, pasos/camino 46180; a_MI = -306.035 +- 0.951 (rel 3.10e-03; con sesgo 2.386: +0.28); var_rel = 0.296 (cota 0.551); peso max = 0.999994
+(1) delta=1.192: a_EDO=-971.54, delta_T=1.19172266 (a_T=-1214.42); N=11627, 116 s, pasos/camino 142191; a_MI = -975.241 +- 4.893 (rel 5.04e-03; con sesgo 9.436: -0.39); var_rel = 0.293 (cota 0.555); peso max = 0.999978
+(1) delta=1.1907: a_EDO=-15404.50, delta_T=1.19068248 (a_T=-19255.62); N=621, 101 s, pasos/camino 2151862; a_MI = -15889.764 +- 349.785 (rel 2.27e-02; con sesgo 421.817: -1.15); var_rel = 0.301 (cota 0.556); peso max = 0.999947
+(1) pasos por camino frente a |a_T|: pendiente log-log = 0.982 (prediccion 1)
+(2) delta=1.5, delta_T=1.8 (mapa: varianza finita si delta_T < 1.983): a = -3.80635 (+- 0.00447 ingenuo) frente a -3.66823; cola del peso theta_MC = 2.324 +- 0.023, predicho 2.473; peso max = 584
+(2) delta=1.5, delta_T=3.0 (mapa: varianza finita si delta_T < 1.983): a = -4.67700 (+- 0.34997 ingenuo) frente a -3.66823; cola del peso theta_MC = 1.370 +- 0.014, predicho 1.474; peso max = 2.99e+05
+tiempo total 503.6 s

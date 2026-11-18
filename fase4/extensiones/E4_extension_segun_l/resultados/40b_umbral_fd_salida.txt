@@ -1,0 +1,10 @@
+1s (l=0): delta_c(h) = 1.190365414722, 1.190550640158, 1.190596974000, 1.190608559174
+   orden aparente 1.999, 2.000;  Richardson doble 1.1906124210501 (+- 7.2e-12); disparo 1.1906124210606;  dif = -1.0e-11  pasa = True  (0 s)
+2s (l=0): delta_c(h) = 0.310192119165, 0.310204991299, 0.310208209822, 0.310209014473
+   orden aparente 2.000, 2.000;  Richardson doble 0.3102092826921 (+- 1.5e-11); disparo 0.3102092827139;  dif = -2.2e-11  pasa = True  (0 s)
+2p (l=1): delta_c(h) = 0.220218433408, 0.220217213278, 0.220216908273, 0.220216832023
+   orden aparente 2.000, 2.000;  Richardson doble 0.2202168066067 (+- 1.8e-13); disparo 0.2202168066066;  dif = +1.8e-13  pasa = True  (0 s)
+3d (l=2): delta_c(h) = 0.091345167704, 0.091345132505, 0.091345123705, 0.091345121505
+   orden aparente 2.000, 2.000;  Richardson doble 0.0913451207716 (+- 1.1e-13); disparo 0.0913451207717;  dif = -1.3e-13  pasa = True  (2 s)
+diagnostico 2s delta = 0.30989907 R = 20000: error abs h=1/40 +6.44e-11, h=1/160 +2.32e-11 (rel +2.8e-04), cociente 3  pasa = False  (11 s)
+diagnostico 1s delta = 1.18942181 R = 20000: error abs h=1/40 +4.20e-09, h=1/160 +2.59e-11 (rel +6.7e-05), cociente 162  pasa = True  (7 s)

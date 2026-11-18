@@ -1,0 +1,370 @@
+"""09_textos.py -- E3: escribe seccion_articulo.md, LEEME.md y verificacion.md con TODAS las cifras tomadas de los JSON.
+La prosa esta aqui; los numeros entran solo por las variables leidas de resultados/*.json."""
+import json
+import os
+
+import comun_e3 as C
+
+NOM = {"yukawa": "Yukawa", "ecsc": "ECSC", "hulthen": "Hulthén", "hatomo": "átomo H estático"}
+FORM = {"yukawa": r"$-e^{-\delta r}/r$", "ecsc": r"$-e^{-\delta r}\cos(\delta r)/r$",
+        "hulthen": r"$-\delta e^{-\delta r}/(1-e^{-\delta r})$", "hatomo": r"$-(1/r+\delta/2)\,e^{-\delta r}$"}
+WF = {"yukawa": r"$(1-e^{-\delta r})/r$", "ecsc": r"$(1-e^{-\delta r}\cos\delta r)/r$",
+      "hulthen": r"$1/r-\delta/(e^{\delta r}-1)$", "hatomo": r"$(1-e^{-\delta r})/r-\tfrac{\delta}{2}e^{-\delta r}$"}
+W0 = {"yukawa": r"$\delta$", "ecsc": r"$\delta$", "hulthen": r"$\delta/2$", "hatomo": r"$\delta/2$"}
+
+
+def e(x, n=2):
+    """notacion a x 10^b para la prosa"""
+    s = f"{x:.{n}e}"
+    m, b = s.split("e")
+    return f"{m}\\times10^{{{int(b)}}}"
+
+
+def ee(x, n=2):
+    return f"${e(x, n)}$"
+
+
+def main():
+    U = C.cargar("01_umbrales")["perfiles"]
+    D2a = C.cargar("02_dispersion"); D2 = D2a["perfiles"]
+    D3 = C.cargar("03_ligados_virtuales")["perfiles"]
+    D4a = C.cargar("04_cajas_universalidad"); D4 = D4a["perfiles"]
+    D5 = C.cargar("05_transferencia_ecsc")
+    V = C.cargar("07_verificacion")
+    T8 = C.cargar("08_tabla")
+    with open(os.path.join(C.RES, "tiempos.txt")) as fh:
+        tiempos = fh.read()
+    y, ec, hu, ha = (D2[k] for k in C.ORDEN)
+    lit = {k: U[k]["literatura"] for k in C.ORDEN}
+    cel = D5["celdas"]
+    cec = [c for c in cel if c["perfil"] == "ecsc"]
+    chu = [c for c in cel if c["perfil"] == "hulthen"][0]
+    cyk = [c for c in cel if c["perfil"] == "yukawa"][0]
+    eH = D2a["hatomo_delta2_eH_estatico"]
+    vir01 = {k: [x for x in D3[k]["virtuales"] if abs(x["s"] - 0.01) < 0.003][0] for k in C.ORDEN}
+    fijo = {k: D4[k]["punto_fijo"][-1] for k in C.ORDEN}
+    cr = {k: D4[k]["cruces"][-1] for k in C.ORDEN}
+    cr200 = {k: [c for c in D4[k]["cruces"] if c["R1"] == 200][0] for k in C.ORDEN}
+    L0 = {k: D3[k]["ligados"][0] for k in C.ORDEN}
+    rk = {k: D3[k]["rk_ajuste"] for k in C.ORDEN}
+
+    # ------------------------------------------------------------------ tabla 1 (delta_c)
+    t1 = ["| Perfil | $V(r)$ | $W=V+1/r$ | $W(0)$ | $\\delta_c$ (energía cero) | segundo método | literatura (verificada, ver fuentes) |",
+          "|---|---|---|---|---|---|---|"]
+    for k in C.ORDEN:
+        li = "; ".join(f"{x['valor']} ({x['fuente'].split(' (')[0]})" for x in lit[k] if "Fases" not in x["fuente"] and x["fuente"] != "exacto")
+        if k == "hulthen":
+            li += "; exacto: 2"
+        if k == "hatomo":
+            li = "no encontrada"
+        t1.append(f"| {NOM[k]} | {FORM[k]} | {WF[k]} | {W0[k]} | {U[k]['delta_A']:.12f} | {U[k]['delta_B2_post_hoc']:.12f} | {li} |")
+    # ------------------------------------------------------------------ tabla 2 (umbral)
+    t2 = ["| Perfil | $c$ predicha | $A$ medida | $B$ predicha | $B$ medida | $r_e(\\delta_c)$ | $P$ | $R(2R^2E_0/\\pi^2-\\tfrac14)$, $R=1600$ | $\\delta^\\ast_{800/1600}-\\delta_c$ |",
+          "|---|---|---|---|---|---|---|---|---|"]
+    for k in C.ORDEN:
+        t = T8["tabla"][k]
+        t2.append(f"| {NOM[k]} | {t['c_pred']:.8f} | {t['A_medida']:.8f} | {t['B_pred']:+.4f} | {t['B_medida']:+.4f} | {t['r_e']:+.6f} | "
+                  f"{t['P_forma']:+.4f} | {fijo[k]['R_por_desv']:+.5f} ($r_e/4$ = {t['r_e']/4:+.5f}) | ${e(cr[k]['dif'])}$ |")
+    # ------------------------------------------------------------------ tabla 3 (transferencia)
+    t3 = ["| Perfil | $\\delta$ | $R$ | $E_0$ integral de camino | $E_0$ disparo (misma caja) | diferencia | orden de Trotter |",
+          "|---|---|---|---|---|---|---|"]
+    for c in cel:
+        t3.append(f"| {NOM[c['perfil']]} | {c['delta']} | {c['R']:.0f} | ${c['E_tr']:.10f}\\pm{e(c['err_tr'], 1)}$ | ${c['E_disparo']:.10f}$ | "
+                  f"${e(c['dif_disparo'], 1)}$ | {c['orden_trotter']:.3f} |")
+
+    sec = f"""# Otros perfiles de apantallamiento: qué es universal cerca del umbral
+
+*Sección para el artículo final (extensión E3). Todas las cifras salen de `fase4/extensiones/E3_otros_perfiles/resultados/*.json`.*
+
+## Motivación
+
+La guía sugiere, como ampliación, "cambiar el perfil de apantallamiento" y advierte que no se reclame "una cifra universal
+desligada de las unidades y parámetros". Esta sección hace las dos cosas a la vez. Repetimos el análisis del umbral para
+tres perfiles más y separamos lo que depende del perfil (el valor de $\\delta_c$, la pendiente de $\\kappa$, el sentido en que
+las cajas se acercan al umbral) de lo que no depende de él. La respuesta es concreta: cerca del umbral todo el problema
+se reduce a dos números de baja energía, la longitud de dispersión $a$ y el rango efectivo $r_e$; lo universal es lo que
+no depende de ellos, y el primer término no universal lo fija $r_e$.
+
+Los perfiles se eligen así. El ECSC (Coulomb apantallado con coseno) tiene una zona repulsiva ($\\cos\\delta r<0$) y es el
+perfil clásico de comparación [Lam y Varshni 1972]. El Hulthén es exactamente soluble y ya era un control de la Fase 2. El
+cuarto, $-(1/r+\\delta/2)e^{{-\\delta r}}$, es el potencial electrostático de un átomo de hidrógeno 1s (con radio $2/\\delta$)
+visto por una carga unidad; en $\\delta=2$ es el potencial estático e–H en unidades atómicas. Lo añadimos porque tiene
+sentido físico directo y porque su $W(0)=\\delta/2$ y su forma lo hacen distinto del Yukawa. Todos se escriben como
+$V=-1/r+W(r)$ con $W$ acotado y suave (tabla 1), así que la misma acción de pares de Coulomb vale para todos.
+
+## Método
+
+Usamos $\\hbar=m=g=1$ y la convención del grupo, $u\\simeq r-a$ fuera del alcance ($a>0$ cuando hay ligado).
+
+*Energía cero.* Integramos $u''=2Vu$ desde la serie de Frobenius y, donde $|V|<e^{{-60}}/r$, escribimos $u=\\alpha+\\beta r$;
+entonces $1/a=-\\beta/\\alpha$, que es continua a través del umbral. El umbral es $1/a(\\delta_c)=0$. El rango efectivo sale de la
+fórmula de Bethe, $r_e=2\\int_0^\\infty(\\psi^2-\\varphi^2)\\,dr$ con $\\psi=1-r/a$ y $\\varphi\\to1-r/a$ [Bethe 1949]. La
+identidad del wronskiano entre dos soluciones de energía cero da, sin derivar numéricamente,
+$$c\\equiv-\\frac{{d(1/a)}}{{d\\delta}}\\Big|_{{\\delta_c}}=2\\int_0^\\infty\\frac{{\\partial V}}{{\\partial\\delta}}\\,\\varphi_0^2\\,dr .$$
+
+*Rango efectivo.* Con $k\\cot\\delta_0=-1/a+r_ek^2/2+Pk^4$, el polo ligado ($k=i\\kappa$) y el virtual ($k=-i\\kappa_v$) son
+$$\\kappa=\\frac{{1-\\sqrt{{1-2r_e/a}}}}{{r_e}},\\qquad \\kappa_v=\\frac{{-1+\\sqrt{{1-2r_e/a}}}}{{r_e}}\\ (a<0).$$
+Con $1/a=c\\Delta+d_2\\Delta^2$ ($\\Delta=\\delta_c-\\delta$) resulta $\\kappa=c\\Delta+B\\Delta^2$ con $B=d_2+r_ec^2/2$. La
+normalización asintótica $A_s^2=2\\kappa/(1-\\kappa r_e)$ da $\\langle r\\rangle\\kappa=\\tfrac12(1+r_e\\kappa)+O(\\kappa^2)$.
+
+*Caja dura.* Fuera del alcance $u=\\sin k(R-r)$, así que $k\\cot\\delta_0=-k\\cot kR$ y, con $x=kR$,
+$$-x\\cot x=-\\frac{{R}}{{a}}+\\frac{{r_e x^2}}{{2R}}+\\frac{{Px^4}}{{R^3}} .\\qquad(*)$$
+En $\\delta_c$ esto da $x\\to\\pi/2$, el punto fijo $2R^2E_0/\\pi^2\\to\\tfrac14$, con $2R^2E_0/\\pi^2\\simeq\\tfrac14(1+r_e/R)$. Para el cruce
+de dos cajas ($R_1^2E_0(R_1)=R_2^2E_0(R_2)$), $(*)$ da a primer orden $1/a^\\ast=-r_e\\pi^2/(8R_1R_2)$, es decir
+$$\\delta^\\ast-\\delta_c\\simeq\\frac{{r_e\\,\\pi^2}}{{8\\,c\\,R_1R_2}} :$$
+el signo de $r_e$ decide si los cruces llegan desde arriba o desde abajo.
+
+*Cálculo.* Todo lo anterior se calcula sin malla (disparo con `solve_ivp` DOP853, rtol $10^{{-13}}$): $\\kappa$ por empalme con
+$e^{{-\\kappa r}}$, $\\kappa_v$ como la raíz de $u'-\\kappa u=0$ (solución pura $e^{{+\\kappa r}}$), $E_0(R)$ por $u(R)=0$. Para la
+integral de camino usamos la matriz de transferencia de la Fase 2 con la acción de pares de Coulomb y $e^{{-\\epsilon(W_i+W_j)/2}}$,
+con la receta de errores de la Fase 3 (Richardson $h^4$, extrapolación $\\epsilon^2$, sesgo de pared en la barra).
+
+## Resultados
+
+**Umbrales.** La tabla 1 da $\\delta_c$ por energía cero y por un segundo método independiente (raíz de un ajuste cúbico de
+$\\kappa(\\delta)$ obtenido de energías de ligado). Un tercer método, el de fase variable para $1/a$ con otro integrador,
+coincide a {ee(max(abs(x['dif']) for x in V['V1'].values()), 0)} o mejor. El Hulthén reproduce $\\delta_c=2$ a
+{ee(abs(U['hulthen']['delta_A'] - 2), 0)} y el Yukawa el valor de las Fases 1–3 a {ee(abs(U['yukawa']['delta_A'] - C.DELTA_C_YUK_REF), 0)}.
+Para el ECSC obtenemos $\\delta_c={ec['delta_c']:.10f}$: coincide con las 8 cifras que Roy atribuye a Singh y Varshni (0.72052408,
+diferencia ${e(lit['ecsc'][1]['dif'], 1)}$, compatible con un truncado) y con las 7 de Roy (0.7205240); el 0.7115 variacional de Lam
+y Varshni queda ${e(lit['ecsc'][3]['dif'], 1)}$ abajo y el 0.72055425 de Nasser et al. ${e(-lit['ecsc'][2]['dif'], 1)}$ arriba.
+
+*Tabla 1. Perfiles y apantallamiento crítico del 1s.*
+
+{chr(10).join(t1)}
+
+El segundo método se fijó primero con puntos hasta $1-\\delta/\\delta_c=0.03$; en el ECSC el cúbico no sigue la fuerte
+curvatura de $\\kappa(\\delta)$ y falla por ${e(abs(U['ecsc']['dif_AB']), 1)}$ (control U2, "no pasa"). Con puntos entre $10^{{-4}}$ y
+$2\\times10^{{-3}}$ (variante añadida después, indicada como tal) la diferencia baja a ${e(abs(U['ecsc']['dif_AB2']), 1)}$.
+
+**Pendiente predicha frente a medida.** La tabla 2 compara la pendiente $c$ predicha por la solución de energía cero con la
+$A$ de un ajuste $\\kappa=A\\Delta+B\\Delta^2+C\\Delta^3$ a energías de ligado ($10^{{-4}}\\le\\Delta/\\delta_c\\le10^{{-2}}$). Para
+el Yukawa, $c={y['c_HF']:.7f}$ predice sin ajustar el $A=0.7411$ de la Fase 3 y $B={y['B_pred']:.4f}$ su $B={V['V5']['B_fase3']:.3f}$
+(el ajuste de la Fase 3 usa pocos puntos y $\\delta_c$ fijo). En el Hulthén $c=1/2$ y $B=0$ exactos, porque $\\kappa=1-\\delta/2$ es lineal.
+En el ECSC la pendiente es más de tres veces la del Yukawa y la curvatura cambia de signo ($B={ec['B_pred']:.2f}$). La figura 2
+muestra $\\kappa$ y $c\\Delta$ en cuatro décadas, y la desviación relativa siguiendo $B\\Delta/c$.
+
+*Tabla 2. Parámetros de baja energía en el umbral y lo que ve la caja (la última columna es el cruce de $R=800$ y $1600$).*
+
+{chr(10).join(t2)}
+
+![Figura 1. (a) $E_0$ del 1s frente a $\\delta/\\delta_c$. (b) $\\kappa/(c\\delta_c)$ frente a $1-\\delta/\\delta_c$: con la pendiente predicha, los cuatro perfiles colapsan en la recta cerca del umbral y se separan lejos de él.](figuras/E3_01_energias_reescaladas.png)
+
+![Figura 2. (a) $\\kappa$ (puntos) frente a $\\Delta$ y la recta $c\\Delta$ predicha (sin ajuste). (b) Desvío relativo $(\\kappa-c\\Delta)/(c\\Delta)$ y la predicción $B\\Delta/c$ del rango efectivo.](figuras/E3_02_kappa_pendientes.png)
+
+![Figura 3. $1/a$ frente a $\\delta/\\delta_c$: cruza cero en $\\delta_c$ con pendiente $-c$ (panel b, reescalado).](figuras/E3_03_inversa_a.png)
+
+**Rango efectivo.** La fórmula de rango efectivo reproduce $\\kappa$ con error relativo menor que
+{ee(max(abs(x['kappa_ERE'] - x['kappa']) / x['kappa'] for p in D3.values() for x in p['ligados'] if x['s'] <= 0.01), 0)} hasta
+$\\Delta/\\delta_c=0.01$ en los cuatro perfiles. $r_e$ y $1/a$ por energía cero coinciden con los de un ajuste a desfasajes a
+pequeño $k$ (diferencias de ${e(max(abs(c['r_e_1'] - c['r_e_2b']) for p in D2.values() for c in p['comparacion']), 0)}$ en $r_e$). El ECSC
+es el único con $r_e<0$ en el umbral ($r_e={ec['r_e_c']:+.4f}$, con un parámetro de forma grande, $P={T8['tabla']['ecsc']['P_forma']:+.2f}$).
+La causa es su zona repulsiva ($\\cos\\delta r<0$ entre $\\delta r=\\pi/2$ y $3\\pi/2$): en el umbral $r_e=2\\int(1-\\varphi_0^2)\\,dr$,
+y la solución de energía cero del ECSC sube por encima de su asíntota, hasta $\\varphi_0={V['V6']['ecsc']['phi_max']:.4f}$ en
+$\\delta r={V['V6']['ecsc']['delta_r_max']:.3f}$, y luego baja; en la zona repulsiva la solución es convexa y se aplana sobre la asíntota desde arriba. En el Yukawa
+$\\varphi_0$ crece hacia 1 sin pasarlo (máximo {V['V6']['yukawa']['phi_max']:.6f}), y $r_e>0$.
+
+**Universalidad.** En $\\Delta/\\delta_c=10^{{-5}}$, $\\kappa a$ y $2\\langle r\\rangle\\kappa$ difieren de 1 en menos de
+{ee(max(max(abs(L0[k]['kappa_a'] - 1), abs(L0[k]['rk'] - 0.5)) for k in C.ORDEN), 0)} en los cuatro perfiles. La
+corrección sí depende del perfil, y la fija $r_e$: la pendiente medida de $\\langle r\\rangle\\kappa$ frente a $\\kappa$ es
+{rk['yukawa']['pendiente']:.5f}, {rk['ecsc']['pendiente']:.5f}, {rk['hulthen']['pendiente']:.5f} y {rk['hatomo']['pendiente']:.5f}
+(Yukawa, ECSC, Hulthén, átomo H), frente a $r_e/2$ = {rk['yukawa']['r_e_sobre_2']:.5f}, {rk['ecsc']['r_e_sobre_2']:.5f},
+{rk['hulthen']['r_e_sobre_2']:.5f} y {rk['hatomo']['r_e_sobre_2']:.5f}. Por eso en el ECSC $\\langle r\\rangle\\kappa$ y $\\kappa a$
+llegan a sus límites desde abajo y en los otros tres desde arriba (figura 4a).
+
+En la caja dura el punto fijo es $\\tfrac14$ para los cuatro perfiles y la corrección es $r_e/(4R)$, más $3r_e^2/(16R^2)$ a
+segundo orden (de $(*)$ con $x=\\pi/2+\\epsilon$; señalado en la auditoría externa, `auditoria_gemini/E3/informe.md`): en $R=1600$,
+$R(2R^2E_0/\\pi^2-\\tfrac14)$ vale {fijo['yukawa']['R_por_desv']:+.4f}, {fijo['ecsc']['R_por_desv']:+.4f},
+{fijo['hulthen']['R_por_desv']:+.4f} y {fijo['hatomo']['R_por_desv']:+.4f}, frente a $r_e/4$ (tabla 2) y a
+$r_e/4+3r_e^2/(16R)$ = {', '.join(f"{T8['tabla'][k]['r_e']/4 + 3*T8['tabla'][k]['r_e']**2/(16*fijo[k]['R']):+.4f}" for k in C.ORDEN)}, y la ecuación $(*)$ completa
+reproduce el valor a {ee(max(abs(x['valor'] - x['pred']) / 0.25 for p in D4.values() for x in p['punto_fijo'] if x['R'] >= 200), 0)}
+(relativo, $R\\ge200$). También $\\langle r\\rangle/R$ en $\\delta_c$ tiende a $\\tfrac12-2/\\pi^2={D4a['r_sobre_R_universal']:.5f}$
+({', '.join(f"{fijo[k]['r_sobre_R']:.5f}" for k in C.ORDEN)} en $R=1600$). Los cruces de pares $(R,2R)$ llegan **desde arriba** en
+Yukawa, Hulthén y átomo H y **desde abajo** en el ECSC, como predice el signo de $r_e$; con $R_1=200$ el cruce está a
+${e(cr200['yukawa']['dif'])}$ del umbral en el Yukawa y a ${e(cr200['ecsc']['dif'])}$ en el ECSC, y $(*)$ predice cada cruce
+con error relativo menor que {ee(max(abs(c['delta_star'] - c['pred']) / abs(c['dif']) for p in D4.values() for c in p['cruces'] if c['R1'] >= 200), 0)}
+(figura 4c). El cruce converge como $1/(R_1R_2)$, así que el par $800/1600$ ya fija $\\delta_c$ a {ee(max(abs(cr[k]['dif']) / D4[k]['delta_c'] for k in C.ORDEN), 1)} relativo o mejor.
+
+![Figura 4. (a) $\\langle r\\rangle\\kappa$ frente a $\\kappa$ y la recta $\\tfrac12(1+r_e\\kappa)$. (b) $2R^2E_0/\\pi^2$ en $\\delta_c$ frente a $1/R$ y la recta $\\tfrac14(1+r_e/R)$. (c) Cruces de cajas frente a $1/(R_1R_2)$ y la predicción de primer orden.](figuras/E3_04_universalidad.png)
+
+**Estado virtual.** Del otro lado del umbral el polo pasa a $k=-i\\kappa_v$. La fórmula de rango efectivo y el cálculo
+directo coinciden a {ee(max(abs(x['kappa_v_ERE'] - x['kappa_v_dir']) / x['kappa_v_dir'] for p in D3.values() for x in p['virtuales'] if x['s'] <= 0.01), 0)}
+hasta $\\delta/\\delta_c-1=0.01$; en $\\delta/\\delta_c-1={vir01['yukawa']['s']:.4f}$, $E_{{\\rm virtual}}=-\\kappa_v^2/2$ vale
+${e(vir01['yukawa']['E_virtual'])}$ (Yukawa) y ${e(vir01['ecsc']['E_virtual'])}$ (ECSC). En el Hulthén el polo virtual sale en
+$\\kappa_v=\\delta/2-1$, la imagen exacta del ligado $\\kappa=1-\\delta/2$ (diferencia {ee(V['V4']['max_dif_rel'], 0)}). La caja también
+ve el polo virtual: con las energías positivas de $R=50$ a 1600 se reconstruye $k\\cot\\delta_0=-k\\cot kR$, y el ajuste da $\\kappa_v$
+a {ee(max(abs(x['dif_rel']) for p in D4.values() for x in p['virtual_caja']), 0)} o mejor (figura 5). La integral de camino, en
+cambio, solo proyecta sobre el autovalor dominante de la caja; para ver el virtual necesita varias cajas y este mismo análisis.
+
+![Figura 5. Polo virtual: cálculo directo (puntos), rango efectivo (líneas) y reconstrucción desde las cajas (cruces).](figuras/E3_05_virtual.png)
+
+**Integral de camino para el ECSC.** Para el ECSC, $W=(1-e^{{-\\delta r}}\\cos\\delta r)/r=\\delta(1-x^2/3+x^3/6-\\dots)$ con $x=\\delta r$
+es una función entera de $r$, positiva y acotada por $\\delta$ (medido en $[10^{{-8}},400]$: mínimo
+{min(v['min'] for v in D5['W_ecsc'].values()):.4f}, máximo $\\delta$). Toda la singularidad está en el $-1/r$, que la acción de pares trata
+de forma exacta, así que la factorización sigue siendo exacta en el origen y el error de $W$ es $O(\\epsilon^2)$, como en el
+Yukawa. Los elementos de la matriz son productos de factores positivos: el peso es real, positivo y normalizable. La tabla 3
+compara la integral de camino con el disparo en la misma caja, sin malla. Los ocho casos están dentro de la barra
+(desviación máxima de {max(abs(c['dif_disparo']) / c['err_tr'] for c in cel):.2f} barras), el orden de Trotter medido va de
+{min(c['orden_trotter'] for c in cel):.3f} a {max(c['orden_trotter'] for c in cel):.3f} y los autovectores son de signo constante.
+El Hulthén en $\\delta=1.8$ da ${chu['E_tr']:.10f}$ frente al exacto $-0.005$, y la celda de Yukawa reproduce bit a bit la de
+la Fase 3 en la misma $(h,\\epsilon)$.
+
+*Tabla 3. Integral de camino (acción de pares + $W$) frente al disparo en la misma caja.*
+
+{chr(10).join(t3)}
+
+![Figura 6. Integral de camino frente al disparo: (a) desvío en unidades de la barra; (b) desvío y barra relativos.](figuras/E3_06_transferencia.png)
+
+## Discusión
+
+*Qué es universal.* Para los cuatro perfiles: $E_0\\propto-\\Delta^2$ (estado $s$ que se pierde en el continuo), $\\kappa a\\to1$,
+$\\langle r\\rangle\\kappa\\to\\tfrac12$, el punto fijo $2R^2E_0/\\pi^2=\\tfrac14$ y $\\langle r\\rangle/R=\\tfrac12-2/\\pi^2$ en la caja dura.
+No dependen de la forma del potencial porque solo dependen de que $1/a$ cruce cero.
+
+*Qué no lo es.* El valor de $\\delta_c$ ({ec['delta_c']:.4f}, {y['delta_c']:.4f}, {ha['delta_c']:.4f} y {hu['delta_c']:.4f}), la
+pendiente $c$ (de {hu['c_HF']:.2f} a {ec['c_HF']:.2f}), la curvatura $B$ y el sentido por el que se llega a los límites.
+Pero lo no universal está organizado: a primer orden todo lo fija $r_e$, que medimos de forma independiente por tres caminos
+(Bethe, desfasajes, cajas). En particular, el sentido del cruce de cajas no es una propiedad del método sino del signo de $r_e$.
+Esto responde a la advertencia de la guía: $\\delta_c$ no es una cifra universal, depende del perfil y de cómo se defina
+$\\delta$; lo que sí se traslada de un perfil a otro son las leyes en $a$ y $r_e$.
+
+*Contexto físico.* Con el perfil del átomo H, el potencial estático e–H ($\\delta=2$) está del lado no ligado
+($\\delta_c={ha['delta_c']:.4f}<2$): sin intercambio ni polarización, la aproximación estática no liga un electrón al hidrógeno, y
+su longitud de dispersión en nuestra convención es $a={eH['a']:.3f}$ (radios de Bohr; no encontramos un valor publicado verificado
+para compararla).
+
+*Limitaciones.* La integral de camino solo se corrió para el ECSC y un caso de cada control (8 celdas); no repetimos con ella el
+análisis de cruces. El $\\delta_c$ del ECSC solo lo contrastamos con la tabla de Roy (que cita a Singh y Varshni sin que abriéramos el original) y el del átomo H no tiene referencia publicada que hayamos encontrado.
+
+## Referencias de la sección
+
+- H. A. Bethe, *Phys. Rev.* **76**, 38 (1949), DOI 10.1103/PhysRev.76.38 [V].
+- C. S. Lam y Y. P. Varshni, *Phys. Rev. A* **6**, 1391 (1972), DOI 10.1103/PhysRevA.6.1391 [V] (ECSC).
+- C. S. Lam y Y. P. Varshni, *Phys. Rev. A* **4**, 1875 (1971), DOI 10.1103/PhysRevA.4.1875 [V] (Yukawa).
+- A. K. Roy, arXiv:1904.11166 (2019) [V-arXiv]: críticos de Hulthén, Yukawa y ECSC.
+- D. S. Singh y Y. P. Varshni, *Phys. Rev. A* **28**, 2606 (1983) [citada por Roy].
+- I. Nasser, M. S. Abdelmonem y A. Abdel-Hady, *Phys. Scr.* **84**, 045001 (2011) [citada por Roy].
+"""
+    with open(os.path.join(C.BASE, "seccion_articulo.md"), "w") as fh:
+        fh.write(sec)
+
+    # ------------------------------------------------------------------ verificacion.md
+    v2 = V["V2"]; v3 = V["V3"]
+    ver = f"""# Verificación de E3 (generado por `codigo/09_textos.py` desde los JSON)
+
+## Comprobaciones independientes
+
+1. **Tres métodos para $\\delta_c$.** (A) energía cero con DOP853 y brentq sobre $1/a$; (B) raíz de un ajuste de $\\kappa(\\delta)$
+   obtenido de energías de ligado, sin usar energía cero; (C) fase variable para $1/a$ (Calogero), $db/dr=-2V(1-rb)^2$, integrada
+   con LSODA. Diferencias A frente a C: {', '.join(f"{NOM[k]} {ee(V['V1'][k]['dif'], 1)}" for k in C.ORDEN)}. A frente a B (variante
+   cercana al umbral): {', '.join(f"{NOM[k]} {ee(U[k]['dif_AB2'], 1)}" for k in C.ORDEN)}. Estabilidad de A ante $r_f$ y la
+   tolerancia: máximo {ee(max(max(abs(p['delta_A_rf80'] - p['delta_A']), abs(p['delta_A_rtol11'] - p['delta_A'])) for p in U.values()), 1)}.
+2. **Casos exactos.** Hulthén: $\\delta_c=2$ ({ee(U['hulthen']['delta_A'] - 2, 1)}); $\\kappa=1-\\delta/2$ ({ee(U['hulthen']['dif_kappa_exacto_max'], 1)});
+   $a(\\delta)$ con la función digamma, $a=\\delta^{{-1}}[2\\gamma+\\psi(1+\\sqrt{{2/\\delta}})+\\psi(1-\\sqrt{{2/\\delta}})]$, deducida aquí
+   (error relativo máximo {ee(hu['err_rel_a_exacto_max'], 1)}); $\\langle r\\rangle=(12-\\delta^2)/(2(4-\\delta^2))$ en $\\delta$ = 1.0, 1.5 y 1.9
+   (máximo {ee(max(abs(x['dif_rel']) for x in v3), 1)}); integral de camino en $\\delta=1.8$ ({ee(chu['E_tr'] - chu['E_exacta'], 1)} con barra
+   {ee(chu['err_tr'], 1)}). Observaciones nuevas, sin referencia: en el umbral $r_e={hu['r_e_c']:.9f}$ (igual a $3/\\delta_c$ a 9 cifras) y
+   el polo virtual sale en $\\kappa_v=\\delta/2-1$ ({ee(V['V4']['max_dif_rel'], 1)}).
+3. **Dos caminos para $c$, $a$ y $r_e$.** $c$ por Hellmann–Feynman frente a diferencias centradas con Richardson: máximo
+   {ee(max(abs(p['c_HF'] - p['c_dif']) / p['c_HF'] for p in D2.values()), 1)} relativo. $1/a$ y $r_e$ de la energía cero frente a desfasajes:
+   el primer diseño del ajuste (k hasta $0.1\\delta$, grado 3) **no pasa** el criterio de $10^{{-9}}$ en $1/a$
+   (máximo {ee(max(abs(c['inv_a_1'] - c['inv_a_2']) for p in D2.values() for c in p['comparacion']), 1)}) por truncación del polinomio; con
+   $k\\le0.05\\delta$ y grado 4 las diferencias bajan a {ee(max(abs(c['inv_a_1'] - c['inv_a_2b']) for p in D2.values() for c in p['comparacion']), 1)}
+   y {ee(max(abs(c['r_e_1'] - c['r_e_2b']) for p in D2.values() for c in p['comparacion']), 1)}. Tercer camino: el ajuste a energías de
+   caja da $1/a$ y $r_e$ coherentes (control K4).
+4. **Disparo frente a métodos con malla.** Frente al radial de la Fase 3 (Yukawa, {len(v2)} valores de $\\delta$ con $R\\ge25/\\kappa$):
+   máximo {ee(max(abs(x['dif']) for x in v2), 1)}, dentro del error de malla del radial. Frente al radial de la Fase 2 en $R=200$ y
+   $\\delta_c$: máximo {ee(max(abs(p['radial_R200']['E0'] - p['radial_R200']['disparo']) for p in D4.values()), 1)}.
+5. **Integral de camino.** La celda de Yukawa ($\\delta=1.18$, $R=200$) reproduce la de la Fase 3, ${e(cyk['E_tr'], 10)}$, y el
+   autovalor crudo coincide bit a bit con `comun3.resolver_tr`. Las barras de la receta son conservadoras: el desvío real frente al
+   disparo es de {min(abs(c['dif_disparo']) / c['err_tr'] for c in cel):.3f} a {max(abs(c['dif_disparo']) / c['err_tr'] for c in cel):.2f} barras.
+
+## Lo que encontramos al releer el código
+
+- **Error real corregido (17-11-2026).** El control V3 falló en la primera corrida: $\\langle r\\rangle$ del Hulthén en $\\delta=1$
+  salía mal en el segundo decimal (esa primera salida no se conservó). Causa: para estados profundos ($\\kappa r_f=30$) la integración hacia afuera amplifica el redondeo como
+  $e^{{\\kappa r_f}}$ y contamina la función de onda cerca de $r_f$ (el autovalor no se ve afectado, porque la condición de empalme
+  está bien condicionada). Se corrigió en `perfiles._observables_ligado`: si $\\kappa r_f>10$, integración hacia adentro de la
+  solución decreciente y empalme en $r_m=\\min(r_f/2,4/\\kappa)$. Cerca del umbral ($\\kappa r_f\\le10$) nada cambia. Todo se volvió a
+  correr después de la corrección.
+- **Desbordes.** Al buscar $E_0$ en cajas grandes o $\\kappa$ de estados profundos, la solución creciente desborda (avisos de
+  numpy). Se trata como signo positivo (`caja`) o se acorta $r_f$ a $600/\\kappa$ sin bajar de $40/\\delta$ (`ligado`); se
+  descartan valores no finitos al buscar cambios de signo.
+- **Arranque.** La serie de Frobenius usa $u=r-r^2+c_3r^3$ con $c_3=(2+2W(0)-2E)/6$; el tramo $[0,r_0]$ aporta $2r_0$ a $r_e$ y se
+  suma. Cambiar $r_0$ de $10^{{-6}}$ a $10^{{-7}}$ movió $r_e$ del Hulthén en el orden de $10^{{-12}}$ (prueba interactiva durante el desarrollo, sin JSON).
+- **Sesgo de pared.** A diferencia de la Fase 3 se estimó con el disparo en $R+0.5826\\sqrt\\epsilon$ en lugar del radial con
+  $h=1/40$; en la celda de Yukawa es la parte dominante de la barra.
+- **Criterios añadidos después.** U2b y S1b se añadieron tras ver los fallos de U2 y S1 y se marcan "(posterior)" en `controles.md`;
+  no cambian los veredictos originales.
+- **Tiempos** (un proceso, `OMP_NUM_THREADS=1`):
+
+```
+{tiempos.strip()}
+```
+"""
+    with open(os.path.join(C.BASE, "verificacion.md"), "w") as fh:
+        fh.write(ver)
+
+    # ------------------------------------------------------------------ LEEME.md
+    lee = f"""# E3: otros perfiles de apantallamiento y universalidad cerca del umbral
+
+Extensión de la Fase 4 (proyecto 05). Responde a la ampliación que sugiere la guía, "cambiar el perfil de apantallamiento":
+¿qué del umbral del Yukawa es universal y qué depende del perfil? Perfiles: Yukawa (referencia), ECSC, Hulthén (exacto) y el
+potencial estático de un átomo H 1s, $-(1/r+\\delta/2)e^{{-\\delta r}}$ (en $\\delta=2$ es el potencial e–H estático en u. a.).
+
+## Resultados principales
+
+| Perfil | $\\delta_c$ | $c$ predicha | $A$ medida | $r_e(\\delta_c)$ | cruce de cajas |
+|---|---|---|---|---|---|
+""" + "\n".join(f"| {NOM[k]} | {T8['tabla'][k]['delta_c']:.10f} | {T8['tabla'][k]['c_pred']:.7f} | {T8['tabla'][k]['A_medida']:.7f} | "
+                f"{T8['tabla'][k]['r_e']:+.5f} | {T8['tabla'][k]['sentido_cruce']} |" for k in C.ORDEN) + f"""
+
+- **Umbrales** con tres métodos (energía cero, energías de ligado y fase variable) que coinciden a $\\le$ {ee(max(max(abs(V['V1'][k]['dif']), abs(U[k]['dif_AB2'])) for k in C.ORDEN), 0)}.
+  ECSC: {ec['delta_c']:.10f}, compatible con 0.72052408 (Singh y Varshni, citado por Roy) y 0.7205240 (Roy 2019).
+- **Pendiente sin ajuste:** $c=-d(1/a)/d\\delta=2\\int\\partial_\\delta V\\varphi_0^2$ predice la pendiente medida a
+  {ee(max(abs(D3[k]['ajuste']['dif_rel_A_c']) for k in C.ORDEN), 0)} o mejor; para el Yukawa $c={y['c_HF']:.5f}$ frente a 0.7411 de la Fase 3.
+- **Universal:** $\\kappa a\\to1$, $\\langle r\\rangle\\kappa\\to\\tfrac12$, punto fijo $2R^2E_0/\\pi^2=\\tfrac14$, $\\langle r\\rangle/R\\to\\tfrac12-2/\\pi^2$.
+- **No universal, pero fijado por $r_e$:** $\\langle r\\rangle\\kappa=\\tfrac12(1+r_e\\kappa)$, $2R^2E_0/\\pi^2=\\tfrac14(1+r_e/R)$ en $\\delta_c$ y
+  $\\delta^\\ast-\\delta_c\\simeq r_e\\pi^2/(8cR_1R_2)$ para los cruces. El ECSC es el único con $r_e<0$ ({ec['r_e_c']:+.4f}) y por eso
+  sus cruces llegan desde abajo.
+- **Estado virtual** del otro lado: rango efectivo, cálculo directo y reconstrucción desde cajas coinciden (controles L5, K4).
+- **Integral de camino** (acción de pares + $W$) para el ECSC en 5 valores de $\\delta$ y 3 controles: todo dentro de la barra
+  (máximo {max(abs(c['dif_disparo']) / c['err_tr'] for c in cel):.2f} barras), Trotter {min(c['orden_trotter'] for c in cel):.2f} a {max(c['orden_trotter'] for c in cel):.2f}.
+- **Controles:** {T8['n_filas']} filas en `controles.md`; {T8['n_pasa']} pasan, {T8['n_no_pasa']} no pasan (U2 y S1, ambos por el diseño
+  del ajuste del segundo método, con causa medida y variante posterior que pasa), 1 medido.
+
+## Cómo reproducir (desde `codigo/`, un proceso)
+
+```
+export OMP_NUM_THREADS=1
+python 01_umbrales.py            # delta_c por energia cero y por energias de ligado
+python 02_dispersion.py          # a(delta), r_e(delta), c, B; desfasajes; Hulthen exacto
+python 03_ligados_virtuales.py   # kappa, <r>, kappa a, polo virtual
+python 03b_curvas_E.py           # curvas E0(delta) completas (figura 1)
+python 04_cajas_universalidad.py # punto fijo 1/4, cruces, polo virtual desde cajas
+python 05_transferencia_ecsc.py  # integral de camino (usa fase2/ y fase3/codigo sin modificarlos)
+python 07_verificacion.py        # fase variable, radial de la Fase 3, Hulthen <r>
+python 06_figuras.py; python 08_tabla_controles.py; python 09_textos.py
+```
+Tiempos medidos: ver `verificacion.md` (total {sum(int(l.split()[1]) for l in tiempos.splitlines() if l.split()[1:2] and l.split()[1].isdigit()) / 60:.0f} minutos). Módulos propios: `perfiles.py` (potenciales y solucionadores sin
+malla) y `comun_e3.py` (rutas y salida). Salidas en `resultados/*.json` y `*_salida.txt`; figuras en `figuras/`.
+
+## Archivos
+
+`seccion_articulo.md` (sección para el artículo), `controles.md`, `fuentes.md`, `registro_ia.md`, `verificacion.md`,
+`resultados/08_tabla_comparativa.md`.
+
+## Qué quedó sin hacer
+
+- Cruces de cajas con la integral de camino (aquí solo con el disparo); el análisis completo de cajas con transferencia es E2.
+- Estados excitados (2s) y $\\ell>0$ para los otros perfiles (E4 trata $\\ell$ para Yukawa).
+- Abrir los originales de Singh y Varshni (1983) y Nasser et al. (2011); una referencia para $r_e=3/\\delta_c$ y $\\kappa_v=\\delta/2-1$ del Hulthén.
+- Auditoría externa con Gemini (la coordina la sesión principal, decisión D4).
+"""
+    with open(os.path.join(C.BASE, "LEEME.md"), "w") as fh:
+        fh.write(lee)
+    print("textos escritos")
+
+
+if __name__ == "__main__":
+    main()

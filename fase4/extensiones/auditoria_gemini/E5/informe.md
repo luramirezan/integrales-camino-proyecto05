@@ -1,0 +1,17 @@
+# Informe de la auditoría externa de E5 (Gemini, app web, modo "Pro", 17-11-2026)
+
+Chat nuevo "Material auditoría física"; dos rondas (transcripción en `conversaciones/E5.md`, respuesta de los autores en `respuestas/E5_r2.md`). Gemini **no ejecutó código** y no dio ningún a(δ). Las cifras se comprobaron con scripts propios (`respuestas/chk_e5_claude.py`, `chk_e5_g2_claude.py`, `chk_e5_w1_claude.py`).
+
+| ID | Hallazgo | Gravedad | Comprobación (con números) | Estado |
+|---|---|---|---|---|
+| E5-G1 | La razón de que solo cuenten los estados s estaba mal apoyada: decía "la partida y q son radiales", pero la partida x es un punto. Lo que se anula para l ≥ 1 es ⟨e_k, f⟩ en c_k(x) = ⟨g_x, e_k⟩⟨e_k, f⟩, porque f = q^{1/2} es radial | Baja (Gemini: media) | Gemini decía que "faltaba" la justificación; la frase existía (`teoria.md`, sec. 5). Precisión aceptada por Gemini en la ronda 2 | Válido (reformulado) y corregido en `teoria.md` |
+| E5-G2 | Simplificar S(x) = 2(1 − e^{−dx}(1 + dx))/(d²x) + 2e^{−dx}/d a 2(1 − e^{−dx})/(d²x) | Baja | Álgebra correcta. Error relativo máx. en x ∈ [10⁻¹², 30] frente a mpmath: 7.4×10⁻⁵ (código), 1.5×10⁻⁵ (forma de Gemini), 2×10⁻¹⁶ (−expm1). En los nodos (r ≥ 2.2×10⁻⁸) la diferencia es 1.4×10⁻⁹; efecto en a(1.5), a(3), a(4) ≤ 4×10⁻¹⁶ | Sin efecto; Gemini se retractó. Sin cambios |
+| E5-G3 | La frase "un solo camino multiplica la media acumulada por 3.7" debería ser "observación empírica" | Baja | `03_colas.json`: δ = 1.5, la media acumulada pasa de 0.995 a 3.700 veces el valor exacto entre n = 880 488 y 943 787 (×3.72) y termina en 1.253 en n = 10⁷. La frase ya describe esa muestra | Refutado (la frase es correcta) |
+| E5-C1 (Claude) | La figura e5_05 fija el eje en (0.6, 1.5): el pico de 3.70 al que remite el texto no se ve | Baja | Visto en la figura; dato en `03_colas.json` | Válido y corregido: anotación calculada desde el JSON en `codigo/06_figuras.py`; figuras regeneradas |
+| E5-G4 | "Hace falta c_k más rápido que 1/k⁴" (ronda 1) | — | κ_k = δ_c(ks)/δ ~ k⁻²; la condición Σ|c_k|/κ_k < ∞ es Σ k²|c_k| < ∞. Con la partida Γ, w̄_k ~ k⁻³ (0.80317, 0.11778, 0.03691) | Refutado; Gemini lo retiró |
+| E5-C2 (Claude) | Forma cerrada w̄₁ = δ_c/(2c), con c = −d(1/a)/dδ en δ_c | Mejora | c = 0.741192, δ_c/(2c) = 0.803174 frente a 0.80317 de E5. Gemini dio la deducción: E[W] ≈ w̄₁δ/(δ − δ_c) y a = −(2/δ²)E[W] ≈ −1/(c(δ − δ_c)) | Mejora opcional, **no aplicada** (decisión del equipo) |
+| — | Referencias | — | Gemini dio páginas iniciales 75, 117 y 434. Coinciden con `fuentes.md`, que estaba en el material enviado. Dijo haberlas "consultado empíricamente", pero en la ronda 1 eran "con base en el canon" y no mostró ninguna fuente. Desde aquí la AMS y RePEc están bloqueadas por el proxy (403) | No cuenta como verificación independiente; quedan las de E5 |
+| — | Números | — | a(1.5) = −3.668234, a(2) = −1.103459, a(3) = −0.343241, a(4) = −0.169017, a(1.195) = −306.71, a(1.192) = −971.54, a(1.1907) = −15404.5; a = −(2/δ²)E[φ(r₀)] a 6 cifras; δ_c = 1.190612421061 | Coinciden con E5 |
+| — | Pruebas | — | Gemini validó (a)–(e) sin objeciones de fondo. Rehice: Green 1/(2π|x−y|) de −½Δ, escala X = δΛ, divergencia del trapecio (∫r'²e^{C/r'}), pesos de Ciesielski–Taylor, p₂/p₁ = 3.838 | Sin error |
+
+**Resultado:** un hallazgo de Gemini válido en forma reformulada (E5-G1, redacción de la prueba) y uno propio (E5-C1, figura). Ninguno cambia un resultado.

@@ -1,0 +1,114 @@
+{
+ "LEEME.md": {
+  "encontradas": 82,
+  "sin_par": [
+   {
+    "cifra": "1980",
+    "contexto": "eyó el texto completo de Klaus y Simon (1980) ni el de Jensen et"
+   },
+   {
+    "cifra": "2004",
+    "contexto": " y Simon (1980) ni el de Jensen et al. (2004), y no se encontró "
+   },
+   {
+    "cifra": "1992",
+    "contexto": "r, Fedorov y Jensen, *Europhys. Lett.* (1992); ver `fuentes.md`."
+   }
+  ]
+ },
+ "seccion_articulo.md": {
+  "encontradas": 153,
+  "sin_par": [
+   {
+    "cifra": "1980",
+    "contexto": "oplamiento lo plantearon Klaus y Simon (1980), y para el Yukawa "
+   },
+   {
+    "cifra": "0.5826",
+    "contexto": "a 2.00 al comparar con el radial en R + 0.5826√ε. El método (b) pr"
+   },
+   {
+    "cifra": "251",
+    "contexto": "t-range two-body case\", Ann. Phys. 130, 251–281 (1980), DOI 10."
+   },
+   {
+    "cifra": "281",
+    "contexto": "nge two-body case\", Ann. Phys. 130, 251–281 (1980), DOI 10.1016"
+   },
+   {
+    "cifra": "1980",
+    "contexto": "wo-body case\", Ann. Phys. 130, 251–281 (1980), DOI 10.1016/0003-"
+   },
+   {
+    "cifra": "10.1016",
+    "contexto": "e\", Ann. Phys. 130, 251–281 (1980), DOI 10.1016/0003-4916(80)90338-"
+   },
+   {
+    "cifra": "4916",
+    "contexto": ". 130, 251–281 (1980), DOI 10.1016/0003-4916(80)90338-3. - P. Se"
+   },
+   {
+    "cifra": "90338",
+    "contexto": "51–281 (1980), DOI 10.1016/0003-4916(80)90338-3. - P. Serra, J. P"
+   },
+   {
+    "cifra": "014001",
+    "contexto": "d related structures\", Phys. Scr. T152, 014001 (2013), arXiv:1208."
+   },
+   {
+    "cifra": "1208.6415",
+    "contexto": ", Phys. Scr. T152, 014001 (2013), arXiv:1208.6415. - A. S. Jensen, K."
+   },
+   {
+    "cifra": "2004",
+    "contexto": "uantum halos\", Rev. Mod. Phys. 76, 215 (2004). - T. Misu, W. Naz"
+   },
+   {
+    "cifra": "614",
+    "contexto": "\"Deformed nuclear halos\", Nucl. Phys. A 614, 44–70 (1997), DOI "
+   },
+   {
+    "cifra": "10.1016",
+    "contexto": "\", Nucl. Phys. A 614, 44–70 (1997), DOI 10.1016/S0375-9474(96)00458"
+   },
+   {
+    "cifra": "9474",
+    "contexto": " A 614, 44–70 (1997), DOI 10.1016/S0375-9474(96)00458-7, arXiv:n"
+   },
+   {
+    "cifra": "00458",
+    "contexto": "44–70 (1997), DOI 10.1016/S0375-9474(96)00458-7, arXiv:nucl-th/96"
+   }
+  ]
+ },
+ "teoria.md": {
+  "encontradas": 47,
+  "sin_par": [
+   {
+    "cifra": "1980",
+    "contexto": "e la dimensión) es el de Klaus y Simon (1980), cuyo texto comple"
+   }
+  ]
+ },
+ "verificacion.md": {
+  "encontradas": 151,
+  "sin_par": [
+   {
+    "cifra": "0.5826",
+    "contexto": "ase 3). Comparando con el radial en R + 0.5826√ε el orden es 1.998"
+   },
+   {
+    "cifra": "−1.50091",
+    "contexto": "mera versión de 41.** mpmath daba I_N = −1.50091 en vez de −3/2, por"
+   },
+   {
+    "cifra": "0.5826",
+    "contexto": " la bibliografía, la constante de pared 0.5826 (`transferencia.BET"
+   },
+   {
+    "cifra": "−1.50091",
+    "contexto": "BETA_PARED`, Fase 2) y el valor erróneo −1.50091 de la primera versi"
+   }
+  ]
+ }
+}

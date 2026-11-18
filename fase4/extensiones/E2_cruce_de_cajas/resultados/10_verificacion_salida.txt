@@ -1,0 +1,24 @@
+V1 y 50/100: sin interpolar 1.1912375497  interpolado 1.1912375497  dif -5.4e-13  ERE-dif -5.0e-07
+V1 y 100/200: sin interpolar 1.1907646158  interpolado 1.1907646158  dif +1.1e-13  ERE-dif -2.9e-08
+V1 y 200/400: sin interpolar 1.1906499666  interpolado 1.1906499666  dif +2.2e-16  ERE-dif -1.7e-09
+V1 y 400/800: sin interpolar 1.1906217451  interpolado 1.1906217451  dif +6.4e-14  ERE-dif -1.1e-10
+V1 y 800/1600: sin interpolar 1.1906147443  interpolado 1.1906147443  dif -1.9e-12  ERE-dif -6.3e-12
+V1 y 1600/3200: sin interpolar 1.1906130009  interpolado 1.1906130009  dif +1.1e-11  ERE-dif -9.4e-14
+V1 rho 50/100: sin interpolar 1.1945393722  interpolado 1.1945393722  dif +1.8e-11  ERE-dif -6.1e-06
+V1 rho 100/200: sin interpolar 1.1915858774  interpolado 1.1915858775  dif -4.5e-11  ERE-dif -3.5e-07
+V1 rho 200/400: sin interpolar 1.1908547087  interpolado 1.1908547087  dif -1.0e-12  ERE-dif -2.1e-08
+V1 rho 400/800: sin interpolar 1.1906728567  interpolado 1.1906728567  dif +6.9e-13  ERE-dif -1.3e-09
+V1 rho 800/1600: sin interpolar 1.1906275129  interpolado 1.1906275129  dif -7.4e-13  ERE-dif -7.8e-11
+V1 rho 1600/3200: sin interpolar 1.1906161919  interpolado 1.1906161919  dif -2.4e-11  ERE-dif -4.5e-12
+V2 delta_c (1/a = 0) = 1.1906124210606  dif ref -1.6e-15
+V3 d=1.19061 R=1600: E(r0=1e-7)=4.813282241248e-07 E(r0=1e-6)=4.813282241249e-07 dif_y=+6.9e-14
+V3 d=1.19061 R=3200: E(r0=1e-7)=1.199840562024e-07 E(r0=1e-6)=1.199840562025e-07 dif_y=+1.9e-13
+V3 d=1.1906 R=800: E(r0=1e-7)=1.920416838756e-06 E(r0=1e-6)=1.920416838756e-06 dif_y=-3.6e-14
+V4 radial sin Richardson, dif frente al disparo: ['1/40: +2.23e-07', '1/80: +5.71e-08', '1/160: +1.43e-08', '1/320: +3.61e-09', '1/640: +8.56e-10'] orden [1.9676529460934995, 1.991758306456505, 1.9888671664706485, 2.07822050959937]
+V5 violaciones de monotonia: []
+V6 par 1600/3200: sigma MC en 05 1.70e-05; semillas 1 y 2 (4000 replicas): 1.73e-05, 1.67e-05
+V7 transferencia y: sin pesos 1.1906091755  ponderado 1.1906106662  barra 6.7e-05
+V7 transferencia rho: sin pesos 1.1906106832  ponderado 1.1906107238  barra 6.9e-05
+V7 radial_h160 y: sin pesos 1.1906123309  ponderado 1.1906123326  barra 1.5e-05
+V7 radial_h160 rho: sin pesos 1.1906124177  ponderado 1.1906124177  barra 1.5e-05
+tiempo 37 s

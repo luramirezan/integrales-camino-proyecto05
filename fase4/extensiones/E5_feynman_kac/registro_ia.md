@@ -1,0 +1,23 @@
+# Registro de IA de la extensión E5 (formato del curso)
+
+Toda la extensión la hizo Claude (IA), como agente de la extensión E5, por delegación de Lucho (17-11-2026: "las
+decisiones no las voy a tomar yo, sino que simplemente tomas las decisiones tú y después me vas contando"). La columna
+"decisión humana" queda pendiente hasta la revisión del equipo.
+
+| ID | Fecha | Consulta | Respuesta utilizada | Decisión humana | Comprobación | Corrección posterior |
+|---|---|---|---|---|---|---|
+| E5-01 | 17-11-2026 | Encargo del coordinador: hacer la propuesta 3 (gauge de Feynman–Kac sin caja), verificar la teoría con fuentes, MC de caminos brownianos, colas, muestreo por importancia, comparación con PIGS y línea de mundo | Esta carpeta: 9 scripts, `teoria.md`, 9 figuras, controles | Pendiente (revisión del equipo) | `controles.md` (generada desde los JSON); `verificacion.md` | — |
+| E5-02 | 17-11-2026 | (IA) Búsqueda de fuentes sobre la gauge en ℝ³ y la fórmula de Kac–Luttinger | `fuentes.md`: 14 entradas con marca; Zhao 1992 y Chen 2002 solo por resumen | Pendiente | Cada dato bibliográfico abierto en la página del editor, DOI o RePEc | Las páginas de Ciesielski–Taylor quedaron sin verificar y se quitaron |
+| E5-03 | 17-11-2026 | (IA) Demostración de la ventana de varianza infinita | Teorema 1 por la fórmula de momentos de Kac y el operador de Birman–Schwinger, sin depender del teorema de Zhao | Pendiente | C6: δ/p_1 = δ_c a 1e-12; caso exacto de Ciesielski–Taylor (C5) | — |
+| E5-04 | 17-11-2026 | (IA) Ley exacta de Λ: mezcla de exponenciales con tasas δ/δ_c(ns) | Proposición 2 (con el paso Σ\|w_k\| < ∞ sin demostrar); w̄_k universales | Pendiente | C5 (exacto), C9, C10 (KS), amplitud de la cola 0.80 frente a w̄_1 = 0.80317 | — |
+| E5-05 | 17-11-2026 | (IA) Primer simulador con el trapecio | Se descartó: media infinita para todo η (Proposición 3); en la prueba, a(3) ≈ −10^{239} | Pendiente | Prueba preliminar y parte (c) de 02 | Se cambió al esquema de puente browniano exacto; adenda de `criterios_previos.md` |
+| E5-06 | 17-11-2026 | (IA) Simulador vectorizado con numpy demasiado lento con el esquema de puente | Núcleos compilados con numba (un camino tras otro, semilla fija) | Pendiente | Mismo valor de la media gaussiana con numpy y numba (≤ 2e-15) | — |
+| E5-07 | 17-11-2026 | (IA) Euler 3D puro para la difusión guiada | Sesgo de +0.2 % a −4 %; se pasó a un paso híbrido (3D cerca del origen, radial 1D fuera) | Pendiente | Prueba de variantes en δ = 3 (no forma parte de los resultados) | — |
+| E5-08 | 17-11-2026 | (IA) Extrapolación en η del MI con el orden promedio p = 3.20 (regla de 04) | El extrapolado de δ = 3 queda a 3.85σ; se revisa con p = 2 (orden de Euler y par más fino 1.93) en `04b` | Pendiente | `04b_extrapolacion_salida.txt` | Se informa como revisión posterior a ver los datos; C13 se evalúa con la regla original |
+| E5-09 | 17-11-2026 | (IA) Pendiente de la varianza muestral (C11) en δ = 1.5 y 2 | No pasa el criterio fijado; se añade una referencia de tamaño finito con muestras de la ley exacta (03, parte 6) | Pendiente | `03_colas.json`, `referencia_tamano_finito` | — |
+| E5-10 | 17-11-2026 | (IA, revisor independiente R5) Revisión adversarial de la teoría, el código, los controles y las fuentes | `revision/informe_revision.md`: 13 hallazgos (ninguno grave). Recálculo propio: Numerov, MC de colisiones sin caminos, simulador de caminos propio, Hill | Pendiente | a(δ) a ≤ 8e-9; δ_c a 6e-11; a(3), a(4) y φ(r) del MC de colisiones a ≤ 1.9σ; θ de Hill en δ = 2 y 3 a ≤ 0.8σ; causa de C16 confirmada con 12 nodos | Correcciones en el texto: caso x = 0 de la prueba (R5-01); orden η⁴ rebajado a argumento (R5-03); comparación de costo con PIGS matizada (R5-04); dato omitido de η = 0.05 (R5-06); cota uniforme como argumento (R5-10); fuentes (R5-13) |
+| E5-11 | 17-11-2026 | (IA externa) Auditoría con Gemini (app web, modo Pro), 2 rondas | `auditoria_gemini/E5/`: 3 hallazgos de Gemini, más 2 propios del auditor | Pendiente | Scripts propios: a(δ) y a = −(2/δ²)E[φ(r₀)] a 6 cifras; S(x) frente a mpmath (efecto en a ≤ 4e-16); w̄₁ = δ_c/(2c) = 0.803174; pico 3.70 en `03_colas.json` | `teoria.md` sec. 5: anulación de l ≥ 1 apoyada en ⟨e_k, f⟩ = 0 (E5-G1); `codigo/06_figuras.py`: anotación del pico fuera de escala en e5_05, figuras regeneradas (E5-C1) |
+
+**Auditoría externa con Gemini.** No se hizo dentro de este agente: el encargo de E5 no la incluía y la decisión D4 la
+asigna a un paso posterior, con un chat nuevo por extensión (carpeta `fase4/extensiones/auditoria_gemini/`). El material
+para esa auditoría es `teoria.md` y `controles.md`. Hecha después (17-11-2026): fila E5-11 y `auditoria_gemini/E5/informe.md`.

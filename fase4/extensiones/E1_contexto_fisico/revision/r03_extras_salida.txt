@@ -1,0 +1,10 @@
+Hulthen: r1 = 1.69093; b_anti = 4.5748 (kappa 1.6), 4.7033 (pi^2/6); Yukawa exacto (r01) = 4.4657
+cero de la fase s del Yukawa con kL = 0.001 (a = v/2alpha = 0.0005): b = 4.4657
+cero de la fase s del Yukawa con kL = 0.02 (a = v/2alpha = 0.01): b = 4.4715
+cero de la fase s del Yukawa con kL = 0.05 (a = v/2alpha = 0.025): b = 4.5019
+cero de la fase s del Yukawa con kL = 0.06 (a = v/2alpha = 0.03): b = 4.5179
+cero de la fase s del Yukawa con kL = 0.1 (a = v/2alpha = 0.05): b = 4.6120
+a_s(b = 4.52) = -0.2086 L = -0.0923 / m_phi  (la caida de sigma ~ 4 pi a^2 es fuerte pero no nula)
+modelo a g fijo: dlnB/dln mu = 5.7588; K_deut(modelo) = -2.074 con m_N variable (frente a -2.351 sin ella); Berengut -0.86: cociente 2.41 (sin m_N: 2.73)
+r_str (PDG antiguo (Filin)): 1.97573 fm, u indep = 0.00068, u con dif. isotopica = 0.00056; con r_d^2-r_p^2 = 3.82070: 1.97576 fm
+r_str (PDG 2024): 1.97558 fm, u indep = 0.00059, u con dif. isotopica = 0.00044; con r_d^2-r_p^2 = 3.82070: 1.97561 fm
