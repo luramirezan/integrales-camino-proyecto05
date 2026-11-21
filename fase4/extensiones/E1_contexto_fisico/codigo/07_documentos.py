@@ -1,0 +1,399 @@
+"""07_documentos.py -- escribe controles.md, verificacion.md, seccion_articulo.md y LEEME.md a partir de los JSON.
+
+Ninguna cifra de esos cuatro archivos se escribe a mano: todas se leen de resultados/*.json aqui.
+(fuentes.md y registro_ia.md se escriben a mano porque solo contienen cifras publicadas por otros, con su fuente.)
+"""
+import os
+
+import comun_e1 as c
+
+U = c.leer("01_umbral")
+P = c.leer("02_plasma")
+M = c.leer("03_materia_oscura")
+D = c.leer("04_deuteron")
+V = c.leer("06_verificacion")
+K = c.CONST
+dc = U["delta_c_1s"]["A"]
+cen = D["escenario_A"]["promedio"]
+p0, pp = D["escenario_A"]["pi0"], D["escenario_A"]["pi+-"]
+L = D["escenario_B_red"]
+S = D["sensibilidad"]
+R = D["radio_exp"]
+pts = P["puntos"]
+# resultados de la revision adversarial (revision/r03_extras.json): cero de la fase s a velocidad finita
+import json as _json
+RV = _json.load(open(os.path.join(c.BASE, "revision", "r03_extras.json")))
+AH = M["antirresonancia"]
+
+
+def e(x, n=2):
+    """notacion cientifica en texto: 2.80 x 10^22"""
+    m, ex = f"{x:.{n}e}".split("e")
+    return f"{m}\\times10^{{{int(ex)}}}"
+
+
+SCRIPTS = {"01_umbral": "01_umbral_y_controles.py", "02_plasma": "02_plasma.py",
+           "03_materia_oscura": "03_materia_oscura.py", "04_deuteron": "04_deuteron.py"}
+
+# ----------------------------------------------------------------------------- controles.md
+filas = []
+for nombre, js in (("01_umbral", U), ("02_plasma", P), ("03_materia_oscura", M), ("04_deuteron", D)):
+    for k in js["controles"]:
+        k = {q: (v.replace("|", "\\|") if isinstance(v, str) else v) for q, v in k.items()}
+        filas.append(f"| {k['id']} | {k['control']} | {k['criterio']} | {k['valor']} | "
+                     f"{'pasa' if k['pasa'] else '**no pasa**'} | `{SCRIPTS[nombre]}` |")
+npasa = sum(1 for f in filas if "| pasa |" in f)
+causas = f"""
+## Controles que no pasan y su causa medida
+
+- **C6** (Rogers, Graboske y Harwood 1970). Nuestro $1/\\delta_c$ = {1 / dc:.7f} redondea a 0.83990, y el resumen
+  del artículo de 1970 da 0.83991. La diferencia, {abs(1 / dc - K['rgh_D0']):.1e}, es mayor que media unidad de la
+  última cifra publicada, que fue el criterio fijado. Nuestro valor coincide con las Fases 1 a 3 y con dos métodos
+  independientes a 10^-10 (C1), así que atribuimos la diferencia a la precisión de 1970 (integración numérica de la
+  época); la revisión adversarial lo confirmó con un tercer método (fase de Prüfer, `revision/`). La tabla 1 de
+  Janev et al. (2016) da 0.839907, que también redondea a 0.83991 y queda 3 ppm por encima del nuestro. No cambia
+  ninguna conclusión física: es una diferencia de 7 partes por millón en la longitud crítica.
+- **C7** (energía del 1s, disparo frente a caja). El criterio relativo de 10^-6 se fijó antes de correr y falla
+  cerca del umbral: la diferencia **absoluta** entre los dos métodos es casi constante, entre
+  {min(x['dif_abs_h40'] for x in V['V1']):.1e} y {max(x['dif_abs_h40'] for x in V['V1']):.1e} hartree, y al dividir
+  por una energía que tiende a cero crece hasta {max(x['dif_rel'] for x in P['curva_E']):.1e} en $\\delta = 1.18$.
+  La verificación V1 muestra la causa: con $h = 1/80$ en el método de caja la diferencia absoluta baja en un factor
+  {min(x['cociente'] for x in V['V1']):.1f} a {max(x['cociente'] for x in V['V1']):.1f} (el 16 esperado para el
+  error de orden 4 que deja Richardson), así que el error es de discretización del método B con $h=1/40$, no del
+  disparo. Con $h = 1/80$ la diferencia relativa máxima es {max(x['dif_rel_h80'] for x in V['V1']):.1e}, todavía
+  por encima de 10^-6 en $\\delta = 1.18$; no damos el control por aprobado.
+- **C9** (antirresonancia de Tulin, Yu y Zurek). Encontramos $a_s = 0$ en $\\delta = {M['antirresonancia']['delta_A']:.8f}$,
+  es decir, $b = \\alpha m_\\chi/m_\\phi = {M['antirresonancia']['b']:.4f}$, con dos métodos que coinciden a
+  {abs(M['antirresonancia']['delta_A'] - M['antirresonancia']['delta_B']):.0e}. El artículo menciona una
+  antirresonancia en $b = 4.52$ ({(K['tyz_b_antires'] / M['antirresonancia']['b'] - 1):.1%} más arriba). La causa es de
+  definición, no un error nuestro ni de la fuente: 4.52 es la etiqueta de una de las curvas ilustrativas de su
+  figura 3 (sección eficaz frente a velocidad con $\\alpha_X = 0.01$), elegida para mostrar la supresión, y el
+  artículo no dice que sea el cero de $a_s$ a velocidad nula. La revisión midió dos cosas que lo explican: la
+  fórmula de Hulthén del mismo artículo (Sec. VI, $b = \\kappa r^2$ con $r = {AH['r_hulthen']:.4f}$) pone la
+  antirresonancia en $b = {AH['b_hulthen']['kappa_1.6']:.3f}$ con $\\kappa = 1.6$, y el cero de la fase s del Yukawa
+  se mueve con la velocidad: con $kL = v/\\alpha = 0.05$ y 0.06 sale en $b = {RV['b_cero_fase_k0.05']:.3f}$ y
+  {RV['b_cero_fase_k0.06']:.3f} (`revision/r03_antirresonancia_y_extras.py`). El control, tal como lo fijamos, no
+  pasa; el criterio estaba mal planteado porque comparaba un cero exacto con un valor ilustrativo.
+"""
+txt = f"""# Controles de la extensión E1 (generado por `codigo/07_documentos.py` desde los JSON)
+
+Los criterios se escribieron en la cabecera de cada script **antes** de correrlo (17-11-2026) y no se cambiaron
+después. Pasan {npasa} de {len(filas)}.
+
+| # | control | criterio fijado antes | valor | ¿pasa? | script |
+|---|---|---|---|---|---|
+""" + "\n".join(filas) + "\n" + causas
+open(os.path.join(c.BASE, "controles.md"), "w").write(txt)
+
+# ----------------------------------------------------------------------------- verificacion.md
+v1 = "\n".join(f"| {x['delta']:.2f} | {x['R']:g} | {x['dif_abs_h40']:.2e} | {x['dif_abs_h80']:.2e} | {x['cociente']:.1f} |"
+               for x in V["V1"])
+txt = f"""# Verificación de la extensión E1 (generado por `codigo/07_documentos.py`)
+
+## 1. Dos métodos independientes para cada cifra
+
+- **Método A (sin caja):** disparo con `solve_ivp` (DOP853, tolerancia relativa 10^-12) hacia afuera desde
+  $r_0 = 10^{{-8}}$ y hacia adentro desde $R_\\text{{lejos}} = r_m + 40/\\kappa$ con la solución que decae; se empalma
+  el wronskiano normalizado en $r_m$ y se integran $u^2$, $r u^2$, $r^2u^2$ junto con la ecuación
+  (`codigo/comun_e1.py`). Para el umbral: pendiente de la solución de energía cero (`fase2/codigo/radial.py:umbral`).
+- **Método B (caja):** diferencias finitas en caja de Dirichlet con Richardson ($h = 1/40$ y $h/2$),
+  `fase3/codigo/comun3.py:radial_ref`, importado sin copiarlo. Para el umbral: un Numerov propio a energía cero,
+  escrito para esta extensión, que no usa `solve_ivp`.
+
+| cantidad | A | B | diferencia |
+|---|---|---|---|
+| $\\delta_c(1s)$ | {U['delta_c_1s']['A']:.13f} | {U['delta_c_1s']['B']:.13f} | {U['delta_c_1s']['A'] - U['delta_c_1s']['B']:.1e} |
+| $\\delta_c(2s)$ | {U['delta_c_2s']['A']:.11f} | {U['delta_c_2s']['B']:.11f} | {U['delta_c_2s']['dif']:.1e} |
+| $\\delta_c(3s)$ | {U['delta_c_3s']['A']:.11f} | {U['delta_c_3s']['B']:.11f} | {U['delta_c_3s']['dif']:.1e} |
+| $\\delta_d$ (deuterón, $m_\\pi$ promedio) | {cen['delta_A']:.10f} | {cen['delta_B']:.10f} | {cen['delta_A'] - cen['delta_B']:.1e} |
+| $\\langle r\\rangle$ deuterón (unidades $L$) | {cen['r_med']:.8f} | {cen['r_med_B']:.8f} | rel. {cen['dif_rel_rmed']:.1e} |
+| $\\langle r^2\\rangle$ deuterón (unidades $L^2$) | {cen['r2_med']:.7f} | {cen['r2_med_B']:.7f} | rel. {cen['dif_rel_r2']:.1e} |
+| $\\delta_L$ (punto de NPLQCD) | {L['central']['delta_A']:.8f} | {L['central']['delta_B']:.8f} | {L['central']['delta_A'] - L['central']['delta_B']:.1e} |
+| $a_s = 0$ (antirresonancia) | {M['antirresonancia']['delta_A']:.10f} | {M['antirresonancia']['delta_B']:.10f} | {M['antirresonancia']['delta_A'] - M['antirresonancia']['delta_B']:.1e} |
+| $d\\ln B/d\\ln m_\\pi$ ($g$ fijo) | {S['dlnB_dlnmpi_A']:.6f} | {S['dlnB_dlnmpi_B']:.6f} | {S['dlnB_dlnmpi_A'] - S['dlnB_dlnmpi_B']:.1e} |
+
+Referencia de las Fases 1 a 3: $\\delta_c$ = {c.DELTA_C_REF}. El Numerov propio da, con $h$ = 1/200, 1/400 y 1/800,
+{', '.join(f'{x:.13f}' for x in U['delta_c_1s']['B_por_h'].values())}: la dispersión
+({U['delta_c_1s']['B_dispersion_h']:.1e}) no baja con $h$, así que está dominada por redondeo y no por truncamiento (la revisión lo
+confirmó repitiendo el Numerov en aritmética extendida, donde el error con $h$ = 1/400 baja a $6\\times10^{{-13}}$; el
+error no depende de $R$, así que no es acumulación a lo largo de la malla); no aplicamos Richardson y damos la de
+$h$ = 1/800, aunque la de $h$ = 1/400 está más cerca de la referencia. El método A con caja de integración
+$R = 200$ y $R = 100$ cambia {U['delta_c_1s']['A_R200_menos_R100']:.1e}.
+
+## 2. Casos exactos
+
+- Coulomb ($\\delta = 0$): A da $E_0 + 1/2$ = {U['coulomb']['A']['E0'] + 0.5:.1e}, $\\langle r\\rangle - 3/2$ =
+  {U['coulomb']['A']['r_med'] - 1.5:.1e}, $\\langle r^2\\rangle - 3$ = {U['coulomb']['A']['r2_med'] - 3:.1e};
+  B ($R = 60$) da $E_0 + 1/2$ = {U['coulomb']['B']['E0'] + 0.5:.1e}.
+- Hulthén ($\\delta = 1$, solución exacta de `radial.hulthen_exacto`): A da $E_0 - E_\\text{{ex}}$ =
+  {U['hulthen_1']['A']['E0'] - U['hulthen_1']['exacto']['E0']:.1e} y $\\langle r\\rangle$ con error
+  {U['hulthen_1']['A']['r_med'] - U['hulthen_1']['exacto']['r_med']:.1e}.
+- Longitud de dispersión: $a_s(1.19)$ = {M['a_s_119']:.1f} y $a_s(1.20)$ = {M['a_s_120']:.2f}, como en la Fase 3
+  (+2204 y −142.9).
+
+## 3. Convergencia y diagnóstico del método de caja (V1)
+
+| $\\delta$ | $R$ | $|E_A - E_B|$, $h=1/40$ | $|E_A - E_B|$, $h=1/80$ | cociente |
+|---|---|---|---|---|
+{v1}
+
+El cociente cercano a 16 confirma que la diferencia es el error de orden 4 del método B tras Richardson. En el
+deuterón, la energía de la caja con $R$ y $2R$ cambia {cen['dif_rel_E_R_2R']:.1e} en relativo (caja suficiente).
+
+## 4. Conversión de unidades y entradas
+
+- Deuterón: $\\varepsilon\\,\\mu\\,(g/\\hbar c)^2$ = {V['V2']['E_MeV']:.10f} MeV, que es $-B_d$ (diferencia
+  {V['V2']['dif']:.1e} MeV).
+- $B_d$ desde las masas de CODATA 2022 ($m_p + m_n - m_d$) = {D['B_masas']:.8f} MeV, frente al dato de entrada de
+  CODATA $E_B(d)$ = {D['B_codata']:.8f} MeV.
+- Plasma: la fórmula SI $\\lambda_D = (\\varepsilon_0 k_BT/n_ee^2)^{{1/2}}$ da el coeficiente
+  {P['coef_NRL_recalculado_cm']:.3f} cm, frente a 743 cm del NRL Plasma Formulary (tres cifras); con el coeficiente
+  redondeado la densidad crítica cambia {V['V3']['rel']:.1e} en relativo.
+- Elección de $m_\\pi$: entre $\\pi^0$ y $\\pi^\\pm$, $\\delta_d$ varía {(V['V4']['delta_A'][1] / V['V4']['delta_A'][0] - 1):.1%},
+  $g$ y $m_\\pi$ crítico {(V['V4']['alpha_g'][1] / V['V4']['alpha_g'][0] - 1):.1%}, y el radio del modelo
+  {(V['V4']['r_str_modelo_fm'][1] / V['V4']['r_str_modelo_fm'][0] - 1):.1%}.
+- El prototipo (`propuesta_originalidad/prototipos/deuteron_juguete.py`) se reproduce con sus mismas entradas a
+  {D['prototipo']['delta'] - D['prototipo']['delta_impreso']:.0e} (C11). Con las masas verificadas cambia poco:
+  $\\delta_d$ = {cen['delta_A']:.6f} frente a 0.830460 y $m_\\pi^c$ = {cen['m_pi_crit_g_fijo']:.2f} MeV frente a
+  197.91 MeV del prototipo.
+
+## 5. Relectura del código (17-11-2026)
+
+Releímos los siete scripts y `comun_e1.py` contra los JSON. Encontramos y corregimos durante el trabajo:
+
+1. La primera versión del barrido en energía del método A empezaba en $E = -0.5 + 10^{{-12}}$; con $\\delta = 0$ el
+   fundamental está justo en $-1/2$ y el barrido devolvía el 2s ($-0.125$). Se cambió el inicio a $-0.52$
+   (cota inferior válida porque el Yukawa nunca baja del Coulomb). El control C2 lo detecta si vuelve a pasar.
+2. `brentq` no acepta `rtol` menor que $4\\epsilon$; se dejó en 10^-15.
+3. El Hulthén se desborda en `expm1` para $\\delta r > 700$; se acotó el argumento (el potencial ya es cero allí).
+4. En la relectura final encontramos que el primer paso del Numerov usaba el coeficiente cúbico $(2+\\delta)/3$ de la
+   serie de $u$ cerca del origen; el correcto es $(1+\\delta)/3$ (de $u'' = -2e^{{-\\delta r}}u/r$ con
+   $u = r - r^2 + br^3$). Es un cambio de orden $h^3$ en $u(h)$; se corrigió y se volvieron a correr todos los
+   scripts. Las cifras de esta página son las de después de la corrección.
+
+Cosas que revisamos y están bien: (i) la masa reducida del deuterón es $m_pm_n/(m_p+m_n)$, no $m_N/2$ (la
+diferencia es de {abs(D['mu'] - 938.918 / 2) / D['mu']:.0e}); (ii) el radio del modelo es la mitad del radio
+cuadrático medio de la coordenada relativa, es decir, el radio de nucleones puntuales respecto del centro de masa
+(corregido en la revisión, R1-02: no es exactamente el $r_\\text{{str}}$ de Filin et al., que incluye además operadores
+de carga de dos cuerpos y correcciones relativistas; es su contribución principal); (iii) el diagrama del plasma usa solo la longitud de Debye electrónica, como el NRL
+Plasma Formulary, y dibuja aparte la variante con protones ($\\lambda_D/\\sqrt2$, densidad a la mitad);
+(iv) $\\delta = 2m_\\phi/(\\alpha m_\\chi)$ usa la masa reducida $m_\\chi/2$, igual que Tulin, Yu y Zurek.
+
+La auditoría externa con Gemini (decisión D4) no se hizo dentro de este agente; queda para el paso de revisión.
+"""
+open(os.path.join(c.BASE, "verificacion.md"), "w").write(txt)
+
+# ----------------------------------------------------------------------------- seccion_articulo.md
+txt = f"""# Sección para el artículo: qué significa físicamente $\\delta_c$
+
+*(Generada por `E1_contexto_fisico/codigo/07_documentos.py` a partir de los JSON de `resultados/`. Figuras:
+`figuras/05_mapa_delta.png`, `figuras/02_plasma_diagrama.png`, `figuras/02_plasma_energia.png`.)*
+
+## Motivación
+
+Todo el trabajo se hizo en unidades $\\hbar = m = g = 1$, donde el único parámetro es
+$\\delta = \\mu\\hbar^2/(mg)$, con $\\mu$ el inverso del alcance del apantallamiento, $m$ la masa reducida y $g$ la
+intensidad del potencial. La guía del curso advierte que no se debe reclamar "una cifra universal desligada de las
+unidades y parámetros". Esta sección hace lo contrario de esa cifra suelta: traduce $\\delta_c = {dc:.10f}$ a tres
+sistemas físicos y en cada uno declara qué cantidad se mantiene fija. La condición es siempre la misma,
+$\\delta < \\delta_c$, pero lo que dice en el laboratorio depende de cómo cambian $m$, $g$ y $\\mu$ juntos.
+
+## Método
+
+Las tres traducciones usan la misma relación, $\\delta = \\mu_\\text{{fís}}\\,\\hbar^2/(m\\,g)$:
+
+| sistema | $m$ (masa reducida) | $g$ | $\\mu_\\text{{fís}}$ | $\\delta$ |
+|---|---|---|---|---|
+| hidrógeno en un plasma | $m_e$ (núcleo infinito) | $e^2/4\\pi\\varepsilon_0$ | $1/\\lambda_D$ | $a_0/\\lambda_D$ |
+| materia oscura con mediador $\\phi$ | $m_\\chi/2$ | $\\alpha\\hbar c$ | $m_\\phi c/\\hbar$ | $2m_\\phi/(\\alpha m_\\chi)$ |
+| deuterón de juguete | $m_pm_n/(m_p+m_n)$ | $g$ (ajustada) | $m_\\pi c/\\hbar$ | $m_\\pi/(\\mu\\,g/\\hbar c)$ |
+
+Cada cifra se calculó con dos métodos independientes: un disparo sin caja (`solve_ivp`, empalme de la solución
+regular con la que decae) y el solucionador de caja con Richardson de la Fase 2. Para el umbral se usaron la
+condición de energía cero de la Fase 2 y un Numerov propio. Coinciden a {abs(U['delta_c_1s']['A'] - U['delta_c_1s']['B']):.0e}
+en $\\delta_c$ y a {cen['dif_rel_delta']:.0e} en el $\\delta$ del deuterón (detalles en `verificacion.md`). Los
+errores numéricos son despreciables frente a las incertidumbres físicas de las entradas, que son las que se discuten.
+
+## Resultados
+
+**Plasma de Debye.** El 1s deja de existir cuando $\\lambda_D < a_0/\\delta_c = {P['lambda_c_a0']:.7f}\\,a_0 =
+{P['lambda_c_pm']:.2f}$ pm (con la masa reducida del hidrógeno, {P['lambda_c_red_a0']:.7f} $a_0$). Es la longitud
+crítica que ya daban Rogers, Graboske y Harwood en 1970 ($0.83991\\,a_0$ en su resumen; nuestra cifra difiere en la
+quinta decimal, ver `controles.md`). Con la longitud de Debye electrónica del NRL Plasma Formulary,
+$\\lambda_D = (\\varepsilon_0k_BT/n_ee^2)^{{1/2}}$, la curva de desaparición es
+$n_e = {e(P['n_crit_por_eV_cm3'], 3)}\\ \\text{{cm}}^{{-3}}\\,(k_BT/\\text{{eV}})$ (si también apantallan los
+protones a la misma temperatura, la densidad es la mitad). La figura del diagrama muestra la curva en el plano
+$(n_e, T)$: a 1 eV hacen falta $n_e \\approx {e(pts['1']['n_e_cm3'])}$ cm$^{{-3}}$; a 100 eV,
+${e(pts['100']['n_e_cm3'])}$ cm$^{{-3}}$. La energía del 1s sube de forma continua hasta cero
+(figura de energía): con $\\lambda_D = a_0$ queda en {[x for x in P['curva_E'] if x['delta'] == 1.0][0]['E_A_eV']:.3f} eV.
+
+La misma figura muestra por qué esa curva hay que leerla con cuidado. Sobre ella, el número de electrones en la
+esfera de Debye es $N_D = {pts['1']['N_D']:.4f}\\,(k_BT/\\text{{eV}})$: vale 1 recién a {P['T_ND1_eV']:.0f} eV, y la
+teoría de Debye y Hückel supone $N_D \\gg 1$. A 13.6 eV el acoplamiento es $\\Gamma_e = {pts['13.6']['Gamma']:.2f}$
+y $k_BT/E_F = {pts['13.6']['Theta']:.2f}$ (electrones parcialmente degenerados), y el radio de Wigner y Seitz es
+{pts['13.6']['a_ws_sobre_lambdaD']:.1f} veces la longitud de Debye. Es decir, donde el modelo estático predice que el
+1s desaparece, el propio modelo deja de ser válido: el plasma no es débilmente acoplado, el apantallamiento de los
+iones y la dinámica importan, y la frontera entre electrones ligados y libres deja de ser nítida. Por
+eso la literatura de "descenso del continuo" (*ionization potential depression*) usa modelos que interpolan entre
+Debye y la esfera iónica, como el de Stewart y Pyatt (1966), y discute todavía cuál describe los experimentos
+(Crowley 2014). Nuestro $\\lambda_D/a_0$ crítico es el resultado exacto **del modelo de Yukawa estático**, no una
+predicción de la ionización por presión real.
+
+**Materia oscura con mediador ligero.** Con masa reducida $m_\\chi/2$ y $g = \\alpha\\hbar c$, hay 1s si
+$\\alpha m_\\chi/m_\\phi > 2/\\delta_c = {M['b_umbral']['1s']:.6f}$; los siguientes estados s aparecen en
+{M['b_umbral']['2s']:.4f} y {M['b_umbral']['3s']:.4f}. La cifra es compatible con la literatura: Tulin, Yu y Zurek
+(2013, Sec. IV B), que usan las mismas variables ($b = \\alpha_X m_X/m_\\phi$, masa reducida $m_X/2$), escriben que
+la primera resonancia s aparece en $b = 1.68$, y explican que las resonancias de onda s corresponden a estados
+ligados de energía cero. Hay que leer ese 1.68 como la etiqueta de una curva ilustrativa de su figura 3, con dos
+decimales, y no como un umbral calculado con precisión: nuestro valor lo afina, no lo contradice.
+La aproximación de Hulthén, muy usada en este campo porque da la amplificación de Sommerfeld en forma cerrada, pone
+el primer umbral en $b = \\kappa$: con $\\kappa = 1.6$ (Tulin et al.) se equivoca en
+{M['error_rel_hulthen']['kappa_1.6'][0]:+.1%} y con $\\kappa = \\pi^2/6$ (Feng, Kaplinghat y Yu 2010) en
+{M['error_rel_hulthen']['kappa_pi2/6'][0]:+.1%}. Petraki, Postma y de Vries (2017) dan en el texto principal solo la
+condición aproximada $\\xi = \\mu\\alpha/m_\\phi \\gtrsim n^2$; en esa variable el umbral exacto del 1s es
+$\\xi > 1/\\delta_c = {M['xi_umbral']['1s']:.6f}$. Como ejemplo: con $\\alpha = 0.01$ y $m_\\phi = 10$ MeV, hay
+estado ligado si $m_\\chi > {[x for x in M['ejemplos'] if x['alpha'] == 0.01 and x['m_phi_MeV'] == 10.0][0]['m_chi_min_GeV']:.3f}$ GeV.
+También calculamos la antirresonancia s (el cero de la longitud de dispersión entre los umbrales 1s y 2s): sale en
+$b = {M['antirresonancia']['b']:.4f}$, algo por debajo del $b = 4.52$ que Tulin et al. usan como ejemplo (otra curva
+ilustrativa) y del $b = {AH['b_hulthen']['kappa_1.6']:.3f}$ que da su fórmula de Hulthén; a velocidad finita el cero se
+desplaza hacia arriba ({RV['b_cero_fase_k0.06']:.3f} con $v/\\alpha = 0.06$), ver `controles.md`, C9.
+
+**Deuterón de juguete.** Un único Yukawa en onda s con el alcance del pion, ajustado para que la energía de enlace
+sea $B_d = {D['B_masas']:.6f}$ MeV (CODATA 2022), da con el promedio de isospin
+$m_\\pi = {D['m_pi']['promedio']:.4f}$ MeV:
+$\\delta_d = {cen['delta_A']:.5f} = {cen['delta_sobre_delta_c']:.3f}\\,\\delta_c$, $g/\\hbar c = {cen['alpha_g']:.4f}$,
+$\\langle r\\rangle = {cen['r_med_fm']:.3f}$ fm y $\\langle r^2\\rangle^{{1/2}} = {cen['r_rms_rel_fm']:.3f}$ fm para la
+distancia entre nucleones. El radio de nucleones puntuales del modelo, $\\tfrac12\\langle r^2\\rangle^{{1/2}} =
+{cen['r_str_modelo_fm']:.4f}$ fm, se compara con el radio de estructura experimental $r_\\text{{str}} = (r_d^2 - r_p^2 - r_n^2 -
+3/4m_p^2)^{{1/2}} = {R['r_str']:.4f} \\pm {R['u_r_str']:.4f}$ fm ($r_d$ y $r_p$ de CODATA 2022 y $r_n^2 = {K['rn2_fm2']}({K['rn2_u_fm2'] * 1e4:.0f})$
+fm$^2$ del PDG 2024; la incertidumbre usa la diferencia isotópica $r_d^2 - r_p^2$, porque $r_d$ y $r_p$ de CODATA
+están casi totalmente correlacionados; la relación es la Ec. 2 de Filin et al. 2020, que calculan
+{K['r_str_filin_fm']} fm con fuerzas quirales). Las dos cantidades no son idénticas: el $r_\\text{{str}}$ de Filin et
+al. incluye, además del radio de la función de onda, operadores de carga de dos cuerpos y correcciones
+relativistas, que el modelo no tiene. El acuerdo, de {abs(R['modelo_sobre_exp'] - 1):.1%}, es en parte casual: la
+cola $e^{{-\\kappa r}}$, con $1/\\kappa = {cen['kappa_inv_fm']:.3f}$ fm, la impone el ajuste a $B_d$, pero sola no
+basta (el límite de alcance cero da {R['alcance_cero_r_str']:.3f} fm): el resto lo pone el alcance del pion, y el
+modelo no tiene fuerza tensorial ni onda D. Con $\\pi^0$ o $\\pi^\\pm$ en vez
+del promedio, $\\delta_d$ va de {p0['delta_A']:.4f} a {pp['delta_A']:.4f}.
+
+**La lección: qué se mantiene fijo.** Si se mantienen $g$ y $\\mu$ y solo se sube $m_\\pi$, el deuterón se
+desliga en $m_\\pi^c = m_\\pi\\delta_c/\\delta_d = {cen['m_pi_crit_g_fijo']:.1f}$ MeV (entre
+{p0['m_pi_crit_g_fijo']:.1f} y {pp['m_pi_crit_g_fijo']:.1f} MeV según el pion elegido). Pero la QCD en red dice otra
+cosa: NPLQCD (2013) encuentra el deuterón ligado con $B_d = 19.5(3.6)(3.1)(0.2)$ MeV a $m_\\pi = 805.9$ MeV, con
+bariones de 1634 MeV. Con el $g$ físico y la masa reducida de la red ($M_B/2$), ese punto tendría $\\delta = {L['delta_con_g_fisico']:.3f} =
+{L['delta_con_g_fisico'] / dc:.2f}\\,\\delta_c$, muy lejos de cualquier ligado. Para reproducirlo, el mismo modelo
+necesita $\\delta_L = {L['central']['delta_A']:.4f}$ (entre {L['B+1sigma']['delta_A']:.4f} y
+{L['B-1sigma']['delta_A']:.4f} con la incertidumbre de $B_d$) y $g/\\hbar c = {L['central']['alpha_g']:.3f}$, es
+decir, una intensidad {L['cociente_g']:.2f} veces la física. Cerca del punto físico pasa lo mismo de forma local: a
+$g$ fijo el modelo da $d\\ln B_d/d\\ln m_\\pi = {S['dlnB_dlnmpi_A']:.2f}$, mientras que la teoría quiral de
+Berengut et al. (2013), $K^q_\\text{{deut}}/K^q_\\pi = -0.86/0.494$, da {S['berengut']:.2f} (entre
+{S['berengut_rango'][0]:.2f} y {S['berengut_rango'][1]:.2f}, solo con la incertidumbre de $K^q_\\text{{deut}}$). El
+modelo a $g$ fijo exagera la sensibilidad unas {S['dlnB_dlnmpi_A'] / S['berengut']:.1f} veces. La comparación justa
+tiene en cuenta que el $K^q_\\text{{deut}}$ de Berengut et al. contiene también la variación de la masa del nucleón
+($K^q_N = {K['K_N_q']}$, su Ec. 2.4): si el modelo a $g$ fijo deja variar $\\mu$ igual, da
+$K^q_\\text{{deut}} = {S['K_deut_modelo_con_mN']:.2f}$ frente a $-0.86$, unas {S['cociente_con_mN']:.1f} veces (sin esa
+variación, {S['K_deut_modelo_sin_mN']:.2f}). En el límite quiral ($m_\\pi \\to 0$) el modelo a $g$ fijo se
+vuelve un Coulomb y da $B_d = \\mu (g/\\hbar c)^2/2 = {D['mu'] * cen['alpha_g'] ** 2 / 2:.1f}$ MeV; Epelbaum, Meißner y
+Glöckle (2002) obtienen con fuerzas quirales $B_d = 9.6 \\pm 1.9^{{+1.8}}_{{-1.0}}$ MeV (la misma dirección, otra
+magnitud), y Beane y Savage (2002) concluyen que con las incertidumbres de entonces no se puede decir si sigue
+ligado. Ninguno de los dos números del modelo a $g$ fijo, ni el $m_\\pi^c$ ni el límite quiral, es una predicción.
+
+## Discusión
+
+El número adimensional $\\delta_c$ es exacto y universal **para el potencial de Yukawa**, pero una frase como "el
+deuterón se desliga si $m_\\pi$ sube un {cen['m_pi_crit_g_fijo'] / D['m_pi']['promedio'] - 1:.0%}" no lo es: depende de
+suponer que $g$ y la masa reducida no cambian con $m_\\pi$, y esa suposición es falsa (la red y la teoría quiral
+muestran que la fuerza nuclear entera cambia con la masa de los quarks). Lo mismo en el plasma: la curva de
+desaparición del 1s es exacta para el Yukawa estático, pero cae en una región donde el apantallamiento estático de
+Debye no se aplica. Donde la traducción sí funciona tal cual es en materia oscura, porque allí el Yukawa es el
+modelo de partida y no una aproximación de algo más complicado: la cifra $2/\\delta_c = {M['b_umbral']['1s']:.3f}$ es
+compatible con el valor que usa la literatura ($b = 1.68$), y la aproximación de Hulthén la reproduce solo a unos
+pocos por ciento.
+La regla práctica que dejamos para el resto del artículo es declarar siempre qué se mantiene fijo al mover $\\delta$.
+
+## Referencias de esta sección
+
+- F. J. Rogers, H. C. Graboske y D. J. Harwood, *Phys. Rev. A* **1**, 1577 (1970).
+- J. D. Huba, *NRL Plasma Formulary* (Naval Research Laboratory, edición revisada 2004), p. 29.
+- J. C. Stewart y K. D. Pyatt, *Astrophys. J.* **144**, 1203 (1966).
+- B. J. B. Crowley, *High Energy Density Phys.* **13**, 84 (2014), DOI 10.1016/j.hedp.2014.04.003, arXiv:1309.1456.
+- R. K. Janev, S. Zhang y J. Wang, *Matter Radiat. Extremes* **1**, 237 (2016), DOI 10.1016/j.mre.2016.10.002.
+- S. Tulin, H.-B. Yu y K. M. Zurek, *Phys. Rev. D* **87**, 115007 (2013), arXiv:1302.3898.
+- J. L. Feng, M. Kaplinghat y H.-B. Yu, *Phys. Rev. D* **82**, 083525 (2010), arXiv:1005.4678.
+- K. Petraki, M. Postma y J. de Vries, *JHEP* **04** (2017) 077, arXiv:1611.01394.
+- S. R. Beane et al. (NPLQCD), *Phys. Rev. D* **87**, 034506 (2013), arXiv:1206.5219.
+- E. Epelbaum, U.-G. Meißner y W. Glöckle, *Nucl. Phys. A*, DOI 10.1016/S0375-9474(02)01393-3, arXiv:nucl-th/0207089.
+- S. R. Beane y M. J. Savage, *Nucl. Phys. A*, DOI 10.1016/S0375-9474(02)01586-5, arXiv:nucl-th/0208021.
+- J. C. Berengut et al., *Phys. Rev. D* **87**, 085018 (2013), DOI 10.1103/PhysRevD.87.085018, arXiv:1301.1738.
+- A. A. Filin et al., *Phys. Rev. Lett.* **124**, 082501 (2020), arXiv:1911.04877.
+- P. J. Mohr et al. (CODATA 2022), *Rev. Mod. Phys.* **97**, 025002 (2025); Particle Data Group, *Review of Particle
+  Physics* (2025), tablas de constantes y de mesones ligeros; tabla de bariones N del PDG 2024 ($r_n^2$).
+"""
+open(os.path.join(c.BASE, "seccion_articulo.md"), "w").write(txt)
+
+# ----------------------------------------------------------------------------- LEEME.md
+tiempos = {k: c.leer(k).get("t_s", 0.0) for k in ("01_umbral", "02_plasma", "03_materia_oscura", "04_deuteron")}
+txt = f"""# E1 · Contexto físico del umbral
+
+**Pregunta.** ¿Qué significa físicamente $\\delta_c = {dc:.10f}$ en sistemas reales, sin presentarlo como una
+"cifra universal"? Se traduce a tres sistemas (hidrógeno en un plasma de Debye, materia oscura con mediador ligero
+y un deuterón de juguete) declarando en cada uno qué parámetro se mantiene fijo.
+
+## Cómo reproducir
+
+```
+cd fase4/extensiones/E1_contexto_fisico/codigo
+export OMP_NUM_THREADS=1
+python3 01_umbral_y_controles.py    # {tiempos['01_umbral']:.0f} s   umbrales 1s, 2s, 3s con dos métodos; Coulomb y Hulthén
+python3 02_plasma.py                # {tiempos['02_plasma']:.0f} s   longitud crítica, diagrama (n_e, T), E_1s(lambda_D)
+python3 03_materia_oscura.py        # {tiempos['03_materia_oscura']:.0f} s    alpha m_chi/m_phi crítico, Hulthén, antirresonancia
+python3 04_deuteron.py              # {tiempos['04_deuteron']:.0f} s  deuterón de juguete, radio, m_pi crítico, punto de NPLQCD
+python3 05_mapa.py                  # figura común (delta frente al parámetro físico)
+python3 06_verificacion.py          # diagnósticos (V1 a V5)
+python3 07_documentos.py            # controles.md, verificacion.md, seccion_articulo.md, LEEME.md
+```
+`comun_e1.py` contiene las constantes (con su fuente) y los dos métodos; importa `fase2/codigo/radial.py` y
+`fase3/codigo/comun3.py` sin modificarlos.
+
+## Resultados principales
+
+- **Plasma:** $\\lambda_D^c = a_0/\\delta_c = {P['lambda_c_a0']:.7f}\\,a_0$ ({P['lambda_c_pm']:.2f} pm); curva
+  $n_e = {e(P['n_crit_por_eV_cm3'], 3)}$ cm$^{{-3}}$ $\\times\\,(k_BT/\\text{{eV}})$. Sobre esa curva
+  $N_D = {pts['1']['N_D']:.4f}\\,(k_BT/\\text{{eV}})$, así que allí $N_D < 1$ por debajo de unos {P['T_ND1_eV']:.0f} eV y $N_D \\le 10$ hasta
+  unos {10 * P['T_ND1_eV']:.0f} eV: el modelo estático de Debye, que pide $N_D \\gg 1$, no es válido en esa región.
+- **Materia oscura:** hay 1s si $\\alpha m_\\chi/m_\\phi > {M['b_umbral']['1s']:.6f}$ (2s: {M['b_umbral']['2s']:.4f};
+  3s: {M['b_umbral']['3s']:.4f}). Compatible con la "primera resonancia s en b = 1.68" de Tulin, Yu y Zurek (2013),
+  que es la etiqueta de una curva ilustrativa, no un umbral calculado con precisión.
+  Hulthén con $\\kappa$ = 1.6 o $\\pi^2/6$ se equivoca en {M['error_rel_hulthen']['kappa_1.6'][0]:+.1%} y
+  {M['error_rel_hulthen']['kappa_pi2/6'][0]:+.1%}.
+- **Deuterón de juguete** ($m_\\pi$ promedio): $\\delta_d = {cen['delta_A']:.5f}$ ({cen['delta_sobre_delta_c']:.3f} $\\delta_c$),
+  $g/\\hbar c = {cen['alpha_g']:.4f}$, radio de nucleones puntuales del modelo {cen['r_str_modelo_fm']:.4f} fm frente a
+  un radio de estructura experimental de {R['r_str']:.4f} ± {R['u_r_str']:.4f} fm; $m_\\pi^c$ a $g$ fijo = {cen['m_pi_crit_g_fijo']:.1f} MeV,
+  contradicho por NPLQCD (ligado a 805.9 MeV); para reproducir la red, $g$ debe ser {L['cociente_g']:.2f} veces el
+  físico. Sensibilidad a $g$ fijo {S['dlnB_dlnmpi_A']:.2f} frente a {S['berengut']:.2f} de Berengut et al.
+  ({S['cociente_con_mN']:.1f} veces en $K^q_\\text{{deut}}$ si se deja variar también la masa del nucleón).
+- Controles: ver `controles.md` (tres no pasan, con su causa medida: C6, C7 y C9).
+
+## Archivos
+
+`seccion_articulo.md` (sección lista para el artículo), `controles.md`, `verificacion.md`, `fuentes.md`,
+`registro_ia.md`, `resultados/*.json` y `*_salida.txt`, `figuras/02_plasma_diagrama.png`,
+`figuras/02_plasma_energia.png`, `figuras/05_mapa_delta.png`.
+
+## Qué quedó sin hacer
+
+- No pudimos leer el apéndice A.2 de Petraki, Postma y de Vries (el texto que devuelve arXiv se corta antes); solo
+  verificamos lo que dice su texto principal.
+- No verificamos en el editor el volumen y la página de Murillo y Weisheit (*Phys. Rep.* 302, 1, 1998), que
+  conocemos por la cita de Janev et al.; por eso no está en las referencias de la sección. (El número de artículo de
+  Berengut et al., 085018, lo cerró la revisión adversarial con el DOI que da arXiv.)
+- La revisión de Tulin y Yu (2018) se leyó solo en parte (el HTML se corta); no encontramos la cifra 1.68 en la
+  parte leída.
+- No hicimos un escenario con $g$ que dependa de $m_\\pi$ según una fórmula de la teoría quiral: solo el punto de
+  la red y la sensibilidad local de Berengut et al.
+- La auditoría con Gemini (D4) queda para el paso de revisión.
+- Revisión adversarial independiente (17-11-2026): `revision/informe_revision.md`, con código propio que recalcula
+  todas las cifras centrales por métodos distintos.
+"""
+open(os.path.join(c.BASE, "LEEME.md"), "w").write(txt)
+print("escritos: controles.md, verificacion.md, seccion_articulo.md, LEEME.md")

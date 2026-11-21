@@ -1,0 +1,20 @@
+Orden de la malla h en la transferencia (a), eps = 0.1
+  delta = 0.0: E(h=0.04, 0.02, 0.01) = -0.124999999494, -0.124999999477, -0.124999999477; orden aparente 7.200
+  delta = 0.2: E(h=0.04, 0.02, 0.01) = -0.004101674751, -0.004101674728, -0.004101674723; orden aparente 2.197
+  diferencia maxima entre mallas 2.3e-11; exponente de Richardson usado en h: 4.0 (alternativo 4.70)
+delta = 0.0    R = 60 metodo (a): E = -1.2499999995e-01 +- 2.7e-11  radial -1.2500000000e-01  dif = +5.5e-11  compatible = True  pTrot = 2.029  sesgo(eps=0.1)/|E| = +4.2e-09  <r> dif = +1.3e-10  perron = +2.3e-11 minT = 3.0e-14  pTrot(pared corrida) = 2.088
+delta = 0.0    R = 60 metodo (b): E = -1.2499656104e-01 +- 1.3e-10  radial -1.2500000000e-01  dif = +3.4e-06  compatible = False  pTrot = 1.339  sesgo(eps=0.1)/|E| = -1.8e-03  <r> dif = +1.6e-04  perron = -1.7e-19 minT = 1.5e-221
+delta = 0.1    R = 100 metodo (a): E = -4.6534390435e-02 +- 1.3e-11  radial -4.6534390493e-02  dif = +5.8e-11  compatible = True  pTrot = 1.997  sesgo(eps=0.1)/|E| = -9.4e-08  <r> dif = +2.1e-10  perron = +6.7e-14 minT = 3.0e-14  pTrot(pared corrida) = 1.997
+delta = 0.1    R = 100 metodo (b): E = -4.6531882722e-02 +- 9.1e-11  radial -4.6534390493e-02  dif = +2.5e-06  compatible = False  pTrot = 1.343  sesgo(eps=0.1)/|E| = -3.8e-03  <r> dif = +1.8e-04  perron = +2.3e-20 minT = 1.5e-221
+delta = 0.16   R = 100 metodo (a): E = -1.7020937501e-02 +- 1.6e-11  radial -1.7020937568e-02  dif = +6.7e-11  compatible = True  pTrot = 1.999  sesgo(eps=0.1)/|E| = -1.1e-06  <r> dif = +1.5e-10  perron = +2.0e-09 minT = 2.9e-14  pTrot(pared corrida) = 1.998
+delta = 0.16   R = 100 metodo (b): E = -1.7019469016e-02 +- 6.1e-11  radial -1.7020937568e-02  dif = +1.5e-06  compatible = False  pTrot = 1.349  sesgo(eps=0.1)/|E| = -6.9e-03  <r> dif = +2.1e-04  perron = -2.0e-19 minT = 1.5e-221
+delta = 0.2    R = 100 metodo (a): E = -4.1016462866e-03 +- 2.5e-11  radial -4.1016463483e-03  dif = +6.2e-11  compatible = True  pTrot = 1.999  sesgo(eps=0.1)/|E| = -6.9e-06  <r> dif = +2.9e-07  perron = +4.3e-06 minT = 2.9e-14  pTrot(pared corrida) = 1.999
+delta = 0.2    R = 100 metodo (b): E = -4.1009367015e-03 +- 4.0e-11  radial -4.1016463483e-03  dif = +7.1e-07  compatible = False  pTrot = 1.357  sesgo(eps=0.1)/|E| = -1.7e-02  <r> dif = +2.7e-04  perron = -6.7e-18 minT = 1.5e-221
+delta = 0.215  R = 100 metodo (a): E = -8.3801832352e-04 +- 4.3e-09  radial -8.3801561687e-04  dif = -2.7e-09  compatible = True  pTrot = 1.935  sesgo(eps=0.1)/|E| = -3.7e-05  <r> dif = +3.3e-04  perron = +1.3e-04 minT = 2.9e-14  pTrot(pared corrida) = 1.999
+delta = 0.215  R = 100 metodo (b): E = -8.3766860942e-04 +- 3.0e-09  radial -8.3801561687e-04  dif = +3.5e-07  compatible = False  pTrot = 1.367  sesgo(eps=0.1)/|E| = -5.6e-02  <r> dif = +3.6e-05  perron = -3.1e-18 minT = 1.5e-221
+delta = 0.219  R = 100 metodo (a): E = -1.6850524650e-04 +- 3.0e-08  radial -1.6848568607e-04  dif = -2.0e-08  compatible = True  pTrot = 1.611  sesgo(eps=0.1)/|E| = -3.4e-04  <r> dif = +2.8e-03  perron = +1.2e-04 minT = 2.9e-14  pTrot(pared corrida) = 1.998
+delta = 0.219  R = 100 metodo (b): E = -1.6831067238e-04 +- 2.1e-08  radial -1.6848568607e-04  dif = +1.8e-07  compatible = False  pTrot = 1.375  sesgo(eps=0.1)/|E| = -2.3e-01  <r> dif = +1.7e-04  perron = -7.2e-19 minT = 1.5e-221
+
+Resumen (a): {'todos_compatibles': True, 'coulomb_dif': 5.2033891084768413e-11, 'trotter': [2.0287999712745894, 1.997288608429663, 1.999211937911095, 1.9991028747286357, 1.9347172223316738, 1.6105913405057635], 'max_dif_rel': 0.00011609549294291894, 'perron_min': 6.731314027775253e-14, 'min_T': 2.9206044101249567e-14}
+Resumen (b): {'trotter': [1.3390914509504714, 1.342912635753674, 1.3490554187005164, 1.357211074636759, 1.366576733052153, 1.3748773934940013], 'sesgo_eps01_rel': [-0.0018371158626750569, -0.0038478664142020886, -0.006941626760456569, -0.0169656338327367, -0.0563085012086003, -0.23248318587679145], 'max_dif_rel': 0.001038745137850573}
+Tiempo total 27 s

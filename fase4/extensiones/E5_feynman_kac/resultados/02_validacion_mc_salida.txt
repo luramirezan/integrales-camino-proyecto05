@@ -1,0 +1,45 @@
+(a) eta=0.8: N=10000000, 28.9 s, pasos medios 12.3 (max 87); E[X] = 0.98861 +- 0.00030 (-38.59 sigma); X_max = 17.179
+    delta=2.5: a_MC = -0.521594 +- 0.000120 (bloques 0.000110); EDO -0.560008; dif_rel = +6.86e-02 (+320.45 sigma)
+    delta=3.0: a_MC = -0.328429 +- 0.000052 (bloques 0.000047); EDO -0.343241; dif_rel = +4.32e-02 (+286.02 sigma)
+    delta=4.0: a_MC = -0.165284 +- 0.000017 (bloques 0.000015); EDO -0.169017; dif_rel = +2.21e-02 (+225.69 sigma)
+    delta=2.0: a_MC = -0.961765 +- 0.000468 (bloques 0.000442); EDO -1.103459; dif_rel = +1.28e-01 (+302.81 sigma)
+    delta=1.5: a_MC = -2.424275 +- 0.009058 (bloques 0.008953); EDO -3.668234; dif_rel = +3.39e-01 (+137.33 sigma)
+(a) eta=0.4: N=10000000, 94.8 s, pasos medios 48.5 (max 524); E[X] = 1.00032 +- 0.00035 (+0.89 sigma); X_max = 19.459
+    delta=2.5: a_MC = -0.555971 +- 0.000245 (bloques 0.000259); EDO -0.560008; dif_rel = +7.21e-03 (+16.45 sigma)
+    delta=3.0: a_MC = -0.341789 +- 0.000085 (bloques 0.000093); EDO -0.343241; dif_rel = +4.23e-03 (+16.98 sigma)
+    delta=4.0: a_MC = -0.168684 +- 0.000023 (bloques 0.000026); EDO -0.169017; dif_rel = +1.97e-03 (+14.20 sigma)
+    delta=2.0: a_MC = -1.086537 +- 0.001514 (bloques 0.001573); EDO -1.103459; dif_rel = +1.53e-02 (+11.18 sigma)
+    delta=1.5: a_MC = -3.417857 +- 0.048991 (bloques 0.050365); EDO -3.668234; dif_rel = +6.83e-02 (+5.11 sigma)
+(a) eta=0.2: N=10000000, 181.1 s, pasos medios 208.7 (max 2473); E[X] = 0.99952 +- 0.00036 (-1.32 sigma); X_max = 19.577
+    delta=2.5: a_MC = -0.559839 +- 0.000278 (bloques 0.000269); EDO -0.560008; dif_rel = +3.01e-04 (+0.61 sigma)
+    delta=3.0: a_MC = -0.343148 +- 0.000092 (bloques 0.000081); EDO -0.343241; dif_rel = +2.70e-04 (+1.01 sigma)
+    delta=4.0: a_MC = -0.168986 +- 0.000024 (bloques 0.000020); EDO -0.169017; dif_rel = +1.87e-04 (+1.30 sigma)
+    delta=2.0: a_MC = -1.103322 +- 0.001888 (bloques 0.001957); EDO -1.103459; dif_rel = +1.24e-04 (+0.07 sigma)
+    delta=1.5: a_MC = -3.632743 +- 0.064489 (bloques 0.065077); EDO -3.668234; dif_rel = +9.68e-03 (+0.55 sigma)
+(a) eta=0.1: N=3000000, 230.7 s, pasos medios 838.8 (max 11136); E[X] = 1.00026 +- 0.00066 (+0.39 sigma); X_max = 20.362
+    delta=2.5: a_MC = -0.561078 +- 0.000616 (bloques 0.000588); EDO -0.560008; dif_rel = -1.91e-03 (-1.74 sigma)
+    delta=3.0: a_MC = -0.343509 +- 0.000181 (bloques 0.000177); EDO -0.343241; dif_rel = -7.82e-04 (-1.49 sigma)
+    delta=4.0: a_MC = -0.169062 +- 0.000045 (bloques 0.000045); EDO -0.169017; dif_rel = -2.66e-04 (-0.99 sigma)
+    delta=2.0: a_MC = -1.111730 +- 0.005267 (bloques 0.005018); EDO -1.103459; dif_rel = -7.50e-03 (-1.57 sigma)
+    delta=1.5: a_MC = -3.888956 +- 0.243051 (bloques 0.238107); EDO -3.668234; dif_rel = -6.02e-02 (-0.91 sigma)
+(a) delta=2.5: sesgo_rel por eta [0.06859, 0.00721, 0.0003, -0.00191]; orden 0.8/0.4 = 3.25, 0.4/0.2 = 4.58; extrapolado (p=4) a0 = -0.560285 +- 0.000268 frente a -0.560008 (-1.04 sigma)
+(a) delta=3.0: sesgo_rel por eta [0.04315, 0.00423, 0.00027, -0.00078]; orden 0.8/0.4 = 3.35, 0.4/0.2 = 3.97; extrapolado (p=4) a0 = -0.343302 +- 0.000086 frente a -0.343241 (-0.70 sigma)
+(a) delta=4.0: sesgo_rel por eta [0.02209, 0.00197, 0.00019, -0.00027]; orden 0.8/0.4 = 3.49, 0.4/0.2 = 3.40; extrapolado (p=4) a0 = -0.169020 +- 0.000023 frente a -0.169017 (-0.12 sigma)
+(b) delta=3.0 r=0.05: phi_MC = 2.08601 +- 0.00291; EDO 2.08544 (+0.20 sigma)
+(b) delta=3.0 r=0.25: phi_MC = 1.77990 +- 0.00227; EDO 1.78300 (-1.37 sigma)
+(b) delta=3.0 r=0.5: phi_MC = 1.55626 +- 0.00194; EDO 1.55584 (+0.22 sigma)
+(b) delta=3.0 r=1.0: phi_MC = 1.32903 +- 0.00143; EDO 1.32977 (-0.52 sigma)
+(b) delta=3.0 r=2.0: phi_MC = 1.17073 +- 0.00106; EDO 1.17131 (-0.55 sigma)
+(b) delta=3.0 r=4.0: phi_MC = 1.08533 +- 0.00079; EDO 1.08581 (-0.61 sigma)
+(b) delta=3.0 r=8.0: phi_MC = 1.04255 +- 0.00053; EDO 1.04291 (-0.68 sigma)
+(b) delta=4.0 r=0.05: phi_MC = 1.67036 +- 0.00128; EDO 1.66971 (+0.51 sigma)
+(b) delta=4.0 r=0.25: phi_MC = 1.44846 +- 0.00107; EDO 1.44754 (+0.86 sigma)
+(b) delta=4.0 r=0.5: phi_MC = 1.29887 +- 0.00091; EDO 1.29809 (+0.86 sigma)
+(b) delta=4.0 r=1.0: phi_MC = 1.16660 +- 0.00068; EDO 1.16646 (+0.20 sigma)
+(b) delta=4.0 r=2.0: phi_MC = 1.08487 +- 0.00050; EDO 1.08449 (+0.77 sigma)
+(b) delta=4.0 r=4.0: phi_MC = 1.04216 +- 0.00036; EDO 1.04225 (-0.27 sigma)
+(b) delta=4.0 r=8.0: phi_MC = 1.02084 +- 0.00024; EDO 1.02113 (-1.19 sigma)
+(c) trapecio delta=3 eta=0.8: a = -2.3911e+145; Lambda max = 350.07; top5 = [350.07, 217.01, 200.8, 193.93, 151.01]
+(c) trapecio delta=3 eta=0.4: a = -4.5730e+84; Lambda max = 210.26; top5 = [210.26, 76.39, 62.34, 35.76, 35.48]
+(c) trapecio delta=3 eta=0.2: a = -3.4450e-01; Lambda max = 6.42; top5 = [6.42, 5.7, 5.33, 5.32, 5.25]
+tiempo total 650.0 s

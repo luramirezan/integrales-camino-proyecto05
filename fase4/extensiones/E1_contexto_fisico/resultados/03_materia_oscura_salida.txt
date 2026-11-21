@@ -1,0 +1,20 @@
+1s: delta_c = 1.1906124211  ->  alpha m_chi/m_phi > 1.679808   (xi = mu alpha/m_phi > 0.839904)
+2s: delta_c = 0.3102092827  ->  alpha m_chi/m_phi > 6.447260   (xi = mu alpha/m_phi > 3.223630)
+3s: delta_c = 0.1394502941  ->  alpha m_chi/m_phi > 14.342028   (xi = mu alpha/m_phi > 7.171014)
+Hulthen kappa_1.6: b_n = 1.6000, 6.4000, 14.4000
+Hulthen kappa_pi2/6: b_n = 1.6449, 6.5797, 14.8044
+   error relativo frente al Yukawa: -4.751%, -0.733%, +0.404%
+   error relativo frente al Yukawa: -2.076%, +2.055%, +3.224%
+intervalos con cambio de signo de a_s (|a_s|<50): [(np.float64(0.43), np.float64(0.45))]
+a_s = 0 en delta = 0.4478572850 (A), 0.4478572834 (B)  ->  b = 4.46571 (Tulin et al.: 4.52)
+antirresonancia de Hulthen: r = 1.69093, b = 4.5748 (kappa 1.6), 4.7033 (pi^2/6)
+control de signo: a_s(1.19) = 2203.8, a_s(1.20) = -142.93
+alpha =  0.01, m_phi =      1 MeV  ->  hay 1s si m_chi > 0.168 GeV
+alpha =  0.01, m_phi =     10 MeV  ->  hay 1s si m_chi > 1.68 GeV
+alpha =  0.01, m_phi =    100 MeV  ->  hay 1s si m_chi > 16.8 GeV
+alpha =   0.1, m_phi =      1 MeV  ->  hay 1s si m_chi > 0.0168 GeV
+alpha =   0.1, m_phi =     10 MeV  ->  hay 1s si m_chi > 0.168 GeV
+alpha =   0.1, m_phi =    100 MeV  ->  hay 1s si m_chi > 1.68 GeV
+C8 Primera resonancia s de Tulin, Yu y Zurek (b = 1.68) frente a 2/delta_c | 2/delta_c = 1.67981 | pasa
+C9 Antirresonancia s (a_s = 0) frente a Tulin, Yu y Zurek (b = 4.52); A frente a B | b = 4.4657; dif A-B = 1.6e-09 | NO PASA
+tiempo 2.4 s

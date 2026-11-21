@@ -1,0 +1,24 @@
+{
+ "n": 129,
+ "pasan": 105,
+ "no_pasan": 16,
+ "medidos": 8,
+ "no_pasan_lista": [
+  "δ_c(1s) = 1.1906124210606: frente al encargo, convergencia numérica y ajuste FD de E(δ)",
+  "δ_c(2p) = 0.2202168066066: frente al encargo, convergencia numérica y ajuste FD de E(δ)",
+  "FD (h = 1/40) frente a disparo, 2s δ = 0.309899, R = 20000",
+  "FD (h = 1/40) frente a disparo, 1s δ = 1.18942, R = 20000",
+  "Diagnóstico: FD h = 1/160 en 2s δ = 0.309899 (fallo de la fila D)",
+  "1s: Hellmann–Feynman, Δ/δ_c = 1e-07",
+  "1s: FD (h = 1/40, R = 3396) frente a disparo, Δ/δ_c = 1e-02",
+  "1s: FD (h = 1/40, R = 33992) frente a disparo, Δ/δ_c = 1e-03",
+  "2s: FD (h = 1/40, R = 40000) frente a disparo, Δ/δ_c = 1e-03",
+  "2p: Hellmann–Feynman, Δ/δ_c = 1e-09",
+  "3d: Hellmann–Feynman, Δ/δ_c = 1e-09",
+  "ε = 0.1: núcleo libre de la red l = 1 frente a K_1 exacto",
+  "ε = 0.1: |U_R − U_0.005| de la tabla l = 1",
+  "ε = 0.05: núcleo libre de la red l = 1 frente a K_1 exacto",
+  "ε = 0.05: |U_R − U_0.005| de la tabla l = 1",
+  "Camino (a), δ = 0.219: orden de Trotter"
+ ]
+}

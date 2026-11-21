@@ -1,0 +1,118 @@
+(a) Cajas en el umbral
+  1s R =    10: E = +1.4810115037e-02  y = 2R^2E/pi^2 = 3.001157e-01  (0.1 s)
+  1s R =    20: E = +3.3768966448e-03  y = 2R^2E/pi^2 = 2.737209e-01  (0.1 s)
+  1s R =    40: E = +8.0652788553e-04  y = 2R^2E/pi^2 = 2.614988e-01  (0.2 s)
+  1s R =    80: E = +1.9712777707e-04  y = 2R^2E/pi^2 = 2.556572e-01  (0.2 s)
+  1s R =   160: E = +4.8732221305e-05  y = 2R^2E/pi^2 = 2.528054e-01  (0.3 s)
+  1s R =   320: E = +1.2115176632e-05  y = 2R^2E/pi^2 = 2.513969e-01  (0.2 s)
+  1s R =   640: E = +3.0203617171e-06  y = 2R^2E/pi^2 = 2.506970e-01  (0.2 s)
+  1s R =  1280: E = +7.5403965117e-07  y = 2R^2E/pi^2 = 2.503481e-01  (0.2 s)
+  1s R =  2560: E = +1.8837877040e-07  y = 2R^2E/pi^2 = 2.501740e-01  (0.2 s)
+  2p R =    10: E = +2.2367509867e-02  y = 2R^2E/pi^2 = 4.532605e-01  Y = 2.255869  (0.2 s)
+  2p R =    20: E = +2.2178661804e-03  y = 2R^2E/pi^2 = 1.797735e-01  Y = 1.789458  (0.2 s)
+  2p R =    40: E = +2.1208951167e-04  y = 2R^2E/pi^2 = 6.876531e-02  Y = 1.368975  (0.3 s)
+  2p R =    80: E = +2.2604732302e-05  y = 2R^2E/pi^2 = 2.931633e-02  Y = 1.167254  (0.2 s)
+  2p R =   160: E = +2.6118172083e-06  y = 2R^2E/pi^2 = 1.354918e-02  Y = 1.078944  (0.5 s)
+  2p R =   320: E = +3.1418335624e-07  y = 2R^2E/pi^2 = 6.519486e-03  Y = 1.038315  (0.6 s)
+  2p R =   640: E = +3.8537522786e-08  y = 2R^2E/pi^2 = 3.198704e-03  Y = 1.018873  (0.6 s)
+  2p R =  1280: E = +4.7722416618e-09  y = 2R^2E/pi^2 = 1.584428e-03  Y = 1.009366  (0.5 s)
+  2p R =  2560: E = +5.9375227564e-10  y = 2R^2E/pi^2 = 7.885250e-04  Y = 1.004665  (0.7 s)
+  2p: |Y-1| en R_max = 4.67e-03; Y - 1 ~ R^p con p = -1.0304967267972722; pasa = True
+  3d R =    10: E = +6.3781552626e-02  y = 2R^2E/pi^2 = 1.292484e+00  Y = 0.153748  (0.5 s)
+  3d R =    20: E = +6.5781936242e-03  y = 2R^2E/pi^2 = 5.332083e-01  Y = 0.507423  (0.3 s)
+  3d R =    40: E = +3.7063962577e-04  y = 2R^2E/pi^2 = 1.201717e-01  Y = 0.914883  (0.3 s)
+  3d R =    80: E = +1.2827613291e-05  y = 2R^2E/pi^2 = 1.663627e-02  Y = 1.013234  (0.5 s)
+  3d R =   160: E = +3.9719226990e-07  y = 2R^2E/pi^2 = 2.060492e-03  Y = 1.003956  (0.8 s)
+  3d R =   320: E = +1.2370465366e-08  y = 2R^2E/pi^2 = 2.566943e-04  Y = 1.000575  (0.7 s)
+  3d R =   640: E = +3.8638353801e-10  y = 2R^2E/pi^2 = 3.207073e-05  Y = 1.000074  (1.0 s)
+  3d R =  1280: E = +1.2073700926e-11  y = 2R^2E/pi^2 = 4.008580e-06  Y = 1.000009  (1.0 s)
+  3d R =  2560: E = +3.7730180715e-13  y = 2R^2E/pi^2 = 5.010708e-07  Y = 1.000006  (1.2 s)
+  3d: |Y-1| en R_max = 5.93e-06; Y - 1 ~ R^p con p = -2.419399174592408; pasa = True
+
+  Control con diferencias finitas (h = 1/160 + Richardson) en el umbral
+  2p R =   10: E_disp = +2.236751e-02  FD h=1/40 dif +2.6e-11  FD h=1/160 dif +8.9e-12  (dif/E h=1/160: +4.0e-10)
+  2p R =   20: E_disp = +2.217866e-03  FD h=1/40 dif +1.3e-11  FD h=1/160 dif -1.7e-11  (dif/E h=1/160: -7.7e-09)
+  2p R =   40: E_disp = +2.120895e-04  FD h=1/40 dif +7.8e-12  FD h=1/160 dif -1.7e-11  (dif/E h=1/160: -7.9e-08)
+  2p R =   80: E_disp = +2.260473e-05  FD h=1/40 dif +1.0e-11  FD h=1/160 dif -1.6e-11  (dif/E h=1/160: -7.1e-07)
+  2p R =  160: E_disp = +2.611817e-06  FD h=1/40 dif +1.1e-11  FD h=1/160 dif +2.9e-11  (dif/E h=1/160: +1.1e-05)
+  2p R =  320: E_disp = +3.141834e-07  FD h=1/40 dif +1.6e-11  FD h=1/160 dif +9.1e-12  (dif/E h=1/160: +2.9e-05)
+  2p R =  640: E_disp = +3.853752e-08  FD h=1/40 dif +2.4e-11  FD h=1/160 dif +7.7e-12  (dif/E h=1/160: +2.0e-04)
+  3d R =   10: E_disp = +6.378155e-02  FD h=1/40 dif -2.6e-12  FD h=1/160 dif +1.8e-11  (dif/E h=1/160: +2.8e-10)
+  3d R =   20: E_disp = +6.578194e-03  FD h=1/40 dif +8.8e-13  FD h=1/160 dif -8.7e-12  (dif/E h=1/160: -1.3e-09)
+  3d R =   40: E_disp = +3.706396e-04  FD h=1/40 dif +2.0e-12  FD h=1/160 dif -4.2e-11  (dif/E h=1/160: -1.1e-07)
+  3d R =   80: E_disp = +1.282761e-05  FD h=1/40 dif +8.6e-13  FD h=1/160 dif +3.8e-11  (dif/E h=1/160: +3.0e-06)
+  3d R =  160: E_disp = +3.971923e-07  FD h=1/40 dif +1.8e-12  FD h=1/160 dif +1.9e-11  (dif/E h=1/160: +4.7e-05)
+  3d R =  320: E_disp = +1.237047e-08  FD h=1/40 dif -6.5e-13  FD h=1/160 dif +9.9e-12  (dif/E h=1/160: +8.0e-04)
+  3d R =  640: E_disp = +3.863835e-10  FD h=1/40 dif +7.9e-13  FD h=1/160 dif -1.5e-11  (dif/E h=1/160: -3.9e-02)
+  1s R =   10: E_disp = +1.481012e-02  FD h=1/40 dif +4.0e-09  FD h=1/160 dif +2.7e-11  (dif/E h=1/160: +1.8e-09)
+  1s R =   20: E_disp = +3.376897e-03  FD h=1/40 dif +2.8e-09  FD h=1/160 dif +3.1e-12  (dif/E h=1/160: +9.1e-10)
+  1s R =   40: E_disp = +8.065279e-04  FD h=1/40 dif +2.2e-09  FD h=1/160 dif +5.2e-13  (dif/E h=1/160: +6.5e-10)
+  1s R =   80: E_disp = +1.971278e-04  FD h=1/40 dif +2.0e-09  FD h=1/160 dif +3.1e-11  (dif/E h=1/160: +1.6e-07)
+  1s R =  160: E_disp = +4.873222e-05  FD h=1/40 dif +1.8e-09  FD h=1/160 dif +2.1e-11  (dif/E h=1/160: +4.3e-07)
+  1s R =  320: E_disp = +1.211518e-05  FD h=1/40 dif +1.7e-09  FD h=1/160 dif +8.3e-13  (dif/E h=1/160: +6.8e-08)
+  1s R =  640: E_disp = +3.020362e-06  FD h=1/40 dif +1.7e-09  FD h=1/160 dif -1.1e-12  (dif/E h=1/160: -3.6e-07)
+
+(b) Radio de caja en el que el nivel cruza E = 0 (ultimo nodo de la solucion de energia cero)
+  1s Delta/dc = 1e-01: R_c = 12.1513  predicho 11.3318  rel +7.23e-02  a_s = 12.1513 (rel +4.0e-08)
+  1s Delta/dc = 1e-02: R_c = 114.109  predicho 113.318  rel +6.98e-03  a_s = 114.109 (rel +1.1e-12)
+  1s Delta/dc = 1e-03: R_c = 1133.97  predicho 1133.18  rel +6.95e-04  a_s = 1133.97 (rel +3.2e-11)
+  1s Delta/dc = 1e-04: R_c = 11332.6  predicho 11331.8  rel +6.95e-05  a_s = 11332.6 (rel +9.5e-11)
+  1s Delta/dc = 1e-05: R_c = 113319  predicho 113318  rel +6.95e-06  a_s = 113319 (rel +6.9e-10)
+  1s Delta/dc = 1e-06: R_c = 1.13318e+06  predicho 1.13318e+06  rel +6.96e-07
+  1s: pasa = True
+  2p Delta/dc = 1e-01: R_c = 14.2951  predicho 15.2877  rel -6.49e-02
+  2p Delta/dc = 1e-02: R_c = 32.6912  predicho 32.9364  rel -7.44e-03
+  2p Delta/dc = 1e-03: R_c = 70.909  predicho 70.9593  rel -7.09e-04
+  2p Delta/dc = 1e-04: R_c = 152.866  predicho 152.877  rel -7.04e-05
+  2p Delta/dc = 1e-05: R_c = 329.362  predicho 329.364  rel -7.03e-06
+  2p Delta/dc = 1e-06: R_c = 709.592  predicho 709.593  rel -7.03e-07
+  2p Delta/dc = 1e-07: R_c = 1528.77  predicho 1528.77  rel -7.04e-08
+  2p Delta/dc = 1e-08: R_c = 3293.64  predicho 3293.64  rel -7.84e-09
+  2p Delta/dc = 1e-09: R_c = 7095.93  predicho 7095.93  rel +5.29e-08
+  2p: pasa = True
+  3d Delta/dc = 1e-01: R_c = 23.6245  predicho 28.9869  rel -1.85e-01
+  3d Delta/dc = 1e-02: R_c = 43.8467  predicho 45.9412  rel -4.56e-02
+  3d Delta/dc = 1e-03: R_c = 72.2804  predicho 72.8119  rel -7.30e-03
+  3d Delta/dc = 1e-04: R_c = 115.303  predicho 115.399  rel -8.32e-04
+  3d Delta/dc = 1e-05: R_c = 182.88  predicho 182.895  rel -8.40e-05
+  3d Delta/dc = 1e-06: R_c = 289.867  predicho 289.869  rel -8.40e-06
+  3d Delta/dc = 1e-07: R_c = 459.411  predicho 459.412  rel -8.39e-07
+  3d Delta/dc = 1e-08: R_c = 728.119  predicho 728.119  rel -8.12e-08
+  3d Delta/dc = 1e-09: R_c = 1153.99  predicho 1153.99  rel +1.88e-08
+  3d: pasa = True
+
+  Signo de E en cajas moderadas para Delta/dc = 1e-3 (ligado verdadero en los tres casos)
+  1s R =   25: E = +2.0853e-03  signo correcto = False  (R_c = 1134; coherente = True)
+  1s R =   50: E = +4.9340e-04  signo correcto = False  (R_c = 1134; coherente = True)
+  1s R =  100: E = +1.1653e-04  signo correcto = False  (R_c = 1134; coherente = True)
+  1s R =  200: E = +2.6525e-05  signo correcto = False  (R_c = 1134; coherente = True)
+  1s R =  400: E = +5.3677e-06  signo correcto = False  (R_c = 1134; coherente = True)
+  2p R =   25: E = +9.8731e-04  signo correcto = False  (R_c = 70.91; coherente = True)
+  2p R =   50: E = +6.6266e-05  signo correcto = False  (R_c = 70.91; coherente = True)
+  2p R =  100: E = -2.0337e-05  signo correcto = True  (R_c = 70.91; coherente = True)
+  2p R =  200: E = -2.8567e-05  signo correcto = True  (R_c = 70.91; coherente = True)
+  2p R =  400: E = -2.9146e-05  signo correcto = True  (R_c = 70.91; coherente = True)
+  3d R =   25: E = +2.7644e-03  signo correcto = False  (R_c = 72.28; coherente = True)
+  3d R =   50: E = +1.0688e-04  signo correcto = False  (R_c = 72.28; coherente = True)
+  3d R =  100: E = -1.6514e-05  signo correcto = True  (R_c = 72.28; coherente = True)
+  3d R =  200: E = -2.0262e-05  signo correcto = True  (R_c = 72.28; coherente = True)
+  3d R =  400: E = -2.0352e-05  signo correcto = True  (R_c = 72.28; coherente = True)
+  R = 50: menor Delta/dc con signo fiable (ley de R_c): 1s 2.27e-02, 2p 2.86e-03, 3d 6.55e-03
+  R = 100: menor Delta/dc con signo fiable (ley de R_c): 1s 1.13e-02, 2p 3.57e-04, 3d 2.05e-04
+  R = 200: menor Delta/dc con signo fiable (ley de R_c): 1s 5.67e-03, 2p 4.47e-05, 3d 6.40e-06
+
+(c) Cruce de y = 2R^2E/pi^2 entre las cajas R y 2R
+  2p R =   10/20: delta* - delta_c = +2.8793e-02 (pred +1.3114e-02, rel +1.20e+00); y* = 6.56517e-01 (pred 2.34413e-01, rel +1.80e+00)  (5 s)
+  2p R =   20/40: delta* - delta_c = +3.1817e-03 (pred +1.6392e-03, rel +9.41e-01); y* = 2.39700e-01 (pred 1.17206e-01, rel +1.05e+00)  (5 s)
+  2p R =   40/80: delta* - delta_c = +2.9616e-04 (pred +2.0490e-04, rel +4.45e-01); y* = 8.52383e-02 (pred 5.86031e-02, rel +4.54e-01)  (6 s)
+  2p R =   80/160: delta* - delta_c = +3.0709e-05 (pred +2.5613e-05, rel +1.99e-01); y* = 3.51555e-02 (pred 2.93016e-02, rel +2.00e-01)  (7 s)
+  2p R =  160/320: delta* - delta_c = +3.4994e-06 (pred +3.2016e-06, rel +9.30e-02); y* = 1.60149e-02 (pred 1.46508e-02, rel +9.31e-02)  (7 s)
+  2p: pasa = True
+  3d R =   10/20: delta* - delta_c = +5.4234e-02 (pred +5.4523e-01, rel -9.01e-01); y* = 1.84700e+00 (pred 1.08584e+01, rel -8.30e-01)  (17 s)
+  3d R =   20/40: delta* - delta_c = +8.5900e-03 (pred +1.7039e-02, rel -4.96e-01); y* = 7.98894e-01 (pred 1.35730e+00, rel -4.11e-01)  (9 s)
+  3d R =   40/80: delta* - delta_c = +5.0056e-04 (pred +5.3245e-04, rel -5.99e-02); y* = 1.63941e-01 (pred 1.69663e-01, rel -3.37e-02)  (7 s)
+  3d R =   80/160: delta* - delta_c = +1.6989e-05 (pred +1.6639e-05, rel +2.10e-02); y* = 2.16988e-02 (pred 2.12079e-02, rel +2.32e-02)  (8 s)
+  3d R =  160/320: delta* - delta_c = +5.2270e-07 (pred +5.1998e-07, rel +5.24e-03); y* = 2.66506e-03 (pred 2.65098e-03, rel +5.31e-03)  (10 s)
+  3d: pasa = True
+
+Tiempo total 100 s

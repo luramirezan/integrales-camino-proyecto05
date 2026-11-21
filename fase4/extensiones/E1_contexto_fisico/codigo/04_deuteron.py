@@ -1,0 +1,178 @@
+"""04_deuteron.py -- deuteron de juguete: un solo Yukawa en onda s con el alcance del pion.
+
+V(r) = -g e^{-m_pi r}/r, masa reducida mu = m_p m_n/(m_p + m_n). Con g = alpha_g hbar c:
+    delta = m_pi/(mu alpha_g),   E = eps mu alpha_g^2  =>  eps/delta^2 = E mu/m_pi^2 (masas en MeV).
+Se busca delta_d tal que eps(delta_d)/delta_d^2 = -B mu/m_pi^2 (B = energia de enlace) y luego
+    alpha_g = m_pi/(mu delta_d), L = hbar c delta_d/m_pi (fm), <r> y <r^2> de la coordenada relativa en fm,
+    radio de "estructura" del modelo r_str = (1/2) <r^2>^{1/2} (cada nucleon puntual a r/2 del centro de masa).
+Comparacion experimental: r_str^2 = r_d^2 - r_p^2 - r_n^2 - 3/(4 m_p^2)  (Filin et al. 2020, Ec. 2), con r_d y r_p de
+CODATA 2022 y r_n^2 del PDG citado por Filin et al.; y el valor teorico de Filin et al. (Ec. 9).
+Escenarios (se declara SIEMPRE que se mantiene fijo):
+  A. g y mu fijos (los fisicos); solo cambia m_pi. m_pi critico = m_pi delta_c/delta_d.
+     Sensibilidad local d ln B/d ln m_pi a g fijo, frente a K_deut^q/K_pi^q de Berengut et al. 2013.
+  B. g reajustado al punto de QCD en red de NPLQCD (m_pi = 805.9 MeV, M_B = 1634 MeV, B_d = 19.5 MeV):
+     se obtiene delta_L y alpha_g(L), y se mide cuanto tendria que cambiar g para reproducirlo.
+Tres elecciones de m_pi: pi0, pi+- y promedio de isospin (2 m_pi+- + m_pi0)/3; la central es el promedio.
+Criterios FIJADOS ANTES DE CORRER:
+  C10 |B(masas CODATA) - E_B(d) CODATA| < 1e-6 MeV
+  C11 Reproduce el prototipo con sus mismas entradas: |delta_d - 0.8304596701595315| < 1e-9
+  C12 delta_d: |A - B|/delta_d < 1e-7; <r>, <r^2>: |A - B|/A < 1e-5; caja R y 2R: |dE/E| < 1e-9
+Salida: resultados/04_deuteron.json
+"""
+import time
+
+import numpy as np
+from scipy.optimize import brentq
+
+import comun_e1 as c
+
+log = c.Registro()
+t0 = time.perf_counter()
+K = c.CONST
+U1 = c.leer("01_umbral")
+dc = U1["delta_c_1s"]["A"]
+hc = K["hbar_c"]
+
+B_masas = K["m_p"] + K["m_n"] - K["m_d"]
+B_codata = K["E_B_d_codata_keV"] / 1000.0
+mu = K["m_p"] * K["m_n"] / (K["m_p"] + K["m_n"])
+mpis = {"pi0": K["m_pi_0"], "pi+-": K["m_pi_pm"], "promedio": (2 * K["m_pi_pm"] + K["m_pi_0"]) / 3}
+log(f"B (m_p + m_n - m_d, CODATA 2022) = {B_masas:.8f} MeV ; E_B(d) de entrada CODATA = {B_codata:.8f} MeV")
+log(f"mu = {mu:.8f} MeV ; m_pi: " + ", ".join(f"{k} = {v:.6f}" for k, v in mpis.items()))
+
+
+def eps_A(d):
+    return c.estado_1s_disparo(d)["E0"]
+
+
+def eps_B(d, R=200.0, h=1 / 40):
+    return c.estado_1s_caja(d, R, h)["E0"]
+
+
+def ajustar(target, metodo="A", a=0.3, b=1.18):
+    f = (lambda d: eps_A(d) / d ** 2 - target) if metodo == "A" else (lambda d: eps_B(d) / d ** 2 - target)
+    return brentq(f, a, b, xtol=1e-13)
+
+
+def describir(B, mu_, mpi, metodo_obs=True):
+    target = -B * mu_ / mpi ** 2
+    dA = ajustar(target, "A")
+    dB = ajustar(target, "B")
+    A = c.estado_1s_disparo(dA)
+    R = c.caja_para(A["E0"], Rmin=100.0, factor=40.0)
+    Bx = c.estado_1s_caja(dA, R)
+    B2 = c.estado_1s_caja(dA, 2 * R)
+    alpha = mpi / (mu_ * dA)
+    L = hc * dA / mpi
+    r_med_fm = A["r_med"] * L
+    r_rms_fm = np.sqrt(A["r2_med"]) * L
+    return dict(target=target, delta_A=dA, delta_B=dB, dif_rel_delta=abs(dA - dB) / dA, eps=A["E0"],
+                alpha_g=alpha, L_fm=L, kappa_inv_fm=L / A["kappa"],
+                r_med=A["r_med"], r2_med=A["r2_med"], r_med_B=Bx["r_med"], r2_med_B=Bx["r2_med"], R_caja=R,
+                dif_rel_rmed=abs(A["r_med"] - Bx["r_med"]) / A["r_med"],
+                dif_rel_r2=abs(A["r2_med"] - Bx["r2_med"]) / A["r2_med"],
+                dif_rel_E_R_2R=abs(Bx["E0"] - B2["E0"]) / abs(Bx["E0"]),
+                r_med_fm=r_med_fm, r_rms_rel_fm=r_rms_fm, r_str_modelo_fm=r_rms_fm / 2,
+                delta_sobre_delta_c=dA / dc, m_pi_crit_g_fijo=mpi * dc / dA)
+
+
+out = dict(B_masas=B_masas, B_codata=B_codata, mu=mu, m_pi=mpis, delta_c=dc)
+esc = {}
+for k, mpi in mpis.items():
+    d = describir(B_masas, mu, mpi)
+    esc[k] = d
+    log(f"[{k:8s}] delta_d = {d['delta_A']:.10f} (A) {d['delta_B']:.10f} (B), delta_d/delta_c = {d['delta_sobre_delta_c']:.4f},"
+        f" g/hbar c = {d['alpha_g']:.6f}, <r> = {d['r_med_fm']:.4f} fm, <r^2>^1/2 = {d['r_rms_rel_fm']:.4f} fm,"
+        f" r_str = {d['r_str_modelo_fm']:.4f} fm, 1/kappa = {d['kappa_inv_fm']:.4f} fm,"
+        f" m_pi crit (g fijo) = {d['m_pi_crit_g_fijo']:.3f} MeV")
+out["escenario_A"] = esc
+central = esc["promedio"]
+
+# --- radio experimental de estructura (puntual) a partir de CODATA y PDG
+DF = 3.0 / 4.0 * (hc / K["m_p"]) ** 2
+rstr2 = K["r_d_fm"] ** 2 - K["r_p_fm"] ** 2 - K["rn2_fm2"] - DF
+rstr = np.sqrt(rstr2)
+# incertidumbre: r_d^2 - r_p^2 por el desplazamiento isotopico (correlacion casi total de r_d y r_p) y r_n^2 del PDG
+u_rstr = np.sqrt(K["rd2_rp2_iso_u_fm2"] ** 2 + K["rn2_u_fm2"] ** 2) / (2 * rstr)
+u_rstr_indep = np.sqrt((K["r_d_fm"] * K["r_d_u_fm"]) ** 2 + (K["r_p_fm"] * K["r_p_u_fm"]) ** 2
+                       + (K["rn2_u_fm2"] / 2) ** 2) / rstr     # version anterior (sin correlacion), solo informativa
+rstr_rn2_antiguo = np.sqrt(K["r_d_fm"] ** 2 - K["r_p_fm"] ** 2 - K["rn2_filin_pdg_antiguo"] - DF)
+out["radio_exp"] = dict(r_d=K["r_d_fm"], r_p=K["r_p_fm"], rn2=K["rn2_fm2"], darwin_foldy_fm2=DF,
+                        r_str=rstr, u_r_str=u_rstr, u_r_str_indep=u_rstr_indep, r_str_rn2_antiguo=rstr_rn2_antiguo,
+                        r_str_filin=K["r_str_filin_fm"],
+                        modelo_sobre_exp=central["r_str_modelo_fm"] / rstr,
+                        alcance_cero_r_str=central["kappa_inv_fm"] / np.sqrt(8))
+log(f"r_str experimental = sqrt(r_d^2 - r_p^2 - r_n^2 - 3/4m_p^2) = {rstr:.4f} +- {u_rstr:.4f} fm"
+    f" (Darwin-Foldy {DF:.5f} fm^2); Filin et al. (teoria) {K['r_str_filin_fm']} fm")
+log(f"modelo / experimento = {central['r_str_modelo_fm'] / rstr:.4f};"
+    f" limite de alcance cero 1/(sqrt(8) kappa) = {central['kappa_inv_fm'] / np.sqrt(8):.4f} fm")
+
+# --- sensibilidad local a g fijo: B = mu alpha^2 |eps(delta)|, delta ~ m_pi
+h = 1e-3
+dd = central["delta_A"]
+ep = abs(eps_A(dd * (1 + h)))
+em = abs(eps_A(dd * (1 - h)))
+dlnB = (np.log(ep) - np.log(em)) / (np.log(1 + h) - np.log(1 - h))
+epB = abs(eps_B(dd * (1 + h)))
+emB = abs(eps_B(dd * (1 - h)))
+dlnB_B = (np.log(epB) - np.log(emB)) / (np.log(1 + h) - np.log(1 - h))
+K_ber = K["K_deut_q"] / K["K_pi_q"]
+K_ber_rango = ((K["K_deut_q"] - K["K_deut_q_dn"]) / K["K_pi_q"], (K["K_deut_q"] + K["K_deut_q_up"]) / K["K_pi_q"])
+# [Revision R1-05] K_deut de Berengut incluye la variacion de la masa del nucleon. En el modelo a g fijo,
+# B = mu alpha^2 |eps(m_pi/(mu alpha))|, asi que d ln B/d ln mu = 1 - d ln B/d ln m_pi, y
+# K_deut(modelo) = (d ln B/d ln m_pi) K_pi + (d ln B/d ln mu) K_N.
+dlnB_dlnmu = 1.0 - dlnB
+K_deut_modelo = dlnB * K["K_pi_q"] + dlnB_dlnmu * K["K_N_q"]
+out["sensibilidad"] = dict(dlnB_dlnmpi_A=dlnB, dlnB_dlnmpi_B=dlnB_B, berengut=K_ber, berengut_rango=K_ber_rango,
+                           dlnB_dlnmu=dlnB_dlnmu, K_deut_modelo_con_mN=K_deut_modelo,
+                           K_deut_modelo_sin_mN=dlnB * K["K_pi_q"],
+                           cociente_con_mN=K_deut_modelo / K["K_deut_q"], cociente_sin_mN=dlnB * K["K_pi_q"] / K["K_deut_q"])
+log(f"K_deut del modelo a g fijo: {K_deut_modelo:.3f} con m_N variable (K_N = {K['K_N_q']}),"
+    f" {dlnB * K['K_pi_q']:.3f} sin ella; Berengut {K['K_deut_q']}")
+log(f"d ln B/d ln m_pi (g y mu fijos) = {dlnB:.4f} (A), {dlnB_B:.4f} (B);"
+    f" Berengut et al. K_deut/K_pi = {K_ber:.3f} (rango {K_ber_rango[0]:.2f} a {K_ber_rango[1]:.2f})")
+
+# --- escenario B: punto de NPLQCD
+mpiL, MBL, BL = K["lat_m_pi"], K["lat_M_B"], K["lat_B_d"]
+muL = MBL / 2
+uBL = float(np.sqrt(sum(x ** 2 for x in K["lat_B_d_u"])))
+lat = {}
+for et, Bv in (("central", BL), ("B-1sigma", BL - uBL), ("B+1sigma", BL + uBL)):
+    t = -Bv * muL / mpiL ** 2
+    dL = ajustar(t, "A", a=0.2, b=1.18)
+    dLB = ajustar(t, "B", a=0.2, b=1.18)
+    lat[et] = dict(B=Bv, delta_A=dL, delta_B=dLB, alpha_g=mpiL / (muL * dL))
+    log(f"NPLQCD [{et}] B = {Bv:.2f} MeV: delta_L = {dL:.6f} (A) {dLB:.6f} (B), g/hbar c = {mpiL / (muL * dL):.4f}")
+delta_gfijo = mpiL / (muL * central["alpha_g"])
+lat["delta_con_g_fisico"] = delta_gfijo
+lat["cociente_g"] = lat["central"]["alpha_g"] / central["alpha_g"]
+lat["u_B"] = uBL
+lat["mu_L"] = muL
+log(f"con g fisico ({central['alpha_g']:.4f}) en el punto de red: delta = {delta_gfijo:.4f} = {delta_gfijo / dc:.3f} delta_c"
+    f" (no ligado); para ligarlo con 19.5 MeV, g debe multiplicarse por {lat['cociente_g']:.3f}")
+out["escenario_B_red"] = lat
+
+# --- control con las entradas del prototipo
+proto = -2.22457 * (938.918 / 2) / 138.04 ** 2
+d_proto = ajustar(proto, "A")
+out["prototipo"] = dict(delta=d_proto, delta_impreso=0.8304596701595315)
+log(f"prototipo (sus entradas): delta_d = {d_proto:.13f}; impreso por el prototipo 0.8304596701595315")
+
+ctl = [dict(id="C10", control="Energia de enlace: m_p + m_n - m_d frente al dato E_B(d) de CODATA 2022",
+            criterio="|dif| < 1e-6 MeV", valor=f"{(B_masas - B_codata) * 1e6:.2f} eV",
+            pasa=bool(abs(B_masas - B_codata) < 1e-6)),
+       dict(id="C11", control="Reproduccion del prototipo con sus mismas entradas",
+            criterio="|delta - 0.8304596701595315| < 1e-9", valor=f"{d_proto - 0.8304596701595315:.1e}",
+            pasa=bool(abs(d_proto - 0.8304596701595315) < 1e-9)),
+       dict(id="C12", control="Deuteron central: disparo (A) frente a caja (B); caja R frente a 2R",
+            criterio="delta: <1e-7 rel; <r>, <r2>: <1e-5 rel; E(R) vs E(2R): <1e-9 rel",
+            valor=f"{central['dif_rel_delta']:.1e}; {central['dif_rel_rmed']:.1e}, {central['dif_rel_r2']:.1e};"
+                  f" {central['dif_rel_E_R_2R']:.1e}",
+            pasa=bool(central["dif_rel_delta"] < 1e-7 and central["dif_rel_rmed"] < 1e-5
+                      and central["dif_rel_r2"] < 1e-5 and central["dif_rel_E_R_2R"] < 1e-9))]
+for k in ctl:
+    log(k["id"], k["control"], "|", k["valor"], "|", "pasa" if k["pasa"] else "NO PASA")
+out["controles"] = ctl
+out["t_s"] = time.perf_counter() - t0
+log(f"tiempo {out['t_s']:.1f} s")
+c.guardar("04_deuteron", out, log.texto())

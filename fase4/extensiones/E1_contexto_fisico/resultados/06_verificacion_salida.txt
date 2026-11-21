@@ -1,0 +1,15 @@
+V1 delta =  0.20: |E_A - E_B(h=1/40)| = 6.21e-09, |E_A - E_B(h=1/80)| = 3.91e-10, cociente = 15.9, rel(h=1/80) = 1.2e-09
+V1 delta =  0.40: |E_A - E_B(h=1/40)| = 6.47e-09, |E_A - E_B(h=1/80)| = 3.99e-10, cociente = 16.2, rel(h=1/80) = 2.0e-09
+V1 delta =  0.60: |E_A - E_B(h=1/40)| = 6.66e-09, |E_A - E_B(h=1/80)| = 4.12e-10, cociente = 16.2, rel(h=1/80) = 3.9e-09
+V1 delta =  0.80: |E_A - E_B(h=1/40)| = 6.53e-09, |E_A - E_B(h=1/80)| = 4.07e-10, cociente = 16.0, rel(h=1/80) = 9.1e-09
+V1 delta =  1.00: |E_A - E_B(h=1/40)| = 5.77e-09, |E_A - E_B(h=1/80)| = 3.59e-10, cociente = 16.1, rel(h=1/80) = 3.5e-08
+V1 delta =  1.10: |E_A - E_B(h=1/40)| = 5.07e-09, |E_A - E_B(h=1/80)| = 3.18e-10, cociente = 16.0, rel(h=1/80) = 1.4e-07
+V1 delta =  1.15: |E_A - E_B(h=1/40)| = 4.61e-09, |E_A - E_B(h=1/80)| = 2.87e-10, cociente = 16.1, rel(h=1/80) = 6.3e-07
+V1 delta =  1.18: |E_A - E_B(h=1/40)| = 4.30e-09, |E_A - E_B(h=1/80)| = 2.76e-10, cociente = 15.6, rel(h=1/80) = 8.9e-06
+V2 eps mu alpha^2 = -2.2245663700 MeV ; -B = -2.2245663700 MeV
+V3 n_crit/T: NRL 2.7946e+22, SI 2.7975e+22 cm^-3 eV^-1 (rel -1.1e-03)
+V4 delta_A: de 0.82492 a 0.83316 (variacion relativa 1.00%)
+V4 alpha_g: de 0.34854 a 0.35683 (variacion relativa 2.38%)
+V4 m_pi_crit_g_fijo: de 194.81239 a 199.44970 (variacion relativa 2.38%)
+V4 r_str_modelo_fm: de 1.96679 a 1.97857 (variacion relativa 0.60%)
+V5 a_s(1.19) = 2203.8 (Fase 3: +2204), a_s(1.20) = -142.93 (Fase 3: -142.9)

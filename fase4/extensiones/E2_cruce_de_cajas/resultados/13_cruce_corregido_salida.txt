@@ -1,0 +1,19 @@
+disparo       R=   50  cruce=1.191237550  correccion=6.244e-04  corregido=1.190613119  margen sobre 1.19=+6.131e-04
+disparo       R=  100  cruce=1.190764616  correccion=1.521e-04  corregido=1.190612466  margen sobre 1.19=+6.125e-04
+disparo       R=  200  cruce=1.190649967  correccion=3.754e-05  corregido=1.190612424  margen sobre 1.19=+6.124e-04
+disparo       R=  400  cruce=1.190621745  correccion=9.324e-06  corregido=1.190612421  margen sobre 1.19=+6.124e-04
+disparo       R=  800  cruce=1.190614744  correccion=2.323e-06  corregido=1.190612421  margen sobre 1.19=+6.124e-04
+disparo       R= 1600  cruce=1.190613001  correccion=5.798e-07  corregido=1.190612421  margen sobre 1.19=+6.124e-04
+radial_h160   R=   50  cruce=1.191237556  correccion=6.244e-04  corregido=1.190613125  margen sobre 1.19=+6.131e-04
+radial_h160   R=  100  cruce=1.190764625  correccion=1.521e-04  corregido=1.190612475  margen sobre 1.19=+6.125e-04
+radial_h160   R=  200  cruce=1.190649956  correccion=3.754e-05  corregido=1.190612413  margen sobre 1.19=+6.124e-04
+radial_h160   R=  400  cruce=1.190621773  correccion=9.324e-06  corregido=1.190612449  margen sobre 1.19=+6.124e-04
+radial_h160   R=  800  cruce=1.190614725  correccion=2.323e-06  corregido=1.190612402  margen sobre 1.19=+6.124e-04
+radial_h160   R= 1600  cruce=1.190612805  correccion=5.798e-07  corregido=1.190612225  margen sobre 1.19=+6.122e-04
+transferencia R=   50  cruce=1.191161585  correccion=6.244e-04  corregido=1.190537154  margen sobre 1.19=+5.372e-04
+transferencia R=  100  cruce=1.190746519  correccion=1.521e-04  corregido=1.190594369  margen sobre 1.19=+5.944e-04
+transferencia R=  200  cruce=1.190645237  correccion=3.754e-05  corregido=1.190607695  margen sobre 1.19=+6.077e-04
+transferencia R=  400  cruce=1.190619743  correccion=9.324e-06  corregido=1.190610419  margen sobre 1.19=+6.104e-04
+transferencia R=  800  cruce=1.190612353  correccion=2.323e-06  corregido=1.190610029  margen sobre 1.19=+6.100e-04
+transferencia R= 1600  cruce=1.190608266  correccion=5.798e-07  corregido=1.190607686  margen sobre 1.19=+6.077e-04
+todos los cruces corregidos > 1.19: True

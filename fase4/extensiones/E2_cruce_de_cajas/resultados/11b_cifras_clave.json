@@ -1,0 +1,258 @@
+{
+ "script": "11b_cifras_clave.py",
+ "fecha": "2026-11-17 22:47:27",
+ "n": 50,
+ "n_ok": 50,
+ "filas": [
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "a_s = 2203.8",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "r_e = 1.78063",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "c = \u2212d(1/a)/d\u03b4 = 0.741192",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "\u03b1 = 1.4819",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "\u03b2 = 3.958",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "\u03b1_\u03c1 = 9.648",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "R + 0.1123",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "\u22121.18\u00d710\u207b\u2076",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "23 valores de \u03b4",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "(161 celdas)",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "1.19054 < \u03b4_c < 1.19068",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "1.190609 < \u03b4_c < 1.190616",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "[1.19055557, 1.19066686] (A)",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "[1.19060344, 1.19062166] (B)",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "a 5\u00d710\u207b\u2077 en el par 50/100",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "a 2\u00d710\u207b\u2079 o mejor desde el 200/400",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "4.125, 4.062, 4.031 y 4.016",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "\u22127.6\u00d710\u207b\u2075, \u22121.8\u00d710\u207b\u2075, \u22124.2\u00d710\u207b\u2076 y \u22129.4\u00d710\u207b\u2077",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "\u22128.3\u00d710\u207b\u2075, \u22122.0\u00d710\u207b\u2075, \u22124.8\u00d710\u207b\u2076 y \u22121.18\u00d710\u207b\u2076",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "a 2.4\u00d710\u207b\u2077 o mejor",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "vale 9.1\u00d710\u207b\u2079, 1.0\u00d710\u207b\u2078 y 1.2\u00d710\u207b\u2078",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "el menor es 1.1906083",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "pasan 27 de 31",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "32 valores de \u03b4 y 7 cajas",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "4.6\u00d710\u207b\u2077",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "(1.490 y 1.4817 frente a 1.4819; 9.649 y 9.6485 frente a 9.648)",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "1.490 (1.482)",
+   "encontrada": true
+  },
+  {
+   "archivo": "LEEME.md",
+   "cadena": "**1.19054410 < \u03b4_c < 1.19067723** (centro 1.1906106662, barra 6.66\u00d710\u207b\u2075)",
+   "encontrada": true
+  },
+  {
+   "archivo": "LEEME.md",
+   "cadena": "**1.19060859 < \u03b4_c < 1.19061621** (centro 1.1906123995, barra 3.81\u00d710\u207b\u2076)",
+   "encontrada": true
+  },
+  {
+   "archivo": "LEEME.md",
+   "cadena": "1.191237550, 1.190764616, 1.190649967, 1.190621745, 1.190614744 y 1.190613001",
+   "encontrada": true
+  },
+  {
+   "archivo": "LEEME.md",
+   "cadena": "1.1906124213 (y) y 1.1906124202 (\u27e8r\u27e9/R)",
+   "encontrada": true
+  },
+  {
+   "archivo": "LEEME.md",
+   "cadena": "1.56\u00d710\u207b\u2079 y 2.00\u00d710\u207b\u2079",
+   "encontrada": true
+  },
+  {
+   "archivo": "verificacion.md",
+   "cadena": "es 2.084 frente a 2.384",
+   "encontrada": true
+  },
+  {
+   "archivo": "verificacion.md",
+   "cadena": "difiere del de la receta en 4.7\u00d710\u207b\u00b3 relativo",
+   "encontrada": true
+  },
+  {
+   "archivo": "verificacion.md",
+   "cadena": "1.1906091755 en vez de\n  1.1906106662",
+   "encontrada": true
+  },
+  {
+   "archivo": "verificacion.md",
+   "cadena": "da 1.1906124210606, a 1.6\u00d710\u207b\u00b9\u2075",
+   "encontrada": true
+  },
+  {
+   "archivo": "verificacion.md",
+   "cadena": "es 1.70\u00d710\u207b\u2075 en el\n  script 05 y 1.73\u00d710\u207b\u2075 y 1.67\u00d710\u207b\u2075",
+   "encontrada": true
+  },
+  {
+   "archivo": "LEEME.md",
+   "cadena": "Con \u27e8r\u27e9/R: [1.19054141, 1.19068003] (A)",
+   "encontrada": true
+  },
+  {
+   "archivo": "verificacion.md",
+   "cadena": "[1.19048891, 1.19073401]",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "de 6.04\u00d710\u207b\u2075 a\n6.93\u00d710\u207b\u2075",
+   "encontrada": true
+  },
+  {
+   "archivo": "LEEME.md",
+   "cadena": "[1.19059638, 1.19062781] (B; la barra de B de \u27e8r\u27e9/R incluye",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "| integral de camino, B | \u27e8r\u27e9/R | 1.1906120950 | 1.57e-5 | [1.19059638, 1.19062781] |",
+   "encontrada": true
+  },
+  {
+   "archivo": "seccion_articulo.md",
+   "cadena": "pasa de 1.47\u00d710\u207b\u2075 a 1.57\u00d710\u207b\u2075, con intervalo [1.19059638, 1.19062781]",
+   "encontrada": true
+  },
+  {
+   "archivo": "verificacion.md",
+   "cadena": "+2.27\u00d710\u207b\u2074, +5.39\u00d710\u207b\u2075, +1.32\u00d710\u207b\u2075 y +3.25\u00d710\u207b\u2076",
+   "encontrada": true
+  },
+  {
+   "archivo": "teoria.md",
+   "cadena": "r_e(\\delta_c) = 1.78063",
+   "encontrada": true
+  },
+  {
+   "archivo": "teoria.md",
+   "cadena": "m\u2081 = \u222b\u2080^\u221e r(1 \u2212 u\u2080\u00b2/C\u00b2) dr = 0.6502",
+   "encontrada": true
+  },
+  {
+   "archivo": "teoria.md",
+   "cadena": "c_w = \u03b2[\u221a0.05 + (\u221a0.05 \u2212 \u221a0.1)/3] = 0.1123",
+   "encontrada": true
+  },
+  {
+   "archivo": "teoria.md",
+   "cadena": "2.031, 2.015, 2.008, 2.004",
+   "encontrada": true
+  },
+  {
+   "archivo": "teoria.md",
+   "cadena": "4.13, 4.06, 4.03, 4.02",
+   "encontrada": true
+  },
+  {
+   "archivo": "teoria.md",
+   "cadena": "en R = 50 vale\n1.4\u00d710\u207b\u00b2\u2076",
+   "encontrada": true
+  }
+ ]
+}

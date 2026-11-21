@@ -1,0 +1,15 @@
+# Informe de la auditoría externa de E4 (Gemini, app web, modo "Pro", 17-11-2026)
+
+Chat "Material de auditoría"; tres rondas (transcripción en `conversaciones/E4.md`, respuestas en `respuestas/`). Gemini **no ejecutó código** en ninguna ronda (lo dijo explícitamente); todo su aporte es analítico. Las cifras se comprobaron con un script propio independiente del código de E4 (`respuestas/chk_e4_claude.py`) y con la revisión interna R4 (`E4_extension_segun_l/revision/`).
+
+| ID | Hallazgo de Gemini | Gravedad (Gemini) | Comprobación (con números) | Estado |
+|---|---|---|---|---|
+| E4-G1 | Los controles 9, 11, 20, 22, 42, 43, 54 fallan por redondeo de float64, O(N^{3/2} ε_mach); proponía relajar las tolerancias | Baja | δ = 1.18, R = 800: E = −2.95694×10⁻⁵, −3.06282×10⁻⁵, −3.08960×10⁻⁵ con h = 1/40, 1/80, 1/160; diferencias 1.06×10⁻⁶ y 2.68×10⁻⁷, cociente 3.95: error de malla O(h²), no redondeo. Problema tridiagonal resuelto por shift-invert. Gemini lo aceptó en la ronda 2 | Refutado |
+| E4-G2 | Trotter 1.61 en δ = 0.219 es efecto de la pared; tratarlo como "pasado condicional" | Baja | Diagnóstico ya medido en E4: con la pared en R + 0.5826√ε el orden vuelve a 1.998. El criterio se fijó antes: el control sigue "no pasa" | Diagnóstico coincidente; propuesta rechazada (sin cambios) |
+| E4-G3 | I_N = −3/2, I₂ = −35/36, κ = 2ΣΔ, S de Hellmann-Feynman, ⟨r²⟩κ = 5A²/4, R_c ∝ Δ^{−1/(2ℓ+1)} correctos | N/A | Rehecho: ∫(1+2x+x²)e^{−2x}dx = 1/2 + 1/2 + 1/4 = 5/4; R_c^{2ℓ+1} = (2ℓ+1)A²/(2SΔ) coincide con E(R) = (2ℓ+1)A²/(2R^{2ℓ+1}) = SΔ. Script propio: A²(2p) = 6.61017 (E4: 6.610), S(2p) = 0.126016 (E4: −E/Δ = 0.12602) | Sin error (confirmado) |
+| E4-G4 | Núcleo K₁ exacto y shift de pares_l.py sin sesgo | N/A | R4 (`r44`): K_ℓ frente a transformada de Hankel a ≤ 9×10⁻¹⁵; el shift ε(w_C[0] − w_0[0]) se cancela algebraicamente | Sin error (confirmado) |
+| E4-G5 | Sesgo O(1) de la red FD en el primer nodo (laplaciano sobre r⁴: −6h² frente a −5r²) que Richardson no quita y "explica" el 1.3×10⁻⁴ de U₁ | Media | Para ℓ = 1, u ∝ r² (r⁴ es u²); sobre r² la segunda diferencia es exacta: −½(4−2)h²/h² + 1 = 0 = continuo. Error de U₁ en r = r′ = 0.01, ε = 0.1: 4.1×10⁻⁴ (h_tab = 0.01) y 1.0×10⁻⁴ (0.005), cociente 4.0; tras Richardson, 1.4×10⁻⁶ frente a Chebyshev espectral. Gemini aceptó la refutación en la ronda 3 | Refutado |
+| — | Umbrales (pedidos en la ronda 2; Gemini no los calculó) | — | Script propio: δ_c(2s) = 0.310209282714, δ_c(2p) = 0.2202168066066, δ_c(3d) = 0.0913451207717; E4: 0.3102092827139, 0.2202168066066, 0.0913451207717 | Coinciden |
+| — | Referencias (Klaus-Simon 1980, Serra et al. 1998, Riisager 2013, Jensen et al. 2004, Misu et al. 1997) | — | Gemini las "confirma"; no es verificación (no se sabe si las abrió). Valen las verificaciones de `E4_extension_segun_l/fuentes.md` | Sin cambios |
+
+**Resultado:** ningún hallazgo válido nuevo; no se corrigió nada en E4 por esta auditoría. Los dos hallazgos con contenido (G1, G5) se refutaron calculando, y Gemini aceptó ambas refutaciones.

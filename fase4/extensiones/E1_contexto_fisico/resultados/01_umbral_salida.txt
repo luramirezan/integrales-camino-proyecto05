@@ -1,0 +1,11 @@
+delta_c(1s): A (solve_ivp, energia cero) = 1.1906124210606  B (Numerov propio) = 1.1906124209256  ref = 1.1906124210606
+   B por h: ['1.1906124211209', '1.1906124210329', '1.1906124209256']
+delta_c(2s): A = 0.31020928271  B = 0.31020928263
+delta_c(3s): A = 0.13945029406  B = 0.13945029400
+Coulomb A: -0.49999999999999983 1.4999999999999942 2.9999999999999836  B: -0.4999999938985688 1.49999999390349 2.999999999999281
+Hulthen delta=1 A: -0.12500000000000158 1.8333333333333266 4.722222222222215  exacto: -0.125 1.8333333333333333 4.722222222222222
+C1 delta_c(1s) con dos metodos frente a la referencia | A-ref = 4.0e-15; B-ref = -1.3e-10 | pasa
+C2 Coulomb exacto (delta = 0), metodos A y B | A: 1.7e-16, -5.8e-15, -1.6e-14; B: 6.1e-09 | pasa
+C3 Hulthen exacto (delta = 1), metodo A | -1.6e-15; -6.7e-15 | pasa
+C4 delta_c(2s) y delta_c(3s), A frente a B | 2s: 8.4e-11; 3s: 6.5e-11 | pasa
+tiempo 9.1 s

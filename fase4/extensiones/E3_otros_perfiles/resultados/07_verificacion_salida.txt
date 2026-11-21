@@ -1,0 +1,28 @@
+V1 yukawa   fase variable 1.1906124210625  delta_A 1.1906124210606  dif +1.9e-12  (b - 1/a en 1.01 dc: +1.5e-12)
+V1 ecsc     fase variable 0.7205240858831  delta_A 0.7205240858820  dif +1.1e-12  (b - 1/a en 1.01 dc: +2.9e-12)
+V1 hulthen  fase variable 2.0000000000031  delta_A 2.0000000000000  dif +3.1e-12  (b - 1/a en 1.01 dc: +1.7e-12)
+V1 hatomo   fase variable 1.8210587560446  delta_A 1.8210587560418  dif +2.8e-12  (b - 1/a en 1.01 dc: +1.7e-12)
+V2 yukawa d=0.2     R=200      radial=-3.268085051561e-01 (err 1.9e-05)  disparo=-3.268085113692e-01  dif=-6.2e-09
+V2 yukawa d=0.5     R=200      radial=-1.481170153036e-01 (err 1.6e-05)  disparo=-1.481170218899e-01  dif=-6.6e-09
+V2 yukawa d=0.8     R=200      radial=-4.470429797006e-02 (err 1.1e-05)  disparo=-4.470430449736e-02  dif=-6.5e-09
+V2 yukawa d=1.0     R=200      radial=-1.028578421589e-02 (err 5.9e-06)  disparo=-1.028578999002e-02  dif=-5.8e-09
+V2 yukawa d=1.1     R=370      radial=-2.287239166158e-03 (err 2.9e-06)  disparo=-2.287244234053e-03  dif=-5.1e-09
+V2 yukawa d=1.15    R=828      radial=-4.558844085011e-04 (err 1.3e-06)  disparo=-4.558890213550e-04  dif=-4.6e-09
+V2 yukawa d=1.16    R=1100     radial=-2.586174930258e-04 (err 1.0e-06)  disparo=-2.586220063764e-04  dif=-4.5e-09
+V2 yukawa d=1.17    R=1642     radial=-1.170693178777e-04 (err 6.9e-07)  disparo=-1.170737297613e-04  dif=-4.4e-09
+V2 yukawa d=1.175   R=2206     radial=-6.710893828687e-05 (err 5.2e-07)  disparo=-6.711329718944e-05  dif=-4.4e-09
+V2 yukawa d=1.18    R=3604     radial=-3.098160467634e-05 (err 3.5e-07)  disparo=-3.098591087393e-05  dif=-4.3e-09
+V2 yukawa d=1.185   R=6632     radial=-8.655465065413e-06 (err 1.8e-07)  disparo=-8.659717079830e-06  dif=-4.3e-09
+V2 yukawa d=1.188   R=14753    radial=-1.875118231025e-06 (err 2.2e-08)  disparo=-1.875385707498e-06  dif=-2.7e-10
+V2 yukawa d=1.19    R=65617    radial=-1.030123180928e-07 (err 1.3e-09)  disparo=-1.030319614938e-07  dif=-2.0e-11
+V3 hulthen d=1.0: <r> disparo 1.833333333333  exacto 1.833333333333  formula 1.833333333333
+V3 hulthen d=1.5: <r> disparo 2.785714285714  exacto 2.785714285714  formula 2.785714285714
+V3 hulthen d=1.9: <r> disparo 10.756410256404  exacto 10.756410256410  formula 10.756410256410
+V4 hulthen: max |kappa_v - (delta/2 - 1)|/kappa_v = 9.1e-10
+V5 yukawa: c = 0.741192 (Fase 3 A = 0.741131);  B_pred = 0.05651 (Fase 3 B = 0.05851)
+V6 yukawa   max phi0 = 1.000000 en r = 49.8905 (delta r = 59.4003)
+V6 ecsc     max phi0 = 1.156203 en r = 1.4202 (delta r = 1.0233)
+V6 hulthen  max phi0 = 1.000000 en r = 29.8743 (delta r = 59.7486)
+V6 hatomo   max phi0 = 1.000000 en r = 32.8551 (delta r = 59.8311)
+controles: {'V1': True, 'V2': True, 'V3': True, 'V5': True}
+tiempo total: 32.5 s

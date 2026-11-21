@@ -1,0 +1,116 @@
+{
+ "script": "09_tablas.py",
+ "fecha": "2026-11-17 22:46:32",
+ "extrapolaciones": [
+  {
+   "fuente": "transferencia",
+   "obs": "y",
+   "intervalo": [
+    1.1905440985798155,
+    1.1906772338039415
+   ],
+   "barra_total": 6.65676120630627e-05,
+   "contiene_referencia": true,
+   "delta_c": 1.1906106661918785
+  },
+  {
+   "fuente": "transferencia",
+   "obs": "rho",
+   "intervalo": [
+    1.190541413494639,
+    1.190680034062677
+   ],
+   "barra_total": 6.931028401908824e-05,
+   "contiene_referencia": true,
+   "delta_c": 1.190610723778658
+  },
+  {
+   "fuente": "transferencia_metodo_B",
+   "obs": "y",
+   "intervalo": [
+    1.1906085877858057,
+    1.19061621119223
+   ],
+   "barra_total": 3.8117032122441383e-06,
+   "contiene_referencia": true,
+   "delta_c": 1.1906123994890179
+  },
+  {
+   "fuente": "transferencia_metodo_B",
+   "obs": "rho",
+   "intervalo": [
+    1.1905963810322613,
+    1.1906278089162232
+   ],
+   "barra_total": 1.5713941981076312e-05,
+   "contiene_referencia": true,
+   "delta_c": 1.1906120949742423
+  },
+  {
+   "fuente": "radial_h160",
+   "obs": "y",
+   "intervalo": [
+    1.1905971025872752,
+    1.1906275626173632
+   ],
+   "barra_total": 1.5230015044041438e-05,
+   "contiene_referencia": true,
+   "delta_c": 1.1906123326023192
+  },
+  {
+   "fuente": "radial_h160",
+   "obs": "rho",
+   "intervalo": [
+    1.1905972223466648,
+    1.1906276130040598
+   ],
+   "barra_total": 1.5195328697571673e-05,
+   "contiene_referencia": true,
+   "delta_c": 1.1906124176753623
+  },
+  {
+   "fuente": "radial_h40",
+   "obs": "y",
+   "intervalo": [
+    1.1903779746899639,
+    1.190832037938436
+   ],
+   "barra_total": 0.00022703162423613285,
+   "contiene_referencia": true,
+   "delta_c": 1.1906050063142
+  },
+  {
+   "fuente": "radial_h40",
+   "obs": "rho",
+   "intervalo": [
+    1.19037441342518,
+    1.1908420036362954
+   ],
+   "barra_total": 0.00023379510555774434,
+   "contiene_referencia": true,
+   "delta_c": 1.1906082085307377
+  },
+  {
+   "fuente": "disparo",
+   "obs": "y",
+   "intervalo": [
+    1.1906124197538013,
+    1.1906124228806867
+   ],
+   "barra_total": 1.563442717828628e-09,
+   "contiene_referencia": true,
+   "delta_c": 1.190612421317244
+  },
+  {
+   "fuente": "disparo",
+   "obs": "rho",
+   "intervalo": [
+    1.190612418235423,
+    1.1906124222322925
+   ],
+   "barra_total": 1.9984346933808196e-09,
+   "contiene_referencia": true,
+   "delta_c": 1.1906124202338577
+  }
+ ]
+}

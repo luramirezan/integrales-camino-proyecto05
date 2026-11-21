@@ -1,0 +1,395 @@
+{
+ "filas": [
+  {
+   "n": "C1",
+   "control": "a(\u03b4): disparo frente a fase variable (7 \u03b4)",
+   "criterio": "dif. rel. < 1e-8",
+   "valor": "m\u00e1x 1.7e-11",
+   "pasa": "s\u00ed",
+   "script": "01",
+   "nota": ""
+  },
+  {
+   "n": "C2",
+   "control": "a(1.20) frente a \u2212142.9 de la Fase 3",
+   "criterio": "|\u0394a| < 0.05",
+   "valor": "-142.9349 (|\u0394a| = 0.035)",
+   "pasa": "s\u00ed",
+   "script": "01",
+   "nota": ""
+  },
+  {
+   "n": "C3",
+   "control": "Perfil \u03c6(r): disparo frente a Nystr\u00f6m",
+   "criterio": "m\u00e1x |\u0394\u03c6| < 1e-5 (r \u2264 8)",
+   "valor": "\u03b4=1.2: 2.2e-04; \u03b4=1.3: 2.1e-05; \u03b4=1.5: 3.7e-06; \u03b4=2: 3.1e-06; \u03b4=2.5: 1.3e-06; \u03b4=3: 8.1e-08; \u03b4=4: 2.0e-07",
+   "pasa": "**no pasa**",
+   "script": "01",
+   "nota": "no pasa en \u03b4 = 1.2, 1.3. Causa: el n\u00facleo 1/max(r, r') tiene un quiebre en r' = r y los puntos de la rejilla del MC no son nodos de Nystr\u00f6m; el error absoluto escala con \u03c6 (\u2248 250 en \u03b4 = 1.2). El error relativo en \u03b4 = 1.2 es 1.0e-06 con 600 paneles y baja a 1.4e-07 con 1200 (08_verificacion); a coincide a 4.2e-11. Es un error del m\u00e9todo de control, no del disparo."
+  },
+  {
+   "n": "C4",
+   "control": "Identidad a = \u2212(2/\u03b4\u00b2) E_\u0393[\u03c6]",
+   "criterio": "dif. rel. < 1e-8",
+   "valor": "m\u00e1x 4.7e-12",
+   "pasa": "s\u00ed",
+   "script": "01",
+   "nota": ""
+  },
+  {
+   "n": "C5",
+   "control": "Mezcla de exponenciales frente a Ciesielski\u2013Taylor (k = 1..5)",
+   "criterio": "err. rel. < 1e-6",
+   "valor": "m\u00e1x 9.9e-12",
+   "pasa": "s\u00ed",
+   "script": "01",
+   "nota": ""
+  },
+  {
+   "n": "C6",
+   "control": "\u03b4/p_1 = \u03b4_c(1s), \u03b4/p_2 = \u03b4_c(2s)",
+   "criterio": "err. rel. < 1e-7",
+   "valor": "1.190612421060 (-1.3e-13); 0.3102092827 (-5.6e-08)",
+   "pasa": "s\u00ed",
+   "script": "01",
+   "nota": ""
+  },
+  {
+   "n": "C7",
+   "control": "MC libre \u03b4 = 3, 4: a extrapolado (\u03b7\u2074) y \u03c6(r) en 7 radios",
+   "criterio": "|MC \u2212 EDO| < 3\u03c3",
+   "valor": "a: -0.70\u03c3, -0.12\u03c3; \u03c6(r): m\u00e1x |dev| 1.37\u03c3",
+   "pasa": "s\u00ed",
+   "script": "02",
+   "nota": ""
+  },
+  {
+   "n": "C8",
+   "control": "Orden del sesgo con el trapecio",
+   "criterio": "entre 1.5 y 2.5",
+   "valor": "media infinita para todo \u03b7 (Prop. 3); a = -2.4e+145 (\u03b7 = 0.8)",
+   "pasa": "no aplicable",
+   "script": "02",
+   "nota": "El criterio presupon\u00eda un estimador con media finita; el trapecio no lo es (adenda 1 de criterios_previos.md)."
+  },
+  {
+   "n": "C8b",
+   "control": "Orden del sesgo con el esquema de puente (\u03b4 = 2.5, 3, 4)",
+   "criterio": "entre 3 y 5 (fijado tras prueba preliminar)",
+   "valor": "3.25, 4.58, 3.35, 3.97, 3.49, 3.40",
+   "pasa": "s\u00ed",
+   "script": "02",
+   "nota": ""
+  },
+  {
+   "n": "C9",
+   "control": "\u03b8\u0302 = \u03b4 \u03ba\u0302 (cola de X, 1 % superior) frente a \u03b4/\u03b4_c",
+   "criterio": "|\u03b8\u0302 \u2212 \u03b4/\u03b4_c| < 3\u03c3_\u03b8",
+   "valor": "\u03ba\u0302 = 0.84160 \u00b1 0.00266 frente a 1/\u03b4_c = 0.83990 (+0.64\u03c3, igual para todos los \u03b4)",
+   "pasa": "s\u00ed",
+   "script": "03",
+   "nota": "Los 7 \u03b4 comparten la muestra (covarianza de escala); no son 7 controles independientes."
+  },
+  {
+   "n": "C9b",
+   "control": "\u03b8\u0302 con partida fija r\u2080 = 1, \u03b4 = 1.5 (independiente)",
+   "criterio": "|\u03b8\u0302 \u2212 \u03b4/\u03b4_c| < 3\u03c3",
+   "valor": "1.2557 \u00b1 0.0089 frente a 1.2599 (-0.47\u03c3)",
+   "pasa": "s\u00ed",
+   "script": "03",
+   "nota": ""
+  },
+  {
+   "n": "C10",
+   "control": "Ley de X frente a la mezcla (KS, x \u2265 x_min)",
+   "criterio": "\u221aN\u00b7D < 1.63",
+   "valor": "\u221aN\u00b7D = 1.11 (x_min = 0.0211)",
+   "pasa": "s\u00ed",
+   "script": "03",
+   "nota": "Una sola muestra universal vale para \u03b4 = 3 y 4 (y para todos los \u03b4)."
+  },
+  {
+   "n": "C11 (\u03b4=1.5)",
+   "control": "Pendiente log-log de la varianza muestral",
+   "criterio": "\u00b10.15 de 2/\u03b8 \u2212 1",
+   "valor": "+0.784 frente a +0.587",
+   "pasa": "**no pasa**",
+   "script": "03",
+   "nota": "Causa medida: el estad\u00edstico es preasint\u00f3tico y muy ruidoso. Con muestras de la ley exacta del mismo tama\u00f1o da +0.616 \u00b1 0.086 (10 muestras); el MC queda a z = +1.97."
+  },
+  {
+   "n": "C11 (\u03b4=2)",
+   "control": "Pendiente log-log de la varianza muestral",
+   "criterio": "\u00b10.15 de 2/\u03b8 \u2212 1",
+   "valor": "+0.343 frente a +0.191",
+   "pasa": "**no pasa**",
+   "script": "03",
+   "nota": "Causa medida: el estad\u00edstico es preasint\u00f3tico y muy ruidoso. Con muestras de la ley exacta del mismo tama\u00f1o da +0.262 \u00b1 0.039 (10 muestras); el MC queda a z = +2.06."
+  },
+  {
+   "n": "C11 (\u03b4=3)",
+   "control": "Pendiente log-log de la varianza muestral",
+   "criterio": "|pendiente| < 0.1",
+   "valor": "+0.081",
+   "pasa": "s\u00ed",
+   "script": "03",
+   "nota": ""
+  },
+  {
+   "n": "C11 (\u03b4=4)",
+   "control": "Pendiente log-log de la varianza muestral",
+   "criterio": "|pendiente| < 0.1",
+   "valor": "+0.031",
+   "pasa": "s\u00ed",
+   "script": "03",
+   "nota": ""
+  },
+  {
+   "n": "C12",
+   "control": "MI con supersoluci\u00f3n: pesos \u2264 1",
+   "criterio": "m\u00e1x(peso) \u2264 1",
+   "valor": "1.000000",
+   "pasa": "s\u00ed",
+   "script": "04, 05",
+   "nota": ""
+  },
+  {
+   "n": "C13 (\u03b4=3)",
+   "control": "a_MI (\u03b7 = 0.1) frente a la EDO",
+   "criterio": "|\u0394| < 3\u03c3 (\u03c3 = estad\u00edstica + sesgo medido)",
+   "valor": "-0.34283 frente a -0.34324: +2.38\u03c3 (extrapolado p = 3.20: +3.85\u03c3; p = 2: +1.39\u03c3)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": "La extrapolaci\u00f3n con el orden de la regla de 04 (p = 3.20, promedio de pares preasint\u00f3ticos) queda a 3.85\u03c3; con p = 2 (orden de Euler; par m\u00e1s fino observado 1.93) queda a +1.39\u03c3. La revisi\u00f3n a p = 2 se hizo despu\u00e9s de ver los datos (04b)."
+  },
+  {
+   "n": "C13 (\u03b4=1.5)",
+   "control": "a_MI (\u03b7 = 0.1) frente a la EDO",
+   "criterio": "|\u0394| < 3\u03c3 (\u03c3 = estad\u00edstica + sesgo medido)",
+   "valor": "-3.65861 frente a -3.66823: +2.10\u03c3 (extrapolado p = 3.20: +2.38\u03c3; p = 2: +1.32\u03c3)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C13 (\u03b4=1.3)",
+   "control": "a_MI (\u03b7 = 0.1) frente a la EDO",
+   "criterio": "|\u0394| < 3\u03c3 (\u03c3 = estad\u00edstica + sesgo medido)",
+   "valor": "-11.54919 frente a -11.57992: +1.38\u03c3 (extrapolado p = 3.20: +1.30\u03c3; p = 2: +0.81\u03c3)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C13 (\u03b4=1.25)",
+   "control": "a_MI (\u03b7 = 0.1) frente a la EDO",
+   "criterio": "|\u0394| < 3\u03c3 (\u03c3 = estad\u00edstica + sesgo medido)",
+   "valor": "-21.94346 frente a -21.94869: +0.09\u03c3 (extrapolado p = 3.20: -0.03\u03c3; p = 2: -0.19\u03c3)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C13 (\u03b4=1.2)",
+   "control": "a_MI (\u03b7 = 0.1) frente a la EDO",
+   "criterio": "|\u0394| < 3\u03c3 (\u03c3 = estad\u00edstica + sesgo medido)",
+   "valor": "-142.24039 frente a -142.93487: +0.72\u03c3 (extrapolado p = 3.20: +0.71\u03c3; p = 2: +0.66\u03c3)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C13 (\u03b4=1.2, inf.)",
+   "control": "a_MI (\u03b7 = 0.2) cerca del umbral",
+   "criterio": "informativo (\u03c3 = estad\u00edstica + sesgo de 04)",
+   "valor": "-142.66 \u00b1 0.96 frente a -142.93 (+0.29\u03c3)",
+   "pasa": "medido",
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "n": "C13 (\u03b4=1.195, inf.)",
+   "control": "a_MI (\u03b7 = 0.2) cerca del umbral",
+   "criterio": "informativo (\u03c3 = estad\u00edstica + sesgo de 04)",
+   "valor": "-306.03 \u00b1 2.39 frente a -306.71 (+0.28\u03c3)",
+   "pasa": "medido",
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "n": "C13 (\u03b4=1.192, inf.)",
+   "control": "a_MI (\u03b7 = 0.2) cerca del umbral",
+   "criterio": "informativo (\u03c3 = estad\u00edstica + sesgo de 04)",
+   "valor": "-975.24 \u00b1 9.44 frente a -971.54 (-0.39\u03c3)",
+   "pasa": "medido",
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "n": "C13 (\u03b4=1.1907, inf.)",
+   "control": "a_MI (\u03b7 = 0.2) cerca del umbral",
+   "criterio": "informativo (\u03c3 = estad\u00edstica + sesgo de 04)",
+   "valor": "-15889.76 \u00b1 421.82 frente a -15404.50 (-1.15\u03c3)",
+   "pasa": "medido",
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "n": "C14 (\u03b4=3)",
+   "control": "Varianza relativa medida frente a la cota",
+   "criterio": "medida \u2264 cota + 3\u03c3",
+   "valor": "0.0263 \u2264 0.0988",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C15 (\u03b4=3)",
+   "control": "Varianza muestral estable con n (MI)",
+   "criterio": "|pendiente| < 0.1",
+   "valor": "-0.002 (\u03b7 = 0.1)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C14 (\u03b4=2)",
+   "control": "Varianza relativa medida frente a la cota",
+   "criterio": "medida \u2264 cota + 3\u03c3",
+   "valor": "0.0701 \u2264 0.1919",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C15 (\u03b4=2)",
+   "control": "Varianza muestral estable con n (MI)",
+   "criterio": "|pendiente| < 0.1",
+   "valor": "-0.010 (\u03b7 = 0.1)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C14 (\u03b4=1.5)",
+   "control": "Varianza relativa medida frente a la cota",
+   "criterio": "medida \u2264 cota + 3\u03c3",
+   "valor": "0.1509 \u2264 0.3333",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C15 (\u03b4=1.5)",
+   "control": "Varianza muestral estable con n (MI)",
+   "criterio": "|pendiente| < 0.1",
+   "valor": "-0.006 (\u03b7 = 0.1)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C14 (\u03b4=1.3)",
+   "control": "Varianza relativa medida frente a la cota",
+   "criterio": "medida \u2264 cota + 3\u03c3",
+   "valor": "0.2283 \u2264 0.4540",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C15 (\u03b4=1.3)",
+   "control": "Varianza muestral estable con n (MI)",
+   "criterio": "|pendiente| < 0.1",
+   "valor": "+0.013 (\u03b7 = 0.1)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C14 (\u03b4=1.25)",
+   "control": "Varianza relativa medida frente a la cota",
+   "criterio": "medida \u2264 cota + 3\u03c3",
+   "valor": "0.2552 \u2264 0.4964",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C15 (\u03b4=1.25)",
+   "control": "Varianza muestral estable con n (MI)",
+   "criterio": "|pendiente| < 0.1",
+   "valor": "+0.004 (\u03b7 = 0.1)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C14 (\u03b4=1.2)",
+   "control": "Varianza relativa medida frente a la cota",
+   "criterio": "medida \u2264 cota + 3\u03c3",
+   "valor": "0.2959 \u2264 0.5461",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "n": "C15 (\u03b4=1.2)",
+   "control": "Varianza muestral estable con n (MI)",
+   "criterio": "|pendiente| < 0.1",
+   "valor": "+0.031 (\u03b7 = 0.2)",
+   "pasa": "s\u00ed",
+   "script": "04",
+   "nota": "Con \u03b7 = 0.1 solo hay N = 7007 caminos (menos de 10 bloques de 2000); se usa la corrida con \u03b7 = 0.2."
+  },
+  {
+   "n": "C16 (\u03b7=0.8)",
+   "control": "E[\u03b4\u039b] = 1 (esquema de puente)",
+   "criterio": "|E \u2212 1| < 3\u03c3",
+   "valor": "0.98861 \u00b1 0.00030 (-38.59\u03c3)",
+   "pasa": "**no pasa**",
+   "script": "02",
+   "nota": "Causa: con \u03b7 = 0.8 los pasos son tan largos que la cuadratura de 3 nodos en el tiempo del puente no basta (la media del puente s\u00ed es exacta). Con \u03b7 \u2264 0.4 pasa."
+  },
+  {
+   "n": "C16 (\u03b7=0.4)",
+   "control": "E[\u03b4\u039b] = 1 (esquema de puente)",
+   "criterio": "|E \u2212 1| < 3\u03c3",
+   "valor": "1.00032 \u00b1 0.00035 (+0.89\u03c3)",
+   "pasa": "s\u00ed",
+   "script": "02",
+   "nota": ""
+  },
+  {
+   "n": "C16 (\u03b7=0.2)",
+   "control": "E[\u03b4\u039b] = 1 (esquema de puente)",
+   "criterio": "|E \u2212 1| < 3\u03c3",
+   "valor": "0.99952 \u00b1 0.00036 (-1.32\u03c3)",
+   "pasa": "s\u00ed",
+   "script": "02",
+   "nota": ""
+  },
+  {
+   "n": "C16 (\u03b7=0.1)",
+   "control": "E[\u03b4\u039b] = 1 (esquema de puente)",
+   "criterio": "|E \u2212 1| < 3\u03c3",
+   "valor": "1.00026 \u00b1 0.00066 (+0.39\u03c3)",
+   "pasa": "s\u00ed",
+   "script": "02",
+   "nota": ""
+  },
+  {
+   "n": "C16 (03)",
+   "control": "E[\u03b4\u039b] = 1 en la muestra de 03",
+   "criterio": "|E \u2212 1| < 3\u03c3",
+   "valor": "1.00004 \u00b1 0.00036",
+   "pasa": "s\u00ed",
+   "script": "03",
+   "nota": ""
+  }
+ ],
+ "n_si": 34,
+ "n_no": 4,
+ "n_na": 1,
+ "n_inf": 4
+}

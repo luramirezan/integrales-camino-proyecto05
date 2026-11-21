@@ -1,0 +1,302 @@
+{
+ "script": "07_controles.py",
+ "fecha": "2026-11-17 22:46:28",
+ "filas": [
+  {
+   "id": "K1",
+   "control": "Perron-Frobenius (autovector de signo constante)",
+   "criterio": "min(v)/max|v| >= -1e-12 en todas las celdas",
+   "valor": "m\u00ednimo +1.2e-09 en 161 celdas x 6 (h, eps); residuo m\u00e1ximo 8.7e-16",
+   "pasa": true,
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "id": "K2",
+   "control": "Orden de Trotter",
+   "criterio": "1.8 <= p <= 2.2 en >= 90 % de las celdas",
+   "valor": "75.2 % (p entre 1.523 y 2.385); fuera: [(1.185, 50, 1.609), (1.187, 50, 1.593), (1.189, 50, 1.578), (1.19, 50, 1.57), (1.1903, 50, 1.568), (1.1905, 50, 1.566)] ...",
+   "pasa": false,
+   "script": "04",
+   "nota": "Causa medida (scripts 12 y 12b): en R = 50 la pared sin imagen; al restar el corrimiento de la pared medido con el radial, 23 de 23 celdas vuelven a [1.8, 2.2]. En R = 3200 no es la pared: con eps = 0.2 hay t\u00e9rminos de orden superior; con la terna (0.1, 0.05, 0.025) el orden en delta = 1.1906 baja de 2.384 a 2.084. La receta solo usa eps = 0.2 en la barra."
+  },
+  {
+   "id": "K3",
+   "control": "Transferencia frente a radial h = 1/40 en cada celda",
+   "criterio": "|E_tr - E_rad| <= 2 (err_tr + err_rad)",
+   "valor": "161/161 compatibles",
+   "pasa": true,
+   "script": "04",
+   "nota": ""
+  },
+  {
+   "id": "K4",
+   "control": "Transferencia frente a disparo sin malla en cada celda",
+   "criterio": "|E_tr - E_disp| <= 2 err_tr",
+   "valor": "161/161; m\u00e1ximo |dif|/err = 0.818; m\u00e1ximo |dif|/|E| = 2.5e-02",
+   "pasa": true,
+   "script": "02, 04",
+   "nota": ""
+  },
+  {
+   "id": "K5a",
+   "control": "Radial 1/40 frente a disparo",
+   "criterio": "|E_rad - E_disp| <= 2 err_rad en cada celda",
+   "valor": "161/161; m\u00e1ximo |dif|/err = 0.126",
+   "pasa": true,
+   "script": "02, 03",
+   "nota": ""
+  },
+  {
+   "id": "K5b",
+   "control": "Radial 1/160 frente a disparo",
+   "criterio": "|E_rad - E_disp| <= 2 err_rad en cada celda",
+   "valor": "161/161; m\u00e1ximo |dif|/err = 0.276",
+   "pasa": true,
+   "script": "02, 03",
+   "nota": ""
+  },
+  {
+   "id": "K6-disparo",
+   "control": "Valor en el cruce tiende a 1/4 (disparo)",
+   "criterio": "|y* - 1/4| < 0.01 en el par mayor; y* decrece con R; (y* - 1/4)/(3 r_e/8R) en [0.8, 1.2] para R >= 200",
+   "valor": "y* = 0.26390, 0.25681, 0.25337, 0.25168, 0.25084, 0.25042; cocientes = 1.040, 1.020, 1.010, 1.005, 1.003, 1.001",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K6-radial_h160",
+   "control": "Valor en el cruce tiende a 1/4 (radial_h160)",
+   "criterio": "|y* - 1/4| < 0.01 en el par mayor; y* decrece con R; (y* - 1/4)/(3 r_e/8R) en [0.8, 1.2] para R >= 200",
+   "valor": "y* = 0.26390, 0.25681, 0.25337, 0.25168, 0.25084, 0.25037; cocientes = 1.040, 1.020, 1.010, 1.006, 1.003, 0.887",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K6-transferencia",
+   "control": "Valor en el cruce tiende a 1/4 (transferencia)",
+   "criterio": "|y* - 1/4| < 0.01 en el par mayor; y* decrece con R; (y* - 1/4)/(3 r_e/8R) en [0.8, 1.2] para R >= 200 (el criterio de cociente se fij\u00f3 para disparo y radial; en la transferencia es informativo)",
+   "valor": "y* = 0.26222, 0.25601, 0.25297, 0.25144, 0.25055, 0.24956; cocientes = 0.915, 0.899, 0.888, 0.860, 0.656, -1.044",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K7-disparo",
+   "control": "Independencia de la interpolaci\u00f3n (disparo), rejilla final de 23 nodos",
+   "criterio": "m\u00e1x |spline - pchip|, |spline - local3| <= 1e-8",
+   "valor": "peor caso: rho par 50: 4.6e-07 (46.06 veces el l\u00edmite)",
+   "pasa": false,
+   "script": "05",
+   "nota": "Causa medida (script 10, V1): el spline coincide con el cruce calculado sin interpolar a 4e-11 o mejor en todos los pares; los que se separan son PCHIP y el c\u00fabico local en el par 50/100 de rho, cuyo cruce (1.1945) cae donde los nodos est\u00e1n a 1e-3. El par 50/100 no entra en la extrapolaci\u00f3n."
+  },
+  {
+   "id": "K7-radial_h160",
+   "control": "Independencia de la interpolaci\u00f3n (radial_h160), rejilla final de 23 nodos",
+   "criterio": "m\u00e1x |spline - pchip|, |spline - local3| <= 0.2 sigma del cruce",
+   "valor": "peor caso: rho par 50: 4.6e-07 (0.19 veces el l\u00edmite)",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K7-radial_h40",
+   "control": "Independencia de la interpolaci\u00f3n (radial_h40), rejilla final de 23 nodos",
+   "criterio": "m\u00e1x |spline - pchip|, |spline - local3| <= 0.2 sigma del cruce",
+   "valor": "peor caso: rho par 50: 4.6e-07 (0.01 veces el l\u00edmite)",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K7-transferencia",
+   "control": "Independencia de la interpolaci\u00f3n (transferencia), rejilla final de 23 nodos",
+   "criterio": "m\u00e1x |spline - pchip|, |spline - local3| <= 0.2 sigma del cruce",
+   "valor": "peor caso: rho par 50: 2.1e-07 (0.00 veces el l\u00edmite)",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K7-disparo-inicial",
+   "control": "Independencia de la interpolaci\u00f3n (disparo), rejilla INICIAL de 15 nodos",
+   "criterio": "<= 1e-8",
+   "valor": "pares que no cumplen: [('y', 50, 1.4e-07), ('y', 1600, 1.9e-08), ('rho', 50, 3.1e-07), ('rho', 100, 5.8e-07), ('rho', 1600, 2.6e-08)]",
+   "pasa": false,
+   "script": "07",
+   "nota": "Se a\u00f1adieron 8 nodos; ver K7-disparo."
+  },
+  {
+   "id": "K8a",
+   "control": "Sensibilidad a h (transferencia)",
+   "criterio": "|delta_c(h = 0.02 sola) - delta_c(receta)| <= barra final (m\u00e9todo A)",
+   "valor": "2.05e-06 frente a barra 6.66e-05 (h = 0.04 sola: 1.05e-05)",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K8b-y",
+   "control": "Sensibilidad a h (radial, y)",
+   "criterio": "|delta_c(1/40) - delta_c(1/160)| <= barra final del radial 1/160",
+   "valor": "7.33e-06 frente a 1.52e-05",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K8b-rho",
+   "control": "Sensibilidad a h (radial, rho)",
+   "criterio": "|delta_c(1/40) - delta_c(1/160)| <= barra final del radial 1/160",
+   "valor": "4.21e-06 frente a 1.52e-05",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K9-disparo-y",
+   "control": "Intervalo final contiene la referencia (disparo, y)",
+   "criterio": "1.1906124210606 dentro",
+   "valor": "[1.1906124198, 1.1906124229]; centro - ref = +2.6e-10",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K9-disparo-rho",
+   "control": "Intervalo final contiene la referencia (disparo, rho)",
+   "criterio": "1.1906124210606 dentro",
+   "valor": "[1.1906124182, 1.1906124222]; centro - ref = -8.3e-10",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K9-radial_h160-y",
+   "control": "Intervalo final contiene la referencia (radial 1/160, y)",
+   "criterio": "1.1906124210606 dentro",
+   "valor": "[1.1905971026, 1.1906275626]; centro - ref = -8.8e-08",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K9-radial_h160-rho",
+   "control": "Intervalo final contiene la referencia (radial 1/160, rho)",
+   "criterio": "1.1906124210606 dentro",
+   "valor": "[1.1905972223, 1.1906276130]; centro - ref = -3.4e-09",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K9-transferencia-y",
+   "control": "Intervalo final contiene la referencia (transferencia, m\u00e9todo A, y)",
+   "criterio": "1.1906124210606 dentro",
+   "valor": "[1.1905440986, 1.1906772338]; centro - ref = -1.8e-06",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K9-transferencia-rho",
+   "control": "Intervalo final contiene la referencia (transferencia, m\u00e9todo A, rho)",
+   "criterio": "1.1906124210606 dentro",
+   "valor": "[1.1905414135, 1.1906800341]; centro - ref = -1.7e-06",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K9-B-y",
+   "control": "Intervalo final contiene la referencia (transferencia, m\u00e9todo B, y)",
+   "criterio": "1.1906124210606 dentro",
+   "valor": "[1.1906085878, 1.1906162112]; centro - ref = -2.2e-08",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K9-B-rho",
+   "control": "Intervalo final contiene la referencia (transferencia, m\u00e9todo B, rho)",
+   "criterio": "1.1906124210606 dentro",
+   "valor": "[1.1905963810, 1.1906278089]; centro - ref = -3.3e-07",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K10-y",
+   "control": "Ley 1/R^2 del cruce (disparo, y)",
+   "criterio": "cociente de diferencias sucesivas en [3, 5.5] para R >= 100",
+   "valor": "4.125, 4.062, 4.031, 4.016",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K10-rho",
+   "control": "Ley 1/R^2 del cruce (disparo, rho)",
+   "criterio": "cociente de diferencias sucesivas en [3, 5.5] para R >= 100",
+   "valor": "4.039, 4.021, 4.011, 4.005",
+   "pasa": true,
+   "script": "05",
+   "nota": ""
+  },
+  {
+   "id": "K11",
+   "control": "Colapso de datos y = F(R/a_s) (disparo, rejilla principal)",
+   "criterio": "max|y - F| < 0.01 para R >= 400 y cociente entre R y 2R en [1.6, 2.5] (ley 1/R)",
+   "valor": "max|y - F| = 50: 9.7e-03, 100: 5.0e-03, 200: 2.5e-03, 400: 2.0e-03, 800: 8.4e-03, 1600: 3.3e-02, 3200: 1.3e-01; cocientes 1.95, 1.97, 1.27, 0.24, 0.25, 0.25",
+   "pasa": false,
+   "script": "02",
+   "nota": "Causa medida: el criterio se evalu\u00f3 en la rejilla de delta, donde z = R/a crece con R. La correcci\u00f3n es O(r_e/R) a z fijo (figura D y K11b), pero en el lado ligado vale -z^3 r_e/(pi^2 R) (de q coth q = z + r_e q^2/(2R)); en delta = 1.185 y R = 3200, z = 13.27, la estimaci\u00f3n da -0.1315 y lo medido es -0.1327. El criterio estaba mal planteado; no se cambia."
+  },
+  {
+   "id": "K11b",
+   "control": "Colapso a z fijo (|z| <= 2), informativo",
+   "criterio": "sin criterio previo (a\u00f1adido despu\u00e9s de K11)",
+   "valor": "max|y - F| = 50: 1.0e-02 (n = 32), 100: 5.8e-03 (n = 29), 200: 3.2e-03 (n = 25), 400: 2.0e-03 (n = 23), 800: 6.3e-04 (n = 18), 1600: 7.9e-04 (n = 18), 3200: 1.6e-04 (n = 15); R max|y - F| = 0.51, 0.58, 0.65, 0.80, 0.50, 1.26, 0.50",
+   "pasa": true,
+   "script": "02",
+   "nota": "informativo; no cuenta en el total"
+  },
+  {
+   "id": "K12",
+   "control": "Controles negativos: sin cruce si nunca liga o si liga profundo",
+   "criterio": "ning\u00fan cambio de signo de y(R) - y(2R)",
+   "valor": "repulsivo [0, 0, 0, 0, 0], no ligado [0, 0, 0, 0, 0], ligado profundo [0, 0, 0, 0, 0]",
+   "pasa": true,
+   "script": "06",
+   "nota": ""
+  },
+  {
+   "id": "K13",
+   "control": "Artefacto frente a estado d\u00e9bil (delta = 1.19)",
+   "criterio": "E0 > 0 en R <= 1600 (los tres m\u00e9todos) y todos los delta* > 1.19",
+   "valor": "signo dice no ligado hasta 1600: True; primer E0 < 0 (disparo) en R = 3200; menor delta* = 1.1906083",
+   "pasa": true,
+   "script": "06",
+   "nota": ""
+  },
+  {
+   "id": "K14",
+   "control": "Reproducci\u00f3n de la Fase 3 (adicional, criterio fijado al escribirlo)",
+   "criterio": "E_tr de delta = 1.19 igual al de fase3/resultados/20_cajas.json a 1e-15",
+   "valor": "m\u00e1xima diferencia 0.0e+00 en 6 celdas",
+   "pasa": true,
+   "script": "04",
+   "nota": ""
+  }
+ ],
+ "n": 31,
+ "n_pasa": 27,
+ "no_pasan": [
+  "K2",
+  "K7-disparo",
+  "K7-disparo-inicial",
+  "K11"
+ ]
+}

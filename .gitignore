@@ -8,3 +8,5 @@ fase2/resultados/12_pigs_series.npz
 # Nunca subir claves
 .env
 *.key
+# Cache de la acción de pares para l = 1 de E4 (se regenera sola con 44_tablas_l1.py, ~55 MB)
+fase4/extensiones/E4_extension_segun_l/resultados/tablas/

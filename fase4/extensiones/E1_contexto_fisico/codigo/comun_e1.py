@@ -1,0 +1,258 @@
+"""comun_e1.py -- utilidades de la extension E1 (contexto fisico del umbral), proyecto 05.
+
+Problema adimensional (Fases 1-3): -u''/2 - e^{-delta r}/r u = eps u, u(0)=0, hbar = m = g = 1.
+Unidad de longitud L = hbar^2/(m g); unidad de energia m g^2/hbar^2; delta = mu_s L, con mu_s la
+inversa de la longitud de apantallamiento. 'm' es la masa del termino cinetico (masa reducida).
+
+Dos metodos independientes para el estado 1s:
+  Metodo A (este archivo): disparo con solve_ivp (DOP853) hacia afuera desde r0 y hacia adentro desde
+     R_lejos con la solucion que decae, empalme del cociente u'/u en r_m; observables <r>, <r^2> por
+     integracion de u^2 junto con la EDO. No usa caja.
+  Metodo B: diferencias finitas en caja de Dirichlet con Richardson (fase2/codigo/radial.py a traves de
+     fase3/codigo/comun3.py:radial_ref). Se importa, no se copia.
+Umbral delta_c:
+  Metodo A: pendiente de la solucion de energia cero (radial.umbral, solve_ivp).
+  Metodo B: Numerov propio a energia cero en malla uniforme, con Richardson en h (independiente de solve_ivp).
+
+Constantes fisicas: cada una con su fuente (ver fuentes.md). Nada se escribe a mano en el texto: todo pasa
+por los JSON de resultados/.
+"""
+import json
+import os
+import sys
+import time
+
+import numpy as np
+from scipy.integrate import solve_ivp
+from scipy.optimize import brentq
+
+AQUI = os.path.dirname(os.path.abspath(__file__))
+BASE = os.path.dirname(AQUI)                       # .../E1_contexto_fisico
+RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(BASE)))   # /mnt/project-files
+RES = os.path.join(BASE, "resultados")
+FIG = os.path.join(BASE, "figuras")
+for p in (os.path.join(RAIZ, "fase2", "codigo"), os.path.join(RAIZ, "fase3", "codigo")):
+    if p not in sys.path:
+        sys.path.insert(0, p)
+import radial            # noqa: E402  (Fase 2, sin modificar)
+import comun3            # noqa: E402  (Fase 3, sin modificar)
+
+DELTA_C_REF = comun3.DELTA_C_REF   # 1.1906124210606 (Fases 1-3)
+
+# ----------------------------------------------------------------------------- constantes (con fuente)
+# CODATA 2022 (Mohr et al., Rev. Mod. Phys. 97, 025002 (2025)), tal como las lista la tabla de constantes
+# del PDG 2025 (rpp2025-rev-phys-constants.pdf) y el archivo allascii.txt de NIST. Verificadas el 17-11-2026.
+CONST = dict(
+    m_p=938.27208943,          # MeV, u = 0.00000029
+    m_n=939.56542194,          # MeV, u = 0.00000048
+    m_d=1875.61294500,         # MeV, u = 0.00000058
+    m_e=0.51099895069,         # MeV
+    hbar_c=197.3269804,        # MeV fm (exacta)
+    a0=5.29177210544e-11,      # m (radio de Bohr, con m_e)
+    e=1.602176634e-19,         # C (exacta)
+    eps0=8.8541878188e-12,     # F/m
+    kB_eV=8.617333262e-5,      # eV/K (exacta)
+    E_h_eV=2 * 13.605693122990,  # eV, energia de Hartree = 2 Ry
+    E_B_d_codata_keV=2224.56640,  # keV, dato de entrada de CODATA 2022 (Sec. II.2), u = 0.00038
+    r_d_fm=2.12778,            # fm, radio cuadratico medio de carga del deuteron (CODATA 2022), u = 0.00027
+    r_d_u_fm=0.00027,
+    r_p_fm=0.84075,            # fm, radio de carga del proton (CODATA 2022), u = 0.00064
+    r_p_u_fm=0.00064,
+    # PDG 2025 (rpp2025-tab-mesons-light.pdf)
+    m_pi_pm=139.57039,         # MeV, u = 0.00018
+    m_pi_0=134.9768,           # MeV, u = 0.0005
+    # r_n^2: PDG 2024 (rpp2024-tab-baryons-N.pdf, espejo de KEK) y pdgLive: -0.1155(17) fm^2. [Revision R1-01: antes
+    # se usaba -0.1161(22), el promedio antiguo del PDG que cita Filin et al. (2020) solo para comparar.]
+    rn2_fm2=-0.1155, rn2_u_fm2=0.0017,
+    rn2_filin_pdg_antiguo=-0.1161,
+    # r_d^2 - r_p^2 = 3.82070(31) fm^2 por el desplazamiento isotopico H-D 1S-2S (Filin et al., Ec. 1, que cita a
+    # Pachucki, Patkos y Yerokhin 2018). Solo se usa para la incertidumbre: r_d y r_p de CODATA estan casi totalmente
+    # correlacionados y sumar sus incertidumbres como independientes la sobreestima. [Revision R1-04]
+    rd2_rp2_iso_u_fm2=0.00031,
+    r_str_filin_fm=1.9731, r_str_filin_up=0.0013, r_str_filin_dn=0.0018,   # Ec. (9) de Filin et al.
+    # NPLQCD, PRD 87, 034506 (2013), arXiv:1206.5219, Sec. III (p. 8) y Tabla VII (p. 11)
+    lat_m_pi=805.9, lat_m_pi_u=(0.6, 0.4, 8.9),
+    lat_M_B=1634.0, lat_M_B_u=(0.0, 0.0, 18.0),
+    lat_B_d=19.5, lat_B_d_u=(3.6, 3.1, 0.2),
+    # Berengut et al., PRD 87 (2013), arXiv:1301.1738, Ec. (4.1) y Tabla I
+    K_deut_q=-0.86, K_deut_q_up=0.45, K_deut_q_dn=0.50, K_pi_q=0.494,
+    K_N_q=0.048,               # Berengut et al., Ec. (2.4): K_N^q = 0.048(+0.002/-0.006) [Revision R1-05]
+    # NRL Plasma Formulary (Huba, ed. 2004), p. 29: lambda_D = 7.43e2 (T/n)^{1/2} cm, T en eV, n en cm^-3
+    nrl_coef_cm=7.43e2,
+    # Rogers, Graboske y Harwood, PRA 1, 1577 (1970), resumen: D0(1s) = 0.83991 a0/Z
+    rgh_D0=0.83991,
+    # Tulin, Yu y Zurek, PRD 87, 115007 (2013), arXiv:1302.3898, Sec. IV B: primera resonancia s en b = 1.68,
+    # antirresonancia s en b = 4.52, con b = alpha m_X/m_phi y masa reducida m_X/2
+    tyz_b_res=1.68, tyz_b_antires=4.52, tyz_kappa_hulthen=1.6,
+    # Tulin, Yu y Zurek, Sec. VI: antirresonancia de Hulthen en b = kappa r^2, r raiz de 2 gamma + psi(1+r) + psi(1-r) = 0
+    # (r ~ 1.69). Nota de la revision (R1-03): 1.68 y 4.52 son las etiquetas de curvas ilustrativas de su Fig. 3,
+    # no umbrales ni ceros calculados con precision.
+)
+
+
+def guardar(nombre, datos, salida_txt=None):
+    os.makedirs(RES, exist_ok=True)
+    with open(os.path.join(RES, nombre + ".json"), "w") as f:
+        json.dump(datos, f, indent=2, ensure_ascii=False, default=float)
+    if salida_txt is not None:
+        with open(os.path.join(RES, nombre + "_salida.txt"), "w") as f:
+            f.write(salida_txt)
+
+
+def leer(nombre):
+    with open(os.path.join(RES, nombre + ".json")) as f:
+        return json.load(f)
+
+
+class Registro:
+    """Imprime y acumula la salida para guardarla en <nombre>_salida.txt."""
+    def __init__(self):
+        self.lineas = []
+
+    def __call__(self, *a):
+        s = " ".join(str(x) for x in a)
+        print(s, flush=True)
+        self.lineas.append(s)
+
+    def texto(self):
+        return "\n".join(self.lineas) + "\n"
+
+
+# ----------------------------------------------------------------------------- metodo A: disparo sin caja
+def _V(delta, perfil="yukawa"):
+    if perfil == "yukawa":
+        return lambda r: -np.exp(-delta * r) / r
+    if perfil == "hulthen":          # control exacto: E = -(1/2)(1 - delta/2)^2
+        return lambda r: -delta / np.expm1(min(delta * r, 700.0))
+    raise ValueError(perfil)
+
+
+def _afuera(E, V, r0, rm):
+    """Solucion regular desde r0 hasta rm. y = [u, u', int u^2, int r u^2, int r^2 u^2]."""
+    def f(r, y):
+        u = y[0]
+        return [y[1], 2.0 * (V(r) - E) * u, u * u, r * u * u, r * r * u * u]
+    # u ~ r (1 - r) cerca de 0 para V ~ -1/r (u'' = -2u/r + ...)
+    y0 = [r0 * (1 - r0), 1 - 2 * r0, 0.0, 0.0, 0.0]
+    s = solve_ivp(f, [r0, rm], y0, method="DOP853", rtol=1e-12, atol=1e-30)
+    return s.y[:, -1]
+
+
+def _adentro(E, V, rm, Rl):
+    """Solucion que decae, desde Rl hasta rm (integracion estable hacia adentro)."""
+    k = np.sqrt(-2.0 * E)
+
+    def f(r, y):
+        u = y[0]
+        return [y[1], 2.0 * (V(r) - E) * u, u * u, r * u * u, r * r * u * u]
+    y0 = [1.0, -k, 0.0, 0.0, 0.0]
+    s = solve_ivp(f, [Rl, rm], y0, method="DOP853", rtol=1e-12, atol=1e-30)
+    return s.y[:, -1]       # las integrales salen negativas (se integra de Rl a rm < Rl)
+
+
+def _rm_Rl(E):
+    k = np.sqrt(-2.0 * E)
+    rm = min(max(2.0, 1.0 / k), 40.0)        # empalme en la zona interna
+    Rl = rm + 40.0 / k                        # e^{-40} relativo: la cola restante es despreciable
+    return rm, Rl
+
+
+def desajuste(E, delta, perfil="yukawa", r0=1e-8):
+    V = _V(delta, perfil)
+    rm, Rl = _rm_Rl(E)
+    a = _afuera(E, V, r0, rm)
+    b = _adentro(E, V, rm, Rl)
+    # diferencia de derivadas logaritmicas, acotada (wronskiano normalizado)
+    return (a[1] * b[0] - b[1] * a[0]) / np.hypot(a[0], a[1]) / np.hypot(b[0], b[1])
+
+
+def estado_1s_disparo(delta, perfil="yukawa", Emin=None, xtol=1e-15):
+    """Energia y observables del estado fundamental l=0 sin caja (metodo A)."""
+    t = time.perf_counter()
+    if Emin is None:
+        Emin = -0.52          # por debajo del fundamental de Coulomb (-1/2), cota inferior para todo delta >= 0
+    # el fundamental es el unico cero si delta > delta_c(2s) = 0.31; para delta menores se busca el mas bajo
+    Es = -np.logspace(np.log10(-Emin), -6, 36)
+    vals = [desajuste(E, delta, perfil) for E in Es]
+    E0 = None
+    for i in range(len(Es) - 1):
+        if np.sign(vals[i]) != np.sign(vals[i + 1]) and abs(vals[i]) < 1 and abs(vals[i + 1]) < 1:
+            E0 = brentq(desajuste, Es[i], Es[i + 1], args=(delta, perfil), xtol=xtol, rtol=1e-15)
+            break
+    if E0 is None:
+        return dict(E0=float("nan"), ligado=False)
+    V = _V(delta, perfil)
+    rm, Rl = _rm_Rl(E0)
+    a = _afuera(E0, V, 1e-8, rm)
+    b = _adentro(E0, V, rm, Rl)
+    c = a[0] / b[0]                        # escala la cola para que u sea continua en rm
+    N = a[2] - c * c * b[2]
+    R1 = a[3] - c * c * b[3]
+    R2 = a[4] - c * c * b[4]
+    return dict(E0=float(E0), ligado=True, r_med=float(R1 / N), r2_med=float(R2 / N),
+                kappa=float(np.sqrt(-2 * E0)), rm=float(rm), Rl=float(Rl), t=time.perf_counter() - t)
+
+
+# ----------------------------------------------------------------------------- metodo B: caja (Fases 2-3)
+def caja_para(E_aprox, Rmin=60.0, factor=30.0):
+    R = radial.caja_recomendada(E_aprox, Rmin=Rmin, factor=factor)
+    return float(np.ceil(R / 10.0) * 10.0)
+
+
+def estado_1s_caja(delta, R, h=1 / 40):
+    c = comun3.radial_ref(delta, R, h=h)
+    c["R"] = float(R)
+    c["h"] = float(h)
+    return c
+
+
+# ----------------------------------------------------------------------------- umbral delta_c(ns)
+def umbral_A(a=1.1, b=1.3, R=200.0):
+    """radial.umbral: u'(R)=0 para la solucion de energia cero (solve_ivp, Fase 2)."""
+    return radial.umbral(radial.V_yukawa, a, b, R=R)
+
+
+def _numerov_pendiente(delta, h, R=60.0, con_u=False):
+    """Numerov a E=0: u'' = 2 V u. Devuelve la pendiente en r_{N-2} (diferencia centrada de 4.o orden);
+    con_u=True devuelve (r_{N-2}, u_{N-2}, u'_{N-2})."""
+    N = int(round(R / h))
+    r = h * np.arange(N + 1)
+    k2 = np.zeros(N + 1)                  # u'' = -k2 u, k2 = -2V = 2 e^{-delta r}/r
+    k2[1:] = 2.0 * np.exp(-delta * r[1:]) / r[1:]
+    u = np.zeros(N + 1)
+    # u(0)=0; u(h) de la serie u = r - r^2 + ((1 + delta)/3) r^3 (de u'' = -2 e^{-delta r} u/r)
+    u[1] = h - h * h + (1.0 + delta) / 3.0 * h ** 3
+    # k2[0]*u[0] es el limite r->0 de (2/r) u = 2; se incluye como termino fuente f0 = -2
+    f = -k2 * u
+    f[0] = -2.0
+    c = h * h / 12.0
+    for n in range(1, N):
+        # (1 + c k2_{n+1}) u_{n+1} = 2 u_n - u_{n-1} + c (f_{n-1} + 10 f_n)  con f = u''
+        u[n + 1] = (2 * u[n] - u[n - 1] + c * (f[n - 1] + 10 * f[n])) / (1 + c * k2[n + 1])
+        f[n + 1] = -k2[n + 1] * u[n + 1]
+    up = (u[N - 4] - 8 * u[N - 3] + 8 * u[N - 1] - u[N]) / (12 * h)   # derivada centrada en r_{N-2}
+    if con_u:
+        return r[N - 2], u[N - 2], up
+    return up
+
+
+def umbral_B(hs=(1 / 200, 1 / 400), a=1.15, b=1.25, R=60.0, ns=None):
+    """Numerov propio; brentq en delta para cada h y Richardson con orden aparente medido."""
+    out = []
+    for h in hs:
+        out.append(brentq(lambda d: _numerov_pendiente(d, h, R), a, b, xtol=1e-14))
+    return out
+
+
+def long_dispersion_A(delta, R=200.0):
+    """a_s = R - u(R)/u'(R) de la solucion de energia cero (solve_ivp). Signo: a_s > 0 si hay ligado cerca."""
+    V = radial.V_yukawa(delta)
+    f = lambda r, y: [y[1], 2.0 * float(V(np.array([r]))[0]) * y[0]]
+    s = solve_ivp(f, [1e-8, R], [1e-8, 1.0], method="DOP853", rtol=1e-13, atol=1e-16)
+    u, up = s.y[0, -1], s.y[1, -1]
+    return float(R - u / up)
+
+
+def long_dispersion_B(delta, h=1 / 400, R=200.0):
+    r, u, up = _numerov_pendiente(delta, h, R, con_u=True)
+    return float(r - u / up)

@@ -1,0 +1,91 @@
+== disparo / y
+      50/100   delta*=1.191237550 +- 9.87e-15 (MC 9.2e-15, lin 9.9e-15)  valor=0.263895  dif_interp=1.9e-08  ERE=1.191238046  ncambios=1
+     100/200   delta*=1.190764616 +- 2.73e-15 (MC 2.7e-15, lin 1.1e-15)  valor=0.256812  dif_interp=6.0e-09  ERE=1.190764645  ncambios=1
+     200/400   delta*=1.190649967 +- 5.14e-15 (MC 3.8e-15, lin 5.1e-15)  valor=0.253372  dif_interp=3.0e-11  ERE=1.190649968  ncambios=1
+     400/800   delta*=1.190621745 +- 4.93e-15 (MC 3.5e-15, lin 4.9e-15)  valor=0.251678  dif_interp=1.5e-10  ERE=1.190621745  ncambios=1
+     800/1600  delta*=1.190614744 +- 6.00e-15 (MC 3.7e-15, lin 6.0e-15)  valor=0.250837  dif_interp=1.9e-12  ERE=1.190614744  ncambios=1
+    1600/3200  delta*=1.190613001 +- 5.36e-15 (MC 3.5e-15, lin 5.4e-15)  valor=0.250418  dif_interp=3.1e-11  ERE=1.190613001  ncambios=1
+   ajuste a+b/R^2+c/R^3: delta_c=1.1906124213 alpha=1.4817 beta=4.026 | Richardson=1.1906124198 | barra=1.56e-09 -> [1.190612420, 1.190612423] contiene ref: True  razones=['4.13', '4.06', '4.03', '4.02']
+== disparo / rho
+      50/100   delta*=1.194539372 +- 5.94e-15 (MC 4.3e-15, lin 5.9e-15)  valor=0.315692  dif_interp=4.6e-07  ERE=1.194545512  ncambios=1
+     100/200   delta*=1.191585877 +- 4.74e-15 (MC 3.6e-15, lin 4.7e-15)  valor=0.306637  dif_interp=2.1e-08  ERE=1.191586231  ncambios=1
+     200/400   delta*=1.190854709 +- 6.18e-15 (MC 4.2e-15, lin 6.2e-15)  valor=0.302024  dif_interp=7.8e-11  ERE=1.190854730  ncambios=1
+     400/800   delta*=1.190672857 +- 5.83e-15 (MC 5.8e-15, lin 4.4e-15)  valor=0.299697  dif_interp=2.9e-09  ERE=1.190672858  ncambios=1
+     800/1600  delta*=1.190627513 +- 5.77e-15 (MC 3.6e-15, lin 5.8e-15)  valor=0.298529  dif_interp=8.5e-10  ERE=1.190627513  ncambios=1
+    1600/3200  delta*=1.190616192 +- 4.98e-15 (MC 3.0e-15, lin 5.0e-15)  valor=0.297944  dif_interp=3.7e-11  ERE=1.190616192  ncambios=1
+   ajuste a+b/R^2+c/R^3: delta_c=1.1906124202 alpha=9.6485 beta=8.610 | Richardson=1.1906124182 | barra=2.00e-09 -> [1.190612418, 1.190612422] contiene ref: True  razones=['4.04', '4.02', '4.01', '4.01']
+== radial_h40 / y
+      50/100   delta*=1.191237177 +- 1.89e-04 (MC 9.3e-05, lin 1.9e-04)  valor=0.263894  dif_interp=1.9e-08  ERE=1.191238046  ncambios=1
+     100/200   delta*=1.190763902 +- 1.86e-04 (MC 5.8e-05, lin 1.9e-04)  valor=0.256805  dif_interp=6.0e-09  ERE=1.190764645  ncambios=1
+     200/400   delta*=1.190648582 +- 1.84e-04 (MC 2.0e-05, lin 1.8e-04)  valor=0.253345  dif_interp=1.1e-09  ERE=1.190649968  ncambios=1
+     400/800   delta*=1.190619048 +- 1.80e-04 (MC 1.7e-05, lin 1.8e-04)  valor=0.251572  dif_interp=3.0e-11  ERE=1.190621745  ncambios=1
+     800/1600  delta*=1.190609541 +- 1.75e-04 (MC 1.7e-05, lin 1.7e-04)  valor=0.250429  dif_interp=1.6e-10  ERE=1.190614744  ncambios=1
+    1600/3200  delta*=1.190603219 +- 1.65e-04 (MC 1.9e-05, lin 1.7e-04)  valor=0.248908  dif_interp=3.2e-08  ERE=1.190613001  ncambios=1
+   ajuste a+b/R^2+c/R^3: delta_c=1.1906050063 alpha=1.9766 beta=-38.850 | Richardson=1.1906011112 | barra=2.27e-04 -> [1.190377975, 1.190832038] contiene ref: True  razones=['4.10', '3.90', '3.11', '1.50']
+== radial_h40 / rho
+      50/100   delta*=1.194539146 +- 1.89e-04 (MC 1.2e-04, lin 1.9e-04)  valor=0.315692  dif_interp=4.6e-07  ERE=1.194545512  ncambios=1
+     100/200   delta*=1.191585481 +- 1.86e-04 (MC 1.2e-04, lin 1.9e-04)  valor=0.306636  dif_interp=2.1e-08  ERE=1.191586231  ncambios=1
+     200/400   delta*=1.190853971 +- 1.85e-04 (MC 6.8e-05, lin 1.8e-04)  valor=0.302021  dif_interp=2.1e-10  ERE=1.190854730  ncambios=1
+     400/800   delta*=1.190671425 +- 1.83e-04 (MC 3.0e-05, lin 1.8e-04)  valor=0.299685  dif_interp=1.6e-09  ERE=1.190672858  ncambios=1
+     800/1600  delta*=1.190624663 +- 1.79e-04 (MC 1.7e-05, lin 1.8e-04)  valor=0.298480  dif_interp=7.0e-10  ERE=1.190627513  ncambios=1
+    1600/3200  delta*=1.190610427 +- 1.73e-04 (MC 1.7e-05, lin 1.7e-04)  valor=0.297743  dif_interp=2.9e-11  ERE=1.190616192  ncambios=1
+   ajuste a+b/R^2+c/R^3: delta_c=1.1906082085 alpha=9.9353 beta=-16.311 | Richardson=1.1906056824 | barra=2.34e-04 -> [1.190374413, 1.190842004] contiene ref: True  razones=['4.04', '4.01', '3.90', '3.28']
+== radial_h160 / y
+      50/100   delta*=1.191237556 +- 1.19e-05 (MC 1.0e-05, lin 1.2e-05)  valor=0.263896  dif_interp=1.7e-08  ERE=1.191238046  ncambios=1
+     100/200   delta*=1.190764625 +- 1.17e-05 (MC 1.0e-05, lin 1.2e-05)  valor=0.256812  dif_interp=4.9e-09  ERE=1.190764645  ncambios=1
+     200/400   delta*=1.190649956 +- 1.17e-05 (MC 9.5e-06, lin 1.2e-05)  valor=0.253372  dif_interp=3.9e-11  ERE=1.190649968  ncambios=1
+     400/800   delta*=1.190621773 +- 1.17e-05 (MC 6.2e-06, lin 1.2e-05)  valor=0.251680  dif_interp=4.4e-09  ERE=1.190621745  ncambios=1
+     800/1600  delta*=1.190614725 +- 1.12e-05 (MC 6.2e-06, lin 1.1e-05)  valor=0.250837  dif_interp=5.2e-09  ERE=1.190614744  ncambios=1
+    1600/3200  delta*=1.190612805 +- 1.16e-05 (MC 6.5e-06, lin 1.2e-05)  valor=0.250370  dif_interp=7.1e-09  ERE=1.190613001  ncambios=1
+   ajuste a+b/R^2+c/R^3: delta_c=1.1906123326 alpha=1.4896 beta=3.330 | Richardson=1.1906121645 | barra=1.52e-05 -> [1.190597103, 1.190627563] contiene ref: True  razones=['4.12', '4.07', '4.00', '3.67']
+== radial_h160 / rho
+      50/100   delta*=1.194539371 +- 1.19e-05 (MC 7.2e-06, lin 1.2e-05)  valor=0.315692  dif_interp=4.6e-07  ERE=1.194545512  ncambios=1
+     100/200   delta*=1.191585875 +- 1.17e-05 (MC 8.3e-06, lin 1.2e-05)  valor=0.306637  dif_interp=2.1e-08  ERE=1.191586231  ncambios=1
+     200/400   delta*=1.190854711 +- 1.16e-05 (MC 8.1e-06, lin 1.2e-05)  valor=0.302024  dif_interp=5.0e-10  ERE=1.190854730  ncambios=1
+     400/800   delta*=1.190672865 +- 1.16e-05 (MC 1.0e-05, lin 1.2e-05)  valor=0.299697  dif_interp=1.1e-08  ERE=1.190672858  ncambios=1
+     800/1600  delta*=1.190627516 +- 1.15e-05 (MC 6.6e-06, lin 1.2e-05)  valor=0.298529  dif_interp=2.9e-09  ERE=1.190627513  ncambios=1
+    1600/3200  delta*=1.190616180 +- 1.16e-05 (MC 6.1e-06, lin 1.2e-05)  valor=0.297943  dif_interp=5.5e-10  ERE=1.190616192  ncambios=1
+   ajuste a+b/R^2+c/R^3: delta_c=1.1906124177 alpha=9.6491 beta=8.548 | Richardson=1.1906124014 | barra=1.52e-05 -> [1.190597222, 1.190627613] contiene ref: True  razones=['4.04', '4.02', '4.01', '4.00']
+== transferencia / y
+      50/100   delta*=1.191161585 +- 3.49e-04 (MC 9.9e-05, lin 3.5e-04)  valor=0.262224  dif_interp=1.1e-08  ERE=1.191238046  ncambios=1
+     100/200   delta*=1.190746519 +- 8.44e-05 (MC 4.5e-05, lin 8.4e-05)  valor=0.256005  dif_interp=1.0e-08  ERE=1.190764645  ncambios=1
+     200/400   delta*=1.190645237 +- 2.40e-05 (MC 1.3e-05, lin 2.4e-05)  valor=0.252966  dif_interp=2.2e-09  ERE=1.190649968  ncambios=1
+     400/800   delta*=1.190619743 +- 2.49e-05 (MC 1.0e-05, lin 2.5e-05)  valor=0.251435  dif_interp=3.4e-13  ERE=1.190621745  ncambios=1
+     800/1600  delta*=1.190612353 +- 5.41e-05 (MC 1.5e-05, lin 5.4e-05)  valor=0.250547  dif_interp=3.4e-12  ERE=1.190614744  ncambios=1
+    1600/3200  delta*=1.190608266 +- 1.26e-04 (MC 1.7e-05, lin 1.3e-04)  valor=0.249564  dif_interp=5.4e-09  ERE=1.190613001  ncambios=1
+   ajuste a+b/R^2+c/R^3: delta_c=1.1906106662 alpha=1.4159 beta=-5.832 | Richardson=1.1906069038 | barra=6.66e-05 -> [1.190544099, 1.190677234] contiene ref: True  razones=['4.10', '3.97', '3.45', '1.81']
+== transferencia / rho
+      50/100   delta*=1.194746448 +- 1.05e-03 (MC 6.5e-04, lin 1.1e-03)  valor=0.316642  dif_interp=2.1e-07  ERE=1.194545512  ncambios=1
+     100/200   delta*=1.191634653 +- 2.45e-04 (MC 1.5e-04, lin 2.5e-04)  valor=0.307103  dif_interp=9.9e-09  ERE=1.191586231  ncambios=1
+     200/400   delta*=1.190866145 +- 7.80e-05 (MC 4.6e-05, lin 7.8e-05)  valor=0.302254  dif_interp=2.5e-10  ERE=1.190854730  ncambios=1
+     400/800   delta*=1.190674992 +- 4.34e-05 (MC 2.4e-05, lin 4.3e-05)  valor=0.299808  dif_interp=4.2e-09  ERE=1.190672858  ncambios=1
+     800/1600  delta*=1.190626921 +- 4.36e-05 (MC 1.2e-05, lin 4.4e-05)  valor=0.298569  dif_interp=9.0e-10  ERE=1.190627513  ncambios=1
+    1600/3200  delta*=1.190614119 +- 5.29e-05 (MC 1.4e-05, lin 5.3e-05)  valor=0.297907  dif_interp=3.2e-11  ERE=1.190616192  ncambios=1
+   ajuste a+b/R^2+c/R^3: delta_c=1.1906107238 alpha=10.2313 beta=0.452 | Richardson=1.1906098520 | barra=6.93e-05 -> [1.190541413, 1.190680034] contiene ref: True  razones=['4.05', '4.02', '3.98', '3.76']
+== transferencia_pared_restada / y
+      50/100   delta*=1.191244414 +- 1.07e-04 (MC 6.8e-05, lin 1.1e-04)  valor=0.264043  dif_interp=2.0e-08  ERE=1.191238046  ncambios=1
+     100/200   delta*=1.190766184 +- 2.61e-05 (MC 2.2e-05, lin 2.6e-05)  valor=0.256880  dif_interp=5.0e-09  ERE=1.190764645  ncambios=1
+     200/400   delta*=1.190650029 +- 9.71e-06 (MC 8.0e-06, lin 9.7e-06)  valor=0.253395  dif_interp=2.4e-11  ERE=1.190649968  ncambios=1
+     400/800   delta*=1.190620922 +- 2.13e-05 (MC 9.5e-06, lin 2.1e-05)  valor=0.251647  dif_interp=5.1e-11  ERE=1.190621745  ncambios=1
+     800/1600  delta*=1.190612644 +- 5.34e-05 (MC 1.5e-05, lin 5.3e-05)  valor=0.250653  dif_interp=5.9e-10  ERE=1.190614744  ncambios=1
+    1600/3200  delta*=1.190608366 +- 1.26e-04 (MC 1.7e-05, lin 1.3e-04)  valor=0.249624  dif_interp=7.4e-09  ERE=1.190613001  ncambios=1
+   ajuste a+b/R^2+c/R^3: delta_c=1.1906107916 alpha=1.5866 beta=-3.279 | Richardson=1.1906069398 | barra=5.22e-05 -> [1.190558559, 1.190663024] contiene ref: True  razones=['4.12', '3.99', '3.52', '1.93']
+== transferencia metodo B / y
+      50/100   delta*=1.191161691 +- 1.15e-04 (malla 9.1e-08, Trotter 3.2e-05, pared 8.3e-05)
+     100/200   delta*=1.190746767 +- 2.64e-05 (malla 4.4e-07, Trotter 6.3e-06, pared 2.0e-05)
+     200/400   delta*=1.190645755 +- 5.49e-06 (malla 5.3e-07, Trotter 1.7e-07, pared 4.8e-06)
+     400/800   delta*=1.190620808 +- 3.06e-06 (malla 5.5e-07, Trotter 1.3e-06, pared 1.2e-06)
+     800/1600  delta*=1.190614543 +- 2.57e-06 (malla 5.5e-07, Trotter 1.7e-06, pared 2.9e-07)
+    1600/3200  delta*=1.190612842 +- 2.52e-06 (malla 5.5e-07, Trotter 1.9e-06, pared 1.0e-07)
+   delta_c=1.1906123995  barra=3.81e-06 -> [1.190608588, 1.190616211] contiene ref: True
+== transferencia metodo B / rho
+      50/100   delta*=1.194746408 +- 3.51e-04 (malla 2.8e-05, Trotter 9.6e-05, pared 2.3e-04)
+     100/200   delta*=1.191634763 +- 9.12e-05 (malla 1.3e-05, Trotter 2.4e-05, pared 5.4e-05)
+     200/400   delta*=1.190866395 +- 3.01e-05 (malla 9.4e-06, Trotter 7.5e-06, pared 1.3e-05)
+     400/800   delta*=1.190675500 +- 1.53e-05 (malla 8.6e-06, Trotter 3.4e-06, pared 3.3e-06)
+     800/1600  delta*=1.190627925 +- 1.16e-05 (malla 8.4e-06, Trotter 2.4e-06, pared 8.1e-07)
+    1600/3200  delta*=1.190616050 +- 1.07e-05 (malla 8.3e-06, Trotter 2.2e-06, pared 2.0e-07)
+   delta_c=1.1906120950  barra=1.57e-05 -> [1.190596381, 1.190627809] contiene ref: True
+sensibilidad h=0.02: cruces ['1.191161493', '1.190746074', '1.190644708', '1.190619192', '1.190611795', '1.190607701'] delta_c=1.1906086134
+sensibilidad h=0.04: cruces ['1.191160122', '1.190739392', '1.190636762', '1.190610919', '1.190603397', '1.190599173'] delta_c=1.1906001413
+tiempo 35 s

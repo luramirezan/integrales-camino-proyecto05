@@ -1,0 +1,12 @@
+R=800 d=1.1906 eps=0.2: corr 6.090e-04 (c R corr = 0.361) E_tr=+1.3103e-06 E_ex=+1.9204e-06 E_ex(d-corr)=+1.3102e-06  error -0.318  resto +0.0000
+R=800 d=1.1906 eps=0.1: corr 1.533e-04 (c R corr = 0.091) E_tr=+1.7741e-06 E_ex=+1.9204e-06 E_ex(d-corr)=+1.7751e-06  error -0.076  resto -0.0005
+R=800 d=1.1906 eps=0.05: corr 3.780e-05 (c R corr = 0.022) E_tr=+1.8842e-06 E_ex=+1.9204e-06 E_ex(d-corr)=+1.8851e-06  error -0.019  resto -0.0004
+R=800 d=1.1912 eps=0.2: corr 6.090e-04 (c R corr = 0.361) E_tr=+1.9107e-06 E_ex=+2.4404e-06 E_ex(d-corr)=+1.9120e-06  error -0.217  resto -0.0006
+R=800 d=1.1912 eps=0.1: corr 1.533e-04 (c R corr = 0.091) E_tr=+2.3131e-06 E_ex=+2.4404e-06 E_ex(d-corr)=+2.3145e-06  error -0.052  resto -0.0005
+R=800 d=1.1912 eps=0.05: corr 3.780e-05 (c R corr = 0.022) E_tr=+2.4088e-06 E_ex=+2.4404e-06 E_ex(d-corr)=+2.4098e-06  error -0.013  resto -0.0004
+R=3200 d=1.1906 eps=0.2: corr 6.090e-04 (c R corr = 1.444) E_tr=-7.5899e-08 E_ex=+1.1765e-07 E_ex(d-corr)=-7.6333e-08  error -1.645  resto +0.0037
+R=3200 d=1.1906 eps=0.1: corr 1.533e-04 (c R corr = 0.364) E_tr=+7.8866e-08 E_ex=+1.1765e-07 E_ex(d-corr)=+7.8905e-08  error -0.330  resto -0.0003
+R=3200 d=1.1906 eps=0.05: corr 3.780e-05 (c R corr = 0.090) E_tr=+1.0857e-07 E_ex=+1.1765e-07 E_ex(d-corr)=+1.0862e-07  error -0.077  resto -0.0004
+R=3200 d=1.1912 eps=0.2: corr 6.090e-04 (c R corr = 1.444) E_tr=+1.1548e-07 E_ex=+2.2510e-07 E_ex(d-corr)=+1.1553e-07  error -0.487  resto -0.0002
+R=3200 d=1.1912 eps=0.1: corr 1.533e-04 (c R corr = 0.364) E_tr=+2.0295e-07 E_ex=+2.2510e-07 E_ex(d-corr)=+2.0302e-07  error -0.098  resto -0.0003
+R=3200 d=1.1912 eps=0.05: corr 3.780e-05 (c R corr = 0.090) E_tr=+2.1990e-07 E_ex=+2.2510e-07 E_ex(d-corr)=+2.1993e-07  error -0.023  resto -0.0001
