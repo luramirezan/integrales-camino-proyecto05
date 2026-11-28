@@ -129,11 +129,17 @@ con $\nu_\ell=(2\ell+1)^2/[(2\ell-1)(2\ell+3)]$ y $\gamma_Y$ el coeficiente de l
 \section{Análisis y resultados}
 \subsection{Punto de partida: la caja es el sistemático dominante}
 
-El orden de Trotter medido va de 1.96 a 1.99 y el de la malla es 4.00; los casos exactos se reproducen (Coulomb a $\ee{2.2}{-7}$, Hulthén a $\ee{5}{-9}$~\cite{Varshni1990}) y los dos métodos coinciden en ocho valores de $\delta\in[0.2,1.19]$ con diferencia máxima $\ee{1.8}{-8}$. Sin extrapolar en $\epsilon$ el sesgo llega al 20\,\% de $|E_0|$ cerca del umbral, así que solo se usa la energía extrapolada. El caso difícil es $\delta=1.19$ ($a_s=+2204$): $E_0=+\ee{1.5}{-7}$ con $R=1600$ y $-\ee{7.1}{-8}$ con $R=3200$, así que el signo con $R\le1600$ diría «no ligado», y sería un error. Decide la localización: $\mr/R$ baja de $0.23$ ($R=3200$) a $0.043$ ($R=25600$), la fracción de densidad en $r<R/2$ sube de $0.90$ a $0.99999$ y $E_0$ se estabiliza en $-\ee{1.030}{-7}$ (la integral de camino da $-\ee{1.014}{-7}\pm\ee{2.3}{-8}$ en $R=12800$).
+El orden de Trotter medido va de 1.96 a 1.99 y el de la malla es 4.00; los casos exactos se reproducen (Coulomb a $\ee{2.2}{-7}$, Hulthén a $\ee{5}{-9}$~\cite{Varshni1990}) y los dos métodos coinciden en ocho valores de $\delta\in[0.2,1.19]$ con diferencia máxima $\ee{1.8}{-8}$. Sin extrapolar en $\epsilon$ el sesgo llega al 20\,\% de $|E_0|$ cerca del umbral, así que solo se usa la energía extrapolada. El caso difícil es $\delta=1.19$ ($a_s=+2204$): $E_0=+\ee{1.5}{-7}$ con $R=1600$ y $-\ee{7.1}{-8}$ con $R=3200$, así que el signo con $R\le1600$ diría «no ligado», y sería un error. Decide la localización: $\mr/R$ baja de $0.23$ ($R=3200$) a $0.043$ ($R=25600$), la fracción de densidad en $r<R/2$ sube de $0.90$ a $0.99999$ y $E_0$ se estabiliza en $-\ee{1.030}{-7}$ (la integral de camino da $-\ee{1.014}{-7}\pm\ee{2.3}{-8}$ en $R=12800$). La Fig.~\ref{fig:delta119} muestra el problema: mientras la caja es menor que $a_s$, el estado ligado no cabe y la caja lo empuja a energía positiva; solo cuando $R>a_s$ la función de onda se separa de la pared y la energía converge a su valor de espacio libre. Esperar ese cambio de signo exige cajas mayores que $a_s\propto1/\Delta$; el cruce de cajas lo evita.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{f3_delta119.png}
+\caption{Caso $\delta=1.19$ ($\hb=m=g=1$): energía, $\mr/R$ y fracción $F_{1/2}$ de la densidad en $r<R/2$ frente al radio de la caja. Rombos: integral de camino. La línea vertical es $a_s=2204$. La energía cambia de signo entre $R=1600$ y $3200$.}\label{fig:delta119}
+\end{figure}
 
 \subsection{Cruce de cajas en onda s}
 
-La Fig.~\ref{fig:cruces}(a) muestra $y(\delta)$ para cinco cajas con el solucionador radial: todas las curvas pasan cerca de $1/4$ en el mismo $\delta$. La Fig.~\ref{fig:cruces}(b) y la Tabla~\ref{tab:cruces} comparan los cruces con la ecuación~\eqref{eq:ley}. La ecuación~\eqref{eq:caja}, resuelta sin desarrollar, coincide con el disparo a $\ee{2}{-9}$ o mejor desde el par 200/400, y los cocientes de diferencias sucesivas del disparo (4.125, 4.062, 4.031, 4.016) confirman la ley $1/R^2$. La integral de camino (método B) queda por debajo del disparo en los pares 50/100 a 400/800 en $-\ee{7.6}{-5}$, $-\ee{1.8}{-5}$, $-\ee{4.2}{-6}$ y $-\ee{9.4}{-7}$, frente a $-\ee{8.3}{-5}$, $-\ee{2.0}{-5}$, $-\ee{4.8}{-6}$ y $-\ee{1.18}{-6}$ que predice una pared efectiva en $R+c_w$, $c_w=0.1123$ (el residuo de extrapolar $\beta_w\sqrt\epsilon$ con la ley $\epsilon^2$).
+La idea es la de la renormalización fenomenológica: en lugar de preguntar por el signo de $E$ en una caja, se compara la misma cantidad adimensional en dos cajas. En el umbral, $y$ no depende de $R$ (punto fijo); de un lado del umbral $y$ crece con $R$ y del otro decrece, así que el punto donde las curvas de dos cajas se cortan localiza $\dc$ aunque ninguna de las dos energías sea negativa. La Fig.~\ref{fig:cruces}(a) muestra $y(\delta)$ para cinco cajas con el solucionador radial: todas las curvas pasan cerca de $1/4$ en el mismo $\delta$. La Fig.~\ref{fig:cruces}(b) y la Tabla~\ref{tab:cruces} comparan los cruces con la ecuación~\eqref{eq:ley}. La ecuación~\eqref{eq:caja}, resuelta sin desarrollar, coincide con el disparo a $\ee{2}{-9}$ o mejor desde el par 200/400, y los cocientes de diferencias sucesivas del disparo (4.125, 4.062, 4.031, 4.016) confirman la ley $1/R^2$. La integral de camino (método B) queda por debajo del disparo en los pares 50/100 a 400/800 en $-\ee{7.6}{-5}$, $-\ee{1.8}{-5}$, $-\ee{4.2}{-6}$ y $-\ee{9.4}{-7}$, frente a $-\ee{8.3}{-5}$, $-\ee{2.0}{-5}$, $-\ee{4.8}{-6}$ y $-\ee{1.18}{-6}$ que predice una pared efectiva en $R+c_w$, $c_w=0.1123$ (el residuo de extrapolar $\beta_w\sqrt\epsilon$ con la ley $\epsilon^2$).
 
 Con 23 valores de $\delta$ en $[1.185,1.196]$ y $R=50,\dots,3200$, el ajuste ponderado $\delta^*=\dc+\alpha/R^2+\beta/R^3$ (pares con $R\ge100$) da, con la integral de camino,
 \begin{equation}
@@ -182,13 +188,25 @@ Estado & Variable & Punto fijo & $p$ & $\alpha$ predicho & Exponente local & med
 
 \subsection{Cruce de cajas generalizado}
 
-Con el disparo sin malla ($R=25$ a 3200, hasta 6400 en precisión arbitraria) se hallaron 84 cruces, con el nivel aislado por conteo de nodos. La Tabla~\ref{tab:leyes_cruce} compara con las ecuaciones~\eqref{eq:cruce_l} y~\eqref{eq:ley}: los exponentes locales tienden a 2, 3, 4, 5 y 8, y los coeficientes, sin parámetro libre, aciertan entre $\ee{3}{-3}$ y menos de $10^{-7}$ en el par mayor. La ley $R^{-8}$ del 3d llega al piso numérico ($\approx\ee{4}{-16}$) en doble precisión (exponente local 7.85: ese control no pasa y así se reporta) y solo se confirma en precisión arbitraria (cocientes 249.7, 254.4 y 255.6 frente a 256).
+Con el disparo sin malla ($R=25$ a 3200, hasta 6400 en precisión arbitraria) se hallaron 84 cruces, con el nivel aislado por conteo de nodos. La Tabla~\ref{tab:leyes_cruce} compara con las ecuaciones~\eqref{eq:cruce_l} y~\eqref{eq:ley}: los exponentes locales tienden a 2, 3, 4, 5 y 8, y los coeficientes, sin parámetro libre, aciertan entre $\ee{3}{-3}$ y menos de $10^{-7}$ en el par mayor. La ley $R^{-8}$ del 3d llega al piso numérico ($\approx\ee{4}{-16}$) en doble precisión (exponente local 7.85: ese control no pasa y así se reporta) y solo se confirma en precisión arbitraria (cocientes 249.7, 254.4 y 255.6 frente a 256). La Fig.~\ref{fig:conv_l} resume la ganancia: para $\ell\ge1$ la variable $y$ converge con la misma potencia que el borde del signo, mientras que $Y$, que sí tiene punto fijo, gana $2\ell-1$ potencias de $R$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.6\textwidth]{cl_fig_b_convergencia.png}
+\caption{$\delta^*(R,2R)-\dc$ frente a $R$ (disparo; líneas: término dominante predicho sin parámetros libres). (a)~Cruce de $y$ (pendientes $-2$, $-2$, $-3$ y $-5$). (b)~La mejor variable de cada estado ($y$ en onda~s, $Y$ para $\ell\ge1$; pendientes $-4$ y $-8$) y el borde del signo $|\delta_0(R)-\dc|$ ($+$). Aspas: cruces en precisión arbitraria; rombos tachados: cruces de doble precisión en el piso numérico. Los cruces de $Y$ del 3d con $R=25$ y $50$ son negativos y no se dibujan.}\label{fig:conv_l}
+\end{figure}
 
 Solo con cruces, sin usar la condición de energía cero, la integral de camino (receta sin cambios; 2s como segundo autovalor de la misma matriz, con un nodo y el mismo peso positivo) da
 \begin{equation}
 \dc(2p)=0.2202168059\pm\ee{8.6}{-9},\qquad\dc(2s)=0.31020963\pm\ee{8.4}{-6},\label{eq:dc_camino}
 \end{equation}
-frente a 0.22021680660657 y 0.31020928271394; ambas caen dentro de su barra. El 2s es tres órdenes menos preciso porque lo domina la pared. La prueba de artefacto se repite en la onda~p con cajas $R=25$, 50, 100: la energía es positiva en las tres para todo $\delta-\dc\in[-\ee{5}{-5},+\ee{2}{-4}]$, pero el signo de $D=Y(R)-Y(2R)$ distingue los dos lados. Con una barra que incluye el término siguiente de la ley~\eqref{eq:cruce_l}, el par 50/100 decide y acierta los 8 casos, mientras el par 25/50 solo decide 1 de 8 (ningún veredicto es erróneo). Sin las constantes del umbral, tres cajas (25, 50 y 100) y el exponente teórico~4 dan $\delta^*_2-(\delta^*_1-\delta^*_2)/15$ a $+\ee{6}{-9}\pm\ee{1.5}{-6}$ de $\dc(2p)$.
+frente a 0.22021680660657 y 0.31020928271394; ambas caen dentro de su barra. El 2s es tres órdenes menos preciso porque lo domina la pared. La prueba de artefacto se repite en la onda~p con cajas $R=25$, 50, 100: la energía es positiva en las tres para todo $\delta-\dc\in[-\ee{5}{-5},+\ee{2}{-4}]$, pero el signo de $D=Y(R)-Y(2R)$ distingue los dos lados. Con una barra que incluye el término siguiente de la ley~\eqref{eq:cruce_l}, el par 50/100 decide y acierta los 8 casos, mientras el par 25/50 solo decide 1 de 8 (ningún veredicto es erróneo; Fig.~\ref{fig:artefacto_p}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.58\textwidth]{cam_fig4_artefacto_2p.png}
+\caption{Prueba de artefacto en la onda~p con la integral de camino. (a)~$R^3E$ es positiva en $R=25$, $50$ y $100$ a ambos lados del umbral, así que el signo no decide. (b)~Signo de $D=Y(R)-Y(2R)$: el par $25/50$ sigue dando $D>0$ hasta $\dc+10^{-4}$ y por eso no resuelve por debajo de $10^{-4}$; el par $50/100$ sí.}\label{fig:artefacto_p}
+\end{figure} Sin las constantes del umbral, tres cajas (25, 50 y 100) y el exponente teórico~4 dan $\delta^*_2-(\delta^*_1-\delta^*_2)/15$ a $+\ee{6}{-9}\pm\ee{1.5}{-6}$ de $\dc(2p)$.
 
 \subsection{Controles y limitaciones}
 
