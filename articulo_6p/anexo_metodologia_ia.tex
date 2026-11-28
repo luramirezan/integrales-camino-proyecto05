@@ -32,7 +32,7 @@
 Este anexo describe cómo se usó la inteligencia artificial (IA) en el proyecto: qué hizo cada herramienta, qué decidió el equipo, cómo se organizó el trabajo por fases y qué controles se aplicaron para que ninguna cifra ni referencia del artículo dependiera solo de la palabra de un modelo.
 
 \begin{itemize}[leftmargin=*]
-\item \textbf{Asistente principal: Claude (Anthropic).} Ejecutó los cálculos (escribió y corrió los scripts de Python), redactó las bitácoras y el artículo, y organizó los archivos de resultados. Trabajó en un proyecto con carpetas compartidas, un repositorio de GitHub y \emph{hilos} separados por tarea.
+\item \textbf{Asistente principal: Claude (Anthropic).} Ejecutó los cálculos (escribió y corrió los scripts de Python), redactó las bitácoras y el artículo, y organizó los archivos de resultados. Trabajó en un proyecto con carpetas compartidas y conversaciones separadas por tarea.
 \item \textbf{Revisores internos: otras instancias de Claude.} Cada bloque de cálculo lo revisó un agente distinto del que lo hizo, con código propio y sin reutilizar el del autor.
 \item \textbf{Auditor externo: Gemini (Google), en la aplicación.} Un chat por bloque, sin ejecución de código, para buscar errores conceptuales con un modelo de otra familia.
 \item \textbf{Estudio previo: NotebookLM.} Se usó para la guía de estudio de las integrales de camino (fase~0).
@@ -93,6 +93,9 @@ Ninguna decisión se dejó en manos de la IA sin revisión. El ciclo fue siempre
 
 \section{Limitaciones}
 
-La IA escribió el código y el texto, así que la independencia de las revisiones es entre agentes, no entre personas; la mitiga el uso de código distinto en cada revisión y la auditoría con un modelo de otra familia. No hay una segunda implementación humana de la acción de pares. Algunas lecturas de fuentes (el manuscrito de Serra) se hicieron con herramientas automáticas y el artículo lo declara. El código, los datos y las bitácoras están en \url{https://github.com/luramirezan/integrales-camino-proyecto05}.
+\begin{itemize}[leftmargin=*]
+\item \textbf{Revisiones hechas por otros agentes de IA.} Las revisiones internas no las hizo una persona distinta, sino otros agentes. Para que fueran independientes, cada revisión escribió su propio código en lugar de reutilizar el del autor, y además se contrastó todo con otro modelo (Gemini) y con métodos de cálculo distintos.
+\item \textbf{Una sola implementación de la integral de camino.} El programa de la integral de camino (con la acción de pares de Coulomb) se escribió una vez; no existe una segunda versión hecha por separado para compararlas. Por eso se validó con resultados que no dependen de ese programa: los casos exactos de Coulomb y Hulthén y el solucionador radial, con el que coincide a $1.8\times10^{-8}$.
+\end{itemize}
 
 \end{document}
