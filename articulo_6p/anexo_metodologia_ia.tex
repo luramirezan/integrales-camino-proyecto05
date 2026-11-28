@@ -53,11 +53,11 @@ Fase & Fechas & Pregunta o tarea & Producto y papel de la IA\\
 \addlinespace
 1. Formulación & 12--21 oct. & Adimensionalizar, acotar $\delta_c$ analíticamente, elegir la acción y analizar el peso & Cotas $1\le\delta_c\le2$, variacional $1.19055$ (Ritz, 12 exponenciales), Schwinger $1.24305$, referencia numérica $1.1906124211$; verificación independiente de todas las cifras el 21 de oct.\\
 \addlinespace
-2. Integral de camino & 21 oct.--10 nov. & Implementar la integral de camino con acción de pares como matriz de transferencia y validarla & Peso real, positivo y normalizable; Coulomb y Hulthén reproducidos. La IA ejecutó de punta a punta; las decisiones las aprobó el equipo (10-11-2026)\\
+2. Integral de camino & 21 oct.--10 nov. & Implementar la integral de camino con acción de pares como matriz de transferencia y validarla & Peso real, positivo y normalizable; Coulomb y Hulthén reproducidos. La IA implementó y ejecutó; el equipo revisó cada decisión y las aprobó el 10-11-2026\\
 \addlinespace
 3. Barridos y caja & hasta mediados de nov. & Barrer $\delta$ y el tamaño de caja; decidir si $\delta=1.19$ es ligado & Criterio de varias cajas, receta de producción, caso $\delta=1.19$; primera auditoría con Gemini (7 hallazgos, 6 refutados con cálculo, 1 cambió el trabajo)\\
 \addlinespace
-4. Extensiones & 15--23 nov. & Cinco extensiones: cruce de cajas, otros perfiles, momento angular, criterio sin caja, contexto físico & Por delegación de un autor, las decisiones de detalle las tomó la IA y quedaron registradas una por una; verificación de 86 referencias\\
+4. Extensiones & 15--23 nov. & Cinco extensiones: cruce de cajas, otros perfiles, momento angular, criterio sin caja, contexto físico & La IA propuso cada decisión de detalle; el equipo las revisó una por una y las aceptó, las rechazó o pidió rehacerlas; verificación de 86 referencias\\
 \addlinespace
 Artículo final & 23--27 nov. & Centrar el artículo en lo original (indicación del profesor); generalizar el cruce a $\ell\ge1$ y al 2s; recortar a 6 páginas & Cálculos nuevos del cruce generalizado; tres revisiones del texto (física y originalidad, cifras, forma); verificación final de las 18 referencias citadas y de la claridad tras el recorte\\
 \bottomrule
@@ -69,7 +69,7 @@ Artículo final & 23--27 nov. & Centrar el artículo en lo original (indicación
 Cada bloque de cálculo siguió los mismos pasos, y cada paso dejó un archivo que se puede revisar:
 
 \begin{enumerate}[leftmargin=*]
-\item \textbf{Pregunta y criterio de cierre por escrito, antes de calcular.} El equipo (o la IA, con la decisión registrada en la fase 4) fijaba qué se quería saber y qué resultado cerraría el bloque.
+\item \textbf{Pregunta y criterio de cierre por escrito, antes de calcular.} El equipo fijaba qué se quería saber y qué resultado cerraría el bloque; cuando la IA propuso el criterio, el equipo lo revisó antes de calcular.
 \item \textbf{Controles con criterio previo.} Cada control (orden de Trotter, caso exacto, comparación entre métodos) se escribía con su tolerancia antes de ver el resultado. Los que no pasan se reportan así, con su causa medida; nunca se relajó un criterio después. Al final hay 471 controles: 395 pasan, 49 no pasan y 27 se midieron sin criterio previo o no aplican.
 \item \textbf{Cálculo con scripts que escriben archivos.} Cada script numerado guarda sus resultados en un JSON y una salida de texto. Las cifras del artículo se copian de esos archivos, no de la memoria del modelo; un guion final comprobó cada cifra contra su archivo de origen.
 \item \textbf{Recálculo propio.} Dentro del bloque, cada resultado se comprueba con un segundo método (diferencias finitas, disparo sin malla, integral de camino) o con un caso exacto (Coulomb, Hulthén).
@@ -82,11 +82,13 @@ Cada bloque de cálculo siguió los mismos pasos, y cada paso dejó un archivo q
 
 Ninguna referencia propuesta por una IA se incluyó sin comprobarla. En la fase 4 se revisaron 86 referencias: 75 comprobadas en el editor o en un índice con DOI, 5 solo en arXiv, 4 documentos oficiales y 2 no verificadas, que no se citan. Esa revisión corrigió atribuciones (la cota $1.24305$ es de Schwinger; el valor $1.19061227$ es de Gomes et al., no de Roy). Antes de la entrega se repitió la verificación para las 18 referencias del artículo de 6 páginas: todas existen con los datos citados, y en 17 se confirmó en la fuente lo que se les atribuye. En la restante (Gebremedhin y Weatherford, 2023) el artículo existe, pero no pudimos leer en la fuente primaria el valor de $\delta_c$; por eso el artículo lo cita junto con el de Napsuciale y Rodríguez (2021), que sí se comprobó y coincide con nuestro cálculo.
 
-\section{Qué decidió el equipo y qué la IA}
+\section{Cómo se tomaron las decisiones}
+
+Ninguna decisión se dejó en manos de la IA sin revisión. El ciclo fue siempre el mismo: la IA analizaba el problema y proponía un paso (un método, un criterio, una tolerancia, una redacción); el equipo lo revisaba y lo aceptaba, lo rechazaba o pedía rehacerlo de otra forma. La bitácora registra esos casos, por ejemplo cuando se pidió repetir un cálculo con otro método o con otra variable, cuando se rechazó relajar el criterio de un control que no pasaba y cuando se reorganizó el artículo alrededor de lo original.
 
 \begin{itemize}[leftmargin=*]
-\item \textbf{El equipo:} la pregunta del proyecto, el plan y las decisiones de las fases 1 a 3, la delegación de las decisiones de detalle de la fase 4, la elección del enfoque del artículo (cruce de cajas y, en segundo lugar, momento angular) y la revisión del texto final.
-\item \textbf{La IA:} la implementación y ejecución de todos los cálculos, la redacción de bitácoras y del artículo, las decisiones de detalle de la fase 4 (registradas para revisión del equipo) y las revisiones internas.
+\item \textbf{El equipo:} la pregunta del proyecto, el plan de cada fase, la revisión una por una de las propuestas de la IA (aceptarlas, rechazarlas o pedir que se rehicieran), la elección del enfoque del artículo (cruce de cajas y, en segundo lugar, momento angular) y la revisión del texto final.
+\item \textbf{La IA:} el análisis y las propuestas, la implementación y ejecución de los cálculos, la redacción de bitácoras y del artículo y las revisiones internas, siempre sujetas a la revisión del equipo.
 \end{itemize}
 
 \section{Limitaciones}
